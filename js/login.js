@@ -1,5 +1,7 @@
 var app = angular.module("login_app", []); // put any module dependencies here ["ngRoute"]
 
+console.log('Test');
+
 // app.config(function($routeProvider)) { can put routing here}
  window.fbAsyncInit = function() {
         FB.init({
@@ -17,7 +19,7 @@ var app = angular.module("login_app", []); // put any module dependencies here [
          js.src="https://connect.facebook.net/en_US/all.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-      
+
 
 FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
