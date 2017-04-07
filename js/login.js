@@ -20,10 +20,8 @@ console.log('Test');
          js = d.createElement(s); js.id = id;
          js.src="https://connect.facebook.net/en_US/all.js";
          fjs.parentNode.insertBefore(js, fjs);
-       }(document, 'script', 'facebook-jssdk'));
 
-
-FB.getLoginStatus(function(response) {
+         FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
     console.log('Logged in.');
     $("#fbButton").hide();
@@ -33,6 +31,11 @@ FB.getLoginStatus(function(response) {
     FB.login();
   }
 });
+         
+       }(document, 'script', 'facebook-jssdk'));
+
+
+
 
 console.log('test2')
 
