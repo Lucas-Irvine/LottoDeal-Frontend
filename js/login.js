@@ -24,7 +24,10 @@ window.fbAsyncInit = function() {
 
 }(document, 'script', 'facebook-jssdk'));
 
-
+function myFacebookLogin() {
+    console.log('test3')
+  FB.login(function(){}, {scope: 'publish_actions'});
+}
 
 
 console.log('test2')
