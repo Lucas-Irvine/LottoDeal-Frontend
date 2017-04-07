@@ -38,7 +38,7 @@ function myFacebookLogin() {
       data = {
         name: username,
         fbid: userFbid,
-        url: profileurl,
+        url: profileurl
       }
 
       // AJAX POST TO SERVER
