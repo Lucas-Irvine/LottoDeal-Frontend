@@ -6,39 +6,44 @@ console.log('Test');
 
 // app.config(function($routeProvider)) { can put routing here}
 window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '228917890846081',
-      xfbml      : true,
-      version    : 'v2.8'
+  FB.init({
+    appId      : '228917890846081',
+    xfbml      : true,
+    version    : 'v2.8'
   });
 
     //FB.AppEvents.logPageView();
-};
+  };
 
-(function(d, s, id){
- var js, fjs = d.getElementsByTagName(s)[0];
- if (d.getElementById(id)) {return;}
- js = d.createElement(s); js.id = id;
- js.src="https://connect.facebook.net/en_US/all.js";
- fjs.parentNode.insertBefore(js, fjs);
+  (function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src="https://connect.facebook.net/en_US/all.js";
+   fjs.parentNode.insertBefore(js, fjs);
 
-}(document, 'script', 'facebook-jssdk'));
+ }(document, 'script', 'facebook-jssdk'));
 
-function myFacebookLogin() {
+  function myFacebookLogin() {
+  // FB.login(function(){}, {scope: 'publish_actions'});
+
+  FB.login(function(response){
+  // Handle the response object, like in statusChangeCallback() in our demo
+  // code.
 
   console.log("got here bro")
 
-      var url = "https://localhost:8000/createUser";
+  var url = "https://localhost:8000/createUser";
 
-      var username = "Bob"
-      var userFbid = "1324"
-      var profileurl = "www.github.com"
+  var username = "Bob"
+  var userFbid = response.authResponse.userID
+  var profileurl = "www.github.com"
 
-      data = {
-        name: username,
-        fbid: userFbid,
-        url: profileurl
-      }
+  data = {
+    name: username,
+    fbid: userFbid,
+    url: profileurl
+  }
 
       // AJAX POST TO SERVER
       $.ajax({
@@ -46,16 +51,20 @@ function myFacebookLogin() {
         type: 'post',
         data: data,
         success: function(data) {
-        console.log(data)
+          console.log(data)
         },
         error: function(response, error) {
-        console.log(response)
-        console.log(error)
+          console.log(response)
+          console.log(error)
         }
+      });
+
+      console.log('test3')
+
     });
 
-    console.log('test3')
-  // FB.login(function(){}, {scope: 'publish_actions'});
+  
+  
 }
 
 
