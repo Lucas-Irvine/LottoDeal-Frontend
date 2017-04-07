@@ -27,7 +27,6 @@ window.fbAsyncInit = function() {
 function myFacebookLogin() {
 
   console.log("got here bro")
-      e.preventDefault();
 
       var url = "https://localhost:8000/createUser";
 
