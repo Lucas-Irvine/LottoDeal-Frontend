@@ -24,6 +24,8 @@ window.fbAsyncInit = function() {
 
  }(document, 'script', 'facebook-jssdk'));
 
+
+
   function myFacebookLogin() {
   // FB.login(function(){}, {scope: 'publish_actions'});
 
@@ -61,7 +63,7 @@ window.fbAsyncInit = function() {
 
       console.log('test3')
 
-    });
+    }, {scope: 'email'});
 
   
   
