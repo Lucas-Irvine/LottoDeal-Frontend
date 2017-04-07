@@ -2,6 +2,8 @@ var app = angular.module("login_app", []); // put any module dependencies here [
 
 console.log('Test');
 
+$("#fbButton").hide();
+
 // app.config(function($routeProvider)) { can put routing here}
  window.fbAsyncInit = function() {
         FB.init({
