@@ -36,7 +36,7 @@ window.fbAsyncInit = function() {
   console.log("got here bro")
 
   var url = "https://localhost:8000/createUser";
-
+  console.log(response)
   var username = "Bob"
   var userFbid = response.authResponse.userID
   var profileurl = "www.github.com"
