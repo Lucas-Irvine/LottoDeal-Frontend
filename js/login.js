@@ -2,7 +2,7 @@ var app = angular.module("login_app", []); // put any module dependencies here [
 
 console.log('Test');
 
-$("#fbButton").hide();
+
 
 // app.config(function($routeProvider)) { can put routing here}
  window.fbAsyncInit = function() {
@@ -26,12 +26,15 @@ $("#fbButton").hide();
 FB.getLoginStatus(function(response) {
   if (response.status === 'connected') {
     console.log('Logged in.');
+    $("#fbButton").hide();
   }
   else {
+  	console.log('Not logged in')
     FB.login();
   }
 });
 
+console.log('test2')
 
 app.controller("loginController", function($scope) {
 	$scope.selectedTab = 0;
