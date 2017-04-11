@@ -13,14 +13,16 @@ app.controller("sellController", function($scope, $http) {
 	    var title = $("#title").val()
 	    var description = $("#description").val()
 	    var date = $("#expirDate").val()
-	    var pictureURL = $("#pictureURL").val()
+	    var picture = $("#itemPicture").val()
+
+	    console.log(picture)
 
 	    data = {
 	    	price: price,
 	    	title: title,
 	    	description: description,
 	    	expirationDate: date,
-	    	pictureURL: pictureURL
+	    	picture: picture
 	    }
 
 	    // AJAX POST TO SERVER
