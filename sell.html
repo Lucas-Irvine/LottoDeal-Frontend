@@ -64,7 +64,11 @@
 
 <!--Page Content -->
 <div class="container">
-  <form id="submitForm">
+  <form id="submitForm" action="localhost:8000/createPost" method="post" enctype="multipart/form-data"> 
+
+<!-- I added the local host stuff, method, enctype -->
+
+
     <div class="form-group">
       <label for="example-text-input">Title</label>
       <input id="title" name="title" type="text" class="form-control" id="exampleInput" aria-describedby="emailHelp" placeholder="Enter Product Name">
@@ -82,8 +86,8 @@
       </small>
     </div> -->
     <div class="form-group">
-      <label>Picture URL</label>
-      <input type="text" name="picture" id="pictureURL"/>
+      <label>Item Picture</label>
+      <input type="file" name="picture" id="itemPicture"/>
     </div>
 
     <div class="form-group">
