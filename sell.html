@@ -64,7 +64,7 @@
 
 <!--Page Content -->
 <div class="container">
-  <form id="submitForm" action="localhost:8000/createPost" method="POST" enctype="multipart/form-data"> 
+  <form id="submitForm" action="https://localhost:8000/createPost" method="POST" enctype="multipart/form-data"> 
 
 <!-- I added the local host stuff, method, enctype -->
 
@@ -87,7 +87,7 @@
     </div> -->
     <div class="form-group">
       <label>Item Picture</label>
-      <input type="file" name="picture" id="itemPicture"/>
+      <input type="file" name="picture" id="itemPicture" accept="image/*"/>
     </div>
 
     <div class="form-group">
