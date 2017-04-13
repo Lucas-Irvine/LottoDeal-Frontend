@@ -15,10 +15,11 @@ window.fbAsyncInit = function() {
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
-            console.log('Logged in.');
-            $("#fbButton").hide();
             //display user data
             getFbUserData();
+            // Get and display the user profile data
+            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
+            document.getElementById('fbLink').innerHTML = 'Facebook Logout';
         }
         else {
             console.log('Not logged in');
