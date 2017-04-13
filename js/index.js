@@ -8,7 +8,7 @@ app.controller("indexController", function($scope) {
 	var url = "https://localhost:8000/getPosts";
 
 
-
+    console.log('test')
 
     // AJAX POST TO SERVER
     $.ajax({
