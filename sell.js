@@ -3,42 +3,43 @@ var app = angular.module("app", []);
 app.controller("sellController", function($scope, $http) {
 	console.log("got here")
 
- //    $("#submitForm").submit(function(e) {
- //    	console.log("got here")
-	//     e.preventDefault();
+    $("#submitForm").submit(function(e) {
+    	console.log("got here")
+	    e.preventDefault();
 
- //    	var url = "https://localhost:8000/createPost";
+    	var url = "https://localhost:8000/createPost";
 
-	//     var price = $("#price").val()
-	//     var title = $("#title").val()
-	//     var description = $("#description").val()
-	//     var date = $("#expirDate").val()
-	//     var picture = $("#itemPicture").val()
+	    var price = $("#price").val()
+	    var title = $("#title").val()
+	    var description = $("#description").val()
+	    var date = $("#expirDate").val()
+	    var image = $("#itemPicture").val()
 
-	//     console.log(picture)
+	    console.log(image)
 
-	//     data = {
-	//     	price: price,
-	//     	title: title,
-	//     	description: description,
-	//     	expirationDate: date,
-	//     	picture: picture
-	//     }
+	    data = {
+	    	price: price,
+	    	title: title,
+	    	description: description,
+	    	expirationDate: date,
+	    	image: image
+	    }
 
-	//     // AJAX POST TO SERVER
-	//     $.ajax({
-	// 	    url: url,
-	// 	    type: 'post',
-	// 	    data: data,
-	// 	    success: function(data) {
-	// 			console.log(data)
-	// 	    },
-	// 	    error: function(response, error) {
-	// 			console.log(response)
-	// 			console.log(error)
-	// 	    }
-	// 	});
 
-	// });
+	    // AJAX POST TO SERVER
+	    $.ajax({
+		    url: url,
+		    type: 'post',
+		    data: data,
+		    success: function(data) {
+				console.log(data)
+		    },
+		    error: function(response, error) {
+				console.log(response)
+				console.log(error)
+		    }
+		});
+
+	});
 })
 
