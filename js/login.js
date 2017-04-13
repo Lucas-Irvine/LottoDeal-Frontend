@@ -61,8 +61,8 @@ function saveUserData(response) {
 
       data = {
         name: response.first_name+ ' ' + response.last_name,
-        fbid: userFbid,
-        url: response.link
+        fbid: response.id,
+        url: url
       }
 
       // AJAX POST TO SERVER
