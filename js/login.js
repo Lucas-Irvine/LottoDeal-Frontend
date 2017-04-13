@@ -39,12 +39,13 @@ window.fbAsyncInit = function() {
 
 // Facebook login with JavaScript SDK
 function fbLogin() {
-    FB.login(function (response) {
+    var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
             document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
             document.getElementById('fbLink').innerHTML = 'Facebook Logout';
             getFbUserData();
+            window.focus();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
         }
