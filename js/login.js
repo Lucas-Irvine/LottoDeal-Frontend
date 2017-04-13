@@ -15,7 +15,6 @@ window.fbAsyncInit = function() {
         if (response.status === 'connected') {
             //display user data
             getFbUserData();
-            console.log("what");
             // Get and display the user profile data
             document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
             document.getElementById('fbLink').innerHTML = 'Facebook Logout';
