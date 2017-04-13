@@ -42,6 +42,8 @@ function fbLogin() {
     FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
+            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
+            document.getElementById('fbLink').innerHTML = 'Facebook Logout';
             getFbUserData();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
@@ -90,7 +92,7 @@ function getFbUserData(){
 function fbLogout() {
     FB.logout(function() {
         document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
-        document.getElementById('fbLink').innerHTML = '<img src="fblogin.png"/>';
+        document.getElementById('fbLink').innerHTML = 'Facebook Login';
         document.getElementById('userData').innerHTML = '';
         document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
     });
