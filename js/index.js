@@ -1,6 +1,6 @@
 var app = angular.module("index_app", [])
 
-app.controller("indexController", function($scope) {
+app.controller("nx", function($scope) {
 	$scope.selectedTab = 0
 
 	$scope.posts = []
