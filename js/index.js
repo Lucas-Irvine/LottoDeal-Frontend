@@ -19,12 +19,12 @@ app.controller("indexController", function($scope) {
             $scope.posts = items;
             console.log($scope.posts)
             $scope.$apply()
-    	},
-    	error: function(response, error) {
-    		console.log(response)
-    		console.log(error)
-    	}
-    });
+        },
+        error: function(response, error) {
+          console.log(response)
+          console.log(error)
+      }
+  });
     
 
     $scope.bid = function (event) {
@@ -32,27 +32,33 @@ app.controller("indexController", function($scope) {
         console.log(event)
 
         var url = "https://localhost:8000/addBid";
+        var userID = localStorage.getItem("curUserID")
+        if (userID != null) {
+            data = {
+               itemID: event,
+               userID: userID,
+               newAmount: 4
+           }
 
-        data = {
-         itemID: event,
-         userID: "233244",
-         newAmount: 4
-        }
-
-        $.ajax({
-        url: url,
-        data: data,
-        type: 'POST',
-        success: function(data) {
-            console.log('Bid added for ' + event)
-        },
-        error: function(response, error) {
-            console.log(response)
-            console.log(error)
-        }
+           $.ajax({
+            url: url,
+            data: data,
+            type: 'POST',
+            success: function(data) {
+                console.log('Bid added for ' + event)
+            },
+            error: function(response, error) {
+                console.log(response)
+                console.log(error)
+            }
         });
 
+       }
+       else {
+        console.log('UserID is null')
     }
+
+}
 
 })	
 
