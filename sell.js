@@ -33,7 +33,7 @@ app.controller("sellController", function($scope, $http) {
 	    $.ajax({
 		    url: url,
 		    type: 'POST',
-		    data: new data FormData(this),
+		    data: new FormData(this),
 		    success: function(data) {
 				console.log(data)
 		    },
