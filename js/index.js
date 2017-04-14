@@ -35,7 +35,7 @@ app.controller("indexController", function($scope) {
 
 })	
 
- $(".bidButton").click(function(e) {
+ $("button[buttonType='bidButton']").click(function(e) {
         console.log(this)
 
         idattr = this.attr("id");
