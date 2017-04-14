@@ -35,8 +35,8 @@ app.controller("indexController", function($scope) {
     
 
     $scope.bid = function (event, amount) {
-        console.log('hi')
-        console.log(event)
+        console.log("Adding bid for item " + event + " for " + amount)
+
 
         var url = "https://localhost:8000/addBid";
         var userID = localStorage.getItem("curUserID")
