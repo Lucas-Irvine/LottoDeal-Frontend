@@ -35,6 +35,13 @@ app.controller("indexController", function($scope) {
 
 })	
 
+ $(".bidButton").click(function(e) {
+        console.log(this)
+
+        idattr = this.attr("id");
+        console.log(idattr)
+    })
+
 // /* Create Tabs */
 
 // $(document).ready(function(){
