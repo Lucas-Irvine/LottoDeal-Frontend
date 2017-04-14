@@ -45,11 +45,11 @@ app.controller("indexController", function($scope) {
 
 
 
-    $scope.bid(event) {
+    $scope.bid = function (event) {
         console.log(event)
 
 
-        
+
     }
 
 })	
