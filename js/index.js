@@ -78,7 +78,7 @@ var DateDiff = {
         if (t2 == null || t1 == null) {
             return 0
         }
-        return parseInt((t2-t1)/(3600*1000));
+        return (parseInt((t2-t1)/(3600*1000))) % 24;
     },
 
     inDays: function(d1, d2) {
