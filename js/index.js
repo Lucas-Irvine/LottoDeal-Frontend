@@ -16,6 +16,9 @@ app.controller("indexController", function($scope) {
     	type: 'GET',
     	success: function(data) {
             var items = JSON.parse(data)
+            for (i = 0; i < items.length; i++) {
+                items[i].testnum = 50
+            }
             $scope.posts = items;
             console.log($scope.posts)
             $scope.$apply()
