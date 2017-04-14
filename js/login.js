@@ -95,7 +95,7 @@ function getFbUserData(){
 function fbLogout() {
 
     //delete local storage
-    // delete localStorage.curUserID
+    delete localStorage.curUserID;
 
     FB.logout(function() {
         document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
