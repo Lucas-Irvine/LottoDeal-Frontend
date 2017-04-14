@@ -44,7 +44,7 @@ app.controller("indexController", function($scope) {
             data = {
                itemID: event,
                userID: userID,
-               newAmount: amount
+               newAmount: Number(amount)
            }
 
            $.ajax({
