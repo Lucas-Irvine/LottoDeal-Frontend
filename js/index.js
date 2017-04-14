@@ -17,7 +17,8 @@ app.controller("indexController", function($scope) {
     	success: function(data) {
             var items = JSON.parse(data)
             for (i = 0; i < items.length; i++) {
-                items[i].percentageRaised = items[i].amountRaised / items[i].price;
+                items[i].percentageRaised = Number(items[i].amountRaised) / Number(items[i].price);
+                console.log( "Raised" + items[i].percentageRaised);
                 var expirationDate = new Date(items[i].expirationDate);
                 var date = new Date();
                 items[i].expirationDate = DateDiff.inDays(date, expirationDate) + " Days left";
