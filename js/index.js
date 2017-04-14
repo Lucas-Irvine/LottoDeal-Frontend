@@ -27,7 +27,7 @@ app.controller("indexController", function($scope) {
 
 
 
-            
+
             $scope.$apply()
     	},
     	error: function(response, error) {
@@ -42,6 +42,15 @@ app.controller("indexController", function($scope) {
         idattr = this.attr("id");
         console.log(idattr)
     })
+
+
+
+    $scope.bid(event) {
+        console.log(event)
+
+
+        
+    }
 
 })	
 
