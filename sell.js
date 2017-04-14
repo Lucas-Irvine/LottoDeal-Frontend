@@ -37,6 +37,9 @@ app.controller("sellController", function($scope, $http) {
 		    success: function(data) {
 				console.log(data)
 		    },
+		    cache: false,
+		    contentType: false,
+		    processData: false,
 		    error: function(response, error) {
 				console.log(response)
 				console.log(error)
