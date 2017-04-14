@@ -34,7 +34,7 @@ app.controller("indexController", function($scope) {
   });
     
 
-    $scope.bid = function (event) {
+    $scope.bid = function (event, amount) {
         console.log('hi')
         console.log(event)
 
@@ -44,7 +44,7 @@ app.controller("indexController", function($scope) {
             data = {
                itemID: event,
                userID: userID,
-               newAmount: 4
+               newAmount: amount
            }
 
            $.ajax({
