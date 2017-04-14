@@ -17,6 +17,8 @@ app.controller("indexController", function($scope) {
     	success: function(data) {
             var items = JSON.parse(data)
             $scope.posts = items;
+            console.log($scope.posts)
+            $scope.$apply()
     	},
     	error: function(response, error) {
     		console.log(response)
