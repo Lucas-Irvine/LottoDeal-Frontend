@@ -13,6 +13,7 @@ app.controller("sellController", function($scope, $http) {
 	    var title = $("#title").val()
 	    var description = $("#description").val()
 	    var date = $("#expirDate").val()
+	    console.log("here it is: " + date)
 	    //var image = $("#itemPicture").val()
 
 	   // console.log(image)
