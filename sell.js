@@ -25,19 +25,18 @@ app.controller("sellController", function($scope, $http) {
 	    // 	image: image
 	    // }
 
-	    var formData = new FormData($(this)[0]);
-	    var data = formData
-	    console.log(formData)
+	    // var formData = new FormData($(this)[0]);
+	    // var data = formData
+	    // console.log(formData)
 
 	    // AJAX POST TO SERVER
 	    $.ajax({
 		    url: url,
-		    type: 'post',
-		    data: data,
+		    type: 'POST',
+		    data: new data FormData(this),
 		    success: function(data) {
 				console.log(data)
 		    },
-		    cache: false,
 		    contentType: false,
 		    processData: false,
 		    error: function(response, error) {
