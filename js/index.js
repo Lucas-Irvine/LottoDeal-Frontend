@@ -15,7 +15,8 @@ app.controller("indexController", function($scope) {
     	url: url,
     	type: 'GET',
     	success: function(data) {
-    		console.log(data)
+            var items = JSON.parse(data)
+            $scope.posts = items;
     	},
     	error: function(response, error) {
     		console.log(response)
