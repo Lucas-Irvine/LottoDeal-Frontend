@@ -18,6 +18,16 @@ app.controller("indexController", function($scope) {
             var items = JSON.parse(data)
             $scope.posts = items;
             console.log($scope.posts)
+            $("button[buttonType='bidButton']").click(function(e) {
+        console.log(this)
+
+        idattr = this.attr("id");
+        console.log(idattr)
+    })
+
+
+
+            
             $scope.$apply()
     	},
     	error: function(response, error) {
@@ -26,7 +36,7 @@ app.controller("indexController", function($scope) {
     	}
     });
 
-    $(".bidButton").click(function(e) {
+    $("button[buttonType='bidButton']").click(function(e) {
         console.log(this)
 
         idattr = this.attr("id");
