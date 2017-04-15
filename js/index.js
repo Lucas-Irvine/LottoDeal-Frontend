@@ -1,4 +1,5 @@
-var app = angular.module("index_app", [])
+var app = angular.module("index_app", ["ngRoute"])
+
 
 app.controller("indexController", function($scope) {
 	$scope.selectedTab = 0
@@ -40,6 +41,8 @@ app.controller("indexController", function($scope) {
         console.log(progressbar)
         var currentAmount = progressbar.css("width")
         console.log(currentAmount)
+
+        var percentage = progressbar.width() / progressbar.parent().width() * 100
         // progressbar.css("width", currentAmount + "px")
 
 
