@@ -69,7 +69,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     // HANDLE ROUTING
     $rootScope.$on('$routeChangeStart', function(e, current, pre) {
-        e.preventDefault()
         console.log('Current route name: ' + $location.path());
         var path = $location.path().substring(1, $location.path().length)
         console.log(path)
@@ -81,8 +80,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         // can make this a param in url instead of part of path (?itemId = 123)
 
         // if item is in database, display that webpage
-        for (var i = 0; i < posts.length; i++) {
-            var post = posts[i]
+        for (var i = 0; i < $scope.posts.length; i++) {
+            var post = $scope.posts[i]
             var postId = post["_id"]
             if (path == postId) {
                 targetPost = post;
