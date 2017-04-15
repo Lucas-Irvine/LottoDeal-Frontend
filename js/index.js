@@ -79,22 +79,22 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
         // can make this a param in url instead of part of path (?itemId = 123)
 
-        // if item is in database, display that webpage
-        // for (var i = 0; i < $scope.posts.length; i++) {
-        //     var post = $scope.posts[i]
-        //     var postId = post["_id"]
-        //     if (path == postId) {
-        //         targetPost = post;
-        //         foundItem = true;
-        //         break;
-        //     }
-        // }
+        if item is in database, display that webpage
+        for (var i = 0; i < $scope.posts.length; i++) {
+            var post = $scope.posts[i]
+            var postId = post["_id"]
+            if (path == postId) {
+                targetPost = post;
+                foundItem = true;
+                break;
+            }
+        }
 
-        // // otherwise, go back to home page
-        // if (!foundItem) {
-        //     console.log("hi")
-        //     $location.path('/')
-        // }
+        // otherwise, go back to home page
+        if (!foundItem) {
+            console.log("Going back to home page")
+            $location.path('/')
+        }
     });
 
 
