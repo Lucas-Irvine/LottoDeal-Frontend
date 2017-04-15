@@ -1,18 +1,18 @@
 var app = angular.module("index_app", ["ngRoute"])
 
-app.config(function($routeProvider) {
-    $routeProvider
-    .when('/', {
-        templateUrl: 'pages/template.html',
-        controller: 'indexController',
-        reloadOnSearch: false,
-    })
-    .otherwise({
-        templateUrl: 'pages/item.html',
-        controller: 'indexController',
-        reloadOnSearch: false,
-    })
-})
+// app.config(function($routeProvider) {
+//     $routeProvider
+//     .when('/', {
+//         templateUrl: 'pages/template.html',
+//         controller: 'indexController',
+//         reloadOnSearch: false,
+//     })
+//     .otherwise({
+//         templateUrl: 'pages/item.html',
+//         controller: 'indexController',
+//         reloadOnSearch: false,
+//     })
+// })
 
 // app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
 //     $rootScope.$on('$routeChangeStart', function(e, current, pre) {
@@ -71,38 +71,38 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     $scope.targetPost = null;
 
     // HANDLE ROUTING
-    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
-        console.log('Current route name: ' + $location.path());
-        var path = $location.path().substring(1, $location.path().length)
-        console.log(path)
-        console.log(e)
-        console.log(current)
+    // $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+    //     console.log('Current route name: ' + $location.path());
+    //     var path = $location.path().substring(1, $location.path().length)
+    //     console.log(path)
+    //     console.log(e)
+    //     console.log(current)
 
-        var foundItem = false;
+    //     var foundItem = false;
 
-        // can make this a param in url instead of part of path (?itemId = 123)
+    //     // can make this a param in url instead of part of path (?itemId = 123)
 
-        // if item is in database, display that webpage
-        for (var i = 0; i < $scope.posts.length; i++) {
-            var post = $scope.posts[i]
-            var postId = post["_id"]
-            console.log(postId)
-            console.log(path)
-            if (path == postId) {
-                $scope.targetPost = post;
-                foundItem = true;
-                $location.path("/" + path)
-                // $scope.$apply()
-                break;
-            }
-        }
+    //     // if item is in database, display that webpage
+    //     for (var i = 0; i < $scope.posts.length; i++) {
+    //         var post = $scope.posts[i]
+    //         var postId = post["_id"]
+    //         console.log(postId)
+    //         console.log(path)
+    //         if (path == postId) {
+    //             $scope.targetPost = post;
+    //             foundItem = true;
+    //             $location.path("/" + path)
+    //             // $scope.$apply()
+    //             break;
+    //         }
+    //     }
 
-        // otherwise, go back to home page
-        if (!foundItem) {
-            console.log("Going back to home page")
-            $location.path('/')
-        }
-    });
+    //     // otherwise, go back to home page
+    //     if (!foundItem) {
+    //         console.log("Going back to home page")
+    //         $location.path('/')
+    //     }
+    // });
 
 
 
