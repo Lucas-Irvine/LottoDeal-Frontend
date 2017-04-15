@@ -12,7 +12,7 @@ app.config(function($routeProvider) {
 })
 
 app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
-    $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
+    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
         console.log('Current route name: ' + $location.path());
 
         console.log($routeParams);
