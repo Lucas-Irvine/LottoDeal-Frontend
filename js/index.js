@@ -39,8 +39,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 	var url = "https://localhost:8000/getPosts";
 
 
-    var targetPost = null;
-
     console.log('test')
 
     // AJAX POST TO SERVER
@@ -59,49 +57,47 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             $scope.posts = items;
             console.log($scope.posts)
             $scope.$apply()
-
-
-
-
-
-            //
-
-            // HANDLE ROUTING
-            $rootScope.$on('$routeChangeStart', function(e, current, pre) {
-                console.log('Current route name: ' + $location.path());
-                var path = $location.path().substring(1, $location.path().length)
-                console.log(path)
-                console.log(e)
-                console.log(current)
-
-                var foundItem = false;
-
-                // can make this a param in url instead of part of path (?itemId = 123)
-
-                // if item is in database, display that webpage
-                for (var i = 0; i < posts.length; i++) {
-                    var post = posts[i]
-                    var postId = post["_id"]
-                    if (path == postId) {
-                        targetPost = post;
-                        foundItem = true;
-                        break;
-                    }
-                }
-
-                // otherwise, go back to home page
-                if (!foundItem) {
-                    $location.path('/')
-                }
-            });
         },
         error: function(response, error) {
           console.log(response)
           console.log(error)
       }
     });
-
     
+
+    var targetPost = null;
+
+    // HANDLE ROUTING
+    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+        e.preventDefault()
+        console.log('Current route name: ' + $location.path());
+        var path = $location.path().substring(1, $location.path().length)
+        console.log(path)
+        console.log(e)
+        console.log(current)
+
+        var foundItem = false;
+
+        // can make this a param in url instead of part of path (?itemId = 123)
+
+        // if item is in database, display that webpage
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i]
+            var postId = post["_id"]
+            if (path == postId) {
+                targetPost = post;
+                foundItem = true;
+                break;
+            }
+        }
+
+        // otherwise, go back to home page
+        if (!foundItem) {
+            $location.path('/')
+        }
+    });
+
+
 
     $scope.bid = function (event, amount, amountRaised, price) {
         // DISPLAY BID ON FRONT-END
