@@ -44,7 +44,7 @@ app.controller("indexController", function($scope) {
 
         var percentage = progressbar.width() / progressbar.parent().width() * 100
         // progressbar.css("width", currentAmount + "px")
-
+        console.log(percentage)
 
 
         
