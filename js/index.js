@@ -4,11 +4,13 @@ app.config(function($routeProvider) {
     $routeProvider
     .when('/', {
         templateUrl: 'pages/template.html',
-        controller: 'indexController'
+        controller: 'indexController',
+        reloadOnSearch: false,
     })
     .otherwise({
         templateUrl: 'pages/item.html',
-        controller: 'indexController'
+        controller: 'indexController',
+        reloadOnSearch: false,
     })
 })
 
