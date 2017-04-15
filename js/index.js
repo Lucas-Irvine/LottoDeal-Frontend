@@ -1,4 +1,4 @@
-var app = angular.module("index_app", ["ngRoute"])
+var app = angular.module("index_app", [])
 
 
 app.controller("indexController", function($scope) {
