@@ -35,16 +35,29 @@ app.controller("indexController", function($scope) {
   });
     
 
-    $scope.bid = function (event, amount) {
+    $scope.bid = function (event, amount, amountRaised, price) {
         // DISPLAY BID ON FRONT-END
         var progressbar = $("#progress-bar-" + event)
         console.log(progressbar)
         var currentAmount = progressbar.css("width")
         console.log(currentAmount)
+        var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
+
+
+
+
 
         var percentage = progressbar.width() / progressbar.parent().width() * 100
         // progressbar.css("width", currentAmount + "px")
         console.log(percentage)
+
+        var newAmount = parseInt(amountRaised) + parseInt(amount)
+        console.log(newAmount)
+        var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
+        console.log(newPercent)
+        // var newWidth = progressbar.parent().width() * newPercent
+        var newWidth = totalWidth * newPercent
+        console.log("newwidth: " + newWidth)
 
 
         
