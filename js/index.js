@@ -66,7 +66,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     });
     
 
-    var targetPost = null;
+    $scope.targetPost = null;
 
     // HANDLE ROUTING
     $rootScope.$on('$routeChangeStart', function(e, current, pre) {
@@ -87,7 +87,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             console.log(postId)
             console.log(path)
             if (path == postId) {
-                targetPost = post;
+                $scope.targetPost = post;
                 foundItem = true;
                 break;
             }
