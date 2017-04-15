@@ -11,21 +11,35 @@ app.config(function($routeProvider) {
     // })
 })
 
-app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
-    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
-        console.log('Current route name: ' + $location.path());
+// app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
+//     $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+//         console.log('Current route name: ' + $location.path());
+//         var path = $location.path().substring(1, $location.path().length)
+//         console.log(path)
+//         console.log(e)
+//         console.log(current)
+//         console.log(pre)
 
-        console.log($routeParams);
-    });
-}])
 
-app.controller("indexController", function($scope) {
+//         // if item is in database, display that webpage
+
+
+
+//         // otherwise, go back to home page
+
+
+//     });
+// }])
+
+app.controller("indexController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
 	$scope.selectedTab = 0
 
 	$scope.posts = []
 
 	var url = "https://localhost:8000/getPosts";
 
+
+    var targetPost = null;
 
     console.log('test')
 
@@ -45,12 +59,48 @@ app.controller("indexController", function($scope) {
             $scope.posts = items;
             console.log($scope.posts)
             $scope.$apply()
+
+
+
+
+
+            //
+
+            // HANDLE ROUTING
+            $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+                console.log('Current route name: ' + $location.path());
+                var path = $location.path().substring(1, $location.path().length)
+                console.log(path)
+                console.log(e)
+                console.log(current)
+
+                var foundItem = false;
+
+                // can make this a param in url instead of part of path (?itemId = 123)
+
+                // if item is in database, display that webpage
+                for (var i = 0; i < posts.length; i++) {
+                    var post = posts[i]
+                    var postId = post["_id"]
+                    if (path == postId) {
+                        targetPost = post;
+                        foundItem = true;
+                        break;
+                    }
+                }
+
+                // otherwise, go back to home page
+                if (!foundItem) {
+                    $location.path('/')
+                }
+            });
         },
         error: function(response, error) {
           console.log(response)
           console.log(error)
       }
-  });
+    });
+
     
 
     $scope.bid = function (event, amount, amountRaised, price) {
@@ -75,9 +125,6 @@ app.controller("indexController", function($scope) {
         var amountText = $("#amountRaised-" + event)
         // console.log(amountText)
         amountText.text("$" + newAmount + " of $" + price + " raised")
-
-        
-
 
 
 
@@ -115,7 +162,7 @@ app.controller("indexController", function($scope) {
 
 }
 
-})	
+}])	
 
 //Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
 var DateDiff = {
