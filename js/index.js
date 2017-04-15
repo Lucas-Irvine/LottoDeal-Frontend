@@ -42,15 +42,7 @@ app.controller("indexController", function($scope) {
         var currentAmount = progressbar.css("width")
         // console.log(currentAmount)
         var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
-
-
-
-
-
         var percentage = progressbar.width() / progressbar.parent().width() * 100
-        // progressbar.css("width", currentAmount + "px")
-        // console.log(percentage)
-
         var newAmount = parseInt(amountRaised) + parseInt(amount)
         // console.log(newAmount)
         var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
@@ -61,6 +53,9 @@ app.controller("indexController", function($scope) {
         var pixelWidth = ""  + newWidth + "px"
         progressbar.css("width", pixelWidth)
 
+        // change the amount raised
+        var amountText = $("#amountRaised-" + event)
+        amountText.val("$" + newAmount + " of $" + price + " raised")
 
         
 
