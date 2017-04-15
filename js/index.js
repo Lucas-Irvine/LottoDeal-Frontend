@@ -35,6 +35,22 @@ app.controller("indexController", function($scope) {
     
 
     $scope.bid = function (event, amount) {
+        // DISPLAY BID ON FRONT-END
+        var progressbar = $("#progress-bar-" + event)
+        console.log(progressbar)
+        var currentAmount = progressbar.css("width")
+        console.log(currentAmount)
+        // progressbar.css("width", currentAmount + "px")
+
+
+
+        
+
+
+
+
+
+        // ADD BID TO DATABASE
         console.log("Adding bid for item " + event + " for " + amount)
 
 
