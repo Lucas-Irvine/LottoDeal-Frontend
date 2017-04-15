@@ -1,5 +1,12 @@
-var app = angular.module("index_app", [])
+var app = angular.module("index_app", ["ngRoute"])
 
+app.config(function($routeProvider) {
+    $routeProvider
+    .when('/', {
+        templateUrl: 'pages/item.html',
+        controller: 'indexController'
+    })
+})
 
 app.controller("indexController", function($scope) {
 	$scope.selectedTab = 0
@@ -55,7 +62,7 @@ app.controller("indexController", function($scope) {
 
         // change the amount raised
         var amountText = $("#amountRaised-" + event)
-        console.log(amountText)
+        // console.log(amountText)
         amountText.text("$" + newAmount + " of $" + price + " raised")
 
         
