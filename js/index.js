@@ -3,12 +3,13 @@ var app = angular.module("index_app", ["ngRoute"])
 app.config(function($routeProvider) {
     $routeProvider
     .when('/', {
-        templateUrl: 'pages/item.html',
+        templateUrl: 'pages/template.html',
         controller: 'indexController'
     })
-    // .otherwise({
-    //     redirectTo: '/'
-    // })
+    .otherwise({
+        redirectTo: '/item.html',
+        controller: 'indexController'
+    })
 })
 
 // app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
