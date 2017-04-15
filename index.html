@@ -50,7 +50,7 @@
                   <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
 
                   <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" value="">
+                      <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText" value="">
                        <div class="input-group-btn">
                       <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
                       </div>
@@ -119,11 +119,8 @@
 
                 </div>
 
-                <h1>Test</h1>
-
-
                 <div class="row">
-                    <div ng-repeat="post in posts">
+                    <div ng-repeat="post in posts | filter:searchText">
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail" id="item">
                                 <img src="http://placehold.it/320x150" alt="">
