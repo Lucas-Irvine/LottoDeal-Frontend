@@ -55,7 +55,8 @@ app.controller("indexController", function($scope) {
 
         // change the amount raised
         var amountText = $("#amountRaised-" + event)
-        amountText.val("$" + newAmount + " of $" + price + " raised")
+        console.log(amountText)
+        amountText.text("$" + newAmount + " of $" + price + " raised")
 
         
 
