@@ -6,7 +6,18 @@ app.config(function($routeProvider) {
         templateUrl: 'pages/item.html',
         controller: 'indexController'
     })
+    .otherwise({
+        redirectTo: '/'
+    })
 })
+
+app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
+    $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
+        console.log('Current route name: ' + $location.path());
+
+        console.log($routeParams);
+    });
+}])
 
 app.controller("indexController", function($scope) {
 	$scope.selectedTab = 0
