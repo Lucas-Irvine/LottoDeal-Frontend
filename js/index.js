@@ -6,9 +6,9 @@ app.config(function($routeProvider) {
         templateUrl: 'pages/item.html',
         controller: 'indexController'
     })
-    .otherwise({
-        redirectTo: '/'
-    })
+    // .otherwise({
+    //     redirectTo: '/'
+    // })
 })
 
 app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
