@@ -91,6 +91,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             if (path == postId) {
                 $scope.targetPost = post;
                 foundItem = true;
+                $location.path("/" + path)
                 // $scope.$apply()
                 break;
             }
