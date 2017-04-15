@@ -7,7 +7,7 @@ app.config(function($routeProvider) {
         controller: 'indexController'
     })
     .otherwise({
-        redirectTo: '/item.html',
+        templateUrl: 'pages/item.html',
         controller: 'indexController'
     })
 })
@@ -84,6 +84,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         for (var i = 0; i < $scope.posts.length; i++) {
             var post = $scope.posts[i]
             var postId = post["_id"]
+            console.log(postId)
+            console.log(path)
             if (path == postId) {
                 targetPost = post;
                 foundItem = true;
