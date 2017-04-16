@@ -84,7 +84,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         success: function(data) {
             console.log('test : ' + notifications);
             var notifications = JSON.parse(data)
-            console.log('receiving =' +  notifications);
             $scope.notifications = notifications;
             console.log($scope.notifications)
             $scope.$apply()
