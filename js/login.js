@@ -92,12 +92,6 @@ function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
         function (response) {
 
-
-            document.getElementById('iframeId').contentWindow.document.getElementById('profileName').innerHTML = response.first_name + " " + response.last_name;
-            document.getElementById('iframeId').contentWindow.document.getElementById('profileImage').src = response.picture.data.url;
-            document.getElementById('iframeId').contentWindow.document.getElementById('profileImageBackground').src = response.picture.data.url;
-
-
             document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
             document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>Locale:</b> '+response.locale+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';
 
