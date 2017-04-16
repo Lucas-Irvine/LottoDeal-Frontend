@@ -80,7 +80,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         data: { 
             userID : 'test'
         },
-        type: 'POST',
+        type: 'GET',
         success: function(data) {
             console.log('received notifications')
             var notifications = JSON.parse(data)
