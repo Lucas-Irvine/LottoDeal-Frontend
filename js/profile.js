@@ -82,9 +82,6 @@ window.fbAsyncInit = function() {
         if (response.status === 'connected') {
             //display user data
             displayFBUserData();
-            // Get and display the user profile data
-            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
-            document.getElementById('fbLink').innerHTML = 'Facebook Logout';
         }
         else {
             console.log('Not logged in');
