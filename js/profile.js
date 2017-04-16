@@ -43,9 +43,9 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     var dataGET = {
         userID: userID
     }
-    console.log('Asking for notifications')
+    console.log('Asking for Items')
     $.ajax({
-        url: notificationUrl,
+        url: url,
         data: dataGET,
         type: 'GET',
         success: function (data) {
