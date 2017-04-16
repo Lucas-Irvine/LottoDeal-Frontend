@@ -68,6 +68,30 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     });
     
 
+    // AJAX POST TO SERVER
+    var notificationUrl = "https://localhost:8000/getNotifications";
+    data = {
+            userID = localStorage.getItem("curUserID")
+        }
+    console.log('Asking for notifications')
+    $.ajax({
+        url: notificationUrl,
+        data: data,
+        type: 'GET',
+        success: function(data) {
+            console.log('received notifications')
+            var notifications = JSON.parse(data)
+            $scope.notifications = notifications;
+            console.log($scope.notifications)
+            $scope.$apply()
+        },
+        error: function(response, error) {
+          console.log(response)
+          console.log(error)
+      }
+    });
+
+
     $scope.targetPost = null;
 
     // HANDLE ROUTING
