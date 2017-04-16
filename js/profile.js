@@ -110,10 +110,6 @@ function displayFBUserData(){
             document.getElementById('profileName').innerHTML = response.first_name + " " + response.last_name;
             document.getElementById('profileImage').src = response.picture.data.url;
             document.getElementById('profileImageBackground').src = response.picture.data.url;
-
-
-            // Save user data
-            saveUserData(response);
         });
 }
 
