@@ -1,28 +1,37 @@
+/* JS for the tabs */
+$(document).ready(function() {
+    $(".btn-pref .btn").click(function () {
+        $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+        // $(".tab").addClass("active"); // instead of this do the below
+        $(this).removeClass("btn-default").addClass("btn-primary");
+    });
+});
+
 var app = angular.module("profile_app", ["ngRoute"])
 
 app.controller("profileController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
-	$scope.selectedTab = 0
+    $scope.selectedTab = 0
 
-	$scope.bids = []
+    $scope.bids = []
 
-	var url = "https://localhost:8000/getBidsofUsers";
+    var url = "https://localhost:8000/getBidsofUsers";
 
     // AJAX POST TO SERVER
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
-        userID : userID
+        userID: userID
     }
     $.ajax({
-    	url: url,
+        url: url,
         data: dataGET,
         type: 'GET',
-    	success: function(data) {
+        success: function (data) {
             var bids = JSON.parse(data)
             $scope.bids = bids;
             console.log($scope.bids)
             $scope.$apply()
         },
-        error: function(response,  error) {
+        error: function (response, error) {
             console.log(response)
             console.log(error)
         }
@@ -32,20 +41,20 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     var url = "https://localhost:8000/getBiddedItemsofUsers";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
-        userID : userID
+        userID: userID
     }
     console.log('Asking for notifications')
     $.ajax({
         url: notificationUrl,
         data: dataGET,
         type: 'GET',
-        success: function(data) {
+        success: function (data) {
             var items = JSON.parse(data)
             $scope.items = items;
             console.log($scope.items)
             $scope.$apply()
         },
-        error: function(response,  error) {
+        error: function (response, error) {
             console.log(response)
             console.log(error)
         }
@@ -54,14 +63,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     $scope.targetPost = null;
 
-/* JS for the tabs */
-$(document).ready(function() {
-    $(".btn-pref .btn").click(function () {
-        $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-        // $(".tab").addClass("active"); // instead of this do the below
-        $(this).removeClass("btn-default").addClass("btn-primary");
-    });
-});
+}
 
 
 // For Facebook login
