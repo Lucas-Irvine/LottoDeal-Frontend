@@ -283,6 +283,10 @@ footer.signin {
     padding: 0 20px;
     margin-bottom: 17px;
 }
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+
 
 
 
