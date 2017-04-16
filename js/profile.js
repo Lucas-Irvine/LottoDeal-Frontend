@@ -153,9 +153,9 @@ function displayFBUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,picture'},
         function (response) {
             document.getElementById('profileName').innerHTML = response.first_name + " " + response.last_name;
-            document.getElementById('profileImage').src = response.picture;
-            document.getElementById('profileImageBackground').src = response.picture;
-            
+            document.getElementById('profileImage').src = response.picture.data.url;
+            document.getElementById('profileImageBackground').src = response.picture.data.url;
+
 
             // Save user data
             saveUserData(response);
