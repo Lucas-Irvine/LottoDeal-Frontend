@@ -78,7 +78,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     $.ajax({
         url: notificationUrl,
         data: dataGET,
-        type: 'GET',
+        type: 'POST',
         success: function(data) {
             console.log('received notifications')
             var notifications = JSON.parse(data)
