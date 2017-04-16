@@ -70,8 +70,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
+    var userID = localStorage.getItem("curUserID")
     data = {
-            userID = localStorage.getItem("curUserID")
+            userID = userID
         }
     console.log('Asking for notifications')
     $.ajax({
