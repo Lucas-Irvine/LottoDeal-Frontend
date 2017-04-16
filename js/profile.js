@@ -21,6 +21,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     var dataGET = {
         userID: userID
     }
+    console.log('Asking for Bids')
     $.ajax({
         url: url,
         data: dataGET,
