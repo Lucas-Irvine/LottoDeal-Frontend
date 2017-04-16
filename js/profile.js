@@ -63,7 +63,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     $scope.targetPost = null;
 
-}
+}])
 
 
 // For Facebook login
