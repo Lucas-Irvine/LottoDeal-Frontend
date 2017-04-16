@@ -82,6 +82,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         },
         type: 'GET',
         success: function(data) {
+            console.log('test : ' + notifications);
             var notifications = JSON.parse(data)
             console.log('receiving =' +  notifications);
             $scope.notifications = notifications;
