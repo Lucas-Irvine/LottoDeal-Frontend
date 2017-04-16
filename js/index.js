@@ -77,7 +77,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     console.log('Asking for notifications')
     $.ajax({
         url: notificationUrl,
-        data: dataGET,
+        data: { 
+            userID : 'test'
+        },
         type: 'POST',
         success: function(data) {
             console.log('received notifications')
