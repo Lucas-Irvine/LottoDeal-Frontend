@@ -34,7 +34,7 @@ app.controller("sellController", function($scope, $http) {
 	    	price: price,
 	    	title: title,
 	    	description: description,
-	    	expirationDate: date
+	    	expirationDate: date,
 	    	sellerID: sellerID
 	    	//image: image
 	    }
