@@ -285,9 +285,7 @@ footer.signin {
 }
 .btn-pref .btn {
     -webkit-border-radius:0 !important;
-}
-.tab-content {
-    border-top: 100px;
+    margin-bottom: 30px;
 }
 
 
