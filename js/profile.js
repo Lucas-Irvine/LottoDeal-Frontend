@@ -66,7 +66,11 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 }])
 
 
-// For Facebook login
+
+
+
+
+// -------------------- For Facebook login -----------------------------------------
 
 // Facebook Javascript SDK configuration and setup
 window.fbAsyncInit = function() {
