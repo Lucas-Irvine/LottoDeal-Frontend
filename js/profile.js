@@ -13,6 +13,8 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     $scope.bids = []
     $scope.items = []
+    $scope.listedItems = []
+
 
     var url = "https://localhost:8000/getBidsofUsers";
 
@@ -60,6 +62,36 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
             }
             $scope.items = items;
             console.log($scope.items)
+            $scope.$apply()
+        },
+        error: function (response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+
+    // AJAX POST TO SERVER
+    var url = "https://localhost:8000/getListedItemsForUsers";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        userID: userID
+    }
+    console.log('Asking for ListedItems')
+    $.ajax({
+        url: url,
+        data: dataGET,
+        type: 'GET',
+        success: function (data) {
+            var items = JSON.parse(data)
+            for (i = 0; i < items.length; i++) {
+                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
+                console.log( "Raised" + items[i].percentageRaised);
+                var expirationDate = new Date(items[i].expirationDate);
+                var date = new Date();
+                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+            }
+            $scope.listedItems = items;
+            console.log($scope.listedItems)
             $scope.$apply()
         },
         error: function (response, error) {
