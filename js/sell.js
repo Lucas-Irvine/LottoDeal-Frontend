@@ -15,7 +15,6 @@ app.controller("sellController", function($scope, $http) {
 	    var date = new Date()
 	    var offset = $("#expirDate").val()
 	    var sellerID = localStorage.getItem("curUserID")
-//		var sellerID = "12345"
 	    if (offset == 1) {
 	    	date.setDate(date.getDate() + 1); 
 	    }
@@ -35,7 +34,7 @@ app.controller("sellController", function($scope, $http) {
 	    	title: title,
 	    	description: description,
 	    	expirationDate: date
-//	    	sellerID: sellerID
+	    	sellerID: sellerID
 	    	//image: image
 	    }
 
