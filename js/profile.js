@@ -51,6 +51,13 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         type: 'GET',
         success: function (data) {
             var items = JSON.parse(data)
+            for (i = 0; i < items.length; i++) {
+                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
+                console.log( "Raised" + items[i].percentageRaised);
+                var expirationDate = new Date(items[i].expirationDate);
+                var date = new Date();
+                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+            }
             $scope.items = items;
             console.log($scope.items)
             $scope.$apply()
@@ -66,10 +73,28 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
 }])
 
+//Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
+var DateDiff = {
 
+    inHours: function(d1, d2) {
+        var t2 = d2.getTime();
+        var t1 = d1.getTime();
+        if (t2 == null || t1 == null) {
+            return 0
+        }
+        return (parseInt((t2-t1)/(3600*1000))) % 24;
+    },
 
+    inDays: function(d1, d2) {
+        var t2 = d2.getTime();
+        var t1 = d1.getTime();
+        if (t2 == null || t1 == null) {
+            return 0
+        }
+        return parseInt((t2-t1)/(24*3600*1000));
+    }
 
-
+    
 
 // -------------------- For Facebook login -----------------------------------------
 
