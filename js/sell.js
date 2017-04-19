@@ -14,8 +14,8 @@ app.controller("sellController", function($scope, $http) {
 	    var description = $("#description").val()
 	    var date = new Date()
 	    var offset = $("#expirDate").val()
-//	    var sellerID = localStorage.getItem("curUserID")
-		var sellerID = "12345"
+	    var sellerID = localStorage.getItem("curUserID")
+//		var sellerID = "12345"
 	    if (offset == 1) {
 	    	date.setDate(date.getDate() + 1); 
 	    }
@@ -35,7 +35,7 @@ app.controller("sellController", function($scope, $http) {
 	    	title: title,
 	    	description: description,
 	    	expirationDate: date
-	    	sellerID: sellerID
+//	    	sellerID: sellerID
 	    	//image: image
 	    }
 
@@ -47,7 +47,7 @@ app.controller("sellController", function($scope, $http) {
 	    $.ajax({
 		    url: url,
 		    type: 'POST',
-		    data:data,
+		    data: data,
 		    //data: new FormData(this),
 		    success: function(data) {
 				console.log(data)
