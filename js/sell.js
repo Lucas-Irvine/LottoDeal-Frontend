@@ -14,7 +14,7 @@ app.controller("sellController", function($scope, $http) {
 	    var description = $("#description").val()
 	    var date = new Date()
 	    var offset = $("#expirDate").val()
-	    var sellerID = localStorage.getItem("curUserID")
+//	    var sellerID = localStorage.getItem("curUserID")
 	    if (offset == 1) {
 	    	date.setDate(date.getDate() + 1); 
 	    }
