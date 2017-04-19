@@ -12,6 +12,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     $scope.selectedTab = 0
 
     $scope.bids = []
+    $scope.items = []
 
     var url = "https://localhost:8000/getBidsofUsers";
 
