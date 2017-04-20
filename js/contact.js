@@ -17,7 +17,6 @@ window.fbAsyncInit = function() {
     	if (response.status === 'connected') {
             //display user data
             console.log('logged in')
-            showLoginPopup()
             // Get and display the user profile data
             
         }
