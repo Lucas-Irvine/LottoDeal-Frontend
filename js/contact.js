@@ -50,9 +50,9 @@ btn.onclick = function() {
 	var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
-            btn.setAttribute("onclick","fbLogout()");
-            btn.innerHTML = 'Facebook Logout';
-            //getFbUserData();
+            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
+            document.getElementById('fbLink').innerHTML = 'Facebook Logout';
+            getFbUserData();
             window.focus();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
