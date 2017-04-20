@@ -68,6 +68,12 @@
     </nav>
 
 
+<!-- <script>
+  (function() {
+    var cur
+  })
+</script>
+ -->
 <!--Page Content -->
 <div class="container content">
   <form id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data">
@@ -108,6 +114,9 @@
       <label for="exampleTextarea">Product Description</label>
       <textarea name="description" class="form-control" id="description" rows="3"></textarea>
     </div>
+
+
+    <input name="userID" id="userid" style="display: none"/>
 
     <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
   </form>

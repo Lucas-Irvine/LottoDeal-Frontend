@@ -2,6 +2,9 @@ var app = angular.module("app", []);
 
 app.controller("sellController", function($scope, $http) {
 	console.log("got here")
+	var sellerID = localStorage.getItem("curUserID");
+	$("#userid").val(sellerID)
+	console.log(sellerID)
 
  //    $("#submitForm").submit(function(e) {
  //    	console.log("got here")
