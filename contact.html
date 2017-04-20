@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="login_app">
+<html lang="en">
+
+
 
 <head>
     <meta charset="utf-8">
@@ -118,6 +120,47 @@
         </div>
     </div>
 
+    <!-- Button trigger modal -->
+
+
+<!-- Button trigger modal -->
+    <!-- Button trigger modal -->
+<!-- 
+    <button id="myBtntest">Open Modal</button>
+
+    <div class="row">
+        <button type="button" id="testbutton" class="ng-binding btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"> Login </button> 
+    </div> -->
+
+    <!-- Code for Modal which pops up -->
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+    id="loginPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="exampleModalLabel">
+            Please Login
+        </h4>
+    </div>
+    <div class="modal-body">
+        <p>
+            By continuing, I agree that I am at least 13 years old and have read and agree to the terms of service and privacy policy.
+        </p>
+        <center><button type="button" class="facebook-button" >
+            Login With Facebook
+        </button> </center>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    </div>
+</div>
+</div>
+</div>
+
+
     <!-- Footer -->
     <footer class="signin">
         <div class="row">
@@ -127,7 +170,12 @@
         </div>
     </footer>
 
+
+
+
+
     <!-- AngularJS Include -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
     <!-- jQuery -->
@@ -136,6 +184,6 @@
     <!-- dynamic loading of pages -->
     <script src="js/tabs.js"></script>
     <script src="js/contact.js"></script>
-
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
