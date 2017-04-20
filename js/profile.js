@@ -100,8 +100,11 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         }
     });
 
+    $scope.soldItems = []
+
+
     // AJAX POST TO SERVER for sold items
-    var url = "https://localhost:8000/getSoldItems";
+    var url = "https://localhost:8000/getSoldItemsForUsers";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
@@ -129,6 +132,9 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
             console.log(error)
         }
     });
+
+    $scope.reviews = []
+
 
     // AJAX POST TO SERVER for reviews
     var url = "https://localhost:8000/getReviews";
