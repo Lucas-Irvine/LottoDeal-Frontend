@@ -50,8 +50,8 @@ facebookLoginButton.onclick = function() {
 	var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
-            btn.setAttribute("onclick","fbLogout()");
-            btn.innerHTML = 'Facebook Logout';
+            facebookLoginButton.setAttribute("onclick","fbLogout()");
+            facebookLoginButton.innerHTML = 'Facebook Logout';
             //getFbUserData();
             //window.focus();
         } else {
