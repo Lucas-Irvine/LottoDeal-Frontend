@@ -61,7 +61,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 var date = new Date();
                 items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
                 console.log(items[i])
-                // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].)
+                items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
             }
             $scope.posts = items;
             console.log($scope.posts)
