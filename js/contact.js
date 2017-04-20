@@ -18,7 +18,7 @@ window.fbAsyncInit = function() {
             //display user data
             console.log('logged in')
             // Get and display the user profile data
-            
+            showLoginPopup();
         }
         else {
         	console.log('Not logged in');
@@ -41,5 +41,26 @@ function showLoginPopup() {
   		keyboard: false
 	})
 };
+
+var btn = document.getElementById("loginToFacebook");
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+	console.log('logging in/out')
+	var window = FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            btn.setAttribute("onclick","fbLogout()");
+            btn.innerHTML = 'Facebook Logout';
+            //getFbUserData();
+            window.focus();
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email'});
+}
 //End Facebook login code -----------------------------------
+
+
+
 
