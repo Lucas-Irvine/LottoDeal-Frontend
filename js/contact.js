@@ -42,18 +42,18 @@ function showLoginPopup() {
 	})
 };
 
-var btn = document.getElementById("loginToFacebook");
+var facebookLoginButton = document.getElementById("loginToFacebook");
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
+facebookLoginButton.onclick = function() {
 	console.log('logging in/out')
 	var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
-            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
-            document.getElementById('fbLink').innerHTML = 'Facebook Logout';
-            getFbUserData();
-            window.focus();
+            btn.setAttribute("onclick","fbLogout()");
+            btn.innerHTML = 'Facebook Logout';
+            //getFbUserData();
+            //window.focus();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
         }
