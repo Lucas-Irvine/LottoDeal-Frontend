@@ -18,7 +18,6 @@ window.fbAsyncInit = function() {
             //display user data
             console.log('logged in')
             // Get and display the user profile data
-            showLoginPopup();
         }
         else {
         	console.log('Not logged in');
@@ -44,20 +43,34 @@ function showLoginPopup() {
 
 var facebookLoginButton = document.getElementById("loginToFacebook");
 
+var facebookLoginButton = document.getElementById("loginToFacebook");
+
 // When the user clicks the button, open the modal 
 facebookLoginButton.onclick = function() {
-	console.log('logging in/out')
-	var window = FB.login(function (response) {
-        if (response.authResponse) {
-            // Get and display the user profile data
-            facebookLoginButton.setAttribute("onclick","fbLogout()");
-            facebookLoginButton.innerHTML = 'Facebook Logout';
-            //getFbUserData();
-            //window.focus();
+    console.log('logging in/out')
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //display user data
+            FB.logout(function() {
+                facebookLoginButton.setAttribute("onclick", "fbLogin()");
+                facebookLoginButton.innerHTML = 'Facebook Login';
+            });
         } else {
-            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    // Get and display the user profile data
+                    facebookLoginButton.setAttribute("onclick", "fbLogout()");
+                    facebookLoginButton.innerHTML = 'Facebook Logout';
+                    //getFbUserData();
+                    //window.focus();
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, {
+                scope: 'email'
+            });
         }
-    }, {scope: 'email'});
+    });
 }
 //End Facebook login code -----------------------------------
 
