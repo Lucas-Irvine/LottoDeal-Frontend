@@ -1,48 +1,66 @@
-function sendEmail() {
-// 	var postmark = require("postmark");
-// // Example request
-// var client = new postmark.Client("27c10544-6caa-46b9-8640-67b000036be3");
-
-// client.sendEmail({
-// 	"From": "dwhyte@princeton.edu",
-// 	"To": "dwhyte@princeton.edu",
-// 	"Subject": "Test", 
-// 	"TextBody": "Hello from Postmark!"
-// });	
-console.log('testemail')
-emailjs.send("lotto_deal", "sample_template", {"email":"dwhyte@princeton.edu"})
-}
 
 console.log('test')
 
+
+
+// Facebook Login code -----------------------------------
 window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '228917890846081',
-      xfbml      : true,
-      cookie     : true,
-      version    : 'v2.8'
-  });
+	FB.init({
+		appId      : '228917890846081',
+		xfbml      : true,
+		cookie     : true,
+		version    : 'v2.8'
+	});
 
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
+    	if (response.status === 'connected') {
             //display user data
             console.log('logged in')
-
             // Get and display the user profile data
-            
+            showLoginPopup();
         }
         else {
-            console.log('Not logged in');
+        	console.log('Not logged in');
+        	showLoginPopup();
         }
     });
 };
 
 (function(d, s, id){
- var js, fjs = d.getElementsByTagName(s)[0];
- if (d.getElementById(id)) {return;}
- js = d.createElement(s); js.id = id;
- js.src="https://connect.facebook.net/en_US/all.js";
- fjs.parentNode.insertBefore(js, fjs);
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src="https://connect.facebook.net/en_US/all.js";
+	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+
+function showLoginPopup() {
+	$('#loginPopup').modal({
+  		keyboard: false
+	})
+};
+
+var facebookLoginButton = document.getElementById("loginToFacebook");
+
+// When the user clicks the button, open the modal 
+facebookLoginButton.onclick = function() {
+	console.log('logging in/out')
+	var window = FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            facebookLoginButton.setAttribute("onclick","fbLogout()");
+            facebookLoginButton.innerHTML = 'Facebook Logout';
+            //getFbUserData();
+            //window.focus();
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email'});
+}
+//End Facebook login code -----------------------------------
+
+
+
 

@@ -135,7 +135,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     $scope.reviews = []
 
-
     // AJAX POST TO SERVER for reviews
     var url = "https://localhost:8000/getReviews";
     var userID = localStorage.getItem("curUserID")
@@ -159,7 +158,31 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         }
     });
 
+    $scope.reviewers = []
 
+    // AJAX POST TO SERVER for reviews
+    var url = "https://localhost:8000//getReviewerImagesandNames";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        sellerID: userID
+    }
+    console.log('Asking for Reviewers')
+    $.ajax({
+        url: url,
+        data: dataGET,
+        type: 'GET',
+        success: function (data) {
+            var items = JSON.parse(data)
+            $scope.reviewers = items;
+            console.log($scope.reviewers)
+            $scope.$apply()
+        },
+        error: function (response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+    
     $scope.targetPost = null;
 
 }])

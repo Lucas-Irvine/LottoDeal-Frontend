@@ -120,9 +120,10 @@
         </div>
     </div>
 
+        <!-- bids tab -->
+
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="tab1">
-                <div class = "row">
+            <div class="tab-pane fade in active" id="tab1" ngStyle="{position: relative}">
                     <div ng-repeat= "item in items">
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail" id="item">
@@ -154,10 +155,9 @@
                             </div>
                         </div>
                     </div>
-                    </div>
             </div>
 
-
+            <!-- Items tab -->
 
             <div class="tab-pane fade in" id="tab2">
 
@@ -195,9 +195,12 @@
             </div>
         </div>
 
-        <br>
+        <div class = "container>">
+            <div class = "col-lg-12">
         <h3> Sold Items </h3>
         <hr>
+            </div>
+        </div>
 
         <!-- GET Sold items -->
         <div ng-repeat= "soldItem in soldItems">
@@ -231,17 +234,11 @@
                 </div>
             </div>
         </div>
-
-
-
             </div>
+
+
+            <!-- Reviews Tab -->
             <div class="tab-pane fade in" id="tab3">
-
-
-
-
-        <!-- GET Reviews  -->
-        <div ng-repeat= "review in reviews">
             <div class="container">
 
                 <div class="row">
@@ -336,14 +333,16 @@
                     </div>
                 </div>
 
+                <!-- GET Reviews  -->
+                <div ng-repeat= "review in reviews">
                 <div class="row">
                     <div class="col-sm-7">
                         <hr/>
                         <div class="review-block">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                    <div class="review-block-name"><a href="#">nktailor</a></div>
+                                    <img src="{{reviewers[$index].pictureURL}}" class="img-rounded">
+                                    <div class="review-block-name"><a href="#">{{reviewers[$index].name}}</a></div>
                                     <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
                                 </div>
                                 <div class="col-sm-9">
@@ -364,72 +363,14 @@
                                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                                         </button>
                                     </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    <div class="review-block-description">{{review.reviewDes}}</div>
                                 </div>
                             </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                    <div class="review-block-name"><a href="#">nktailor</a></div>
-                                    <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="review-block-rate">
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                    </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                                </div>
-                            </div>
-                            <hr/>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                                    <div class="review-block-name"><a href="#">nktailor</a></div>
-                                    <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="review-block-rate">
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        </button>
-                                    </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                </div>
             </div> <!-- /container -->
         </div>
 
