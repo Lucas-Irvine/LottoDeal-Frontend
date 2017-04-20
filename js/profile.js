@@ -186,8 +186,6 @@ var DateDiff = {
     },
 }
 
-
-
 // -------------------- For Facebook login -----------------------------------------
 
 // Facebook Javascript SDK configuration and setup
