@@ -182,7 +182,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
             console.log(error)
         }
     });
-    
+
     $scope.targetPost = null;
 
 }])
