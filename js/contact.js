@@ -13,6 +13,7 @@ console.log('testemail')
 emailjs.send("lotto_deal", "sample_template", {"email":"dwhyte@princeton.edu"})
 }
 
+console.log('test')
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -45,3 +46,4 @@ window.fbAsyncInit = function() {
  js.src="https://connect.facebook.net/en_US/all.js";
  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
