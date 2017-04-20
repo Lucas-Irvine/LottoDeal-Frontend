@@ -13,6 +13,7 @@ console.log('testemail')
 emailjs.send("lotto_deal", "sample_template", {"email":"dwhyte@princeton.edu"})
 }
 
+console.log('test')
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -26,7 +27,7 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             //display user data
-            getFbUserData();
+            console.log('logged in')
 
             // Get and display the user profile data
             document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
@@ -45,3 +46,4 @@ window.fbAsyncInit = function() {
  js.src="https://connect.facebook.net/en_US/all.js";
  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
