@@ -43,17 +43,3 @@ function showLoginPopup() {
 };
 //End Facebook login code -----------------------------------
 
-
-
-var btn = document.getElementById("myBtntest");
-
-// Get the <span> element that closes the modal
-
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-	console.log('test123')
-	$('#ItemModal').modal({
-  		keyboard: false
-	})
-}
