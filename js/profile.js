@@ -18,7 +18,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     var url = "https://localhost:8000/getBidsofUsers";
 
-    // AJAX POST TO SERVER
+    // AJAX POST TO SERVER for bids
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
@@ -40,7 +40,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         }
     });
 
-    // AJAX POST TO SERVER
+    // AJAX POST TO SERVER for bidded items
     var url = "https://localhost:8000/getBiddedItemsofUsers";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
@@ -70,7 +70,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         }
     });
 
-    // AJAX POST TO SERVER
+    // AJAX POST TO SERVER for listed items
     var url = "https://localhost:8000/getListedItemsForUsers";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
@@ -92,6 +92,59 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
             }
             $scope.listedItems = items;
             console.log($scope.listedItems)
+            $scope.$apply()
+        },
+        error: function (response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+
+    // AJAX POST TO SERVER for sold items
+    var url = "https://localhost:8000/getSoldItems";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        userID: userID
+    }
+    console.log('Asking for SoldItems')
+    $.ajax({
+        url: url,
+        data: dataGET,
+        type: 'GET',
+        success: function (data) {
+            var items = JSON.parse(data)
+            for (i = 0; i < items.length; i++) {
+                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
+                console.log( "Raised" + items[i].percentageRaised);
+                var expirationDate = new Date(items[i].expirationDate);
+                var date = new Date();
+                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+            }
+            $scope.soldItems = items;
+            console.log($scope.soldItems)
+            $scope.$apply()
+        },
+        error: function (response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+
+    // AJAX POST TO SERVER for reviews
+    var url = "https://localhost:8000/getReviews";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        userID: userID
+    }
+    console.log('Asking for Reviews')
+    $.ajax({
+        url: url,
+        data: dataGET,
+        type: 'GET',
+        success: function (data) {
+            var items = JSON.parse(data)
+            $scope.reviews = items;
+            console.log($scope.reviews)
             $scope.$apply()
         },
         error: function (response, error) {
