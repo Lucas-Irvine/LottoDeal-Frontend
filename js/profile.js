@@ -140,7 +140,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     var url = "https://localhost:8000/getReviews";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
-        userID: userID
+        sellerID: userID
     }
     console.log('Asking for Reviews')
     $.ajax({
