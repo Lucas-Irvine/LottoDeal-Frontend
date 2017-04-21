@@ -29,30 +29,59 @@
 </head>
 <body ng-controller="sellController">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header" id = "home">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Home</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button id = "home" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">Home</a>
+                </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a id = "about" href="about.html">About</a>
-                    </li>
+                  <li>
+                      <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
+                          <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
+
+                              <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText" value="">
+                                  <div class="input-group-btn">
+                                      <button type="submit" class="btn btn-success search-btn"><span class="glyphicon glyphicon-search"></span></button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </li>
                     <li>
                         <a id = "sell" href="sell.html">Sell</a>
                     </li>
-                    <li>
-                        <a id = "contact" href="contact.html">Contact</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notifications <span class="badge">{{notifications.length}}</span></a>
+
+                        <ul class="dropdown-menu notifications" role="menu">
+                            <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
+                            </div>
+                            <li class="divider"></li>
+
+                            <div class="notifications-wrapper">
+                               <div ng-repeat= "notification in notifications">
+                               <a class="content" href="#">
+                                <div class="notification-item">
+                                    <h4 class="item-title">{{notification.title}}</h4>
+                                    <p class="item-info">{{notification.description}}</p>
+                                </div>
+                                </a>
+                                </div>
+                            </div>
+                            <li class="divider"></li>
+                            <div class="notification-footer"><h4 class="menu-title">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4></div>
+                        </ul>
                     </li>
                     <li>
                         <a id = "profile" href="profile.html">Account</a>
@@ -76,6 +105,13 @@
  -->
 <!--Page Content -->
 <div class="container content">
+<hr>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Let's Get Selling</h1>
+    <p class="lead">It's as easy as filling this form and boom, we'll lottery it for you ;)</p>
+  </div>
+</div>
   <form id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="example-text-input">Title</label>
@@ -83,7 +119,7 @@
     </div>
     <div class="form-group">
       <label for="exampleInput">Price</label>
-    <input id="price" type="text" name="price" class="form-control" aria-label="Amount (to the nearest dollar)">
+    <input id="price" type="text" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Enter Amount">
     </div>
 
     <!-- <div class="form-group">
@@ -100,19 +136,20 @@
 
 
     <div class="form-group">
-      <label>Expiration Date</label>
       <!-- <input type="text" name="date" id="expirDate"/>  -->
     <select name="expirDate" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="expirDate">
-    <option selected>Sell Item By</option>
+    <option selected>Time Period</option>
     <option value="1">1 Day</option>
     <option value="2">1 Week</option>
     <option value="3">1 Month</option>
   </select>
+  <label>To Sell Item</label>
     </div>
 
     <div class="form-group">
       <label for="exampleTextarea">Product Description</label>
-      <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+      <textarea name="description" class="form-control" id="description" rows="3"
+      placeholder="Describe The Product"></textarea>
     </div>
 
 
@@ -122,6 +159,23 @@
   </form>
 </div>
 
+<!-- Footer -->
+<footer>
+    <hr>
+    <div class="rows">
+      <div class="col-lg-6">
+        <a href="contact.html" class="footerlink">Contact Us</a>
+      </div>
+      <div class="col-lg-6">
+        <a href="about.html" class="footerlink">About Us</a>
+      </div>
+    </div>
+    <div class="rows">
+        <div class="col-lg-12">
+            <p>Copyright &copy; LottoDeal 2017</p>
+        </div>
+    </div>
+</footer>
 
 <script type="text/javascript">console.log(localStorage.getItem("curUserID"))</script>
 
