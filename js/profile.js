@@ -279,6 +279,32 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         }
     });
 
+
+
+    $scope.accounts = []
+
+    // AJAX get TO SERVER for account
+    var url = "https://localhost:8000/getAccount";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        userID: userID
+    }
+    console.log('Asking for Reviewers')
+    $.ajax({
+        url: url,
+        data: dataGET,
+        type: 'GET',
+        success: function (data) {
+            var account = JSON.parse(data)
+            $scope.accounts = account;
+            $scope.$apply()
+        },
+        error: function (response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+
     $scope.targetPost = null;
 
 }])
