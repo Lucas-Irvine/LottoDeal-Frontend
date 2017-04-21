@@ -49,6 +49,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     $scope.selectedTab = 0
 
     $scope.posts = []
+    $scope.targetPost = null
 
     var url = "https://localhost:8000/getPosts";
     $rootScope.$on('$locationChangeStart', function(e, current, pre) {
@@ -67,10 +68,24 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         }
 
         console.log(newPath.substring(count, newPath.length))
-        console.log(ending)
+        // console.log(ending)
+        var itemId = newPath.substring(count, newPath.length);
+
 
         // if item is in database, display that webpage
-        
+        if ($scope.posts.length > 0) {
+            for (var i = 0; i > $scope.posts.length; i++) {
+                post = $scope.posts[i];
+                if (post["_id"] == itemId) {
+                    $scope.targetPost = post;
+                }
+            }
+        }
+        else {
+            console.log("posts is empty")
+        }
+
+        console.log($scope.targetPost);
 
 
         // otherwise, go back to home page
@@ -164,7 +179,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     });
 
 
-    $scope.targetPost = null;
+    // $scope.targetPost = null;
 
     // HANDLE ROUTING
     // $rootScope.$on('$routeChangeStart', function(e, current, pre) {
