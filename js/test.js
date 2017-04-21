@@ -2,7 +2,7 @@ var app = angular.module("test_app", ["ngRoute"])
 
 app.config(function($routeProvider) {
     $routeProvider
-    .when('/view', {
+    .when('/item', {
         templateUrl: 'pages/item.html',
         controller: 'indexController',
         // reloadOnSearch: false,
@@ -271,6 +271,9 @@ $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         }
 
         console.log($scope.targetPost);
+        if ($scope.targetPost != null) {
+            $location.path('/item')
+        }
 
 
         // otherwise, go back to home page
