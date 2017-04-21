@@ -61,10 +61,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
         var newPath = current;
         var ending = "";
+        var count = 0;
         for (var i = newPath.length - 1; newPath[i] != '#' && i > 0; i--) {
-            ending += newPath[i]
+            count = i;
         }
 
+        console.log(newPath.substring(count, newPath.length))
         console.log(ending)
 
         // if item is in database, display that webpage
