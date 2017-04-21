@@ -13,6 +13,8 @@ function createReviewFunction() {
 
     var url = "https://localhost:8000/createReview";
 
+    console.log("posting a review NOW!")
+
         var sellerID = $("#sellerID").val();
         var reviewDes = $("#reviewDes").val();
         var stars = $("#stars").val();
