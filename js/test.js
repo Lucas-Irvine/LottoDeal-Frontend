@@ -14,6 +14,10 @@ var app = angular.module("test_app", ["ngRoute"])
 //     })
 // })
 
+// app.config(function($locationProvider) {
+//     $locationProvider.html5Mode(true);
+// })
+
 app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
     $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         console.log('Current route name: ' + $location.path());
