@@ -207,7 +207,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                 var month = date.getMonth();
                 var day = date.getDay();
                 var year = date.getFullYear();
-                var newDate = monthNames[month] + " " + day + "," + year;
+                var newDate = monthNames[month] + " " + day + ", " + year;
                 items[i].datePosted = newDate;
                 console.log(newDate);
             }
