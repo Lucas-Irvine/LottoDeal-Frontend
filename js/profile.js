@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 
 
-    $("#button1id").submit(function(e) {
+    $("#button1id").onClick(function(e) {
      console.log("got here")
         e.preventDefault();
 
