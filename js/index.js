@@ -70,7 +70,15 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     console.log(items[i])
                     console.log(items[i].img.data)
 
-                    items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
+                    var raw = String.fromCharCode.apply(null, items[i].img.data.data)
+
+                    var b64=btoa(raw)
+                    var dataURL = "dataLimage/jpeg;base64," + b64;
+
+                    items[i]["src"] = dataURL;
+
+
+                    // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
                     // items[i]["src"] = items[i].img.data.data;
                 }
 
