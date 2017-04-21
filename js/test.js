@@ -59,6 +59,14 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     var url = "https://localhost:8000/getPosts";
 
 
+    var curURL = $location.path();
+    var itemid = 0;
+    if (curURL == "/item") {
+        console.log("here!");
+        if ($scope.targetPost == null) {
+            console.log($location.absUrl())
+        }
+    }
 
     // $scope.$on("$locationChangeStart", function(event) {
     //     console.log(event)
@@ -278,6 +286,7 @@ $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         }
         else {
             console.log("posts is empty")
+            $location.path('/')
         }
 
         console.log($scope.targetPost);
