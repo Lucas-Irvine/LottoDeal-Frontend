@@ -73,7 +73,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     var raw = String.fromCharCode.apply(null, items[i].img.data.data)
 
                     var b64=btoa(raw)
-                    var dataURL = "dataLimage/jpeg;base64," + b64;
+                    var dataURL = "data:image/jpeg;base64," + b64;
 
                     items[i]["src"] = dataURL;
 
