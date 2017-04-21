@@ -159,6 +159,15 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     //     }
     // });
 
+    var handler = StripeCheckout.configure({
+            key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+            image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+            locale: 'auto',
+            token: function(token) {
+                // You can access the token ID with `token.id`.
+                // Get the token ID to your server-side code for use.
+            }
+    });
 
 
     $scope.bid = function (event, amount, amountRaised, price) {
@@ -185,6 +194,16 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         amountText.text("$" + newAmount + " of $" + price + " raised")
 
 
+        console.log('activate stripe ')
+
+        
+        handler.open({
+                name: 'LottoDeal',
+                description: 'Bid on ' + event,
+                amount: amount * 100
+            });
+        e.preventDefault();
+        
 
 
 
