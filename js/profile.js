@@ -8,6 +8,38 @@ $(document).ready(function() {
 
 
 
+function changeSettings() {
+
+    var url = "https://localhost:8000/updateSettings";
+
+    console.log("updating your settings")
+
+        var email = $("#newEmail").val();
+        var userID = localStorage.getItem("curUserID");
+
+
+
+        data = {
+         email: email,
+         userID: userID,
+        }
+
+        // AJAX POST TO SERVER
+        $.ajax({
+         url: url,
+         type: 'POST',
+         data: data,
+         success: function(data) {
+             console.log(data)
+         },
+         error: function(response, error) {
+             console.log(response)
+             console.log(error)
+         }
+     });
+
+}
+
 
 function createReviewFunction() {
 
