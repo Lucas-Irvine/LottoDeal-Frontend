@@ -220,7 +220,7 @@ footer.signin {
 
 footer {
     /*background: #020621; */
-    background: black;
+    background: white;
     color: #fea680;
 }
 
@@ -231,7 +231,7 @@ footer {
 
 .footerlink:hover {
     text-decoration: none;
-    color: #f7ef6a;
+    color: black;
 }
 
 .btn-submit, .btn-submit:active, .btn-submit:focus {
