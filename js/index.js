@@ -166,7 +166,7 @@ var handler = StripeCheckout.configure({
     locale: 'auto',
     token: function(token) {
         data = {
-            stripeToken: token
+            stripeToken: token.id
         }
         $.ajax({
             url: 'https://localhost:8000/performPayment',
@@ -182,6 +182,7 @@ var handler = StripeCheckout.configure({
         });
     }
 });
+
 
     $scope.bid = function (event, amount, amountRaised, price) {
         // DISPLAY BID ON FRONT-END
@@ -215,6 +216,7 @@ var handler = StripeCheckout.configure({
                 description: 'Bid on ' + event,
                 amount: amount * 100
             });
+
         e.preventDefault();
         
 
