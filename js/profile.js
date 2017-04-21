@@ -281,7 +281,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
 
 
-    $scope.accounts = []
+    $scope.account = []
 
     // AJAX get TO SERVER for account
     var url = "https://localhost:8000/getAccount";
@@ -297,7 +297,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         success: function (data) {
             var account = JSON.parse(data)
             console.log("Here's your account" + account)
-            $scope.accounts = account;
+            $scope.account = account;
             $scope.$apply()
         },
         error: function (response, error) {
