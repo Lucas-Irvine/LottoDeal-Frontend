@@ -199,8 +199,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         
         handler.open({
                 name: 'LottoDeal',
-                description: '2 widgets',
-                amount: 2000
+                description: 'Bid on ' + event,
+                amount: amount * 100
             });
         e.preventDefault();
         
