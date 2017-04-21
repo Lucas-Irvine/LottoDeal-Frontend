@@ -8,36 +8,64 @@ $(document).ready(function() {
 
 
 
+// copied from http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validate() {
+  $("#result").text("");
+  var email = $("#email").val();
+  if (validateEmail(email)) {
+    $("#result").text(email + " is valid :)");
+    $("#result").css("color", "green");
+  } else {
+    $("#result").text(email + " is not valid :(");
+    $("#result").css("color", "red");
+  }
+  return false;
+}
+
+
+
+
+
 function updateSettings() {
+    var email = $("#newEmail").val();
+
+  if (validateEmail(email)) {
 
     var url = "https://localhost:8000/updateSettings";
 
     console.log("updating your settings")
 
-        var email = $("#newEmail").val();
-        var userID = localStorage.getItem("curUserID");
+    var userID = localStorage.getItem("curUserID");
 
 
 
-        data = {
-         email: email,
-         userID: userID,
-        }
+    data = {
+       email: email,
+       userID: userID,
+   }
 
         // AJAX POST TO SERVER
         $.ajax({
-         url: url,
-         type: 'POST',
-         data: data,
-         success: function(data) {
-             console.log(data)
-         },
-         error: function(response, error) {
-             console.log(response)
-             console.log(error)
-         }
-     });
-
+           url: url,
+           type: 'POST',
+           data: data,
+           success: function(data) {
+               console.log(data)
+           },
+           error: function(response, error) {
+               console.log(response)
+               console.log(error)
+           }
+       });
+    }
+    else {
+        alert("Not a valid email address");
+    }
 }
 
 
