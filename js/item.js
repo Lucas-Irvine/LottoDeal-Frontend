@@ -4,10 +4,29 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     var searchObject = $location.search();
     var id = searchObject['id'];
     console.log(id);
-    console.log($routeParams)
-    console.log($routeParams.id)
 
-    console.log(searchObject);
+    var url = "https://localhost:8000/getItem"
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        data: {
+        	id: id
+        },
+        success: function(data) {
+            console.log(data)
+        },
+        error: function(response, error) {
+          console.log(response)
+          console.log(error)
+      }
+    });
+
+
+    // console.log($routeParams)
+    // console.log($routeParams.id)
+
+    // console.log(searchObject);
 
     // console.log($location.search('id'));
 }]) 
