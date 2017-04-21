@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 
 
-var createReviewFunction() {
+function createReviewFunction() {
 
     var url = "https://localhost:8000/createReview";
 
