@@ -67,8 +67,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     items[i]["src"] = "http://placehold.it/320x150"
                 }
                 else {
-                    console.log(items[i])
-                    console.log(items[i].img.data)
+                    // console.log(items[i])
+                    // console.log(items[i].img.data)
 
                     var raw = String.fromCharCode.apply(null, items[i].img.data.data)
 
@@ -82,11 +82,11 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     // items[i]["src"] = items[i].img.data.data;
                 }
 
-                console.log(items[i])
+                // console.log(items[i])
                 //items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
             }
             $scope.posts = items;
-            console.log($scope.posts)
+            // console.log($scope.posts)
             $scope.$apply()
         },
         error: function(response, error) {
