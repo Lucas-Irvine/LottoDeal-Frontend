@@ -168,7 +168,7 @@ var handler = StripeCheckout.configure({
         console.log(token);
         console.log('test12');
         data = {
-            stripeToken: token.id
+            stripeToken: token.id,
             amount: token.amount
         }
         $.ajax({
