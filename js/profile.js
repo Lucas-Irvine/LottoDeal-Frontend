@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 
 
-function changeSettings() {
+function updateSettings() {
 
     var url = "https://localhost:8000/updateSettings";
 
