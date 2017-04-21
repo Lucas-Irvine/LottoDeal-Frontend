@@ -155,7 +155,7 @@
                     <div ng-repeat="post in posts | filter:searchText">
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail" id="item">
-                                <img src="http://placehold.it/320x150" alt="">
+                                <img ng-src="post.src" alt="">
                                 <div class="caption">
                                     <h5 class="pull-right" id="amountRaised-{{post._id}}">${{post.amountRaised}} of ${{post.price}} raised</h5>
                                     <h4><a href="#">{{post.title}}</a>
