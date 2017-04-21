@@ -7,6 +7,16 @@ app.config(function($routeProvider) {
         controller: 'indexController',
         reloadOnSearch: false,
     })
+    .when('/', {
+        templateUrl: 'pages/index.html',
+        controller: 'indexController',
+        reloadOnSearch: false,
+    })
+    .otherwise({
+        templateUrl: 'pages/index.html',
+        controller: 'indexController',
+        reloadOnSearch: false,
+    })
 })
 
 // app.config(function($locationProvider) {
