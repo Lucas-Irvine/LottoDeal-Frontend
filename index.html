@@ -169,6 +169,19 @@
                                     </div>
                                 </div>
                                 <h5 class="pull-right">{{post.expirationDate}}</h5>
+                                <form action="https://localhost:8000/performPayment" method="POST">
+                                          <script
+                                          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                          data-key="pk_test_I1JByOdv34UVHxZhjKYlKGc4"
+                                          data-amount="100"
+                                          data-name="Stripe.com"
+                                          data-description="Widget"
+                                          data-label=" $1 "
+                                          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                          data-locale="auto"
+                                          data-zip-code="true">
+                                      </script>
+                                  </form>
                                 <div class="dropdown">
 
                                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Bid</button>
