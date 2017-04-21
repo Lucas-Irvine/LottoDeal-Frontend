@@ -198,6 +198,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                 var year = date.getFullYear();
                 var newDate = month + " " + day + " " + year;
                 items[i].datePosted = newDate;
+                console.log(newDate);
             }
             $scope.reviews = items;
             console.log($scope.reviews)
