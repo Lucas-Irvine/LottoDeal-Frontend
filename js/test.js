@@ -256,12 +256,12 @@ $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         console.log($scope.posts);
         console.log($scope.posts.length)
         if ($scope.posts.length > 0) {
-            console.log("here")
+            // console.log("here")
             for (var i = 0; i < $scope.posts.length; i++) {
                 post = $scope.posts[i];
-                console.log(post["_id"])
+                // console.log(post["_id"])
                 if (post["_id"] == itemId) {
-                    console.log("here")
+                    // console.log("here")
                     $scope.targetPost = post;
                 }
             }
@@ -273,6 +273,7 @@ $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         console.log($scope.targetPost);
         if ($scope.targetPost != null) {
             $location.path('/item')
+            $scope.$apply();
         }
 
 
