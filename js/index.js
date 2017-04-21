@@ -67,6 +67,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     items[i]["src"] = "http://placehold.it/320x150"
                 }
                 else {
+                    console.log(items[i])
                     items[i]["src"] = 'data:image/jpeg;base64,' + items[i].data.data;
                 }
 
