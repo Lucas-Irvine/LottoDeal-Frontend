@@ -76,7 +76,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         if ($scope.posts.length > 0) {
             for (var i = 0; i > $scope.posts.length; i++) {
                 post = $scope.posts[i];
+                console.log(post["_id"])
                 if (post["_id"] == itemId) {
+                    console.log("here")
                     $scope.targetPost = post;
                 }
             }
