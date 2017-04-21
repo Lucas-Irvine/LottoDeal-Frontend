@@ -165,8 +165,11 @@ var handler = StripeCheckout.configure({
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
     token: function(token) {
+        console.log(token);
+        console.log('test12');
         data = {
             stripeToken: token.id
+            amount: token.amount
         }
         $.ajax({
             url: 'https://localhost:8000/performPayment',
@@ -174,6 +177,7 @@ var handler = StripeCheckout.configure({
             type: 'POST',
             success: function(data) {
                 console.log('success payment')
+                console.log(data);
             },
             error: function(response, error) {
                 console.log(response)
@@ -217,7 +221,7 @@ var handler = StripeCheckout.configure({
                 amount: amount * 100
             });
 
-        e.preventDefault();
+
         
 
 
