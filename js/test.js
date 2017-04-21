@@ -13,8 +13,7 @@ app.config(function($routeProvider) {
         reloadOnSearch: false,
     })
     .otherwise({
-        templateUrl: 'pages/index.html',
-        controller: 'indexController',
+        redirectTo: "/",
         reloadOnSearch: false,
     })
 })
