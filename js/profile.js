@@ -164,7 +164,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     var url = "https://localhost:8000/getReviewerImagesandNames";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
-        sellerID: userID
+        userID: userID
     }
     console.log('Asking for Reviewers')
     $.ajax({
