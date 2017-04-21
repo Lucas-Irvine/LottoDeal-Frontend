@@ -68,7 +68,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 }
                 else {
                     console.log(items[i])
-                    items[i]["src"] = 'data:image/jpeg;base64,' + items[i].data.data;
+                    console.log(items[i].data)
+
+                    items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
                 }
 
                 console.log(items[i])
