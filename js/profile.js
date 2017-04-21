@@ -20,6 +20,8 @@ function createReviewFunction() {
         var stars = $("#stars").val();
         var reviewerID = localStorage.getItem("curUserID");
 
+        var expirationDate = new Date(items[i].expirationDate);
+
         data = {
          sellerID: sellerID,
          reviewDes: reviewDes,
