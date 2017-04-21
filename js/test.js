@@ -61,12 +61,23 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     var curURL = $location.path();
     var itemid = 0;
+    var absUrl = $location.absUrl();
+    $scope.itemId = null;
     if (curURL == "/item") {
         console.log("here!");
         if ($scope.targetPost == null) {
-            console.log($location.absUrl())
+            // console.log($location.absUrl())
+            for (var i = absUrl.length - 1; absUrl[i] != '#' && i > 0; i--) {
+                count = i;
+            }
+
+            console.log(absUrl.substring(count, absUrl.length))
+            // console.log(ending)
+            $scope.itemId = absUrl.substring(count, absUrl.length);
         }
     }
+
+
 
     // $scope.$on("$locationChangeStart", function(event) {
     //     console.log(event)
@@ -110,6 +121,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
                     // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
                     // items[i]["src"] = items[i].img.data.data;
+                }
+                if ($scope.itemId != null && $scope.itemId == items[i]["_id"]) {
+                    $scope.targetPost = items[i]
                 }
 
                 // console.log(items[i])
