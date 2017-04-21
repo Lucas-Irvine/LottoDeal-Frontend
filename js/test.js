@@ -1,18 +1,13 @@
 var app = angular.module("test_app", ["ngRoute"])
 
-// app.config(function($routeProvider) {
-//     $routeProvider
-//     .when('/', {
-//         templateUrl: 'pages/template.html',
-//         controller: 'indexController',
-//         reloadOnSearch: false,
-//     })
-//     .otherwise({
-//         templateUrl: 'pages/item.html',
-//         controller: 'indexController',
-//         reloadOnSearch: false,
-//     })
-// })
+app.config(function($routeProvider) {
+    $routeProvider
+    .when('/view', {
+        templateUrl: 'pages/item.html',
+        controller: 'indexController',
+        // reloadOnSearch: false,
+    })
+})
 
 // app.config(function($locationProvider) {
 //     $locationProvider.html5Mode(true);
@@ -52,48 +47,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     $scope.targetPost = null
 
     var url = "https://localhost:8000/getPosts";
-    $rootScope.$on('$locationChangeStart', function(e, current, pre) {
-        console.log('Current route name: ' + $location.path());
-        var path = $location.path().substring(1, $location.path().length)
-        // console.log(path)
-        // console.log(e)
-        // console.log(current)
-        // console.log(pre)
 
-        var newPath = current;
-        var ending = "";
-        var count = 0;
-        for (var i = newPath.length - 1; newPath[i] != '#' && i > 0; i--) {
-            count = i;
-        }
-
-        console.log(newPath.substring(count, newPath.length))
-        // console.log(ending)
-        var itemId = newPath.substring(count, newPath.length);
-
-
-        // if item is in database, display that webpage
-        if ($scope.posts.length > 0) {
-            for (var i = 0; i > $scope.posts.length; i++) {
-                post = $scope.posts[i];
-                console.log(post["_id"])
-                if (post["_id"] == itemId) {
-                    console.log("here")
-                    $scope.targetPost = post;
-                }
-            }
-        }
-        else {
-            console.log("posts is empty")
-        }
-
-        console.log($scope.targetPost);
-
-
-        // otherwise, go back to home page
-
-
-    });
 
 
     // $scope.$on("$locationChangeStart", function(event) {
@@ -277,6 +231,53 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     }
 
 }
+
+$rootScope.$on('$locationChangeStart', function(e, current, pre) {
+        console.log('Current route name: ' + $location.path());
+        var path = $location.path().substring(1, $location.path().length)
+        // console.log(path)
+        // console.log(e)
+        // console.log(current)
+        // console.log(pre)
+
+        var newPath = current;
+        var ending = "";
+        var count = 0;
+        for (var i = newPath.length - 1; newPath[i] != '#' && i > 0; i--) {
+            count = i;
+        }
+
+        console.log(newPath.substring(count, newPath.length))
+        // console.log(ending)
+        var itemId = newPath.substring(count, newPath.length);
+
+
+        // if item is in database, display that webpage
+        console.log($scope.posts);
+        if ($scope.posts.length > 0) {
+            for (var i = 0; i > $scope.posts.length; i++) {
+                post = $scope.posts[i];
+                console.log(post["_id"])
+                if (post["_id"] == itemId) {
+                    console.log("here")
+                    $scope.targetPost = post;
+                }
+            }
+        }
+        else {
+            console.log("posts is empty")
+        }
+
+        console.log($scope.targetPost);
+
+
+        // otherwise, go back to home page
+
+
+    });
+
+
+
 
 }]) 
 
