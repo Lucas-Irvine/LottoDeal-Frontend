@@ -170,61 +170,19 @@
                                 </div>
                                 <h5 class="pull-right">{{post.expirationDate}}</h5>
                                 <form action="https://localhost:8000/performPayment" method="POST">
-                                          <script
-                                          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                          data-key="pk_test_I1JByOdv34UVHxZhjKYlKGc4"
-                                          data-amount="100"
-                                          data-name="Stripe.com"
-                                          data-description="Widget"
-                                          data-label=" $1 "
-                                          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                          data-locale="auto"
-                                          data-zip-code="true">
-                                      </script>
-                                  </form>
-                                <div class="dropdown">
-
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Bid</button>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                        <form action="https://localhost:8000/performPayment" method="POST">
-                                          <script
-                                          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                          data-key="pk_test_I1JByOdv34UVHxZhjKYlKGc4"
-                                          data-amount="100"
-                                          data-name="Stripe.com"
-                                          data-description="Widget"
-                                          data-label=" $1 "
-                                          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                          data-locale="auto"
-                                          data-zip-code="true">
-                                      </script>
-                                  </form>
-                                  <form action="https://localhost:8000/performPayment" method="POST">
-                                      <script
-                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                      data-key="pk_test_I1JByOdv34UVHxZhjKYlKGc4"
-                                      data-amount="200"
-                                      data-name="Stripe.com"
-                                      data-description="Widget"
-                                      data-label=" $2 "
-                                      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                      data-locale="auto"
-                                      data-zip-code="true">
-                                  </script>
-                              </form>
-                              <form action="https://localhost:8000/performPayment" method="POST">
                                   <script
                                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                   data-key="pk_test_I1JByOdv34UVHxZhjKYlKGc4"
-                                  data-amount="500"
-                                  data-name="Stripe.com"
+                                  data-amount="999"
+                                  data-name="LottoDeal"
                                   data-description="Widget"
-                                  data-label=" $5 "
                                   data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                                  data-locale="auto"
-                                  data-zip-code="true">
-                              </script>
-                          </form>
+                                  data-locale="auto">
+                                </script>
+                                </form>
+                                <div class="dropdown">
+
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Bid</button>
                                       <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price);" id="{{post._id}}">$1.00</button>
                                       <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price);" id="{{post._id}}">$2.00</button>
                                       <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price);" id="{{post._id}}">$5.00</button>
