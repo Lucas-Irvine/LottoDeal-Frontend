@@ -14,25 +14,25 @@ var app = angular.module("test_app", ["ngRoute"])
 //     })
 // })
 
-// app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
-//     $rootScope.$on('$routeChangeStart', function(e, current, pre) {
-//         console.log('Current route name: ' + $location.path());
-//         var path = $location.path().substring(1, $location.path().length)
-//         console.log(path)
-//         console.log(e)
-//         console.log(current)
-//         console.log(pre)
+app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
+    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+        console.log('Current route name: ' + $location.path());
+        var path = $location.path().substring(1, $location.path().length)
+        console.log(path)
+        console.log(e)
+        console.log(current)
+        console.log(pre)
 
 
-//         // if item is in database, display that webpage
+        // if item is in database, display that webpage
 
 
 
-//         // otherwise, go back to home page
+        // otherwise, go back to home page
 
 
-//     });
-// }])
+    });
+}])
 
 app.controller("indexController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
     $scope.selectedTab = 0
