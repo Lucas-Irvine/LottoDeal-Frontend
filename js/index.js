@@ -187,6 +187,23 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
 
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: 'POST',
+            success: function(data) {
+                console.log('Bid added for ' + event)
+            },
+            error: function(response, error) {
+                console.log(response)
+                console.log(error)
+            }
+        });
+
+
+
+
         // ADD BID TO DATABASE
         console.log("Adding bid for item " + event + " for " + amount)
 
@@ -293,3 +310,39 @@ var DateDiff = {
 //         return false;
 //     });
 // });
+
+
+
+
+function myFunction() {
+    console.log('testme');
+
+    var handler = StripeCheckout.configure({
+    key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+    image: '/square-image.png',
+    token: function(token, args) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+      console.log(token)
+      $.ajax({
+          url: 'link/to/php/stripeDonate.php',
+          type: 'post',
+          data: {tokenid: token.id, email: token.email, donationAmt: donationAmt},
+          success: function(data) {
+            if (data == 'success') {
+                console.log("Card successfully charged!");
+            }
+            else {
+                console.log("Success Error!");
+            }
+
+          },
+          error: function(data) {
+            console.log("Ajax Error!");
+            console.log(data);
+          }
+        }); // end ajax call
+    }
+  });
+
+}
