@@ -42,6 +42,10 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     var url = "https://localhost:8000/getPosts";
 
 
+    $scope.$on("$locationChangeStart", function(event) {
+        console.log(event)
+    })
+
     console.log('test')
 
     function hexToBase64(str) {
