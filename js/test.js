@@ -22,11 +22,18 @@ app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $locati
     $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         console.log('Current route name: ' + $location.path());
         var path = $location.path().substring(1, $location.path().length)
-        console.log(path)
-        console.log(e)
-        console.log(current)
-        console.log(pre)
+        // console.log(path)
+        // console.log(e)
+        // console.log(current)
+        // console.log(pre)
 
+        var newPath = current;
+        var ending = "";
+        for (var i = newPath.length - 1; newPath[i] != "#"; i--) {
+            ending += newPath[i]
+        }
+
+        console.log(ending)
 
         // if item is in database, display that webpage
 
@@ -44,11 +51,35 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     $scope.posts = []
 
     var url = "https://localhost:8000/getPosts";
+    $rootScope.$on('$locationChangeStart', function(e, current, pre) {
+        console.log('Current route name: ' + $location.path());
+        var path = $location.path().substring(1, $location.path().length)
+        // console.log(path)
+        // console.log(e)
+        // console.log(current)
+        // console.log(pre)
+
+        var newPath = current;
+        var ending = "";
+        for (var i = newPath.length - 1; newPath[i] != "#"; i--) {
+            ending += newPath[i]
+        }
+
+        console.log(ending)
+
+        // if item is in database, display that webpage
+        
 
 
-    $scope.$on("$locationChangeStart", function(event) {
-        console.log(event)
-    })
+        // otherwise, go back to home page
+
+
+    });
+
+
+    // $scope.$on("$locationChangeStart", function(event) {
+    //     console.log(event)
+    // })
 
     console.log('test')
 
