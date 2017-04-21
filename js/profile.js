@@ -14,21 +14,6 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-function validate() {
-  $("#result").text("");
-  var email = $("#email").val();
-  if (validateEmail(email)) {
-    $("#result").text(email + " is valid :)");
-    $("#result").css("color", "green");
-  } else {
-    $("#result").text(email + " is not valid :(");
-    $("#result").css("color", "red");
-  }
-  return false;
-}
-
-
-
 
 
 function updateSettings() {
