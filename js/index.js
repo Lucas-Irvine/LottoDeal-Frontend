@@ -159,6 +159,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     //     }
     // });
 
+$scope.amountToCharge = 0
 
 var handler = StripeCheckout.configure({
     key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
@@ -169,7 +170,7 @@ var handler = StripeCheckout.configure({
         console.log('test12');
         data = {
             stripeToken: token.id,
-            amount: token.amount
+            amount: $scope.amountToCharge
         }
         $.ajax({
             url: 'https://localhost:8000/performPayment',
@@ -213,12 +214,12 @@ var handler = StripeCheckout.configure({
 
 
         console.log('activate stripe ')
-
+        $scope.amountToCharge = amount * 100;
         
         handler.open({
                 name: 'LottoDeal',
                 description: 'Bid on ' + event,
-                amount: amount * 100
+                amount: $scope.amountToCharge
             });
 
 
