@@ -254,7 +254,9 @@ $rootScope.$on('$locationChangeStart', function(e, current, pre) {
 
         // if item is in database, display that webpage
         console.log($scope.posts);
+        console.log($scope.posts.length)
         if ($scope.posts.length > 0) {
+            console.log("here")
             for (var i = 0; i > $scope.posts.length; i++) {
                 post = $scope.posts[i];
                 console.log(post["_id"])
