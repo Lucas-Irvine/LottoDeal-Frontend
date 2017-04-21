@@ -24,7 +24,7 @@ function createReviewFunction() {
          sellerID: sellerID,
          reviewDes: reviewDes,
          stars: stars,
-         reviewerID: date,
+         reviewerID: reviewerID,
         }
 
         // AJAX POST TO SERVER
