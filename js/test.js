@@ -15,7 +15,7 @@ var app = angular.module("test_app", ["ngRoute"])
 // })
 
 app.run(['$rootScope', '$location', '$routeParams', function($rootScope, $location, $routeParams) {
-    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+    $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         console.log('Current route name: ' + $location.path());
         var path = $location.path().substring(1, $location.path().length)
         console.log(path)
