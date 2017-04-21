@@ -192,14 +192,22 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         success: function (data) {
             var items = JSON.parse(data)
 
+
+              var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+
             for (i = 0; i < items.length; i++) {
 
 
                 var date = new Date(items[i].datePosted)
-                var month = date.getDate();
+                var month = date.getMonth();
                 var day = date.getDay();
                 var year = date.getFullYear();
-                var newDate = month + " " + day + " " + year;
+                var newDate = monthNames[month] + " " + day + "," + year;
                 items[i].datePosted = newDate;
                 console.log(newDate);
             }
