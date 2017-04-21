@@ -5,7 +5,13 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     var id = searchObject['id'];
     console.log(id);
 
+
+    $scope.post = null;
+
     var url = "https://localhost:8000/getItem"
+
+
+
 
     $.ajax({
         url: url,
@@ -15,6 +21,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         success: function(data) {
             console.log(data)
+            $scope.post = JSON.parse(data);
         },
         error: function(response, error) {
           console.log(response)
