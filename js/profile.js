@@ -289,13 +289,14 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     var dataGET = {
         userID: userID
     }
-    console.log('Asking for Reviewers')
+    console.log('Asking for account info')
     $.ajax({
         url: url,
         data: dataGET,
         type: 'GET',
         success: function (data) {
             var account = JSON.parse(data)
+            console.log("Here's your account" + account)
             $scope.accounts = account;
             $scope.$apply()
         },
