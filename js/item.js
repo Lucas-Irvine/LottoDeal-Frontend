@@ -9,6 +9,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
     console.log(searchObject);
 
-    //console.log($location.search('id'));
+    // console.log($location.search('id'));
 }]) 
 
