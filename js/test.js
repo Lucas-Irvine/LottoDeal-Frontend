@@ -5,7 +5,7 @@ app.config(function($routeProvider) {
     .when('/item', {
         templateUrl: 'pages/item.html',
         controller: 'indexController',
-        // reloadOnSearch: false,
+        reloadOnSearch: false,
     })
 })
 
@@ -273,7 +273,7 @@ $rootScope.$on('$locationChangeStart', function(e, current, pre) {
         console.log($scope.targetPost);
         if ($scope.targetPost != null) {
             $location.path('/item')
-            $scope.$apply();
+            // $scope.$apply();
         }
 
 
