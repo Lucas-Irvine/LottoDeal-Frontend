@@ -191,6 +191,14 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         type: 'GET',
         success: function (data) {
             var items = JSON.parse(data)
+            for (i = 0; i < items.length; i++) {
+                var date = items[i].datePosted;
+                var month = date.getDate();
+                var day = date.getDay();
+                var year = date.getFullYear();
+                var newDate = month + " " + day + " " + year;
+                items[i].datePosted = newDate;
+            }
             $scope.reviews = items;
             console.log($scope.reviews)
             $scope.$apply()
