@@ -6,6 +6,48 @@ $(document).ready(function() {
     });
 });
 
+
+
+
+
+    $("#button1id").submit(function(e) {
+     console.log("got here")
+        e.preventDefault();
+
+     var url = "https://localhost:8000/createReview";
+
+        var sellerID = $("#sellerID").val();
+        var reviewDes = $("#reviewDes").val();
+        var stars = $("#stars").val();
+        var reviewerID = localStorage.getItem("curUserID");
+
+        data = {
+         sellerID: sellerID,
+         reviewDes: reviewDes,
+         stars: stars,
+         reviewerID: date,
+        }
+
+        // AJAX POST TO SERVER
+        $.ajax({
+         url: url,
+         type: 'POST',
+         data: data,
+         success: function(data) {
+             console.log(data)
+         },
+         error: function(response, error) {
+             console.log(response)
+             console.log(error)
+         }
+     });
+
+    });
+
+
+
+
+
 var app = angular.module("profile_app", ["ngRoute"])
 
 app.controller("profileController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
@@ -252,6 +294,9 @@ function displayFBUserData(){
             document.getElementById('profileImageBackground').src = response.picture.data.url;
         });
 }
+
+
+
 
 
 
