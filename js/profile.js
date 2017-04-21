@@ -9,12 +9,9 @@ $(document).ready(function() {
 
 
 
+var createReviewFunction() {
 
-    $("#button1id").submit(function(e) {
-     console.log("got here")
-        e.preventDefault();
-
-     var url = "https://localhost:8000/createReview";
+    var url = "https://localhost:8000/createReview";
 
         var sellerID = $("#sellerID").val();
         var reviewDes = $("#reviewDes").val();
@@ -42,7 +39,7 @@ $(document).ready(function() {
          }
      });
 
-    });
+}
 
 
 
