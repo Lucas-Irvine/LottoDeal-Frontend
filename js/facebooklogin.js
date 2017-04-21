@@ -57,6 +57,7 @@ function fbLogin() {
             // Get and display the user profile data
             facebookLoginButton.setAttribute("onclick","fbLogout()");
             facebookLoginButton.innerHTML = 'Facebook Logout';
+            console.log('Successfully logged in')
             getFbUserData();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
@@ -72,6 +73,7 @@ function fbLogout() {
     FB.logout(function() {
         facebookLoginButton.setAttribute("onclick","fbLogin()");
         facebookLoginButton.innerHTML = 'Facebook Login';
+        console.log('Successfully logged out')
     });
 }
 
