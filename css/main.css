@@ -138,14 +138,14 @@ footer.signin {
 
 /* home button styling */
 
-/*.navbar-inverse .navbar-header > a {
-    color: black;
+.navbar-inverse .navbar-header > a {
+    color: #76797A;
 }
 
 .navbar-inverse .navbar-header > a:hover {
-    color:#fedc3d ;
-    background-color: black;
-}*/
+    color: black ;
+    /*background-color: black;*/
+}
 
 /*search button styling*/
 .search-btn, .search-btn:active, .search-btn:focus {
@@ -387,6 +387,15 @@ footer {
 .sliding-middle-out:hover:after {
     width: 100%;
     background: grey;
+}
+
+.loading-icon {
+    display: block;
+    position : relative;
+    z-index: 100;
+    opacity : 0.4;
+    margin: auto;
+    
 }
 
 
