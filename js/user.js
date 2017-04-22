@@ -225,6 +225,12 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
             var account = JSON.parse(data)
             console.log("Here's your account for another user" + account)
 
+
+
+            document.getElementById('profileName').innerHTML = account.fullName;
+            document.getElementById('profileImage').src = account.pictureURL;
+            document.getElementById('profileImageBackground').src = account.pictureURL;
+
             var reviews = account.reviews;
             var length = reviews.length;
             var total = 0; 
