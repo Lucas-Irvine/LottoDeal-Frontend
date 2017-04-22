@@ -13,6 +13,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	}
 	else {
 		console.log("Successful item creation!");
+		$("#postCreatedModal").modal()
 	}
 
 
