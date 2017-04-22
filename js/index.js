@@ -196,8 +196,8 @@ var handler = StripeCheckout.configure({
                         console.log(itemID)
                         if (post["_id"] == itemID) {
                             var newPrice = post.amountRaised + amountToCharge;
-                            post.amountRaised = amountToCharge;
-                            post.percentageRaised = newPrice / post.price;
+                            post.amountRaised = newPrice;
+                            post.percentageRaised = (newPrice / post.price) * 100;
                             break;
                         }
                     }
