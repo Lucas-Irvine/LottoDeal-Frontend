@@ -165,7 +165,7 @@ var handler = StripeCheckout.configure({
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
     token: function(token) {
-
+        console.log('attempting stripe payment')
         var userID = localStorage.getItem("curUserID")
 
         if (userID != null) {
@@ -199,9 +199,9 @@ var handler = StripeCheckout.configure({
 });
 
 
-    $scope.bid = function (itemID, amount, amountRaised, price) {
+    $scope.bid = function (itemID, amount, amountRaised, price, itemTitle) {
         // DISPLAY BID ON FRONT-END
-        var progressbar = $("#progress-bar-" + event)
+        var progressbar = $("#progress-bar-" + itemID)
         // console.log(progressbar)
         var currentAmount = progressbar.css("width")
         // console.log(currentAmount)
@@ -218,7 +218,7 @@ var handler = StripeCheckout.configure({
         progressbar.css("width", pixelWidth)
 
         // change the amount raised
-        var amountText = $("#amountRaised-" + event)
+        var amountText = $("#amountRaised-" + itemID)
         // console.log(amountText)
         amountText.text("$" + newAmount + " of $" + price + " raised")
 
@@ -229,7 +229,7 @@ var handler = StripeCheckout.configure({
         
         handler.open({
                 name: 'LottoDeal',
-                description: 'Bid on ' + event,
+                description: 'Bid on ' + itemTitle,
                 amount: $scope.amountToCharge
             });
 
@@ -365,35 +365,35 @@ var DateDiff = {
 
 
 
-function myFunction() {
-    console.log('testme');
+// function myFunction() {
+//     console.log('testme');
 
-    var handler = StripeCheckout.configure({
-    key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
-    image: '/square-image.png',
-    token: function(token, args) {
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
-      console.log(token)
-      $.ajax({
-          url: 'link/to/php/stripeDonate.php',
-          type: 'post',
-          data: {tokenid: token.id, email: token.email, donationAmt: donationAmt},
-          success: function(data) {
-            if (data == 'success') {
-                console.log("Card successfully charged!");
-            }
-            else {
-                console.log("Success Error!");
-            }
+//     var handler = StripeCheckout.configure({
+//     key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+//     image: '/square-image.png',
+//     token: function(token, args) {
+//       // Use the token to create the charge with a server-side script.
+//       // You can access the token ID with `token.id`
+//       console.log(token)
+//       $.ajax({
+//           url: 'link/to/php/stripeDonate.php',
+//           type: 'post',
+//           data: {tokenid: token.id, email: token.email, donationAmt: donationAmt},
+//           success: function(data) {
+//             if (data == 'success') {
+//                 console.log("Card successfully charged!");
+//             }
+//             else {
+//                 console.log("Success Error!");
+//             }
 
-          },
-          error: function(data) {
-            console.log("Ajax Error!");
-            console.log(data);
-          }
-        }); // end ajax call
-    }
-  });
+//           },
+//           error: function(data) {
+//             console.log("Ajax Error!");
+//             console.log(data);
+//           }
+//         }); // end ajax call
+//     }
+//   });
 
-}
+// }
