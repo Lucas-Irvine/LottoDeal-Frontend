@@ -34,6 +34,9 @@ var app = angular.module("index_app", ["ngRoute"])
 //     });
 // }])
 
+
+
+
 app.controller("indexController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
     $scope.selectedTab = 0
 
@@ -273,6 +276,9 @@ var handler = StripeCheckout.configure({
         else {
             alert('Bid overpasses item price!');
             console.log('Bid overpasses item price!');
+             BootstrapDialog.show({
+            message: 'Hi Apple!'
+        });
         }
         
 
