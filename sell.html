@@ -134,7 +134,8 @@
     <p class="lead">It's as easy as filling this form and boom, we'll lottery it for you ;)</p>
   </div>
 </div>
-  <form id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data">
+<!-- action="https://localhost:8000/createPost" -->
+  <form id="submitForm" action="" onsubmit="mysubmit();return false" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="example-text-input">Title</label>
       <input id="title" name="title" type="text" class="form-control" id="exampleInput" aria-describedby="emailHelp" placeholder="Enter Product Name">

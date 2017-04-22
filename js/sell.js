@@ -17,7 +17,10 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	}
 
 
-
+	function mysubmit() {
+		console.log('test');
+   	 alert(clicked);
+	}
 
 }])
 
