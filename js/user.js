@@ -7,30 +7,20 @@ $(document).ready(function() {
 });
 
 
+var reviewID;
 
-
-
-
-
-
-var app = angular.module("user_app", ["ngRoute"])
-
-app.controller("userController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
-
-
-    
 function createReviewFunction() {
 
-    var searchObject = $location.search();
-    var id = searchObject['id'];
-    console.log(id);
+    // var searchObject = $location.search();
+    // var id = searchObject['id'];
+    // console.log(id);
 
 
     var url = "https://localhost:8000/createReview";
 
     console.log("posting a review NOW!")
 
-        var sellerID = id;
+        var sellerID = reviewID;
         var reviewDes = $("#reviewDes").val();
         var stars = $("#stars").val();
         var reviewerID = localStorage.getItem("curUserID");
@@ -59,11 +49,23 @@ function createReviewFunction() {
      });
 
 }
+
+
+
+
+var app = angular.module("user_app", ["ngRoute"])
+
+app.controller("userController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
+
+
+
     
     var searchObject = $location.search();
     var id = searchObject['id'];
     console.log(id);
 
+
+    reviewID = id;
 
     $scope.selectedTab = 0
 
