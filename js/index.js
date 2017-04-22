@@ -224,13 +224,13 @@ var handler = StripeCheckout.configure({
 
 
         console.log('activate stripe ')
-        $scope.amountToCharge = amount * 100;
+        $scope.amountToCharge = amount;
         $scope.itemID = itemID
         
         handler.open({
                 name: 'LottoDeal',
                 description: 'Bid on ' + itemTitle,
-                amount: $scope.amountToCharge
+                amount: amount * 100
             });
 
 
