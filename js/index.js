@@ -42,8 +42,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     var url = "https://localhost:8000/getPosts";
 
 
-    console.log('test')
-
     function hexToBase64(str) {
         return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
     }
@@ -160,36 +158,48 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     // });
 
 $scope.amountToCharge = 0
+$scope.itemID = ""
 
 var handler = StripeCheckout.configure({
     key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
     image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
     locale: 'auto',
     token: function(token) {
-        console.log(token);
-        console.log('test12');
-        data = {
-            stripeToken: token.id,
-            amount: $scope.amountToCharge
-        }
-        $.ajax({
-            url: 'https://localhost:8000/performPayment',
-            data: data,
-            type: 'POST',
-            success: function(data) {
-                console.log('success payment')
-                console.log(data);
-            },
-            error: function(response, error) {
-                console.log(response)
-                console.log(error)
+
+        var userID = localStorage.getItem("curUserID")
+
+        if (userID != null) {
+            data = {
+                itemID: $scope.itemID,
+                userID: userID,
+                stripeToken: token.id,
+                amount: Number($scope.amountToCharge)
             }
-        });
+            $.ajax({
+                url: 'https://localhost:8000/performPaymentAndAddBid',
+                data: data,
+                type: 'POST',
+                success: function(data) {
+                    console.log('success payment and bid added')
+                    console.log(data);
+                },
+                error: function(response, error) {
+                    console.log(response)
+                    console.log(error)
+                }
+             });
+
+        } else {
+            console.log('UserID is null')
+        }
+
+
+        
     }
 });
 
 
-    $scope.bid = function (event, amount, amountRaised, price) {
+    $scope.bid = function (itemID, amount, amountRaised, price) {
         // DISPLAY BID ON FRONT-END
         var progressbar = $("#progress-bar-" + event)
         // console.log(progressbar)
@@ -215,6 +225,7 @@ var handler = StripeCheckout.configure({
 
         console.log('activate stripe ')
         $scope.amountToCharge = amount * 100;
+        $scope.itemID = itemID
         
         handler.open({
                 name: 'LottoDeal',
@@ -227,56 +238,57 @@ var handler = StripeCheckout.configure({
 
 
 
-        $.ajax({
-            url: url,
-            data: data,
-            type: 'POST',
-            success: function(data) {
-                console.log('Bid added for ' + event)
-            },
-            error: function(response, error) {
-                console.log(response)
-                console.log(error)
-            }
-        });
+        // $.ajax({
+        //     url: url,
+        //     data: data,
+        //     type: 'POST',
+        //     success: function(data) {
+        //         console.log('Bid added for ' + event)
+        //     },
+        //     error: function(response, error) {
+        //         console.log(response)
+        //         console.log(error)
+        //     }
+        // });
 
 
 
 
         // ADD BID TO DATABASE
-        console.log("Adding bid for item " + event + " for " + amount)
+    //     console.log("Adding bid for item " + event + " for " + amount)
 
 
-        var url = "https://localhost:8000/addBid";
-        var userID = localStorage.getItem("curUserID")
-        if (userID != null) {
-            data = {
-               itemID: event,
-               userID: userID,
-               newAmount: Number(amount)
-           }
+    //     var url = "https://localhost:8000/addBid";
+    //     var userID = localStorage.getItem("curUserID")
 
-           $.ajax({
-            url: url,
-            data: data,
-            type: 'POST',
-            success: function(data) {
-                console.log('Bid added for ' + event)
-            },
-            error: function(response, error) {
-                console.log(response)
-                console.log(error)
-            }
-        });
+    //     if (userID != null) {
+    //         data = {
+    //            itemID: event,
+    //            userID: userID,
+    //            newAmount: Number(amount)
+    //        }
 
-       }
-       else {
-        console.log('UserID is null')
-    }
+    //        $.ajax({
+    //         url: url,
+    //         data: data,
+    //         type: 'POST',
+    //         success: function(data) {
+    //             console.log('Bid added for ' + event)
+    //         },
+    //         error: function(response, error) {
+    //             console.log(response)
+    //             console.log(error)
+    //         }
+    //     });
+
+    //    }
+    //    else {
+    //     console.log('UserID is null')
+    // }
 
 }
 
-}]) 
+}])
 
 //Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
 var DateDiff = {
