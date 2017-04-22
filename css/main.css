@@ -3,6 +3,7 @@ LottoDeal Homepage
  */
 
 body {
+    background-color: #1A5276;
     padding-top: 51px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
@@ -111,7 +112,7 @@ footer.signin {
 /* The entire navbar */
 
 .navbar {
-    background-color:#fedc3d;
+    background-color: white;
     border-color: rgba(34, 34, 34, 0.05); /* black */
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
     -webkit-transition: all 0.35s;
@@ -126,25 +127,25 @@ footer.signin {
 /*}*/
 
 .navbar .nav > li > a {
-    color: black ;
+    color: #76797A ;
 }
 
 .navbar .nav > li > a:hover,
 .navbar .nav > li > a:focus:hover {
-    background-color:black;
-    color: #fedc3d;
+    /*background-color:black;*/
+    color: grey;
 }
 
 /* home button styling */
 
-.navbar-inverse .navbar-header > a {
+/*.navbar-inverse .navbar-header > a {
     color: black;
 }
 
 .navbar-inverse .navbar-header > a:hover {
     color:#fedc3d ;
     background-color: black;
-}
+}*/
 
 /*search button styling*/
 .search-btn, .search-btn:active, .search-btn:focus {
@@ -363,6 +364,29 @@ footer {
 
 .img-hover:hover{
     opacity: 0.6;
+}
+
+.sliding-middle-out {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 3px;
+    /*font-family: 'Open Sans', sans-serif;*/
+    /*font-family: futura_book,Helvetica Neue Medium,Helvetica,Arial,sans-serif;*/
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 17px;
+}
+.sliding-middle-out:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+.sliding-middle-out:hover:after {
+    width: 100%;
+    background: grey;
 }
 
 

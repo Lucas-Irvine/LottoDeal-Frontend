@@ -32,13 +32,14 @@
 
         <!-- Angular route -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
-
-    </head>
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">   
+<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:700" rel="stylesheet"></head>
 
     <body ng-controller="indexController" ng-cloak> <!-- hides until content loads -->
 
         <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-inverse navbar-fixed-top row" role="navigation">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -69,20 +70,20 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a id = "about" href="about.html">About</a>
+                        <a id = "about" class="sliding-middle-out" href="about.html">About</a>
                     </li>
                     <li>
-                        <a id = "sell" href="sell.html">Sell</a>
+                        <a id = "sell"  class="sliding-middle-out" href="sell.html">Sell</a>
                     </li>
                     <li>
-                        <a id = "contact" href="contact.html">Contact</a>
+                        <a id = "contact" class="sliding-middle-out" href="contact.html">Contact</a>
                     </li>
                     <li>
-                        <a id = "test" href="test.html">Test</a>
+                        <a id = "test" class="sliding-middle-out"  href="test.html">Test</a>
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notifications <span class="badge">{{notifications.length}}</span></a>
+                        <a href="#" class="dropdown-toggle sliding-middle-out" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notifications <span class="badge">{{notifications.length}}</span></a>
 
                         <ul class="dropdown-menu notifications" role="menu">
                             <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
@@ -104,10 +105,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a id = "profile" href="profile.html">Account</a>
+                        <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
                     </li>
                     <li>
-                        <a id = "login" href="login.html">Login</a>
+                        <a id = "login" class="sliding-middle-out" href="login.html">Login</a>
                     </li>
                 </ul>
             </div>
@@ -117,7 +118,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container content">
+    <div class="row" style="padding-top: 10px">
 
         <div class="row">
 
