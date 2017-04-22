@@ -46,7 +46,18 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
     }
 
+    // $("#loading-image").bind('ajaxStart', function() {
+    //     $(this).show();
+    // }).bind('ajaxStop', function() {
+    //     $(this).hide();
+    // })
+
+
+
+
+
     // AJAX POST TO SERVER
+    $("#loading-icon").show()
     $.ajax({
         url: url,
         type: 'GET',
@@ -62,7 +73,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 
                 var image = items[i].img;
                 if (image == null) {
-                    items[i]["src"] = "http://placehold.it/320x150"
+                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
                 }
                 else {
                     console.log(items[i])
@@ -85,6 +96,10 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             }
             $scope.posts = items;
             console.log($scope.posts)
+
+            $("#loading-icon").hide();
+
+
             $scope.$apply()
         },
         error: function(response, error) {
@@ -190,28 +205,40 @@ var handler = StripeCheckout.configure({
                 success: function(data) {
                     console.log('success payment and bid added')
                     console.log(data);
+
+                    for (var i = 0; i < $scope.posts.length; i++) {
+                        post = $scope.posts[i]
+                        console.log(itemID)
+                        if (post["_id"] == itemID) {
+                            var newPrice = post.amountRaised + amountToCharge;
+                            post.amountRaised = newPrice;
+                            post.percentageRaised = (newPrice / post.price) * 100;
+                            break;
+                        }
+                    }
+                    $scope.$apply()
                     
                     // DISPLAY BID ON FRONT-END
-                    var progressbar = $("#progress-bar-" + itemID)
-                    // console.log(progressbar)
-                    var currentAmount = progressbar.css("width")
-                    // console.log(currentAmount)
-                    var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
-                    var percentage = progressbar.width() / progressbar.parent().width() * 100
-                    var newAmount = parseInt(amountRaised) + parseInt(amountToCharge)
-                    // console.log(newAmount)
-                    var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
-                    // console.log(newPercent)
-                    // var newWidth = progressbar.parent().width() * newPercent
-                    var newWidth = totalWidth * newPercent
-                    // console.log("newwidth: " + newWidth)
-                    var pixelWidth = ""  + newWidth + "px"
-                    progressbar.css("width", pixelWidth)
+                    // var progressbar = $("#progress-bar-" + itemID)
+                    // // console.log(progressbar)
+                    // var currentAmount = progressbar.css("width")
+                    // // console.log(currentAmount)
+                    // var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
+                    // var percentage = progressbar.width() / progressbar.parent().width() * 100
+                    // var newAmount = parseInt(amountRaised) + parseInt(amountToCharge)
+                    // // console.log(newAmount)
+                    // var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
+                    // // console.log(newPercent)
+                    // // var newWidth = progressbar.parent().width() * newPercent
+                    // var newWidth = totalWidth * newPercent
+                    // // console.log("newwidth: " + newWidth)
+                    // var pixelWidth = ""  + newWidth + "px"
+                    // progressbar.css("width", pixelWidth)
 
-                    // change the amount raised
-                    var amountText = $("#amountRaised-" + itemID)
-                    // console.log(amountText)
-                    amountText.text("$" + newAmount + " of $" + price + " raised")
+                    // // change the amount raised
+                    // var amountText = $("#amountRaised-" + itemID)
+                    // // console.log(amountText)
+                    // amountText.text("$" + newAmount + " of $" + price + " raised")
                 },
                 error: function(response, error) {
                     console.log(response)
