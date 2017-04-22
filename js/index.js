@@ -33,7 +33,22 @@ var app = angular.module("index_app", ["ngRoute"])
 
 //     });
 // }])
-
+BootstrapDialog.confirm({
+            title: 'Bid surpasses item price',
+            message: 'Choose a lower bid or search for similar items',
+            type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
+            closable: true, // <-- Default value is false
+            btnCancelLabel: 'Do not drop it!', // <-- Default value is 'Cancel',
+            btnOKClass: 'btn-warning', // <-- If you didn't specify it, dialog type will be used,
+            callback: function(result) {
+                // result will be true if button was click, while it will be false if users close the dialog directly.
+                if(result) {
+                    alert('Yup.');
+                }else {
+                    alert('Nope.');
+                }
+            }
+        });
 
 
 
@@ -274,11 +289,8 @@ var handler = StripeCheckout.configure({
             });
         }
         else {
-            alert('Bid overpasses item price!');
             console.log('Bid overpasses item price!');
-             BootstrapDialog.show({
-            message: 'Hi Apple!'
-        });
+            
         }
         
 
