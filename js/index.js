@@ -236,12 +236,17 @@ var handler = StripeCheckout.configure({
         $scope.itemID = itemID
         $scope.itemTitle = itemTitle
         $scope.amountRaised = amountRaised
-
-        handler.open({
+        if (price >= amountRaised + amount) {
+            handler.open({
                 name: 'LottoDeal',
                 description: 'Bid on ' + itemTitle,
                 amount: amount * 100
             });
+        }
+        else {
+            console.log('Bid overpasses item price!');
+        }
+        
 
 
         
