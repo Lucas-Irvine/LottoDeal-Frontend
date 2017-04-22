@@ -58,7 +58,7 @@ function createReviewFunction() {
 
 var app = angular.module("user_app", ["ngRoute"])
 
-app.controller("profileController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
+app.controller("userController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
     
     var searchObject = $location.search();
     var id = searchObject['id'];
@@ -205,7 +205,9 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         }
     });
 
+    $scope.targetPost = null;
 
+}])
 
 //Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
 var DateDiff = {
@@ -228,3 +230,7 @@ var DateDiff = {
         return parseInt((t2 - t1) / (24 * 3600 * 1000));
     },
 }
+
+
+
+
