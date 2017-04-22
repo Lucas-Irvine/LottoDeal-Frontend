@@ -6,6 +6,12 @@ app.controller("sellController", function($scope, $http) {
 	$("#userid").val(sellerID)
 	console.log(sellerID)
 
+})
+
+
+// should be in controller if used
+
+
  //    $("#submitForm").submit(function(e) {
  //    	console.log("got here")
 	//     e.preventDefault();
@@ -64,5 +70,3 @@ app.controller("sellController", function($scope, $http) {
 	// 	});
 
 	// });
-})
-
