@@ -11,6 +11,14 @@ $(document).ready(function() {
 
 
 
+
+
+var app = angular.module("user_app", ["ngRoute"])
+
+app.controller("userController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
+
+
+    
 function createReviewFunction() {
 
     var searchObject = $location.search();
@@ -51,14 +59,6 @@ function createReviewFunction() {
      });
 
 }
-
-
-
-
-
-var app = angular.module("user_app", ["ngRoute"])
-
-app.controller("userController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
     
     var searchObject = $location.search();
     var id = searchObject['id'];
