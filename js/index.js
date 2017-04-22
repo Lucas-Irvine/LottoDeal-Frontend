@@ -199,7 +199,7 @@ var handler = StripeCheckout.configure({
 });
 
 
-    $scope.bid = function (itemID, amount, amountRaised, price) {
+    $scope.bid = function (itemID, amount, amountRaised, price, itemTitle) {
         // DISPLAY BID ON FRONT-END
         var progressbar = $("#progress-bar-" + itemID)
         // console.log(progressbar)
@@ -229,7 +229,7 @@ var handler = StripeCheckout.configure({
         
         handler.open({
                 name: 'LottoDeal',
-                description: 'Bid on ' + event,
+                description: 'Bid on ' + itemTitle,
                 amount: $scope.amountToCharge
             });
 
