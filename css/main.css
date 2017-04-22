@@ -355,6 +355,10 @@ footer {
 /* Images */
 .img-hover {
     opacity: 1;
+    transition: opacity .5s ease-out;
+    -moz-transition: opacity .5s ease-out;
+    -webkit-transition: opacity .5s ease-out;
+    -o-transition: opacity .5s ease-out;
 }
 
 .img-hover:hover{
