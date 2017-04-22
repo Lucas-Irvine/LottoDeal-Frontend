@@ -159,6 +159,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 $scope.amountToCharge = 0
 $scope.itemID = ""
+$scope.itemTitle = ""
 
 var handler = StripeCheckout.configure({
     key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
@@ -171,9 +172,10 @@ var handler = StripeCheckout.configure({
         if (userID != null) {
             data = {
                 itemID: $scope.itemID,
+                itemTitle: $scope.itemTitle,
                 userID: userID,
                 stripeToken: token.id,
-                amount: $scope.amountToCharge
+                amount: Number($scope.amountToCharge)
             }
             $.ajax({
                 url: 'https://localhost:8000/performPaymentAndAddBid',
@@ -226,6 +228,7 @@ var handler = StripeCheckout.configure({
         console.log('activate stripe ')
         $scope.amountToCharge = amount;
         $scope.itemID = itemID
+        $scope.itemTitle = itemTitle
         
         handler.open({
                 name: 'LottoDeal',
