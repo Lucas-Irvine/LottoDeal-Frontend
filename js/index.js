@@ -46,17 +46,18 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
     }
 
-    $("#loading-icon").bind('ajaxStart', function() {
-        $(this).show();
-    }).bind('ajaxStop', function() {
-        $(this).hide();
-    })
+    // $("#loading-image").bind('ajaxStart', function() {
+    //     $(this).show();
+    // }).bind('ajaxStop', function() {
+    //     $(this).hide();
+    // })
 
 
 
 
 
     // AJAX POST TO SERVER
+    $("#loading-icon").show()
     $.ajax({
         url: url,
         type: 'GET',
@@ -95,6 +96,10 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             }
             $scope.posts = items;
             console.log($scope.posts)
+
+            $("#loading-icon").show();
+
+
             $scope.$apply()
         },
         error: function(response, error) {
