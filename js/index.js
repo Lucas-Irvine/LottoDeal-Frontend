@@ -97,7 +97,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             $scope.posts = items;
             console.log($scope.posts)
 
-            $("#loading-icon").show();
+            $("#loading-icon").hide();
 
 
             $scope.$apply()
