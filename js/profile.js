@@ -15,7 +15,6 @@ function validateEmail(email) {
 }
 
 
-
 function updateSettings() {
     var email = $("#newEmail").val();
 
