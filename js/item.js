@@ -40,8 +40,8 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             	parsed["src"] = "http://placehold.it/320x150"
             }
             else {
-            	console.log(parsed)
-                console.log(parsed.img)
+            	// console.log(parsed)
+             //    console.log(parsed.img)
 
                 var raw = String.fromCharCode.apply(null, parsed.img.data.data)
 
@@ -66,6 +66,16 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
           console.log(error)
       }
     });
+
+
+
+    /* ADD BID FUNCTIONALITY HERE */
+
+
+
+
+
+
 
 
     //Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
