@@ -201,7 +201,7 @@ var handler = StripeCheckout.configure({
 
     $scope.bid = function (itemID, amount, amountRaised, price) {
         // DISPLAY BID ON FRONT-END
-        var progressbar = $("#progress-bar-" + event)
+        var progressbar = $("#progress-bar-" + itemID)
         // console.log(progressbar)
         var currentAmount = progressbar.css("width")
         // console.log(currentAmount)
@@ -218,7 +218,7 @@ var handler = StripeCheckout.configure({
         progressbar.css("width", pixelWidth)
 
         // change the amount raised
-        var amountText = $("#amountRaised-" + event)
+        var amountText = $("#amountRaised-" + itemID)
         // console.log(amountText)
         amountText.text("$" + newAmount + " of $" + price + " raised")
 
