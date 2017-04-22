@@ -244,6 +244,7 @@ var handler = StripeCheckout.configure({
             });
         }
         else {
+            alert('Bid overpasses item price!');
             console.log('Bid overpasses item price!');
         }
         
