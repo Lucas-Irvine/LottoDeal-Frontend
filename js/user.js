@@ -205,6 +205,55 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
         }
     });
 
+
+
+    $scope.account = []
+
+    // AJAX get TO SERVER for account
+    var url = "https://localhost:8000/getAccount";
+    var userID = id
+    var dataGET = {
+        userID: userID
+    }
+    console.log('Asking for account info')
+    
+    $.ajax({
+        url: url,
+        data: dataGET,
+        type: 'GET',
+        success: function (data) {
+            var account = JSON.parse(data)
+            console.log("Here's your account for another user" + account)
+
+            var reviews = account.reviews;
+            var length = reviews.length;
+            var total = 0; 
+            var average = 0;
+            var averageRounded = 0;
+            if (length != 0) {
+                var total = 0; 
+                for (var i = 0; i < length; i++) {
+                    total += parseInt(reviews[i].stars);
+                }
+
+                var average = total/length;
+                var averageRounded = Math.round(average*10)/10
+            }
+
+            var account = {
+                averageRating : averageRounded,
+            }
+            
+            $scope.account = account;
+            $scope.$apply()
+        },
+        error: function (response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+
+
     $scope.targetPost = null;
 
 }])

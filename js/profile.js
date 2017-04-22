@@ -309,6 +309,8 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         success: function (data) {
             var account = JSON.parse(data)
             console.log("Here's your account" + account)
+
+
             $scope.account = account;
             $scope.$apply()
         },
