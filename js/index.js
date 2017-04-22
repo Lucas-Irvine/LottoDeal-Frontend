@@ -62,7 +62,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 
                 var image = items[i].img;
                 if (image == null) {
-                    items[i]["src"] = "http://placehold.it/320x150"
+                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
                 }
                 else {
                     console.log(items[i])
