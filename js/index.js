@@ -173,7 +173,7 @@ var handler = StripeCheckout.configure({
                 itemID: $scope.itemID,
                 userID: userID,
                 stripeToken: token.id,
-                amount: Number($scope.amountToCharge)
+                amount: $scope.amountToCharge
             }
             $.ajax({
                 url: 'https://localhost:8000/performPaymentAndAddBid',
