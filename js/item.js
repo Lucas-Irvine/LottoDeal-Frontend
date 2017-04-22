@@ -21,7 +21,11 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         success: function(data) {
             console.log(data)
-            $scope.post = JSON.parse(data);
+            console.log(data["_id"])
+            var temp = JSON.parse(data)
+            console.log(temp)
+
+            $scope.post = data;
         },
         error: function(response, error) {
           console.log(response)
