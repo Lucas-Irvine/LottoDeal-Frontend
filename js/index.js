@@ -156,10 +156,11 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     //         $location.path('/')
     //     }
     // });
-
+$scope.amountRaised = 0
 $scope.amountToCharge = 0
 $scope.itemID = ""
 $scope.itemTitle = ""
+$scope.price = 0
 
 var handler = StripeCheckout.configure({
     key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
@@ -168,14 +169,19 @@ var handler = StripeCheckout.configure({
     token: function(token) {
         console.log('attempting stripe payment')
         var userID = localStorage.getItem("curUserID")
+        var amountToCharge = $scope.amountToCharge;
+        var itemTitle = $scope.itemTitle;
+        var itemID = $scope.itemID;
+        var amountRaised = $scope.amountRaised;
+        var price = $scope.price;
 
         if (userID != null) {
             data = {
-                itemID: $scope.itemID,
-                itemTitle: $scope.itemTitle,
+                itemID: itemID,
+                itemTitle: itemTitle,
                 userID: userID,
                 stripeToken: token.id,
-                amount: Number($scope.amountToCharge)
+                amount: Number(amountToCharge)
             }
             $.ajax({
                 url: 'https://localhost:8000/performPaymentAndAddBid',
@@ -184,6 +190,28 @@ var handler = StripeCheckout.configure({
                 success: function(data) {
                     console.log('success payment and bid added')
                     console.log(data);
+                    
+                    // DISPLAY BID ON FRONT-END
+                    var progressbar = $("#progress-bar-" + itemID)
+                    // console.log(progressbar)
+                    var currentAmount = progressbar.css("width")
+                    // console.log(currentAmount)
+                    var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
+                    var percentage = progressbar.width() / progressbar.parent().width() * 100
+                    var newAmount = parseInt(amountRaised) + parseInt(amountToCharge)
+                    // console.log(newAmount)
+                    var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
+                    // console.log(newPercent)
+                    // var newWidth = progressbar.parent().width() * newPercent
+                    var newWidth = totalWidth * newPercent
+                    // console.log("newwidth: " + newWidth)
+                    var pixelWidth = ""  + newWidth + "px"
+                    progressbar.css("width", pixelWidth)
+
+                    // change the amount raised
+                    var amountText = $("#amountRaised-" + itemID)
+                    // console.log(amountText)
+                    amountText.text("$" + newAmount + " of $" + price + " raised")
                 },
                 error: function(response, error) {
                     console.log(response)
@@ -202,34 +230,13 @@ var handler = StripeCheckout.configure({
 
 
     $scope.bid = function (itemID, amount, amountRaised, price, itemTitle) {
-        // DISPLAY BID ON FRONT-END
-        var progressbar = $("#progress-bar-" + itemID)
-        // console.log(progressbar)
-        var currentAmount = progressbar.css("width")
-        // console.log(currentAmount)
-        var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
-        var percentage = progressbar.width() / progressbar.parent().width() * 100
-        var newAmount = parseInt(amountRaised) + parseInt(amount)
-        // console.log(newAmount)
-        var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
-        // console.log(newPercent)
-        // var newWidth = progressbar.parent().width() * newPercent
-        var newWidth = totalWidth * newPercent
-        // console.log("newwidth: " + newWidth)
-        var pixelWidth = ""  + newWidth + "px"
-        progressbar.css("width", pixelWidth)
 
-        // change the amount raised
-        var amountText = $("#amountRaised-" + itemID)
-        // console.log(amountText)
-        amountText.text("$" + newAmount + " of $" + price + " raised")
-
-
-        console.log('activate stripe ')
+        $scope.price = price;
         $scope.amountToCharge = amount;
         $scope.itemID = itemID
         $scope.itemTitle = itemTitle
-        
+        $scope.amountRaised = amountRaised
+
         handler.open({
                 name: 'LottoDeal',
                 description: 'Bid on ' + itemTitle,
