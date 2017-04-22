@@ -17,23 +17,45 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	}
 
 
-	(function() {
-    $('form > input').keyup(function() {
+	
+	//when field is entered
+	$('#price, #title, #description').bind('keyup', function() {
+		
+    if(allFilled()) {
+    	console.log('removing attribute');
+    	$('#submitButton').removeAttr('disabled');
+    }
+    else {
+    	$('#submitButton').attr('disabled', 'disabled');
+    }    	
+	});
 
-        var empty = false;
-        $('form > input').each(function() {
-            if ($(this).val() == '') {
-                empty = true;
-            }
-        });
+	//When file/date is chosen
+	$("#itemPicture, #expirDate").change(function(){
+		if(allFilled()) {
+		    console.log('removing attribute');
+		    $('#submitButton').removeAttr('disabled');
+		  }
+		  else {
+		  	$('#submitButton').attr('disabled', 'disabled');
+		  }    
+	 });
 
-        if (empty) {
-            $('#submitButton').attr('disabled', 'disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
-        } else {
-            $('#submitButton').removeAttr('disabled'); // updated according to http://stackoverflow.com/questions/7637790/how-to-remove-disabled-attribute-with-jquery-ie
-        }
-    });
-})()
+
+	function allFilled() {
+
+	    var filled = true;
+		//console.log('test' + $('#expirDate').val());
+		var fields = ['#title', '#price', '#itemPicture', '#description', '#expirDate']; 
+		for (field of fields) {
+
+  			if ($(field).val() == '') {
+  				filled = false;
+  				console.log('false!');
+  			}
+		}
+	    return filled;
+	}
 
 }])
 
