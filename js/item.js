@@ -40,15 +40,15 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             	parsed["src"] = "http://placehold.it/320x150"
             }
             else {
-            	console.log(items[i])
-                console.log(items[i].img.data)
+            	console.log(parsed)
+                console.log(parsed.img)
 
-                var raw = String.fromCharCode.apply(null, items[i].img.data.data)
+                var raw = String.fromCharCode.apply(null, parsed.img.data.data)
 
                 var b64=btoa(raw)
                 var dataURL = "data:image/jpeg;base64," + b64;
 
-                items[i]["src"] = dataURL;
+                parsed["src"] = dataURL;
             }
 
 
