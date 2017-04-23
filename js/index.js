@@ -153,6 +153,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 }
                 
                 $scope.accounts.push(account);
+                $scope.$apply()
             },
             error: function (response, error) {
                 console.log(response)
@@ -161,8 +162,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         });
 
     }
-    $scope.$apply()
-    
+
+
 
     // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
