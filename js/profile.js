@@ -297,7 +297,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX get TO SERVER for account
     var url = "https://localhost:8000/getAccount";
-    var userID = id
+    var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
