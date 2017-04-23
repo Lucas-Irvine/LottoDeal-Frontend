@@ -60,17 +60,18 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
 
+$scope.accounts = []
 
 
 
-    var items; 
     // AJAX POST TO SERVER
     $("#loading-icon").show()
     $.ajax({
         url: url,
         type: 'GET',
         success: function(data) {
-            items = JSON.parse(data)
+            var accountsArray = []
+            var items = JSON.parse(data)
             for (i = 0; i < items.length; i++) {
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
                 console.log( "Raised" + items[i].percentageRaised);
@@ -101,68 +102,70 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
                 console.log(items[i])
                 //items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
-            }
-            $scope.posts = items;
-            console.log($scope.posts)
-
-            $("#loading-icon").hide();
 
 
-            $scope.$apply()
-        },
-        error: function(response, error) {
-          console.log(response)
-          console.log(error)
-      }
-    });
 
 
-    $scope.accounts = []
-    for (var i = 0; i < items.length; i++) {
-         // AJAX get TO SERVER for account
-        var url = "https://localhost:8000/getAccount";
-        var userID = items[i].sellerID
-        var dataGET = {
-            userID: userID
-        }
-        console.log('Asking for account info for each seller')
-        
-        $.ajax({
-            url: url,
-            data: dataGET,
-            type: 'GET',
-            success: function (data) {
-                var account = JSON.parse(data);
-                var reviews = account.reviews;
-                var length = reviews.length;
-                var total = 0; 
-                var average = 0;
-                var averageRounded = 0;
-                if (length != 0) {
-                    var total = 0; 
-                    for (var i = 0; i < length; i++) {
-                        total += parseInt(reviews[i].stars);
+
+
+                 // AJAX get TO SERVER for account
+                 var newurl = "https://localhost:8000/getAccount";
+                 var newuserID = items[i].sellerID
+                 var newdataGET = {
+                    userID: newuserID
+                }
+                console.log('Asking for account info for each seller')
+
+                $.ajax({
+                    url: newurl,
+                    data: newdataGET,
+                    type: 'GET',
+                    success: function (data) {
+                        var account = JSON.parse(data);
+                        var reviews = account.reviews;
+                        var length = reviews.length;
+                        var total = 0; 
+                        var average = 0;
+                        var averageRounded = 0;
+                        if (length != 0) {
+                            var total = 0; 
+                            for (var i = 0; i < length; i++) {
+                                total += parseInt(reviews[i].stars);
+                            }
+
+                            var average = total/length;
+                            var averageRounded = Math.round(average*10)/10
+                        }
+
+                        var account = {
+                            averageRating : averageRounded,
+                        }
+
+                        accountsArray.push(account);
+                    },
+                    error: function (response, error) {
+                        console.log(response)
+                        console.log(error)
                     }
+                });
 
-                    var average = total/length;
-                    var averageRounded = Math.round(average*10)/10
-                }
 
-                var account = {
-                    averageRating : averageRounded,
-                }
-                
-                $scope.accounts.push(account);
-                $scope.$apply()
-                console.log($scope.accounts)
-            },
-            error: function (response, error) {
-                console.log(response)
-                console.log(error)
-            }
-        });
 
-    }
+                    }
+                    $scope.accounts = accountsArray;
+                    $scope.posts = items;
+                    console.log($scope.posts)
+
+                    $("#loading-icon").hide();
+
+
+                    $scope.$apply()
+                },
+                error: function(response, error) {
+                  console.log(response)
+                  console.log(error)
+              }
+          });
 
 
 
@@ -170,8 +173,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     var notificationUrl = "https://localhost:8000/getNotifications";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
-            userID : userID
-        }
+        userID : userID
+    }
     console.log('Asking for notifications')
     $.ajax({
         url: notificationUrl,
@@ -190,7 +193,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
           console.log(response)
           console.log(error)
       }
-    });
+  });
 
 
     $scope.targetPost = null;
@@ -228,53 +231,53 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     //         $location.path('/')
     //     }
     // });
-$scope.amountRaised = 0
-$scope.amountToCharge = 0
-$scope.itemID = ""
-$scope.itemTitle = ""
-$scope.price = 0
+    $scope.amountRaised = 0
+    $scope.amountToCharge = 0
+    $scope.itemID = ""
+    $scope.itemTitle = ""
+    $scope.price = 0
 
-var handler = StripeCheckout.configure({
-    key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
-    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-    locale: 'auto',
-    token: function(token) {
-        console.log('attempting stripe payment')
-        var userID = localStorage.getItem("curUserID")
-        var amountToCharge = $scope.amountToCharge;
-        var itemTitle = $scope.itemTitle;
-        var itemID = $scope.itemID;
-        var amountRaised = $scope.amountRaised;
-        var price = $scope.price;
+    var handler = StripeCheckout.configure({
+        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+        locale: 'auto',
+        token: function(token) {
+            console.log('attempting stripe payment')
+            var userID = localStorage.getItem("curUserID")
+            var amountToCharge = $scope.amountToCharge;
+            var itemTitle = $scope.itemTitle;
+            var itemID = $scope.itemID;
+            var amountRaised = $scope.amountRaised;
+            var price = $scope.price;
 
-        if (userID != null) {
-            data = {
-                itemID: itemID,
-                itemTitle: itemTitle,
-                userID: userID,
-                stripeToken: token.id,
-                amount: Number(amountToCharge)
-            }
-            $.ajax({
-                url: 'https://localhost:8000/performPaymentAndAddBid',
-                data: data,
-                type: 'POST',
-                success: function(data) {
-                    console.log('success payment and bid added')
-                    console.log(data);
+            if (userID != null) {
+                data = {
+                    itemID: itemID,
+                    itemTitle: itemTitle,
+                    userID: userID,
+                    stripeToken: token.id,
+                    amount: Number(amountToCharge)
+                }
+                $.ajax({
+                    url: 'https://localhost:8000/performPaymentAndAddBid',
+                    data: data,
+                    type: 'POST',
+                    success: function(data) {
+                        console.log('success payment and bid added')
+                        console.log(data);
 
-                    for (var i = 0; i < $scope.posts.length; i++) {
-                        post = $scope.posts[i]
-                        console.log(itemID)
-                        if (post["_id"] == itemID) {
-                            var newPrice = post.amountRaised + amountToCharge;
-                            post.amountRaised = newPrice;
-                            post.percentageRaised = (newPrice / post.price) * 100;
-                            break;
+                        for (var i = 0; i < $scope.posts.length; i++) {
+                            post = $scope.posts[i]
+                            console.log(itemID)
+                            if (post["_id"] == itemID) {
+                                var newPrice = post.amountRaised + amountToCharge;
+                                post.amountRaised = newPrice;
+                                post.percentageRaised = (newPrice / post.price) * 100;
+                                break;
+                            }
                         }
-                    }
-                    $scope.$apply()
-                    
+                        $scope.$apply()
+
                     // DISPLAY BID ON FRONT-END
                     // var progressbar = $("#progress-bar-" + itemID)
                     // // console.log(progressbar)
@@ -301,16 +304,16 @@ var handler = StripeCheckout.configure({
                     console.log(response)
                     console.log(error)
                 }
-             });
+            });
 
-        } else {
-            console.log('UserID is null')
+            } else {
+                console.log('UserID is null')
+            }
+
+
+
         }
-
-
-        
-    }
-});
+    });
 
 
     $scope.bid = function (itemID, amount, amountRaised, price, itemTitle) {
@@ -428,23 +431,23 @@ var DateDiff = {
         }
         return parseInt((t2-t1)/(24*3600*1000));
     },
- 
+
     // inWeeks: function(d1, d2) {
     //     var t2 = d2.getTime();
     //     var t1 = d1.getTime();
- 
+
     //     return parseInt((t2-t1)/(24*3600*1000*7));
     // },
- 
+
     // inMonths: function(d1, d2) {
     //     var d1Y = d1.getFullYear();
     //     var d2Y = d2.getFullYear();
     //     var d1M = d1.getMonth();
     //     var d2M = d2.getMonth();
- 
+
     //     return (d2M+12*d2Y)-(d1M+12*d1Y);
     // },
- 
+
     // inYears: function(d1, d2) {
     //     return d2.getFullYear()-d1.getFullYear();
     // }
