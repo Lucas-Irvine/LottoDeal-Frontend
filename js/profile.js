@@ -53,46 +53,6 @@ function updateSettings() {
 }
 
 
-function createReviewFunction() {
-
-    var url = "https://localhost:8000/createReview";
-
-    console.log("posting a review NOW!")
-
-        var sellerID = $("#sellerID").val();
-        var reviewDes = $("#reviewDes").val();
-        var stars = $("#stars").val();
-        var reviewerID = localStorage.getItem("curUserID");
-
-
-
-        data = {
-         sellerID: sellerID,
-         reviewDes: reviewDes,
-         stars: stars, //change later to actual value
-         reviewerID: reviewerID,
-        }
-
-        // AJAX POST TO SERVER
-        $.ajax({
-         url: url,
-         type: 'POST',
-         data: data,
-         success: function(data) {
-             console.log(data)
-         },
-         error: function(response, error) {
-             console.log(response)
-             console.log(error)
-         }
-     });
-
-}
-
-
-
-
-
 var app = angular.module("profile_app", ["ngRoute"])
 
 app.controller("profileController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
@@ -249,7 +209,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
                 var date = new Date(items[i].datePosted)
                 var month = date.getMonth();
-                var day = date.getDay();
+                var day = date.getDate();
                 var year = date.getFullYear();
                 var newDate = monthNames[month] + " " + day + ", " + year;
                 items[i].datePosted = newDate;

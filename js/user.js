@@ -165,7 +165,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
                 var date = new Date(items[i].datePosted)
                 var month = date.getMonth();
-                var day = date.getDay();
+                var day = date.getDate();
                 var year = date.getFullYear();
                 var newDate = monthNames[month] + " " + day + ", " + year;
                 items[i].datePosted = newDate;
