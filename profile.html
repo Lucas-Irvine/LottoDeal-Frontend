@@ -433,7 +433,7 @@
     </div>
 
 
-            <form class="form-horizontal">
+            <form class="form-horizontal" onsubmit = "updateSettings()">
                 <fieldset>
 
 
@@ -441,7 +441,7 @@
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="textinput">Change Your Email Address To</label>  
                       <div class="col-md-4">
-                          <input id="newEmail" name="textinput" type="text" placeholder="First Name" class="form-control input-md">
+                          <input id="newEmail" name="textinput" type="text" placeholder="Your New Email" required class="form-control input-md">
 
                       </div>
                   </div>
@@ -452,8 +452,8 @@
                   <div class="form-group">
                       <label class="col-md-4 control-label" for="button1id">Update Settings</label>
                       <div class="col-md-8">
-                        <button id="button1id" onClick = "updateSettings()" name="button1id" class="btn btn-success">Update</button>
-                        <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
+                        <button id="button1id" type = "submit" name="button1id" class="btn btn-success">Update</button>
+                        <button id="button2id" type = "reset" name="button2id" class="btn btn-danger">Cancel</button>
                     </div>
                 </div>
 
