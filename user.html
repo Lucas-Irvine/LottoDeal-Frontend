@@ -230,7 +230,7 @@
                   <div class="form-group">
                       <label class="col-md-4 control-label" for="coinspershift">Stars</label>  
                       <div class="col-md-2">
-                          <input id="stars" name="coinspershift" type="number" class="form-control input-md" required>
+                          <input id="stars" name="coinspershift" type="number" class="form-control input-md" value = "-1" required>
                       </div>
                   </div>
 
@@ -246,7 +246,7 @@
                   <div class="form-group">
                       <label class="col-md-4 control-label" for="button1id">Create Review</label>
                       <div class="col-md-8">
-                        <button id="submitButton" type = "submit" name="submitButton" class="btn btn-success">Create</button>
+                        <button id="submitButton" type = "submit" onClick = "createReviewFunction()" name="button1id" class="btn btn-success">Create</button>
                         <button id="button2id" name="button2id" type = "reset" class="btn btn-danger">Cancel</button>
                     </div>
                 </div>

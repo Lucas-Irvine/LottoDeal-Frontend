@@ -10,7 +10,8 @@ $(document).ready(function() {
 var reviewID;
 
 
-$("#submitButton").submit(function(e) {
+
+function createReviewFunction() {
 
     // var searchObject = $location.search();
     // var id = searchObject['id'];
@@ -24,6 +25,10 @@ $("#submitButton").submit(function(e) {
         var reviewDes = $("#reviewDes").val();
         var stars = $("#stars").val();
         var reviewerID = localStorage.getItem("curUserID");
+        if (stars == -1) {
+            console.log("too negative");
+        }
+        else {
         if (stars < 6 && stars >= 0) { 
             console.log("posting a review NOW!")
             data = {
@@ -50,9 +55,10 @@ $("#submitButton").submit(function(e) {
         else {
             alert("The number of stars must be between 0 and 5");
         }  
+    }
 
 
-});
+}
 
 
 
