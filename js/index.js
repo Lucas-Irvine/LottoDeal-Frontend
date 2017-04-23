@@ -122,6 +122,7 @@ $scope.accounts = []
                     type: 'GET',
                     success: function (data) {
                         var account = JSON.parse(data);
+                        console.log(account)
                         var reviews = account.reviews;
                         var length = reviews.length;
                         var total = 0; 
