@@ -9,7 +9,8 @@ $(document).ready(function() {
 
 var reviewID;
 
-function createReviewFunction() {
+
+$("#submitButton").submit(function(e) {
 
     // var searchObject = $location.search();
     // var id = searchObject['id'];
@@ -23,7 +24,7 @@ function createReviewFunction() {
         var reviewDes = $("#reviewDes").val();
         var stars = $("#stars").val();
         var reviewerID = localStorage.getItem("curUserID");
-        if (stars < 6 && stars >= 0 && stars != undefined) { // fix when on stars incldued sitll adding review
+        if (stars < 6 && stars >= 0) { 
             console.log("posting a review NOW!")
             data = {
              sellerID: sellerID,
