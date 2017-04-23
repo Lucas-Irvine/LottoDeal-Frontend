@@ -118,7 +118,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
     $scope.accounts = []
-    var accounts = []
     for (var i = 0; i < $scope.posts.length; i++) {
          // AJAX get TO SERVER for account
         var url = "https://localhost:8000/getAccount";
@@ -152,8 +151,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 var account = {
                     averageRating : averageRounded,
                 }
-                accounts.push(account);
-               
+                
+                $scope.accounts.push(account);
+                $scope.$apply()
             },
             error: function (response, error) {
                 console.log(response)
@@ -162,9 +162,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         });
 
     }
-    console.log("total rating of users" + accounts);
-    $scope.accounts = accounts;
-    $scope.$apply()
 
 
 
