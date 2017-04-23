@@ -83,7 +83,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                 $scope.$apply()
             }
             else {
-                document.getElementById('expirationDate').innerHTML = "No Bids Yet";
+                document.getElementById('BidCount').innerHTML = "No Bids Yet";
             }
         },
         error: function (response, error) {
