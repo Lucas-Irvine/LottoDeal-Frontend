@@ -18,35 +18,39 @@ function createReviewFunction() {
 
     var url = "https://localhost:8000/createReview";
 
-    console.log("posting a review NOW!")
 
         var sellerID = reviewID;
         var reviewDes = $("#reviewDes").val();
         var stars = $("#stars").val();
         var reviewerID = localStorage.getItem("curUserID");
 
+        if (stars < 6 && stars >= 0) {
+            console.log("posting a review NOW!")
+            data = {
+             sellerID: sellerID,
+             reviewDes: reviewDes,
+             stars: stars, //change later to actual value
+             reviewerID: reviewerID,
+            }
 
-
-        data = {
-         sellerID: sellerID,
-         reviewDes: reviewDes,
-         stars: stars, //change later to actual value
-         reviewerID: reviewerID,
+            // AJAX POST TO SERVER
+            $.ajax({
+             url: url,
+             type: 'POST',
+             data: data,
+             success: function(data) {
+                 console.log(data)
+             },
+             error: function(response, error) {
+                 console.log(response)
+                 console.log(error)
+             }
+         });
         }
+        else {
+            alert("The number of stars must be between 0 and 5");
+        }  
 
-        // AJAX POST TO SERVER
-        $.ajax({
-         url: url,
-         type: 'POST',
-         data: data,
-         success: function(data) {
-             console.log(data)
-         },
-         error: function(response, error) {
-             console.log(response)
-             console.log(error)
-         }
-     });
 
 }
 
