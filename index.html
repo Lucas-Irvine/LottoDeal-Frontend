@@ -186,14 +186,12 @@
                               <p align="justify">{{post.description}}</p>
                           </div> </a>
                           <div class="ratings">
-                            <a class="pull-right" href="user.html#!/?id={{post.sellerID}}">{{post.sellerName}}</a>
+
+                            <a class="pull-right" href="user.html#!/?id={{post.sellerID}}">Seller: {{post.sellerName}}</a>
                             <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
+                            Seller Rating: {{accounts[$index].averageRating}} / 5
                             </p>
+
                         </div>
                     </div>
                 </div>

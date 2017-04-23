@@ -59,6 +59,11 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
 
+
+
+
+
+
     // AJAX POST TO SERVER
     $("#loading-icon").show()
     $.ajax({
@@ -110,6 +115,53 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
           console.log(error)
       }
     });
+
+
+    $scope.accounts = []
+    for (var i = 0; i < $scope.posts.length; i++) {
+         // AJAX get TO SERVER for account
+        var url = "https://localhost:8000/getAccount";
+        var userID = $scope.posts[i].sellerID
+        var dataGET = {
+            userID: userID
+        }
+        console.log('Asking for account info for each seller')
+        
+        $.ajax({
+            url: url,
+            data: dataGET,
+            type: 'GET',
+            success: function (data) {
+                var account = JSON.parse(data);
+                var reviews = account.reviews;
+                var length = reviews.length;
+                var total = 0; 
+                var average = 0;
+                var averageRounded = 0;
+                if (length != 0) {
+                    var total = 0; 
+                    for (var i = 0; i < length; i++) {
+                        total += parseInt(reviews[i].stars);
+                    }
+
+                    var average = total/length;
+                    var averageRounded = Math.round(average*10)/10
+                }
+
+                var account = {
+                    averageRating : averageRounded,
+                }
+                
+                $scope.accounts.push(account);
+            },
+            error: function (response, error) {
+                console.log(response)
+                console.log(error)
+            }
+        });
+
+    }
+    $scope.$apply()
     
 
     // AJAX POST TO SERVER
