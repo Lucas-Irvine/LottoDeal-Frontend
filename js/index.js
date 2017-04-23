@@ -141,8 +141,6 @@ $scope.accounts = []
                         var account = {
                             averageRating : averageRounded,
                         }
-                        console.log(account);
-
                         accountsArray.push(account);
                     },
                     error: function (response, error) {
