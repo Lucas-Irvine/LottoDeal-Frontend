@@ -48,8 +48,7 @@ function createReviewFunction() {
                  console.log(error)
              }
          });
-        }
-    }
+        
 
 
 }
