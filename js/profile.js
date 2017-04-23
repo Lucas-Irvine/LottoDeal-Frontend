@@ -77,9 +77,14 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         type: 'GET',
         success: function (data) {
             var bids = JSON.parse(data)
-            $scope.bids = bids;
-            console.log($scope.bids)
-            $scope.$apply()
+            if (bids.length != 0) {
+                $scope.bids = bids;
+                console.log($scope.bids)
+                $scope.$apply()
+            }
+            else {
+                document.getElementById('expirationDate').innerHTML = "No Bids Yet";
+            }
         },
         error: function (response, error) {
             console.log(response)
