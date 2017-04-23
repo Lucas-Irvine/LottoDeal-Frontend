@@ -25,6 +25,7 @@ function createReviewFunction() {
         var reviewDes = $("#reviewDes").val();
         var stars = $("#stars").val();
         var reviewerID = localStorage.getItem("curUserID");
+        console.log(stars)
         if (stars == -1) {
             console.log("too negative");
         }
