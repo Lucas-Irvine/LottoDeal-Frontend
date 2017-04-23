@@ -291,6 +291,9 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                 var average = total/length;
                 var averageRounded = Math.round(average*10)/10
             }
+            else {
+                document.getElementById('averageRating').innerHTML = "No Ratings Yet";
+            }
 
             var account = {
                 averageRating : averageRounded,
