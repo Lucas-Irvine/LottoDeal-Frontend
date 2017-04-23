@@ -23,8 +23,7 @@ function createReviewFunction() {
         var reviewDes = $("#reviewDes").val();
         var stars = $("#stars").val();
         var reviewerID = localStorage.getItem("curUserID");
-        console.log(stars);
-        if (stars < 6 && stars >= 0) {
+        if (stars < 6 && stars >= 0 && != null) {
             console.log("posting a review NOW!")
             data = {
              sellerID: sellerID,
