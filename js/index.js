@@ -154,6 +154,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 
                 $scope.accounts.push(account);
                 $scope.$apply()
+                console.log($scope.accounts)
             },
             error: function (response, error) {
                 console.log(response)
