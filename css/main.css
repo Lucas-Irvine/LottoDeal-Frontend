@@ -3,22 +3,41 @@ LottoDeal Homepage
  */
 
 body {
-    background-color: #1A5276;
+    background-color: #9AE27E;
     padding-top: 51px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    height: 100%;
 }
 
-.slide-image {
+/* For the carousel */
+html {
+    height: 100%;
+}
+
+/* You can change the height of the carousel by changing the height in the class below */
+
+.carousel {
+    height: 50%;
+}
+
+.item,
+.active,
+.carousel-inner {
+    height: 100%;
+}
+
+/* Background images are set within the HTML using inline CSS, not here */
+
+.fill {
     width: 100%;
+    height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
-.carousel-holder {
-    margin-bottom: 30px;
-}
-
-.carousel-control,
-.item {
-    border-radius: 4px;
-}
+/* the item cards */
 
 .caption {
     height: 130px;
@@ -48,10 +67,59 @@ body {
     color: #333;
 }
 
+/* these are in items */
+
+#thumbnail-bar {
+    max-height: 10%;
+    margin-bottom: 8px;
+}
+
+#item-button {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+/* Images on the home page */
+.img-hover {
+    opacity: 1;
+    transition: opacity .4s ease-out;
+    -moz-transition: opacity .4s ease-out;
+    -webkit-transition: opacity .4s ease-out;
+    -o-transition: opacity .4s ease-out;
+}
+
+.img-hover:hover{
+    opacity: 0.6;
+}
+
+.loading-icon {
+    display: block;
+    position : relative;
+    z-index: 100;
+    opacity : 0.4;
+    margin: auto;
+
+}
+
+/* the footer of the page */
+
 footer {
     text-align: center;
     position: relative;
     width: 100%;
+    /*background: #020621; */
+    /*background: white;
+    color: #fea680;*/
+}
+
+.footerlink
+{
+    color: #fea680;
+}
+
+.footerlink:hover {
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -122,52 +190,81 @@ footer.signin {
 
 /* non home button navbar styling */
 
-/*.navbar .nav > li {*/
-    /*text-align: right;*/
-/*}*/
-
-.navbar .nav > li > a {
-    color: #76797A ;
+#navbar-unique .nav > li > a {
+    color: #76797A;
 }
 
-.navbar .nav > li > a:hover,
-.navbar .nav > li > a:focus:hover {
-    /*background-color:black;*/
-    color: grey;
+#navbar-unique .nav > li > a:hover,
+#navbar-unique .nav > li > a:focus:hover {
+     color: #76797A;
+}
+
+#navbar-unique .nav > li > a:focus:active {
+    color: #76797A;
+    background-color: white;
+}
+
+#navbar-unique .nav > li > a:focus:visited {
+    color: #76797A;
+    background-color: white;
+}
+
+.sliding-middle-out, #navbar-unique .navbar-header > a {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 3px;
+    /*font-family: 'Open Sans', sans-serif;*/
+    /*font-family: futura_book,Helvetica Neue Medium,Helvetica,Arial,sans-serif;*/
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.sliding-middle-out:after, #navbar-unique .navbar-header > a:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+.sliding-middle-out:hover:after, #navbar-unique .navbar-header > a:hover:after {
+    width: 100%;
+    background: grey;
+}
+
+.sliding-middle-out {
+    font-size: 17px;
+}
+
+#navbar-unique .navbar-header > a {
+    font-size: 20px;
 }
 
 /* home button styling */
 
-.navbar-inverse .navbar-header > a {
+#navbar-unique .navbar-header > a {
     color: #76797A;
 }
 
-.navbar-inverse .navbar-header > a:hover {
-    color: black ;
-    /*background-color: black;*/
+#navbar-unique .navbar-header > a:hover {
+    color: #76797A ;
+}
+
+/* ----- search glyphicon style */
+
+.glyphicon-search {
+    color: white;
 }
 
 /*search button styling*/
 .search-btn, .search-btn:active, .search-btn:focus {
-    background: black;
-    border-color: black;
-    color:white;
+    background-color: #5cb85c;
+    border-color: #5cb85c;
 }
 
 .search-btn:hover    {
- background: #fedc3d; 
- color:black;  
- border-color: black;
-}
-
-#thumbnail-bar {
-    max-height: 10%;
-    margin-bottom: 8px;
-}
-
-#item-button {
-    padding-left: 10%;
-    padding-right: 10%;
+    background-color: #0FB007;
+    border-color: #0FB007;
 }
 
 /*notification bar styling */
@@ -176,10 +273,10 @@ footer.signin {
    background: #fea680;
   }
   
-  .notifications-wrapper {
+.notifications-wrapper {
      overflow:auto;
       max-height:250px;
-    }
+}
     
  .menu-title {
      color:black;
@@ -195,7 +292,6 @@ footer.signin {
  .notification-heading, .notification-footer  {
     padding:2px 10px;
        }
-      
         
 .dropdown-menu.divider {
   margin:5px 0;          
@@ -218,22 +314,6 @@ footer.signin {
  padding:5px;
  border-bottom: 1px #5cb85c solid;
  }
-
-footer {
-    /*background: #020621; */
-    /*background: white;
-    color: #fea680;*/
-}
-
-.footerlink 
-{
-    color: #fea680;
-}
-
-.footerlink:hover {
-    text-decoration: none;
-    color: black;
-}
 
 .btn-submit, .btn-submit:active, .btn-submit:focus {
     background: #f7ef6a;
@@ -352,53 +432,6 @@ footer {
     font-size: 24px;
     color: #d17581;
 }
-
-/* Images */
-.img-hover {
-    opacity: 1;
-    transition: opacity .4s ease-out;
-    -moz-transition: opacity .4s ease-out;
-    -webkit-transition: opacity .4s ease-out;
-    -o-transition: opacity .4s ease-out;
-}
-
-.img-hover:hover{
-    opacity: 0.6;
-}
-
-.sliding-middle-out {
-    display: inline-block;
-    position: relative;
-    padding-bottom: 3px;
-    /*font-family: 'Open Sans', sans-serif;*/
-    /*font-family: futura_book,Helvetica Neue Medium,Helvetica,Arial,sans-serif;*/
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-size: 17px;
-}
-.sliding-middle-out:after {
-    content: '';
-    display: block;
-    margin: auto;
-    height: 3px;
-    width: 0px;
-    background: transparent;
-    transition: width .5s ease, background-color .5s ease;
-}
-.sliding-middle-out:hover:after {
-    width: 100%;
-    background: grey;
-}
-
-.loading-icon {
-    display: block;
-    position : relative;
-    z-index: 100;
-    opacity : 0.4;
-    margin: auto;
-    
-}
-
-
 
 @media (max-width: 1200px) {
     /*.navbar-header {
