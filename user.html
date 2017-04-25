@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="user_app">
 
-<!-- for the stars in the review -->
-<link href="http://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css"> 
-
 <head>
 
     <meta charset="utf-8">
@@ -16,7 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     <!-- Custom CSS -->
     <link href="css/main.css" rel="stylesheet">
 
@@ -223,27 +220,31 @@
 
 
 
-<div class="stars">
-    <form action="">
-      <input class="star star-5" id="star-5" type="radio" name="star"/>
-      <label class="star star-5" for="star-5"></label>
-      <input class="star star-4" id="star-4" type="radio" name="star"/>
-      <label class="star star-4" for="star-4"></label>
-      <input class="star star-3" id="star-3" type="radio" name="star"/>
-      <label class="star star-3" for="star-3"></label>
-      <input class="star star-2" id="star-2" type="radio" name="star"/>
-      <label class="star star-2" for="star-2"></label>
-      <input class="star star-1" id="star-1" type="radio" name="star"/>
-      <label class="star star-1" for="star-1"></label>
-    </form>
-  </div>
-
 
         <div>
 
             <form class="form-horizontal" onsubmit = "createReviewFunction()">
                 <fieldset>
 
+
+
+    <div class="stars">
+      <input class="star star-5" id="star-5" type="radio" name="star"/>
+      <label class="star star-5" for="star-5"></label>
+
+      <input class="star star-4" id="star-4" type="radio" name="star"/>
+      <label class="star star-4" for="star-4"></label>
+
+      <input class="star star-3" id="star-3" type="radio" name="star"/>
+      <label class="star star-3" for="star-3"></label>
+
+      <input class="star star-2" id="star-2" type="radio" name="star"/>
+      <label class="star star-2" for="star-2"></label>
+
+      <input class="star star-1" id="star-1" type="radio" name="star"/>
+      <label class="star star-1" for="star-1"></label>
+      
+  </div>
 
                   <!-- Text input-->
                   <div class="form-group">
