@@ -178,11 +178,11 @@
   <form id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" >
     <div class="form-group">
       <label for="example-text-input">Title</label>
-      <input id="title" name="title" type="text" class="form-control" id="exampleInput" aria-describedby="emailHelp" placeholder="Enter Product Name">
+      <input required id="title" name="title" type="text" class="form-control" id="exampleInput" aria-describedby="emailHelp" placeholder="Enter Product Name">
     </div>
     <div class="form-group">
       <label for="exampleInput">Price</label>
-    <input id="price" type="number" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Enter Amount">
+    <input required id="price" type="number" min = "1" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Enter Amount">
     </div>
 
     <!-- <div class="form-group">
@@ -194,13 +194,13 @@
     </div> -->
     <div class="form-group">
       <label>Item Picture</label>
-      <input type="file" name="picture" id="itemPicture"/>
+      <input required type="file" name="picture" id="itemPicture"/>
     </div>
 
 
     <div class="form-group">
       <!-- <input type="text" name="date" id="expirDate"/>  -->
-    <select name="expirDate" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="expirDate">
+    <select required name="expirDate" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="expirDate">
     <option value="" selected>Time Period</option>
     <option value="1">1 Day</option>
     <option value="2">1 Week</option>
@@ -212,12 +212,12 @@
     <div class="form-group">
       <label for="exampleTextarea">Product Description</label>
       <textarea name="description" class="form-control" id="description" rows="3"
-      placeholder="Describe The Product"></textarea>
+      placeholder="Describe The Product" required></textarea>
     </div>
 
 
     <input name="userID" id="userid" value="default" style="display: none"/>
-    <button type="submit" id="submitButton" class="btn btn-primary" disabled="disabled">Submit</button>
+    <button type="submit" id="submitButton" class="btn btn-primary" >Submit</button>
   </form>
 </div>
 

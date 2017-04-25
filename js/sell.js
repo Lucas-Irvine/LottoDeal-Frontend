@@ -18,44 +18,44 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 	
-	//when field is entered
-	$('#price, #title, #description').bind('keyup', function() {
+	// //when field is entered
+	// $('#price, #title, #description').bind('keyup', function() {
 		
-    if(allFilled()) {
-    	console.log('removing attribute');
-    	$('#submitButton').removeAttr('disabled');
-    }
-    else {
-    	$('#submitButton').attr('disabled', 'disabled');
-    }    	
-	});
+ //    if(allFilled()) {
+ //    	console.log('removing attribute');
+ //    	$('#submitButton').removeAttr('disabled');
+ //    }
+ //    else {
+ //    	$('#submitButton').attr('disabled', 'disabled');
+ //    }    	
+	// });
 
-	//When file/date is chosen
-	$("#itemPicture, #expirDate").change(function(){
-		if(allFilled()) {
-		    console.log('removing attribute');
-		    $('#submitButton').removeAttr('disabled');
-		  }
-		  else {
-		  	$('#submitButton').attr('disabled', 'disabled');
-		  }    
-	 });
+	// //When file/date is chosen
+	// $("#itemPicture, #expirDate").change(function(){
+	// 	if(allFilled()) {
+	// 	    console.log('removing attribute');
+	// 	    $('#submitButton').removeAttr('disabled');
+	// 	  }
+	// 	  else {
+	// 	  	$('#submitButton').attr('disabled', 'disabled');
+	// 	  }    
+	//  });
 
 
-	function allFilled() {
+	// function allFilled() {
 
-	    var filled = true;
-		//console.log('test' + $('#expirDate').val());
-		var fields = ['#title', '#price', '#itemPicture', '#description', '#expirDate']; 
-		for (field of fields) {
+	//     var filled = true;
+	// 	//console.log('test' + $('#expirDate').val());
+	// 	var fields = ['#title', '#price', '#itemPicture', '#description', '#expirDate']; 
+	// 	for (field of fields) {
 
-  			if ($(field).val() == '') {
-  				filled = false;
-  				console.log('false!');
-  			}
-		}
-	    return filled;
-	}
+ //  			if ($(field).val() == '') {
+ //  				filled = false;
+ //  				console.log('false!');
+ //  			}
+	// 	}
+	//     return filled;
+	// }
 
 }])
 
