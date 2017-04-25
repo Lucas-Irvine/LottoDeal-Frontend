@@ -3,7 +3,7 @@ LottoDeal Homepage
  */
 
 body {
-    background-color: #9AE27E;
+    background-color: white;
     padding-top: 51px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     height: 100%;
 }
@@ -16,7 +16,7 @@ html {
 /* You can change the height of the carousel by changing the height in the class below */
 
 .carousel {
-    height: 50%;
+    height: 70%;
 }
 
 .item,
@@ -39,9 +39,20 @@ html {
 
 /* the item cards */
 
+#item {
+    background-color: #FFFFFF;
+    border: solid 1px #F1EEEA;
+    border-radius: 6px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 12px;
+    height: 440px;
+    max-height: 440px;
+}
+
 .caption {
-    height: 130px;
-    overflow: hidden;
+/*    height: 130px;*/
 }
 
 .caption h4 {
@@ -67,11 +78,26 @@ html {
     color: #333;
 }
 
+.ratings {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 3px;
+}
+
 /* these are in items */
 
 #thumbnail-bar {
     max-height: 10%;
     margin-bottom: 8px;
+}
+
+.progress {
+    height: 8px;
+}
+
+.btn-custom {
+    font-size: 12px;
 }
 
 #item-button {
@@ -86,6 +112,8 @@ html {
     -moz-transition: opacity .4s ease-out;
     -webkit-transition: opacity .4s ease-out;
     -o-transition: opacity .4s ease-out;
+    height: 160px;
+    max-height: 200px;
 }
 
 .img-hover:hover{
@@ -101,15 +129,19 @@ html {
 
 }
 
+.description {
+    text-align: justify;
+    padding-top: 5%;
+}
+
 /* the footer of the page */
 
 footer {
     text-align: center;
-    position: relative;
     width: 100%;
-    /*background: #020621; */
-    /*background: white;
-    color: #fea680;*/
+    background: #020621; 
+    /*background: white;*/
+    color: #fea680;
 }
 
 .footerlink
@@ -213,9 +245,9 @@ footer.signin {
     display: inline-block;
     position: relative;
     padding-bottom: 3px;
-    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Open Sans', sans-serif;
     /*font-family: futura_book,Helvetica Neue Medium,Helvetica,Arial,sans-serif;*/
-    font-family: 'Alegreya Sans SC', sans-serif;
+    /*font-family: 'Alegreya Sans SC', sans-serif; */
 }
 
 .sliding-middle-out:after, #navbar-unique .navbar-header > a:after {
@@ -225,20 +257,20 @@ footer.signin {
     height: 3px;
     width: 0px;
     background: transparent;
-    transition: width .5s ease, background-color .5s ease;
+    transition: width .2s ease, background-color .2s ease;
 }
 .sliding-middle-out:hover:after, #navbar-unique .navbar-header > a:hover:after {
     width: 100%;
-    background: grey;
+    background: green;
 }
 
-.sliding-middle-out {
+/*.sliding-middle-out {
     font-size: 17px;
-}
+}*/
 
-#navbar-unique .navbar-header > a {
+/*#navbar-unique .navbar-header > a {
     font-size: 20px;
-}
+}*/
 
 /* home button styling */
 
@@ -471,4 +503,20 @@ footer.signin {
     .collapse.in{
         display:block !important;
     }*/
+}
+
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+.navbar-right {
+  float: right!important;
 }
