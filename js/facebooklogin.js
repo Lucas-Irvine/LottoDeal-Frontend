@@ -11,13 +11,17 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
     	if (response.status === 'connected') {
             //display user data
+            document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Logout';
+            document.getElementById('loginTitle').innerHTML = 'Logout';
             console.log('logged in')
             // Get and display the user profile data
         }
         else {
         	console.log('Not logged in');
+            document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Login';
+            document.getElementById('loginTitle').innerHTML = 'Login';
         }
     });
 };
@@ -44,15 +48,14 @@ facebookLoginButton.onclick = function() {
     console.log('logging in/out')
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
-
             //display user data
             fbLogout()
-            document.getElementById('loginTitle').innerHTML = 'Logout';
+            document.getElementById('loginTitle').innerHTML = 'Login';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
             document.getElementById('login').innerHTML = 'Login';
         } else {
             fbLogin()
-            document.getElementById('loginTitle').innerHTML = 'Login';
+            document.getElementById('loginTitle').innerHTML = 'Logout';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             document.getElementById('login').innerHTML = 'Logout';
         }
