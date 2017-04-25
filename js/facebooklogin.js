@@ -1,3 +1,6 @@
+var facebookLoginButton = document.getElementById("loginToFacebook");
+
+
 // Facebook Login code -----------------------------------
 window.fbAsyncInit = function() {
 	FB.init({
@@ -14,6 +17,7 @@ window.fbAsyncInit = function() {
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Logout';
             document.getElementById('loginTitle').innerHTML = 'Logout';
+            facebookLoginButton.innerHTML = "Facebook Logout";
             console.log('logged in')
             // Get and display the user profile data
         }
@@ -22,6 +26,7 @@ window.fbAsyncInit = function() {
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Login';
             document.getElementById('loginTitle').innerHTML = 'Login';
+            facebookLoginButton.innerHTML = "Facebook Login";
         }
     });
 };
@@ -53,11 +58,13 @@ facebookLoginButton.onclick = function() {
             document.getElementById('loginTitle').innerHTML = 'Login';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
             document.getElementById('login').innerHTML = 'Login';
+            facebookLoginButton.innerHTML = "Facebook Login";
         } else {
             fbLogin()
             document.getElementById('loginTitle').innerHTML = 'Logout';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             document.getElementById('login').innerHTML = 'Logout';
+            facebookLoginButton.innerHTML = "Facebook Logout";
         }
     });
 }
@@ -68,8 +75,6 @@ function fbLogin() {
     var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
-            facebookLoginButton.setAttribute("onclick","fbLogout()");
-            facebookLoginButton.innerHTML = 'Facebook Logout';
             console.log('Successfully logged in')
             getFbUserData();
         } else {
@@ -84,8 +89,6 @@ function fbLogout() {
     delete localStorage.curUserID;
 
     FB.logout(function() {
-        facebookLoginButton.setAttribute("onclick","fbLogin()");
-        facebookLoginButton.innerHTML = 'Facebook Login';
         console.log('Successfully logged out')
     });
 }
