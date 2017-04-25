@@ -118,11 +118,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     $scope.accounts = []
     var counter = 0;
     getAccountInfo();
+
     function getAccountInfo() {
 
     var item = $scope.posts[counter];
 
-
+    console.log(item + "this is the item")
 
 
      // AJAX get TO SERVER for account
