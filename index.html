@@ -64,31 +64,19 @@
                     <li>
                         <a id = "sell"  class="sliding-middle-out" href="sell.html">Sell</a>
                     </li>
-                    <!-- <li>
-                        <a id = "test" class="sliding-middle-out"  href="test.html">Test</a>
-                    </li> -->
-                    
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle sliding-middle-out" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notifications <span class="badge">{{notifications.length}}</span></a>
+                    <li id="notification_li">
+                        <span id="notification_count">{{notifications.length}}</span>
+                        <a href="#" id="notifications" class="sliding-middle-out" >Notifications</a>
 
-                        <ul class="dropdown-menu notifications" role="menu">
-                            <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
+                        <div id="notificationContainer">
+                            <div id="notificationTitle"> Notifications </div>
+                            <div id="notificationsBody" class="notifications">
+                                <h4 class="item-title">{{notification.title}}</h4>
+                                <p class="item-info">{{notification.description}}</p>
                             </div>
-                            <li class="divider"></li>
+                            <div id="notificationFooter"><a href="#">See All</a></div>
+                        </div>
 
-                            <div class="notifications-wrapper">
-                               <div ng-repeat= "notification in notifications">
-                               <a class="content" href="#">
-                                <div class="notification-item">
-                                    <h4 class="item-title">{{notification.title}}</h4>
-                                    <p class="item-info">{{notification.description}}</p>
-                                </div>
-                                </a>
-                                </div>
-                            </div>
-                            <li class="divider"></li>
-                            <div class="notification-footer"><h4 class="menu-title">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4></div>
-                        </ul>
                     </li>
                     <li>
                         <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
@@ -155,13 +143,11 @@
                 <!-- comment -->
                 <div class="row">
                 <br>
-                <!-- test code begins -->
-                                <!-- test code -->
                     <div class="col-md-4">
                             <div class="thumbnail" id="item">
-                            <div class="image-item">
+                            <div class="image-item img-fluid">
                                 <a href="item.html#!/?id={{post._id}}">
-                                    <img ng-src="img/shuffl.jpg" class="img-hover" alt="">
+                                    <img ng-src="img/shuffl.jpg" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                 </a>
                             </div>
                                 <div class="caption">

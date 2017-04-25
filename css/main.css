@@ -49,6 +49,7 @@ html {
     font-size: 12px;
     height: 440px;
     max-height: 440px;
+    max-width: 300px;
 }
 
 .caption {
@@ -57,10 +58,6 @@ html {
 
 .caption h4 {
     white-space: nowrap;
-}
-
-.thumbnail img {
-    width: 100%;
 }
 
 .ratings {
@@ -110,14 +107,24 @@ html {
 }
 
 /* Images on the home page */
-.img-hover {
+.image-item {
+    height: 200px;
+    width: auto;
+}
+
+.image-item .img-hover {
     opacity: 1;
     transition: opacity .4s ease-out;
     -moz-transition: opacity .4s ease-out;
     -webkit-transition: opacity .4s ease-out;
     -o-transition: opacity .4s ease-out;
-    height: 160px;
-    max-height: 200px;
+    border-radius: 6px;
+    height: 200px;
+    width: 100%;
+}
+
+#centered-and-cropped {
+    object-fit: cover;
 }
 
 .img-hover:hover{
@@ -218,30 +225,69 @@ footer.signin {
 .navbar {
     background-color: white;
     border-color: rgba(34, 34, 34, 0.05); /* black */
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica;
     -webkit-transition: all 0.35s;
     -moz-transition: all 0.35s;
     transition: all 0.35s;
+    font-weight: 500;
+}
+
+.form-control {
+    color: black;
+}
+
+/* For changing placeholder colors and fonts in the search bar */
+*::-webkit-input-placeholder {
+    color: black;
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: black;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: black;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: black;
+}
+
+textarea::-webkit-input-placeholder {
+    color: black !important;
+}
+
+textarea:-moz-placeholder { /* Firefox 18- */
+    color: black !important;
+}
+
+textarea::-moz-placeholder {  /* Firefox 19+ */
+    color: black !important;
+}
+
+textarea:-ms-input-placeholder {
+    color: black !important;
 }
 
 /* non home button navbar styling */
 
 #navbar-unique .nav > li > a {
-    color: #76797A;
+    color: black;
+    font-weight: 500;
 }
 
 #navbar-unique .nav > li > a:hover,
 #navbar-unique .nav > li > a:focus:hover {
-     color: #76797A;
+     color: black;
 }
 
 #navbar-unique .nav > li > a:focus:active {
-    color: #76797A;
+    color: black;
     background-color: white;
 }
 
 #navbar-unique .nav > li > a:focus:visited {
-    color: #76797A;
+    color: black;
     background-color: white;
 }
 
@@ -249,7 +295,7 @@ footer.signin {
     display: inline-block;
     position: relative;
     padding-bottom: 3px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Helvetica Neue", Helvetica;
     /*font-family: futura_book,Helvetica Neue Medium,Helvetica,Arial,sans-serif;*/
     /*font-family: 'Alegreya Sans SC', sans-serif; */
 }
@@ -279,11 +325,12 @@ footer.signin {
 /* home button styling */
 
 #navbar-unique .navbar-header > a {
-    color: #76797A;
+    color: black;
+    font-weight: 500;
 }
 
 #navbar-unique .navbar-header > a:hover {
-    color: #76797A ;
+    color: black;
 }
 
 /* ----- search glyphicon style */
@@ -304,52 +351,76 @@ footer.signin {
 }
 
 /*notification bar styling */
-.notifications {
-   min-width:420px; 
-   background: #fea680;
-  }
-  
-.notifications-wrapper {
-     overflow:auto;
-      max-height:250px;
+
+#notificationContainer
+{
+    background-color: white;
+    border: 1px solid rgba(100, 100, 100, .4);
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    overflow: visible;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -170px;
+    width: 400px;
+    z-index: -1;
+    display: none;
 }
-    
- .menu-title {
-     color:black;
-     font-size:1.5rem;
-      display:inline-block;
-      }
- 
-.glyphicon-circle-arrow-right {
-      margin-left:10px;     
-   }
-  
-   
- .notification-heading, .notification-footer  {
-    padding:2px 10px;
-       }
-        
-.dropdown-menu.divider {
-  margin:5px 0;          
-  }
-
-.item-title {
-  
- font-size:1.3rem;
- color:#000;
-    
+/* pop up arrow */
+#notificationContainer:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: transparent;
+    border-width: 10px 10px 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+    margin-top: -20px;
+    margin-left: 200px;
+}
+#notificationTitle
+{
+    font-weight: bold;
+    padding: 8px;
+    font-size: 13px;
+    background-color: #ffffff;
+    position: fixed;
+    z-index: 1000;
+    width: 384px;
+    border-bottom: 1px solid #dddddd;
+}
+#notificationsBody
+{
+    padding: 33px 0px 0px 0px !important;
+    min-height:300px;
+}
+#notificationFooter
+{
+    background-color: #e9eaed;
+    text-align: center;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 12px;
+    border-top: 1px solid #dddddd;
 }
 
-.notifications a.content {
- text-decoration:none;
- background:black;
+#notification_count
+{
+    padding: 3px 7px 3px 7px;
+    background: #cc0000;
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: 77px;
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    position: absolute;
+    margin-top: -11px;
+    font-size: 11px;
+}
 
- }
-    
-.notification-item {
- padding:5px;
- border-bottom: 1px #5cb85c solid;
- }
+/* notifications end */
 
 .btn-submit, .btn-submit:active, .btn-submit:focus {
     background: #f7ef6a;
