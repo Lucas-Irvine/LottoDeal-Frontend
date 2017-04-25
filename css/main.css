@@ -408,7 +408,7 @@ textarea:-ms-input-placeholder {
 #notification_count
 {
     padding: 3px 7px 3px 7px;
-    background: #cc0000;
+    background: green;
     color: #ffffff;
     font-weight: bold;
     margin-left: 77px;
