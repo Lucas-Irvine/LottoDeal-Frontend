@@ -44,10 +44,14 @@ facebookLoginButton.onclick = function() {
     console.log('logging in/out')
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
+            document.getElementById('loginTitle').innerHTML = 'Logout';
             //display user data
             fbLogout()
+            document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
         } else {
+            document.getElementById('loginTitle').innerHTML = 'Login';
             fbLogin()
+            document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
         }
     });
 }
