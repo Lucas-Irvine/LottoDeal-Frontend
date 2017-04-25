@@ -123,7 +123,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     var item = $scope.posts[counter];
 
-    console.log(item + "this is the item")
+    console.log($scope.posts + "this is the item")
 
 
      // AJAX get TO SERVER for account
