@@ -350,7 +350,7 @@ textarea:-ms-input-placeholder {
     border-color: #0FB007;
 }
 
-/*notification bar styling */
+/*notification bar styling code modified from http://www.9lessons.info/2014/09/facebook-style-notification-popup-using.html */
 
 #notificationContainer
 {
@@ -407,17 +407,16 @@ textarea:-ms-input-placeholder {
 
 #notification_count
 {
-    padding: 3px 7px 3px 7px;
-    background: green;
-    color: #ffffff;
-    font-weight: bold;
-    margin-left: 77px;
-    border-radius: 9px;
-    -moz-border-radius: 9px;
-    -webkit-border-radius: 9px;
+    padding: 1px 8px 1px 8px;
     position: absolute;
-    margin-top: -11px;
-    font-size: 11px;
+    background: green;
+    color: white;
+    border-radius: 13px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    font-size: 12px;
+    right: 0px;
+    top: 15px;
 }
 
 /* notifications end */
