@@ -62,7 +62,6 @@ facebookLoginButton.onclick = function() {
         } else {
             fbLogin()
             document.getElementById('loginTitle').innerHTML = 'Logout';
-            document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Facebook Logout";
         }
@@ -75,6 +74,7 @@ function fbLogin() {
     var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
+            document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
             getFbUserData();
         } else {
