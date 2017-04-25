@@ -58,7 +58,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     // AJAX POST TO SERVERg]
 
 
-    var allPosts; 
 
 
     $("#loading-icon").show()
@@ -68,8 +67,78 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         success: function(data) {
             var accountsArray = []
             var items = JSON.parse(data)
-            allPosts = items;
+
+
+
+
+
+                    $scope.accounts = []
+                    var counter = 0;
+                    getAccountInfo();
+
+                    function getAccountInfo() {
+
+                    var item = items[counter];
+
+                    console.log(item + "this is the item")
+
+
+                     // AJAX get TO SERVER for account
+                     var newurl = "https://localhost:8000/getAccount";
+                     var newuserID = item.sellerID
+                     var newdataGET = {
+                        userID: newuserID
+                    }
+                    console.log('Asking for account info for each seller')
+
+                    $.ajax({
+                        url: newurl,
+                        data: newdataGET,
+                        type: 'GET',
+                        async: true,
+                        success: function (data) {
+                            var account = JSON.parse(data);
+                            console.log(account)
+                            var reviews = account.reviews;
+                            var length = reviews.length;
+                            var total = 0; 
+                            var average = 0;
+                            var averageRounded = 0;
+                            if (length != 0) {
+                                var total = 0; 
+                                for (var i = 0; i < length; i++) {
+                                    total += parseInt(reviews[i].stars);
+                                }
+
+                                var average = total/length;
+                                var averageRounded = Math.round(average*10)/10
+                            }
+
+                            var account = {
+                                averageRating : averageRounded,
+                            }
+                            $scope.accounts.push(account);
+                            console.log($scope.accounts + "Hello this is the average rating for a user")
+                            $scope.$apply()
+                            counter++;
+                            if (counter < $scope.posts.length) {
+                                getAccountInfo;
+                            }
+                        },
+                        error: function (response, error) {
+                            console.log(response)
+                            console.log(error)
+                        }
+                    });
+                }
+
+
+
+
+
+
             for (i = 0; i < items.length; i++) {
+
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
                 console.log( "Raised" + items[i].percentageRaised);
                 var expirationDate = new Date(items[i].expirationDate);
@@ -117,69 +186,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                   console.log(error)
               }
           });
-
-
-
-
-    $scope.accounts = []
-    var counter = 0;
-    getAccountInfo();
-
-    function getAccountInfo() {
-
-    var item = allPosts[counter];
-
-    console.log(item + "this is the item")
-
-
-     // AJAX get TO SERVER for account
-     var newurl = "https://localhost:8000/getAccount";
-     var newuserID = item.sellerID
-     var newdataGET = {
-        userID: newuserID
-    }
-    console.log('Asking for account info for each seller')
-
-    $.ajax({
-        url: newurl,
-        data: newdataGET,
-        type: 'GET',
-        async: true,
-        success: function (data) {
-            var account = JSON.parse(data);
-            console.log(account)
-            var reviews = account.reviews;
-            var length = reviews.length;
-            var total = 0; 
-            var average = 0;
-            var averageRounded = 0;
-            if (length != 0) {
-                var total = 0; 
-                for (var i = 0; i < length; i++) {
-                    total += parseInt(reviews[i].stars);
-                }
-
-                var average = total/length;
-                var averageRounded = Math.round(average*10)/10
-            }
-
-            var account = {
-                averageRating : averageRounded,
-            }
-            $scope.accounts.push(account);
-            console.log($scope.accounts + "Hello this is the average rating for a user")
-            $scope.$apply()
-            counter++;
-            if (counter < $scope.posts.length) {
-                getAccountInfo;
-            }
-        },
-        error: function (response, error) {
-            console.log(response)
-            console.log(error)
-        }
-    });
-}
 
     // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
