@@ -55,7 +55,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     //     $(this).hide();
     // })
 
-    // AJAX POST TO SERVER
+    // AJAX POST TO SERVERg]
+
+
+    var allPosts; 
+
+
     $("#loading-icon").show()
     $.ajax({
         url: url,
@@ -63,6 +68,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         success: function(data) {
             var accountsArray = []
             var items = JSON.parse(data)
+            allPosts = items;
             for (i = 0; i < items.length; i++) {
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
                 console.log( "Raised" + items[i].percentageRaised);
@@ -121,9 +127,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     function getAccountInfo() {
 
-    var item = $scope.posts[counter];
+    var item = allPosts[counter];
 
-    console.log($scope.posts + "this is the item")
+    console.log(item + "this is the item")
 
 
      // AJAX get TO SERVER for account
