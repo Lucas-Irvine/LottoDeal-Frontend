@@ -163,7 +163,7 @@
                                 <a href="item.html#!/?id={{post._id}}">
                                     <img ng-src="img/shuffl.jpg" class="img-hover" alt="">
                                 </a>
-                                </div>
+                            </div>
                                 <div class="caption">
                                     <p class="pull-right" id="amountRaised-{{post._id}}">$5 of $20 raised</p>
                                     <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{post._id}}">Umbrella</a>
@@ -174,15 +174,10 @@
                                     </div>
                                 </div>
                                 <h5 class="pull-right">{{post.expirationDate}}</h5>
-                                    <div class="dropdown">
-
-                                        <button class="btn btn-default dropdown-toggle btn-custom" type="button" id="menu1" data-toggle="dropdown">Bid</button>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-
+                                    <div class = "row bid-buttons">
                                             <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
                                             <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
                                             <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
-                                        </ul>
                                     </div>
                                 <div class="description-container rows">
                               <p class="description">

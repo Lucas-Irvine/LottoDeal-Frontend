@@ -85,6 +85,10 @@ html {
     padding-bottom: 3px;
 }
 
+.bid-buttons {
+    text-align: center;
+}
+
 /* these are in items */
 
 #thumbnail-bar {
