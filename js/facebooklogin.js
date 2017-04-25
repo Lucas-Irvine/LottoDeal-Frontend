@@ -48,10 +48,12 @@ facebookLoginButton.onclick = function() {
             //display user data
             fbLogout()
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
+            document.getElementById('login').innerHTML = 'Logout';
         } else {
             document.getElementById('loginTitle').innerHTML = 'Login';
             fbLogin()
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
+            document.getElementById('login').innerHTML = 'Login';
         }
     });
 }
