@@ -11,12 +11,13 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
     	if (response.status === 'connected') {
             //display user data
+            document.getElementById('login').innerHTML = 'Logout';
             console.log('logged in')
             // Get and display the user profile data
         }
         else {
         	console.log('Not logged in');
-        	showLoginPopup();
+            document.getElementById('login').innerHTML = 'Login';
         }
     });
 };
@@ -50,6 +51,8 @@ facebookLoginButton.onclick = function() {
         }
     });
 }
+
+
 
 function fbLogin() {
     var window = FB.login(function (response) {

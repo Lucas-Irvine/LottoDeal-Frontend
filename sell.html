@@ -27,6 +27,50 @@
     <script src="js/tabs.js"></script>
 
 </head>
+
+
+
+
+<!-- Facebook Login code -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+    id="loginPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="exampleModalLabel">
+            Please Login
+        </h4>
+    </div>
+    <div class="modal-body">
+        <p>
+            By continuing, I agree that I am at least 13 years old and have read and agree to the terms of service and privacy policy.
+        </p>
+        <center><button type="button" class="facebook-button" id="loginToFacebook">
+            Login With Facebook
+        </button> </center>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+    </div>
+</div>
+</div>
+</div>
+<!-- End Facebook Login code -->
+
+
+
+
+
+
+
+
+
+
+
+
 <body ng-controller="sellController">
 
         <!-- Navigation -->
@@ -84,7 +128,7 @@
                         <a id = "profile" href="profile.html">Account</a>
                     </li>
                     <li>
-                        <a id = "login" href="login.html">Login</a>
+                        <a id = "login" onclick = "showLoginPopup()">Login</a>
                     </li>
                 </ul>
             </div>
@@ -216,6 +260,9 @@
 
     <!-- dynamic loading of pages -->
     <script src="js/tabs.js"></script>
+
+<!-- for facebook modal login -->
+    <script src="js/facebooklogin.js"></script> 
 
 </body>
 </html>
