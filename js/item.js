@@ -27,8 +27,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         statusCode: {
             404: function(response) {
-                alert('1');
-                bootbox.alert('<span style="color:Red;">Error While Saving Outage Entry Please Check</span>', function() {});
+                // var newDoc = document.open("text/html", "replace");
+                // newDoc.write(myString);
+                // newDoc.close();
             }
         },
         success: function(data) {
@@ -107,16 +108,16 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                         console.log('success payment and bid added')
                         console.log(data);
 
-                        for (var i = 0; i < $scope.posts.length; i++) {
-                            post = $scope.posts[i]
-                            console.log(itemID)
-                            if (post["_id"] == itemID) {
-                                var newPrice = post.amountRaised + amountToCharge;
-                                post.amountRaised = newPrice;
-                                post.percentageRaised = (newPrice / post.price) * 100;
-                                break;
-                            }
+
+                        post = $scope.post
+                        console.log(itemID)
+                        if (post["_id"] == itemID) {
+                            var newPrice = post.amountRaised + amountToCharge;
+                            post.amountRaised = newPrice;
+                            post.percentageRaised = (newPrice / post.price) * 100;
+                            break;
                         }
+
                         $scope.$apply()
 
                         // DISPLAY BID ON FRONT-END
