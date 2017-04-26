@@ -114,7 +114,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                             var newPrice = post.amountRaised + amountToCharge;
                             post.amountRaised = newPrice;
                             post.percentageRaised = (newPrice / post.price) * 100;
-                            break;
                         }
 
                         $scope.$apply()
