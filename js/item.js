@@ -36,7 +36,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             console.log("Raised" + parsed.percentageRaised);
             var expirationDate = new Date(parsed.expirationDate);
             var date = new Date();
-            parsed.expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+            parsed.hoursToGo = DateDiff.inHours(date, expirationDate)
+            parsed.daysToGo = DateDiff.inDays(date, expirationDate)
+
 
 
 

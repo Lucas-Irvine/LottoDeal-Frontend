@@ -816,16 +816,7 @@ textarea:-ms-input-placeholder {
 .count-down strong {
     padding-right:5px;
 }
-.progress-bar {
-    background-color: #99DEAB;
-    box-shadow:none;
-}
-.progress {
-    height: 30px;
-    background-color: #ECEBEB;
-    box-shadow:none;
-    margin: 10px 0px 10px 0px;
-}
+
 
 
 
