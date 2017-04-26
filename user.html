@@ -229,37 +229,16 @@
 
 
 <div class="rating">
-    
+    <input type = "number" value = "0" id = "numStars" hidden>
     <input type="radio" id="star5" name="rating" value="5" onclick = "changeStars(5)" /><label for="star5" >5 stars</label>
-    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" >4 stars</label>
-    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" >3 stars</label>
-    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" >2 stars</label>
-    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" >1 star</label>
+    <input type="radio" id="star4" name="rating" value="4" onclick = "changeStars(4)"/><label for="star4" >4 stars</label>
+    <input type="radio" id="star3" name="rating" value="3" onclick = "changeStars(3)"/><label for="star3" >3 stars</label>
+    <input type="radio" id="star2" name="rating" value="2" onclick = "changeStars(2)"/><label for="star2" >2 stars</label>
+    <input type="radio" id="star1" name="rating" value="1" onclick = "changeStars(1)"/><label for="star1" >1 star</label>
 </div>
 
 
 
-
-
-
-    <div class="stars">
-      <input type = "number" value = "0" id = "numStars" hidden>
-      <input class="star star-5" id="star-5" type="radio" name="star" onclick = "changeStars(5)"/>
-      <label class="star star-5" for="star-5"></label>
-
-      <input class="star star-4" id="star-4" type="radio" name="star" onclick = "changeStars(4)"/>
-      <label class="star star-4" for="star-4"></label>
-
-      <input class="star star-3" id="star-3" type="radio" name="star" onclick = "changeStars(3)"/>
-      <label class="star star-3" for="star-3"></label>
-
-      <input class="star star-2" id="star-2" type="radio" name="star" onclick = "changeStars(2)"/>
-      <label class="star star-2" for="star-2"></label>
-
-      <input class="star star-1" id="star-1" type="radio" name="star" onclick = "changeStars(1)"/>
-      <label class="star star-1" for="star-1"></label>
-      
-  </div>
 
                   <!-- Text input-->
                   <div class="form-group">
