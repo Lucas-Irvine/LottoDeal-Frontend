@@ -9,14 +9,6 @@ $(document).ready(function() {
 
 var reviewID;
 
-
-checkUserForReview();
-// check who the user is and whether to display the review
-function checkUserForReview() {
-    var reviewerID = localStorage.getItem("curUserID");
-    if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
-}
-
 // change the number of stars selected
 function changeStars(stars) {
     $('#numStars').val(stars);
@@ -287,6 +279,15 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
     $scope.targetPost = null;
 
 }])
+
+
+checkUserForReview();
+// check who the user is and whether to display the review
+function checkUserForReview() {
+    var reviewerID = localStorage.getItem("curUserID");
+    console.log()
+    if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
+}
 
 //Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
 var DateDiff = {
