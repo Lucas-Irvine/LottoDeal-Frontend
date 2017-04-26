@@ -82,7 +82,6 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
     reviewID = id;
 
     var reviewerID = localStorage.getItem("curUserID");
-    console.log(reviewerID + " " + reviewID); 
     if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
 
 
