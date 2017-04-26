@@ -113,8 +113,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var accountsArray = []
             $scope.accounts = []
             var counter = 0;
-            getAccountInfo();
-
+            if (items.length > 0) {
+                getAccountInfo();
+            }
             function getAccountInfo() {
                 var item = items[counter];
                 if (item != null)
