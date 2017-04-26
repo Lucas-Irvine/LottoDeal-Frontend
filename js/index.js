@@ -640,10 +640,10 @@ window.fbAsyncInit = function() {
         if (response.status === 'connected') {
             //display user data
             getFbUserData();
-
+            console.log("Logged in");
             // Get and display the user profile data
-            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
-            document.getElementById('fbLink').innerHTML = 'Facebook Logout';
+            // document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
+            // document.getElementById('fbLink').innerHTML = 'Facebook Logout';
         }
         else {
             console.log('Not logged in');
@@ -736,15 +736,6 @@ function fbLogout() {
     });
 }
 
-
-var app = angular.module("app", []);
-
-app.controller("loginController", function($scope) {
-    $scope.selectedTab = 0;
-
-    // possible jquery tab selection here
-    
-});
 
 $(document).ready(function()
     {
