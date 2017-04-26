@@ -73,12 +73,11 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 var date = new Date();
                 items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
                 // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
-                
+
                 var image = items[i].img;
                 if (image == null) {
                     items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
-                }
-                else {
+                } else {
                     // WORKING SNIPPET
                     // var binary = '';
                     // var bytes = new Uint8Array(items[i].img.data.data);
@@ -116,18 +115,19 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             if (items.length > 0) {
                 getAccountInfo();
             }
+
             function getAccountInfo() {
                 var item = items[counter];
                 if (item != null)
 
-                console.log(item.length);
+                    console.log(item.length);
 
                 console.log(item + "this is the item")
 
-                 // AJAX get TO SERVER for account
-                 var newurl = "https://localhost:8000/getAccount";
-                 var newuserID = item.sellerID
-                 var newdataGET = {
+                // AJAX get TO SERVER for account
+                var newurl = "https://localhost:8000/getAccount";
+                var newuserID = item.sellerID
+                var newdataGET = {
                     userID: newuserID
                 }
                 console.log('Asking for account info for each seller')
@@ -137,26 +137,26 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     data: newdataGET,
                     type: 'GET',
                     async: true,
-                    success: function (data) {
+                    success: function(data) {
                         var account = JSON.parse(data);
                         console.log(account)
                         var reviews = account.reviews;
                         var length = reviews.length;
-                        var total = 0; 
+                        var total = 0;
                         var average = 0;
                         var averageRounded = 0;
                         if (length != 0) {
-                            var total = 0; 
+                            var total = 0;
                             for (var i = 0; i < length; i++) {
                                 total += parseInt(reviews[i].stars);
                             }
 
-                            var average = total/length;
-                            var averageRounded = Math.round(average*10)/10
+                            var average = total / length;
+                            var averageRounded = Math.round(average * 10) / 10
                         }
 
                         var account = {
-                            averageRating : averageRounded,
+                            averageRating: averageRounded,
                         }
                         $scope.accounts.push(account);
                         // console.log($scope.accounts + "Hello this is the average rating for a user")
@@ -167,7 +167,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                             getAccountInfo; // is this called?
                         }
                     },
-                    error: function (response, error) {
+                    error: function(response, error) {
                         console.log(response)
                         console.log(error)
                     }
@@ -177,18 +177,18 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
             $("#loading-icon").hide();
             $scope.$apply()
-            },
-            error: function(response, error) {
-              console.log(response)
-              console.log(error)
-          }
-      });
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
 
     // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
     var userID = localStorage.getItem("curUserID")
     var dataGET = {
-        userID : userID
+        userID: userID
     }
     console.log('Asking for notifications')
     $.ajax({
@@ -205,10 +205,10 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             $scope.$apply()
         },
         error: function(response, error) {
-          console.log(response)
-          console.log(error)
-      }
-  });
+            console.log(response)
+            console.log(error)
+        }
+    });
 
 
     $scope.targetPost = null;
@@ -293,45 +293,21 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                         }
                         $scope.$apply()
 
-                    // DISPLAY BID ON FRONT-END
-                    // var progressbar = $("#progress-bar-" + itemID)
-                    // // console.log(progressbar)
-                    // var currentAmount = progressbar.css("width")
-                    // // console.log(currentAmount)
-                    // var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
-                    // var percentage = progressbar.width() / progressbar.parent().width() * 100
-                    // var newAmount = parseInt(amountRaised) + parseInt(amountToCharge)
-                    // // console.log(newAmount)
-                    // var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
-                    // // console.log(newPercent)
-                    // // var newWidth = progressbar.parent().width() * newPercent
-                    // var newWidth = totalWidth * newPercent
-                    // // console.log("newwidth: " + newWidth)
-                    // var pixelWidth = ""  + newWidth + "px"
-                    // progressbar.css("width", pixelWidth)
-
-                    // // change the amount raised
-                    // var amountText = $("#amountRaised-" + itemID)
-                    // // console.log(amountText)
-                    // amountText.text("$" + newAmount + " of $" + price + " raised")
-                },
-                error: function(response, error) {
-                    console.log(response)
-                    console.log(error)
-                }
-            });
+                    },
+                    error: function(response, error) {
+                        console.log(response)
+                        console.log(error)
+                    }
+                });
 
             } else {
                 console.log('UserID is null')
             }
-
-
-
         }
     });
 
 
-    $scope.bid = function (itemID, amount, amountRaised, price, itemTitle) {
+    $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
 
         $scope.price = price;
         $scope.amountToCharge = amount;
@@ -344,15 +320,14 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 description: 'Bid on ' + itemTitle,
                 amount: amount * 100
             });
-        }
-        else {
+        } else {
             console.log('Bid overpasses item price!');
             BootstrapDialog.show({
                 title: 'Bid surpasses item price',
                 message: 'Choose a lower bid or search for similar items',
                 buttons: [{
-                    id: 'btn-ok',   
-                    icon: 'glyphicon glyphicon-check',       
+                    id: 'btn-ok',
+                    icon: 'glyphicon glyphicon-check',
                     label: 'OK',
                     cssClass: 'btn-primary',
                     data: {
@@ -360,69 +335,17 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                         'user-id': '3'
                     },
                     autospin: false,
-                    action: function(dialogRef){    
+                    action: function(dialogRef) {
                         dialogRef.close();
                     }
                 }]
             });
-            
+
         }
-        
-
-
-        
 
 
 
-        // $.ajax({
-        //     url: url,
-        //     data: data,
-        //     type: 'POST',
-        //     success: function(data) {
-        //         console.log('Bid added for ' + event)
-        //     },
-        //     error: function(response, error) {
-        //         console.log(response)
-        //         console.log(error)
-        //     }
-        // });
-
-
-
-
-        // ADD BID TO DATABASE
-    //     console.log("Adding bid for item " + event + " for " + amount)
-
-
-    //     var url = "https://localhost:8000/addBid";
-    //     var userID = localStorage.getItem("curUserID")
-
-    //     if (userID != null) {
-    //         data = {
-    //            itemID: event,
-    //            userID: userID,
-    //            newAmount: Number(amount)
-    //        }
-
-    //        $.ajax({
-    //         url: url,
-    //         data: data,
-    //         type: 'POST',
-    //         success: function(data) {
-    //             console.log('Bid added for ' + event)
-    //         },
-    //         error: function(response, error) {
-    //             console.log(response)
-    //             console.log(error)
-    //         }
-    //     });
-
-    //    }
-    //    else {
-    //     console.log('UserID is null')
-    // }
-
-}
+    }
 
 }])
 
@@ -436,7 +359,7 @@ var DateDiff = {
         if (t2 == null || t1 == null) {
             return 0
         }
-        return (parseInt((t2-t1)/(3600*1000))) % 24;
+        return (parseInt((t2 - t1) / (3600 * 1000))) % 24;
     },
 
     inDays: function(d1, d2) {
@@ -445,7 +368,7 @@ var DateDiff = {
         if (t2 == null || t1 == null) {
             return 0
         }
-        return parseInt((t2-t1)/(24*3600*1000));
+        return parseInt((t2 - t1) / (24 * 3600 * 1000));
     },
 
     // inWeeks: function(d1, d2) {
@@ -483,55 +406,55 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 function base64ArrayBuffer(arrayBuffer) {
-  var base64    = ''
-  var encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    var base64 = ''
+    var encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
-  var bytes         = new Uint8Array(arrayBuffer)
-  var byteLength    = bytes.byteLength
-  var byteRemainder = byteLength % 3
-  var mainLength    = byteLength - byteRemainder
+    var bytes = new Uint8Array(arrayBuffer)
+    var byteLength = bytes.byteLength
+    var byteRemainder = byteLength % 3
+    var mainLength = byteLength - byteRemainder
 
-  var a, b, c, d
-  var chunk
+    var a, b, c, d
+    var chunk
 
-  // Main loop deals with bytes in chunks of 3
-  for (var i = 0; i < mainLength; i = i + 3) {
-    // Combine the three bytes into a single integer
-    chunk = (bytes[i] << 16) | (bytes[i + 1] << 8) | bytes[i + 2]
+    // Main loop deals with bytes in chunks of 3
+    for (var i = 0; i < mainLength; i = i + 3) {
+        // Combine the three bytes into a single integer
+        chunk = (bytes[i] << 16) | (bytes[i + 1] << 8) | bytes[i + 2]
 
-    // Use bitmasks to extract 6-bit segments from the triplet
-    a = (chunk & 16515072) >> 18 // 16515072 = (2^6 - 1) << 18
-    b = (chunk & 258048)   >> 12 // 258048   = (2^6 - 1) << 12
-    c = (chunk & 4032)     >>  6 // 4032     = (2^6 - 1) << 6
-    d = chunk & 63               // 63       = 2^6 - 1
+        // Use bitmasks to extract 6-bit segments from the triplet
+        a = (chunk & 16515072) >> 18 // 16515072 = (2^6 - 1) << 18
+        b = (chunk & 258048) >> 12 // 258048   = (2^6 - 1) << 12
+        c = (chunk & 4032) >> 6 // 4032     = (2^6 - 1) << 6
+        d = chunk & 63 // 63       = 2^6 - 1
 
-    // Convert the raw binary segments to the appropriate ASCII encoding
-    base64 += encodings[a] + encodings[b] + encodings[c] + encodings[d]
-  }
+        // Convert the raw binary segments to the appropriate ASCII encoding
+        base64 += encodings[a] + encodings[b] + encodings[c] + encodings[d]
+    }
 
-  // Deal with the remaining bytes and padding
-  if (byteRemainder == 1) {
-    chunk = bytes[mainLength]
+    // Deal with the remaining bytes and padding
+    if (byteRemainder == 1) {
+        chunk = bytes[mainLength]
 
-    a = (chunk & 252) >> 2 // 252 = (2^6 - 1) << 2
+        a = (chunk & 252) >> 2 // 252 = (2^6 - 1) << 2
 
-    // Set the 4 least significant bits to zero
-    b = (chunk & 3)   << 4 // 3   = 2^2 - 1
+        // Set the 4 least significant bits to zero
+        b = (chunk & 3) << 4 // 3   = 2^2 - 1
 
-    base64 += encodings[a] + encodings[b] + '=='
-  } else if (byteRemainder == 2) {
-    chunk = (bytes[mainLength] << 8) | bytes[mainLength + 1]
+        base64 += encodings[a] + encodings[b] + '=='
+    } else if (byteRemainder == 2) {
+        chunk = (bytes[mainLength] << 8) | bytes[mainLength + 1]
 
-    a = (chunk & 64512) >> 10 // 64512 = (2^6 - 1) << 10
-    b = (chunk & 1008)  >>  4 // 1008  = (2^6 - 1) << 4
+        a = (chunk & 64512) >> 10 // 64512 = (2^6 - 1) << 10
+        b = (chunk & 1008) >> 4 // 1008  = (2^6 - 1) << 4
 
-    // Set the 2 least significant bits to zero
-    c = (chunk & 15)    <<  2 // 15    = 2^4 - 1
+        // Set the 2 least significant bits to zero
+        c = (chunk & 15) << 2 // 15    = 2^4 - 1
 
-    base64 += encodings[a] + encodings[b] + encodings[c] + '='
-  }
-  
-  return base64
+        base64 += encodings[a] + encodings[b] + encodings[c] + '='
+    }
+
+    return base64
 }
 
 // /* Create Tabs */
@@ -613,11 +536,11 @@ function base64ArrayBuffer(arrayBuffer) {
 // Facebook Javascript SDK configuration and setup
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '228917890846081',
-      xfbml      : true,
-      cookie     : true,
-      version    : 'v2.8'
-  });
+        appId: '228917890846081',
+        xfbml: true,
+        cookie: true,
+        version: 'v2.8'
+    });
 
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
@@ -628,8 +551,7 @@ window.fbAsyncInit = function() {
             // Get and display the user profile data
             // document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
             // document.getElementById('fbLink').innerHTML = 'Facebook Logout';
-        }
-        else {
+        } else {
             console.log('Not logged in');
         }
     });
@@ -637,12 +559,15 @@ window.fbAsyncInit = function() {
 
 // Load the Javascript SDK asynchronously
 
-(function(d, s, id){
- var js, fjs = d.getElementsByTagName(s)[0];
- if (d.getElementById(id)) {return;}
- js = d.createElement(s); js.id = id;
- js.src="https://connect.facebook.net/en_US/all.js";
- fjs.parentNode.insertBefore(js, fjs);
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
 
@@ -650,41 +575,43 @@ window.fbAsyncInit = function() {
 function fbLogin() {
 
 
-    var window = FB.login(function (response) {
+    var window = FB.login(function(response) {
         if (response.authResponse) {
             // Get and display the user profile data
-            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
+            document.getElementById('fbLink').setAttribute("onclick", "fbLogout()");
             document.getElementById('fbLink').innerHTML = 'Facebook Logout';
             getFbUserData();
             window.focus();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
         }
-    }, {scope: 'email'});
+    }, {
+        scope: 'email'
+    });
 }
 
 function saveUserData(response) {
 
-      var url = "https://localhost:8000/createUser";
+    var url = "https://localhost:8000/createUser";
 
-      data = {
-        name: response.first_name+ ' ' + response.last_name,
+    data = {
+        name: response.first_name + ' ' + response.last_name,
         fbid: response.id,
         url: response.picture.data.url,
         email: response.email,
-      }
+    }
 
-      // AJAX POST TO SERVER
-      $.ajax({
+    // AJAX POST TO SERVER
+    $.ajax({
         url: url,
         type: 'post',
         data: data,
         success: function(data) {
-        console.log(data)
+            console.log(data)
         },
         error: function(response, error) {
-        console.log(response)
-        console.log(error)
+            console.log(response)
+            console.log(error)
         }
     });
 }
@@ -693,9 +620,12 @@ function saveUserData(response) {
 
 
 // Fetch the user profile data from facebook
-function getFbUserData(){
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
-        function (response) {
+function getFbUserData() {
+    FB.api('/me', {
+            locale: 'en_US',
+            fields: 'id,first_name,last_name,email,link,gender,locale,picture'
+        },
+        function(response) {
 
             // document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
             // document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>Locale:</b> '+response.locale+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';
@@ -713,7 +643,7 @@ function fbLogout() {
     delete localStorage.curUserID;
 
     FB.logout(function() {
-        document.getElementById('login').setAttribute("onclick","fbLogin()");
+        document.getElementById('login').setAttribute("onclick", "fbLogin()");
         document.getElementById('login').innerHTML = 'Facebook Login';
         document.getElementById('userData').innerHTML = '';
         document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
@@ -721,26 +651,21 @@ function fbLogout() {
 }
 
 
-$(document).ready(function()
-    {
-        $("#notifications").click(function()
-        {
-            $("#notificationContainer").fadeToggle(300);
-            $("#notification_count").fadeOut("slow");
-            return false;
-        });
-
-//Document Click hiding the popup
-        $(document).click(function()
-        {
-            $("#notificationContainer").hide();
-        });
-
-//Popup on click
-        $("#notificationContainer").click(function()
-        {
-            return false;
-        });
-
+$(document).ready(function() {
+    $("#notifications").click(function() {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
     });
 
+    //Document Click hiding the popup
+    $(document).click(function() {
+        $("#notificationContainer").hide();
+    });
+
+    //Popup on click
+    $("#notificationContainer").click(function() {
+        return false;
+    });
+
+});
