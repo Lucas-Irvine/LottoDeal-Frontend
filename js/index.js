@@ -156,14 +156,14 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     console.log(items[i].img.data)
 
                     var binary = '';
-                    var bytes = new Uint8Array(buffer);
+                    var bytes = new Uint8Array(items[i].img.data.data);
                     var len = bytes.byteLength;
                     for (var i = 0; i < len; i++) {
                         binary += String.fromCharCode(bytes[i]);
                     }
 
                     var b64 = btoa(binary);
-                    
+
                     // var raw = String.fromCharCode.apply(null, items[i].img.data.data)
 
                     // var b64=btoa(raw)
