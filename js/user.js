@@ -285,7 +285,7 @@ checkUserForReview();
 // check who the user is and whether to display the review
 function checkUserForReview() {
     var reviewerID = localStorage.getItem("curUserID");
-    console.log()
+    console.log(reviewerID + " " + reviewID); 
     if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
 }
 
