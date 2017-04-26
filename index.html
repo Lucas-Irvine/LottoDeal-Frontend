@@ -65,14 +65,16 @@
                         <a id = "sell"  class="sliding-middle-out" href="sell.html">Sell</a>
                     </li>
                     <li id="notification_li">
-                        <a href="#" id="notifications" class="sliding-middle-out" >Notifications &nbsp; &nbsp; <span id="notification_count">1 {{notifications.length}}</span>
+                        <a href="#" id="notifications" class="sliding-middle-out" >Notifications &nbsp; &nbsp; <span id="notification_count">{{notifications.length}}</span>
                         </a>
 
                         <div id="notificationContainer">
                             <div id="notificationTitle"> Notifications </div>
                             <div id="notificationsBody" class="notifications">
+                                <div ng-repeat="notification in notifications>
                                 <h4 class="item-title">{{notification.title}}</h4>
                                 <p class="item-info">{{notification.description}}</p>
+                                </div>
                             </div>
                             <div id="notificationFooter"><a href="#">See All</a></div>
                         </div>
