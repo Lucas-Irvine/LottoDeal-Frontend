@@ -35,6 +35,8 @@ function createReviewFunction() {
         var reviewerID = localStorage.getItem("curUserID");
         console.log(stars)
 
+        if (stars != 0) {
+
             console.log("posting a review NOW!")
             data = {
              sellerID: sellerID,
@@ -56,6 +58,10 @@ function createReviewFunction() {
                  console.log(error)
              }
          });
+        }
+        else {
+            alert("Please select the number of stars")
+        }
         
 
 

@@ -236,30 +236,22 @@
     <input type="radio" id="star2" name="rating" value="2" onclick = "changeStars(2)"/><label for="star2" >2 stars</label>
     <input type="radio" id="star1" name="rating" value="1" onclick = "changeStars(1)"/><label for="star1" >1 star</label>
 </div>
+<br>
+<br>
 
-
-
-
+<br>
                   <!-- Text input-->
                   <div class="form-group">
-                      <label class="col-md-4 control-label" for="coinspershift">Stars</label>  
-                      <div class="col-md-2">
-                          <input id="stars" name="coinspershift" type="number" min = "0" max = "5" class="form-control input-md" required>
-                      </div>
-                  </div>
-
-                  <!-- Text input-->
-                  <div class="form-group">
-                      <label class="col-md-4 control-label" for="coinspershift">Review Description</label>  
-                      <div class="col-md-2">
-                          <input id="reviewDes" name="coinspershift" type="text" placeholder="" class="form-control input-md" required >
+                      <label for="coinspershift">Review Description</label>  
+                      <div >
+                          <input id="reviewDes" name="coinspershift" type="text" placeholder="Your Review Description Here" class="form-control input-md" required>
                       </div>
                   </div>
 
                   <!-- Button (Double) -->
                   <div class="form-group">
-                      <label class="col-md-4 control-label" for="button1id">Create Review</label>
-                      <div class="col-md-8">
+                      <label  for="button1id">Create Review</label>
+                      <div >
                         <button id="button1id" type = "submit" value = "Create" name="button1id" class="btn btn-success">Create</button>
                         <button id="button2id" name="button2id" type = "reset" class="btn btn-danger">Cancel</button>
                     </div>
