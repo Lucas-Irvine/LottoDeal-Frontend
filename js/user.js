@@ -10,12 +10,17 @@ $(document).ready(function() {
 var reviewID;
 
 
+checkUserForReview();
+// check who the user is and whether to display the review
+function checkUserForReview() {
+    var reviewerID = localStorage.getItem("curUserID");
+    if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
+}
+
 // change the number of stars selected
 function changeStars(stars) {
     $('#numStars').val(stars);
 }
-
-
 
 
 function createReviewFunction() {
