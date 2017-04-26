@@ -225,7 +225,7 @@
                             <div class="video-frame">
                                 <iframe src="https://player.vimeo.com/video/67938315" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
-                            <p>{{post.descrip}}testtest</p>
+                            <p>{{post.shortDescription}}</p>
                             <h2>${{post.amountRaised}}</h2>                            
                             <span class="contribution">of <strong>${{post.price}}</strong> raised</span>
                             <div class="progress">
@@ -257,9 +257,8 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="about">
                                 <div class="about-information">
-                                    <h1 class="section-title">ABOUT LAUNCH</h1>
-                                    <p>Suspendisse luctus at massa sit amet bibendum. Cras commodo congue urna, vel dictum velit bibendum eget. Vestibulum quis risus euismod, facilisis lorem nec, dapibus leo. Quisque sodales eget dolor iaculis dapibus. Vivamus sit amet lacus ipsum. Nullam varius lobortis neque, et efficitur lacus. Quisque dictum tellus nec mi luctus imperdiet. Morbi vel aliquet velit, accumsan dapibus urna. Cras ligula orci, suscipit id eros non, rhoncus efficitur nisi.</p>
-                                    <p>Quisque fermentum blandit ex at commodo. Nulla facilisi. Pellentesque porttitor nisi tellus, at gravida mi interdum et. Nulla vestibulum imperdiet libero eget mattis. Vestibulum porttitor, nibh quis sagittis tincidunt, velit orci molestie magna, in congue tortor mauris sit amet eros. Nam dictum gravida tempus.</p>
+                                    <h1 class="section-title">ABOUT {{post.titleUppercase}}</h1>
+                                    <p>{{post.shortDescription}}</p>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="updates">

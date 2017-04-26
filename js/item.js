@@ -38,9 +38,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             var date = new Date();
             parsed.hoursToGo = DateDiff.inHours(date, expirationDate)
             parsed.daysToGo = DateDiff.inDays(date, expirationDate)
-
-
-
+            parsed.titleUppercase = parsed.title.toUpperCase();
 
 
             var image = parsed.img;
