@@ -79,6 +79,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     function getAccountInfo() {
 
                     var item = items[counter];
+                    console.log(item.length);
 
                     console.log(item + "this is the item")
 

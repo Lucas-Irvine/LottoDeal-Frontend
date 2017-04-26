@@ -610,13 +610,11 @@ label.star {
   padding: 10px;
   font-size: 36px;
   color: #444;
-  transition: all .2s;
 }
 
 input.star:checked ~ label.star:before {
   content: '\f005';
   color: #FD4;
-  transition: all .25s;
 }
 
 label.star:before {
