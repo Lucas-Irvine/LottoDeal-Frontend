@@ -175,10 +175,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             }
 
 
-
             $("#loading-icon").hide();
-
-
             $scope.$apply()
             },
             error: function(response, error) {
