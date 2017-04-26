@@ -621,5 +621,4 @@ input.star:checked ~ label.star:before {
 
 label.star:before {
   content: '\f006';
-  font-family: FontAwesome;
 }
