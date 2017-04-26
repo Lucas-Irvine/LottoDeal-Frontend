@@ -1,5 +1,11 @@
 var app = angular.module("item_app", ["ngRoute"])
 
+$('#myTabs a').click(function(e) {
+    console.log('tab clicked');
+    e.preventDefault()
+    $(this).tab('show')
+});
+
 app.controller("itemController", ["$scope", "$rootScope", "$location", "$routeParams", function($scope, $rootScope, $location, $routeParams) {
     var searchObject = $location.search();
     var id = searchObject['id'];
@@ -17,7 +23,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         url: url,
         type: 'GET',
         data: {
-        	id: id
+            id: id
         },
         success: function(data) {
             console.log(data)
@@ -27,7 +33,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
             // amount raised
             parsed.percentageRaised = (Number(parsed.amountRaised) / Number(parsed.price)) * 100;
-            console.log( "Raised" + parsed.percentageRaised);
+            console.log("Raised" + parsed.percentageRaised);
             var expirationDate = new Date(parsed.expirationDate);
             var date = new Date();
             parsed.expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
@@ -37,15 +43,14 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
             var image = parsed.img;
             if (image == null) {
-            	parsed["src"] = "http://placehold.it/320x150"
-            }
-            else {
-            	// console.log(parsed)
-             //    console.log(parsed.img)
+                parsed["src"] = "http://placehold.it/320x150"
+            } else {
+                // console.log(parsed)
+                //    console.log(parsed.img)
 
                 var raw = String.fromCharCode.apply(null, parsed.img.data.data)
 
-                var b64=btoa(raw)
+                var b64 = btoa(raw)
                 var dataURL = "data:image/jpeg;base64," + b64;
 
                 parsed["src"] = dataURL;
@@ -62,9 +67,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             $scope.$apply();
         },
         error: function(response, error) {
-          console.log(response)
-          console.log(error)
-      }
+            console.log(response)
+            console.log(error)
+        }
     });
 
 
@@ -79,26 +84,26 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
     //Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
-	var DateDiff = {
+    var DateDiff = {
 
-	    inHours: function(d1, d2) {
-	        var t2 = d2.getTime();
-	        var t1 = d1.getTime();
-	        if (t2 == null || t1 == null) {
-	            return 0
-	        }
-	        return (parseInt((t2-t1)/(3600*1000))) % 24;
-	    },
+        inHours: function(d1, d2) {
+            var t2 = d2.getTime();
+            var t1 = d1.getTime();
+            if (t2 == null || t1 == null) {
+                return 0
+            }
+            return (parseInt((t2 - t1) / (3600 * 1000))) % 24;
+        },
 
-	    inDays: function(d1, d2) {
-	        var t2 = d2.getTime();
-	        var t1 = d1.getTime();
-	        if (t2 == null || t1 == null) {
-	            return 0
-	        }
-	        return parseInt((t2-t1)/(24*3600*1000));
-	    }
-	};
+        inDays: function(d1, d2) {
+            var t2 = d2.getTime();
+            var t1 = d1.getTime();
+            if (t2 == null || t1 == null) {
+                return 0
+            }
+            return parseInt((t2 - t1) / (24 * 3600 * 1000));
+        }
+    };
 
 
     // console.log($routeParams)
@@ -107,5 +112,4 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     // console.log(searchObject);
 
     // console.log($location.search('id'));
-}]) 
-
+}])
