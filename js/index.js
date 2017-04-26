@@ -58,88 +58,15 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
     // AJAX POST TO SERVERg]
 
 
-
+    $scope.accounts = []
 
     $("#loading-icon").show()
     $.ajax({
         url: url,
         type: 'GET',
         success: function(data) {
-            var accountsArray = []
             var items = JSON.parse(data)
-
-
-
-
-
-                    $scope.accounts = []
-                    var counter = 0;
-                    getAccountInfo();
-
-                    function getAccountInfo() {
-
-                    var item = items[counter];
-                    console.log(item.length);
-
-                    console.log(item + "this is the item")
-
-
-                     // AJAX get TO SERVER for account
-                     var newurl = "https://localhost:8000/getAccount";
-                     var newuserID = item.sellerID
-                     var newdataGET = {
-                        userID: newuserID
-                    }
-                    console.log('Asking for account info for each seller')
-
-                    $.ajax({
-                        url: newurl,
-                        data: newdataGET,
-                        type: 'GET',
-                        async: true,
-                        success: function (data) {
-                            var account = JSON.parse(data);
-                            console.log(account)
-                            var reviews = account.reviews;
-                            var length = reviews.length;
-                            var total = 0; 
-                            var average = 0;
-                            var averageRounded = 0;
-                            if (length != 0) {
-                                var total = 0; 
-                                for (var i = 0; i < length; i++) {
-                                    total += parseInt(reviews[i].stars);
-                                }
-
-                                var average = total/length;
-                                var averageRounded = Math.round(average*10)/10
-                            }
-
-                            var account = {
-                                averageRating : averageRounded,
-                            }
-                            $scope.accounts.push(account);
-                            console.log($scope.accounts + "Hello this is the average rating for a user")
-                            $scope.$apply()
-                            counter++;
-                            if (counter < $scope.posts.length) {
-                                getAccountInfo;
-                            }
-                        },
-                        error: function (response, error) {
-                            console.log(response)
-                            console.log(error)
-                        }
-                    });
-                }
-
-
-
-
-
-
             for (i = 0; i < items.length; i++) {
-
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
                 // console.log( "Raised" + items[i].percentageRaised);
                 var expirationDate = new Date(items[i].expirationDate);
@@ -152,15 +79,14 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
                 }
                 else {
-                    // console.log(items[i])
-                    // console.log(items[i].img.data)
-
-                    var binary = '';
-                    var bytes = new Uint8Array(items[i].img.data.data);
-                    var len = bytes.byteLength;
-                    for (var j = 0; j < len; j++) {
-                        binary += String.fromCharCode(bytes[j]);
-                    }
+                    // WORKING SNIPPET
+                    // var binary = '';
+                    // var bytes = new Uint8Array(items[i].img.data.data);
+                    // var len = bytes.byteLength;
+                    // for (var j = 0; j < len; j++) {
+                    //     binary += String.fromCharCode(bytes[j]);
+                    // }
+                    // END WORKING SNIPPET
 
 
                     // NOTE: EITHER ONE OF THE BELOW LINES WORK, SHOULD BE TESTED FOR SPEED
@@ -178,27 +104,87 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
                     // items[i]["src"] = items[i].img.data.data;
                 }
-
-                // console.log(items[i])
-                //items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
-
-
+            }
+            $scope.posts = items;
+            console.log($scope.posts)
 
 
+            // TRY TO GET ALL REVIEWS OF USERS - can this be param of post?
+            var accountsArray = []
+            $scope.accounts = []
+            var counter = 0;
+            getAccountInfo();
+
+            function getAccountInfo() {
+                var item = items[counter];
+                if (item != null)
+
+                console.log(item.length);
+
+                console.log(item + "this is the item")
+
+                 // AJAX get TO SERVER for account
+                 var newurl = "https://localhost:8000/getAccount";
+                 var newuserID = item.sellerID
+                 var newdataGET = {
+                    userID: newuserID
+                }
+                console.log('Asking for account info for each seller')
+
+                $.ajax({
+                    url: newurl,
+                    data: newdataGET,
+                    type: 'GET',
+                    async: true,
+                    success: function (data) {
+                        var account = JSON.parse(data);
+                        console.log(account)
+                        var reviews = account.reviews;
+                        var length = reviews.length;
+                        var total = 0; 
+                        var average = 0;
+                        var averageRounded = 0;
+                        if (length != 0) {
+                            var total = 0; 
+                            for (var i = 0; i < length; i++) {
+                                total += parseInt(reviews[i].stars);
+                            }
+
+                            var average = total/length;
+                            var averageRounded = Math.round(average*10)/10
+                        }
+
+                        var account = {
+                            averageRating : averageRounded,
+                        }
+                        $scope.accounts.push(account);
+                        // console.log($scope.accounts + "Hello this is the average rating for a user")
+                        console.log($scope.accounts);
+                        $scope.$apply()
+                        counter++;
+                        if (counter < $scope.posts.length) {
+                            getAccountInfo; // is this called?
+                        }
+                    },
+                    error: function (response, error) {
+                        console.log(response)
+                        console.log(error)
                     }
-                    $scope.posts = items;
-                    console.log($scope.posts)
-
-                    $("#loading-icon").hide();
+                });
+            }
 
 
-                    $scope.$apply()
-                },
-                error: function(response, error) {
-                  console.log(response)
-                  console.log(error)
-              }
-          });
+
+            $("#loading-icon").hide();
+
+
+            $scope.$apply()
+            },
+            error: function(response, error) {
+              console.log(response)
+              console.log(error)
+          }
+      });
 
     // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
@@ -712,7 +698,7 @@ function saveUserData(response) {
 function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
         function (response) {
-            
+
             // document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
             // document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>Locale:</b> '+response.locale+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';
 
