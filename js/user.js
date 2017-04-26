@@ -81,6 +81,15 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
     reviewID = id;
 
+    var reviewerID = localStorage.getItem("curUserID");
+    console.log(reviewerID + " " + reviewID); 
+    if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
+
+
+
+
+
+
     $scope.selectedTab = 0
 
     $scope.bids = []
@@ -280,14 +289,6 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
 }])
 
-
-checkUserForReview();
-// check who the user is and whether to display the review
-function checkUserForReview() {
-    var reviewerID = localStorage.getItem("curUserID");
-    console.log(reviewerID + " " + reviewID); 
-    if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
-}
 
 //Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
 var DateDiff = {
