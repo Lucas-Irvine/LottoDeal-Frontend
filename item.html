@@ -226,17 +226,20 @@
                                 <iframe src="https://player.vimeo.com/video/67938315" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                             <p>{{post.description}}</p>
-                            <h2>$10,350</h2>                            
-                            <span class="contribution">raised by <strong>5,234</strong> ready to launch</span>
+                            <h2>${{post.amountRaised}}</h2>                            
+                            <span class="contribution">of <strong>${{post.price}}</strong> raised</span>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:{{post.percentageRaised}}%">
                                     <span class="sr-only">45% Complete</span>
                                 </div>
                             </div>
-                            <span class="goal-progress"><strong>45%</strong> of $23,000 raised</span>
+
                         </div>
                         <span class="count-down"><strong>{{post.hoursToGo}}</strong> Hours <strong>{{post.daysToGo}}</strong>Days left</span>
-                        <a href="#" class="btn btn-launch">HELP LAUNCH</a>
+                         <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
+                        <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
+                        <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
+
                     </div>
                    
                     <!--tabs-->
@@ -289,9 +292,9 @@
                 <!--sidebar-->
                 <div class="content col-md-4 col-sm-12 col-xs-12">
                     <div class="section-block summary">
-                        <h1 class="section-title">Share on Social Media</h1>
+                        <h1 class="section-title">Want to sell your own item?</h1>
                         <div class="profile-contents">
-                            <h2 class="position">Sky Rocketing Your Funding Campaign</h2>
+                            <h2 class="position">Get quick $$$ and have fun doing it</h2>
                             <img src="profile-img.jpg" class="profile-image img responsive" alt="John Doe">
                             <!--social links-->
                             <ul class="list-inline">
@@ -299,7 +302,7 @@
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             </ul>
                             <!--/social links-->
-                            <a href="#" class="btn btn-contact"><i class="fa fa-envelope"></i>CONTACT US</a>
+                            <a href="sell.html" class="btn btn-contact"><i class="fa fa-envelope"></i>SELL</a>
                         </div>
                     </div>
                    <div class="section-block">
