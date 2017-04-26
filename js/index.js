@@ -141,7 +141,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             for (i = 0; i < items.length; i++) {
 
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
-                console.log( "Raised" + items[i].percentageRaised);
+                // console.log( "Raised" + items[i].percentageRaised);
                 var expirationDate = new Date(items[i].expirationDate);
                 var date = new Date();
                 items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
@@ -152,8 +152,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
                 }
                 else {
-                    console.log(items[i])
-                    console.log(items[i].img.data)
+                    // console.log(items[i])
+                    // console.log(items[i].img.data)
 
                     var binary = '';
                     var bytes = new Uint8Array(items[i].img.data.data);
@@ -179,7 +179,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     // items[i]["src"] = items[i].img.data.data;
                 }
 
-                console.log(items[i])
+                // console.log(items[i])
                 //items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
 
 
