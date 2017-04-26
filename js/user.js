@@ -10,9 +10,9 @@ $(document).ready(function() {
 var reviewID;
 
 
+// change the number of stars selected
 function changeStars(stars) {
     $('#numStars').val(stars);
-    console.log($("#numStars").val());
 }
 
 
@@ -27,28 +27,11 @@ function createReviewFunction() {
 
     var url = "https://localhost:8000/createReview";
 
-
-        var numStars = $("#numStars").val();
-
-        var stars5 = $("#star-5").val();
-        var stars4 = $("#star-4").val();
-        var stars3 = $("#star-3").val();
-        var stars2 = $("#star-2").val();        
-        var stars1 = $("#star-1").val();
-        console.log(stars5 + stars4 + stars3 + stars2 + stars1);
-
-        if (stars5 == "on") numStars = 5;
-        else if (stars4 == "on") numStars = 4;
-        else if (stars3 == "on") numStars = 3;
-        else if (stars2 == "on") numStars = 2;
-        else if (stars1 == "on") numStars = 1;
-        else numStars = 0;       
-
         console.log(numStars);
 
         var sellerID = reviewID;
         var reviewDes = $("#reviewDes").val();
-        var stars = $("#stars").val();
+        var stars = $("#numStars").val(); 
         var reviewerID = localStorage.getItem("curUserID");
         console.log(stars)
 
