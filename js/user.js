@@ -33,7 +33,7 @@ function createReviewFunction() {
         else if (stars1 == "on") numStars = 1;
         else numStars = 0;       
 
-        console.log(typeof(stars5));
+        console.log(numStars);
 
         var sellerID = reviewID;
         var reviewDes = $("#reviewDes").val();
