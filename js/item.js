@@ -78,7 +78,45 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
 
+    $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
+        console.log('initiating bid');
+        $scope.price = price;
+        $scope.amountToCharge = amount;
+        $scope.itemID = itemID
+        $scope.itemTitle = itemTitle
+        $scope.amountRaised = amountRaised
+        if (price >= amountRaised + amount) {
+            handler.open({
+                name: 'LottoDeal',
+                description: 'Bid on ' + itemTitle,
+                amount: amount * 100
+            });
+        } else {
+            console.log('Bid overpasses item price!');
+            BootstrapDialog.show({
+                title: 'Bid surpasses item price',
+                message: 'Choose a lower bid or search for similar items',
+                buttons: [{
+                    id: 'btn-ok',
+                    icon: 'glyphicon glyphicon-check',
+                    label: 'OK',
+                    cssClass: 'btn-primary',
+                    data: {
+                        js: 'btn-confirm',
+                        'user-id': '3'
+                    },
+                    autospin: false,
+                    action: function(dialogRef) {
+                        dialogRef.close();
+                    }
+                }]
+            });
 
+        }
+
+
+
+    }
 
 
 
