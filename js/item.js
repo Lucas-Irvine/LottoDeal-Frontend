@@ -78,7 +78,59 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
 
-    
+    var handler = StripeCheckout.configure({
+        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+        locale: 'auto',
+        token: function(token) {
+            console.log('attempting stripe payment')
+            var userID = localStorage.getItem("curUserID")
+            var amountToCharge = $scope.amountToCharge;
+            var itemTitle = $scope.itemTitle;
+            var itemID = $scope.itemID;
+            var amountRaised = $scope.amountRaised;
+            var price = $scope.price;
+
+            if (userID != null) {
+                data = {
+                    itemID: itemID,
+                    itemTitle: itemTitle,
+                    userID: userID,
+                    stripeToken: token.id,
+                    amount: Number(amountToCharge)
+                }
+                $.ajax({
+                    url: 'https://localhost:8000/performPaymentAndAddBid',
+                    data: data,
+                    type: 'POST',
+                    success: function(data) {
+                        console.log('success payment and bid added')
+                        console.log(data);
+
+
+                        post = $scope.post
+                        console.log(itemID)
+                        if (post["_id"] == itemID) {
+                            var newPrice = post.amountRaised + amountToCharge;
+                            post.amountRaised = newPrice;
+                            post.percentageRaised = (newPrice / post.price) * 100;
+                            break;
+                        }
+
+                        $scope.$apply()
+
+                    },
+                    error: function(response, error) {
+                        console.log(response)
+                        console.log(error)
+                    }
+                });
+
+            } else {
+                console.log('UserID is null')
+            }
+        }
+    });
 
 
 
