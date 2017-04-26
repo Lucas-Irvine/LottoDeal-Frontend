@@ -19,7 +19,21 @@ function createReviewFunction() {
 
 
     var url = "https://localhost:8000/createReview";
+        var numStars;
+        var stars5 = $("#star-5").val();
+        var stars4 = $("#star-4").val();
+        var stars3 = $("#star-3").val();
+        var stars2 = $("#star-2").val();        
+        var stars1 = $("#star-1").val();
 
+        if (stars5 == "on") numStars = 5;
+        else if (stars4 == "on") numStars = 4;
+        else if (stars3 == "on") numStars = 3;
+        else if (stars2 == "on") numStars = 2;
+        else if (stars1 == "on") numStars = 1;
+        else numStars = 0;       
+
+        console.log(typeof(stars5));
 
         var sellerID = reviewID;
         var reviewDes = $("#reviewDes").val();
