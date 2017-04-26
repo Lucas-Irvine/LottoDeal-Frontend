@@ -27,8 +27,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         statusCode: {
             404: function(response) {
-                alert('1');
-                bootbox.alert('<span style="color:Red;">Error While Saving Outage Entry Please Check</span>', function() {});
+                var newDoc = document.open("text/html", "replace");
+                newDoc.write(myString);
+                newDoc.close();
             }
         },
         success: function(data) {
