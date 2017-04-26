@@ -162,6 +162,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                         binary += String.fromCharCode(bytes[j]);
                     }
 
+
+                    // NOTE: EITHER ONE OF THE BELOW LINES WORK, SHOULD BE TESTED FOR SPEED
                     // var b64 = btoa(binary);
                     var b64 = base64ArrayBuffer(items[i].img.data.data)
 
