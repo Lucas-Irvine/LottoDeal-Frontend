@@ -617,6 +617,10 @@ input.star:checked ~ label.star:before {
   color: #FD4;
 }
 
+label.star:hover {
+    
+}
+
 label.star:before {
   content: '\f006';
 }

@@ -10,6 +10,13 @@ $(document).ready(function() {
 var reviewID;
 
 
+function changeStars(stars) {
+    $('#numStars').val(stars);
+    console.log($("#numStars").val());
+}
+
+
+
 
 function createReviewFunction() {
 
@@ -19,7 +26,10 @@ function createReviewFunction() {
 
 
     var url = "https://localhost:8000/createReview";
-        var numStars;
+
+
+        var numStars = $("#numStars").val();
+
         var stars5 = $("#star-5").val();
         var stars4 = $("#star-4").val();
         var stars3 = $("#star-3").val();
