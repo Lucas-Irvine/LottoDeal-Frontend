@@ -107,16 +107,16 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                         console.log('success payment and bid added')
                         console.log(data);
 
-                        for (var i = 0; i < $scope.posts.length; i++) {
-                            post = $scope.posts[i]
-                            console.log(itemID)
-                            if (post["_id"] == itemID) {
-                                var newPrice = post.amountRaised + amountToCharge;
-                                post.amountRaised = newPrice;
-                                post.percentageRaised = (newPrice / post.price) * 100;
-                                break;
-                            }
+
+                        post = $scope.post
+                        console.log(itemID)
+                        if (post["_id"] == itemID) {
+                            var newPrice = post.amountRaised + amountToCharge;
+                            post.amountRaised = newPrice;
+                            post.percentageRaised = (newPrice / post.price) * 100;
+                            break;
                         }
+
                         $scope.$apply()
 
                         // DISPLAY BID ON FRONT-END
