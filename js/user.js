@@ -25,6 +25,7 @@ function createReviewFunction() {
         var stars3 = $("#star-3").val();
         var stars2 = $("#star-2").val();        
         var stars1 = $("#star-1").val();
+        console.log(stars5 + stars4 + stars3 + stars2 + stars1);
 
         if (stars5 == "on") numStars = 5;
         else if (stars4 == "on") numStars = 4;
