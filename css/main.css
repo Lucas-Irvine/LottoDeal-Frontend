@@ -659,67 +659,6 @@ textarea:-ms-input-placeholder {
 }
 
 
-/* for the reviews stars */
-
-
-.ratingStatic {
-    float:left;
-
-}
-
-/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
-   follow these rules. Every browser that supports :checked also supports :not(), so
-   it doesn’t make the test unnecessarily selective */
-.ratingStatic:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-    clip:rect(0,0,0,0);
-}
-
-.ratingStatic:not(:checked) > label {
-    float:right;
-    width:1em;
-    padding:0 .1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:200%;
-    line-height:1.2;
-    color:#ddd;
-    
-}
-
-.ratingStatic:not(:checked) > label:before {
-    content: '★ ';
-}
-
-.ratingStatic > input:checked ~ label {
-    color: #f70;
-    
-}
-
-.ratingStatic:not(:checked) > label:hover,
-.ratingStatic:not(:checked) > label:hover ~ label {
-    color: gold;
- 
-}
-
-.ratingStatic > input:checked + label:hover,
-.ratingStatic > input:checked + label:hover ~ label,
-.ratingStatic > input:checked ~ label:hover,
-.ratingStatic > input:checked ~ label:hover ~ label,
-.ratingStatic > label:hover ~ input:checked ~ label {
-    color: #ea0;
-
-}
-
-.ratingStatic > label:active {
-    position:relative;
-    top:2px;
-    left:2px;
-}
-
-
 /* Start item page CSS */
 
 
