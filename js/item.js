@@ -27,9 +27,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         statusCode: {
             404: function(response) {
-                // var newDoc = document.open("text/html", "replace");
-                // newDoc.write(myString);
-                // newDoc.close();
+                var newDoc = document.open("text/html", "replace");
+                newDoc.write(myString);
+                newDoc.close();
             }
         },
         success: function(data) {
@@ -78,7 +78,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
 
-    /* ADD BID FUNCTIONALITY HERE */
     var handler = StripeCheckout.configure({
         key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
         image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
@@ -115,32 +114,10 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                             var newPrice = post.amountRaised + amountToCharge;
                             post.amountRaised = newPrice;
                             post.percentageRaised = (newPrice / post.price) * 100;
-                            break;
                         }
 
                         $scope.$apply()
 
-                        // DISPLAY BID ON FRONT-END
-                        // var progressbar = $("#progress-bar-" + itemID)
-                        // // console.log(progressbar)
-                        // var currentAmount = progressbar.css("width")
-                        // // console.log(currentAmount)
-                        // var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
-                        // var percentage = progressbar.width() / progressbar.parent().width() * 100
-                        // var newAmount = parseInt(amountRaised) + parseInt(amountToCharge)
-                        // // console.log(newAmount)
-                        // var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
-                        // // console.log(newPercent)
-                        // // var newWidth = progressbar.parent().width() * newPercent
-                        // var newWidth = totalWidth * newPercent
-                        // // console.log("newwidth: " + newWidth)
-                        // var pixelWidth = ""  + newWidth + "px"
-                        // progressbar.css("width", pixelWidth)
-
-                        // // change the amount raised
-                        // var amountText = $("#amountRaised-" + itemID)
-                        // // console.log(amountText)
-                        // amountText.text("$" + newAmount + " of $" + price + " raised")
                     },
                     error: function(response, error) {
                         console.log(response)
@@ -151,9 +128,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             } else {
                 console.log('UserID is null')
             }
-
-
-
         }
     });
 
