@@ -27,9 +27,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         statusCode: {
             404: function(response) {
-                // var newDoc = document.open("text/html", "replace");
-                // newDoc.write(myString);
-                // newDoc.close();
+                var newDoc = document.open("text/html", "replace");
+                newDoc.write(myString);
+                newDoc.close();
             }
         },
         success: function(data) {
