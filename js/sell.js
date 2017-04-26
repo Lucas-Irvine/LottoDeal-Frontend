@@ -8,10 +8,12 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 	var searchObject = $location.search();
 	var value = searchObject["value"]
+	console.log('test');
 	if (value == null) {
 		console.log("No value returned");
 	}
 	else {
+		console.log(value);
 		console.log("Successful item creation!");
 		$("#postCreatedModal").modal()
 	}

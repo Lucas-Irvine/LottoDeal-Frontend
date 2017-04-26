@@ -172,13 +172,13 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h2 class="display-3">Let's Get Selling</h2>
-    <p class="lead">It's as easy as filling this form and boom, we'll lottery it for you ;)</p>
+    <p class="lead">It's as easy as filling this form - we'll take care of the rest!</p>
   </div>
 </div>
   <form id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" >
     <div class="form-group">
       <label for="example-text-input">Title</label>
-      <input required id="title" name="title" type="text" class="form-control" id="exampleInput" aria-describedby="emailHelp" placeholder="Enter Product Name">
+      <input required id="title" name="title" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Product Name">
     </div>
     <div class="form-group">
       <label for="exampleInput">Price</label>
@@ -209,14 +209,21 @@
   <label>To Sell Item</label>
     </div>
 
+
+     <div class="form-group">
+      <label for="example-text-input">test</label>
+      <input required id="shortDescription" name="shortDescription" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Product test Name">
+    </div>
+
     <div class="form-group">
       <label for="exampleTextarea">Product Summary</label>
-      <textarea name="description" class="form-control" id="shortDescription" rows="3"
-      placeholder="Max 100 characters" required maxlength="100"></textarea>
+      <textarea required id="shortDescription" type="text" name="shortDescription" class="form-control"  rows="3"
+      placeholder="Max 100 characters" maxlength="100"></textarea>
     </div>
+
     <div class="form-group">
       <label for="exampleTextarea">Product Description</label>
-      <textarea name="description" class="form-control" id="longDescription" rows="3"
+      <textarea name="longDescription" class="form-control" id="longDescription" rows="3"
       placeholder="Describe The Product" required></textarea>
     </div>
 
