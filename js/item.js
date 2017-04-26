@@ -25,11 +25,15 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         data: {
             id: id
         },
+        statusCode: {
+            404: function(response) {
+                alert('1');
+                bootbox.alert('<span style="color:Red;">Error While Saving Outage Entry Please Check</span>', function() {});
+            }
+        },
         success: function(data) {
-            console.log(data)
             console.log(data["_id"])
             var parsed = JSON.parse(data)
-            console.log(parsed)
 
             // amount raised
             parsed.percentageRaised = (Number(parsed.amountRaised) / Number(parsed.price)) * 100;
@@ -74,7 +78,83 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
     /* ADD BID FUNCTIONALITY HERE */
+    var handler = StripeCheckout.configure({
+        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+        locale: 'auto',
+        token: function(token) {
+            console.log('attempting stripe payment')
+            var userID = localStorage.getItem("curUserID")
+            var amountToCharge = $scope.amountToCharge;
+            var itemTitle = $scope.itemTitle;
+            var itemID = $scope.itemID;
+            var amountRaised = $scope.amountRaised;
+            var price = $scope.price;
 
+            if (userID != null) {
+                data = {
+                    itemID: itemID,
+                    itemTitle: itemTitle,
+                    userID: userID,
+                    stripeToken: token.id,
+                    amount: Number(amountToCharge)
+                }
+                $.ajax({
+                    url: 'https://localhost:8000/performPaymentAndAddBid',
+                    data: data,
+                    type: 'POST',
+                    success: function(data) {
+                        console.log('success payment and bid added')
+                        console.log(data);
+
+                        for (var i = 0; i < $scope.posts.length; i++) {
+                            post = $scope.posts[i]
+                            console.log(itemID)
+                            if (post["_id"] == itemID) {
+                                var newPrice = post.amountRaised + amountToCharge;
+                                post.amountRaised = newPrice;
+                                post.percentageRaised = (newPrice / post.price) * 100;
+                                break;
+                            }
+                        }
+                        $scope.$apply()
+
+                        // DISPLAY BID ON FRONT-END
+                        // var progressbar = $("#progress-bar-" + itemID)
+                        // // console.log(progressbar)
+                        // var currentAmount = progressbar.css("width")
+                        // // console.log(currentAmount)
+                        // var totalWidth = (parseInt(currentAmount.substring(0, currentAmount.length - 2)) * parseInt(price)) / parseInt(amountRaised)
+                        // var percentage = progressbar.width() / progressbar.parent().width() * 100
+                        // var newAmount = parseInt(amountRaised) + parseInt(amountToCharge)
+                        // // console.log(newAmount)
+                        // var newPercent = ((newAmount * 1.0) / (parseInt(price) * 1.0))
+                        // // console.log(newPercent)
+                        // // var newWidth = progressbar.parent().width() * newPercent
+                        // var newWidth = totalWidth * newPercent
+                        // // console.log("newwidth: " + newWidth)
+                        // var pixelWidth = ""  + newWidth + "px"
+                        // progressbar.css("width", pixelWidth)
+
+                        // // change the amount raised
+                        // var amountText = $("#amountRaised-" + itemID)
+                        // // console.log(amountText)
+                        // amountText.text("$" + newAmount + " of $" + price + " raised")
+                    },
+                    error: function(response, error) {
+                        console.log(response)
+                        console.log(error)
+                    }
+                });
+
+            } else {
+                console.log('UserID is null')
+            }
+
+
+
+        }
+    });
 
 
 
@@ -165,53 +245,53 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 function base64ArrayBuffer(arrayBuffer) {
-  var base64    = ''
-  var encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    var base64 = ''
+    var encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 
-  var bytes         = new Uint8Array(arrayBuffer)
-  var byteLength    = bytes.byteLength
-  var byteRemainder = byteLength % 3
-  var mainLength    = byteLength - byteRemainder
+    var bytes = new Uint8Array(arrayBuffer)
+    var byteLength = bytes.byteLength
+    var byteRemainder = byteLength % 3
+    var mainLength = byteLength - byteRemainder
 
-  var a, b, c, d
-  var chunk
+    var a, b, c, d
+    var chunk
 
-  // Main loop deals with bytes in chunks of 3
-  for (var i = 0; i < mainLength; i = i + 3) {
-    // Combine the three bytes into a single integer
-    chunk = (bytes[i] << 16) | (bytes[i + 1] << 8) | bytes[i + 2]
+    // Main loop deals with bytes in chunks of 3
+    for (var i = 0; i < mainLength; i = i + 3) {
+        // Combine the three bytes into a single integer
+        chunk = (bytes[i] << 16) | (bytes[i + 1] << 8) | bytes[i + 2]
 
-    // Use bitmasks to extract 6-bit segments from the triplet
-    a = (chunk & 16515072) >> 18 // 16515072 = (2^6 - 1) << 18
-    b = (chunk & 258048)   >> 12 // 258048   = (2^6 - 1) << 12
-    c = (chunk & 4032)     >>  6 // 4032     = (2^6 - 1) << 6
-    d = chunk & 63               // 63       = 2^6 - 1
+        // Use bitmasks to extract 6-bit segments from the triplet
+        a = (chunk & 16515072) >> 18 // 16515072 = (2^6 - 1) << 18
+        b = (chunk & 258048) >> 12 // 258048   = (2^6 - 1) << 12
+        c = (chunk & 4032) >> 6 // 4032     = (2^6 - 1) << 6
+        d = chunk & 63 // 63       = 2^6 - 1
 
-    // Convert the raw binary segments to the appropriate ASCII encoding
-    base64 += encodings[a] + encodings[b] + encodings[c] + encodings[d]
-  }
+        // Convert the raw binary segments to the appropriate ASCII encoding
+        base64 += encodings[a] + encodings[b] + encodings[c] + encodings[d]
+    }
 
-  // Deal with the remaining bytes and padding
-  if (byteRemainder == 1) {
-    chunk = bytes[mainLength]
+    // Deal with the remaining bytes and padding
+    if (byteRemainder == 1) {
+        chunk = bytes[mainLength]
 
-    a = (chunk & 252) >> 2 // 252 = (2^6 - 1) << 2
+        a = (chunk & 252) >> 2 // 252 = (2^6 - 1) << 2
 
-    // Set the 4 least significant bits to zero
-    b = (chunk & 3)   << 4 // 3   = 2^2 - 1
+        // Set the 4 least significant bits to zero
+        b = (chunk & 3) << 4 // 3   = 2^2 - 1
 
-    base64 += encodings[a] + encodings[b] + '=='
-  } else if (byteRemainder == 2) {
-    chunk = (bytes[mainLength] << 8) | bytes[mainLength + 1]
+        base64 += encodings[a] + encodings[b] + '=='
+    } else if (byteRemainder == 2) {
+        chunk = (bytes[mainLength] << 8) | bytes[mainLength + 1]
 
-    a = (chunk & 64512) >> 10 // 64512 = (2^6 - 1) << 10
-    b = (chunk & 1008)  >>  4 // 1008  = (2^6 - 1) << 4
+        a = (chunk & 64512) >> 10 // 64512 = (2^6 - 1) << 10
+        b = (chunk & 1008) >> 4 // 1008  = (2^6 - 1) << 4
 
-    // Set the 2 least significant bits to zero
-    c = (chunk & 15)    <<  2 // 15    = 2^4 - 1
+        // Set the 2 least significant bits to zero
+        c = (chunk & 15) << 2 // 15    = 2^4 - 1
 
-    base64 += encodings[a] + encodings[b] + encodings[c] + '='
-  }
-  
-  return base64
+        base64 += encodings[a] + encodings[b] + encodings[c] + '='
+    }
+
+    return base64
 }
