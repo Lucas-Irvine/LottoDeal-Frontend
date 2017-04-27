@@ -70,13 +70,20 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             }
 
 
+            // check if user can edit
+            if (parsed.sellerID == userid) {
+                console.log("matches")
+            } 
+            else {
+                console.log(userid);
+            }
+
+
+
+
+
+
             $scope.post = parsed;
-
-
-
-
-
-
             $scope.$apply();
         },
         error: function(response, error) {
