@@ -118,12 +118,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
     // get all the accounts for all posts
-    var notificationUrl = "https://localhost:8000/getAccountsForPosts";
+    var accountUrl = "https://localhost:8000/getAccountsForPosts";
 
     $scope.accounts = []
 
     $.ajax({
-        url: url,
+        url: accountUrl,
         type: 'GET',
         success: function(data) {
             var accounts = JSON.parse(data)
