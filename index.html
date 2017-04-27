@@ -163,7 +163,7 @@
                                          aria-valuemin="0" aria-valuemax="100" style="width:{{post.percentageRaised}}%">
                                     </div>
                                 </div>
-                                <h5 class="pull-right">{{post.expirationDate}}</h5>
+                                <p> {{post.expirationDate}} </p>
                                 <div class="row bid-buttons">
                                     <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
                                     <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
