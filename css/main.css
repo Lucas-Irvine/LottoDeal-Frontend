@@ -390,7 +390,7 @@ textarea:-ms-input-placeholder {
     font-weight: bold;
     padding: 8px;
     font-size: 13px;
-    background-color: #ffffff;
+    background-color: whitesmoke;
     position: fixed;
     z-index: 1000;
     width: 384px;
