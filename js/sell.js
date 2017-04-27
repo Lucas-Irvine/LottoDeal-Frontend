@@ -19,6 +19,12 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     }
 
 
+
+    $scope.changeURL = function() {
+    	$location.path("");
+    }
+
+
 	
 	// //when field is entered
 	// $('#price, #title, #description').bind('keyup', function() {
