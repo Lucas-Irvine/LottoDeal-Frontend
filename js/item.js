@@ -195,6 +195,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         id: id
     }
     $scope.deleteItem = function() {
+        console.log("Trying to delete");
         $.ajax({
             url: 'https://localhost:8000/deleteItem',
             data: dataDelete,
@@ -212,7 +213,8 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     }
 
     $scope.editItem = function() {
-        
+        $("postTitle").hide();
+        $("editTitle").show();
     }
 
 
