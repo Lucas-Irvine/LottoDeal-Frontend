@@ -209,7 +209,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     // console.log(searchObject);
 
     // console.log($location.search('id'));
-    $(document.body).show()
+    // $(document.body).show()
 }])
 
 
