@@ -83,7 +83,7 @@ facebookLoginButton.onclick = function() {
             $('#submitForm').attr('action', '');
             document.getElementById('loginTitle').innerHTML = 'Login';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
-            document.getElementById('login').innerHTML = 'Login';
+            document.getElementById('login').innerHTML = 'Please Login';
             facebookLoginButton.innerHTML = "Facebook Login";
         } else {
             fbLogin()
