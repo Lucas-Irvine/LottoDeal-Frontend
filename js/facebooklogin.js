@@ -32,8 +32,6 @@ window.fbAsyncInit = function() {
 
 
 
-    /* JS for the tabs */
-$(document).ready(function() {
 
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
@@ -46,7 +44,6 @@ $(document).ready(function() {
         }
     });
 
-});
 
 
 };
