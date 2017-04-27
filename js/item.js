@@ -19,6 +19,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     var userid = localStorage.getItem("curUserID");
     console.log(userid)
 
+    $scope.canEdit = false;
 
 
 
@@ -73,9 +74,11 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             // check if user can edit
             if (parsed.sellerID == userid) {
                 console.log("matches")
+                $scope.canEdit = true;
+
             } 
             else {
-                console.log(userid);
+                console.log(userid + "cannot edit this post");
             }
 
 
