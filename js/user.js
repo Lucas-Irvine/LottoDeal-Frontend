@@ -89,8 +89,6 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
 
 
-
-
     $scope.selectedTab = 0
 
     $scope.bids = []
@@ -108,6 +106,17 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
         url: url,
         data: dataGET,
         type: 'GET',
+        statusCode: {
+            // 200: function(response) {
+            //     $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
+            // },
+            404: function(response) {
+                var newDoc = document.open("text/html", "replace");
+                // console.log(response);
+                newDoc.write(response.responseText);
+                newDoc.close();
+            }
+        },
         success: function (data) {
             var items = JSON.parse(data)
             for (i = 0; i < items.length; i++) {

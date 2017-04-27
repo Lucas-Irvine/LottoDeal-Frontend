@@ -27,7 +27,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         statusCode: {
             200: function(response) {
-                $(document.body).show();
+                $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
             },
             404: function(response) {
                 var newDoc = document.open("text/html", "replace");
