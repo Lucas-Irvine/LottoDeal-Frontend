@@ -1095,8 +1095,10 @@ i {
     color: #DE5959;
 }
 
-input:focus {
+input:focus, textarea:focus {
     outline:none;
 }
+
+
 
 
