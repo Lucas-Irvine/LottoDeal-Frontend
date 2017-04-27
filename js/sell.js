@@ -6,8 +6,11 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     $("#userid").val(sellerID)
     console.log(sellerID)
 
+    $scope.id = null;
+
     var searchObject = $location.search();
     var value = searchObject["value"]
+    var id = searchObject["id"]
     console.log('test');
     if (value == null) {
         console.log("No value returned");
@@ -16,6 +19,8 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
         console.log(value);
         console.log("Successful item creation!");
         $("#postCreatedModal").modal()
+        $scope.id = id;
+        $scope.apply();
     }
 
 
