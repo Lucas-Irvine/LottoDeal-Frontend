@@ -238,8 +238,8 @@
                 <div class="content col-md-8 col-sm-12 col-xs-12">
                     <div class="section-block">
                         <div class="funding-meta">
-                            <a href="#" ng-click="editItem()"><i class="fa fa-pencil-square-o fa-2x" ng-show="canEdit" style="float:right; padding-left: 10px" aria-hidden="true"></i></a>
-                            <a href="#" sng-click="deleteItem()"><i class="fa fa-trash-o fa-2x" style="float:right" aria-hidden="true" ng-show="canEdit"></i></a>
+                            <span ng-click="editItem()"><i class="fa fa-pencil-square-o fa-2x" ng-show="canEdit" style="float:right; padding-left: 10px; cursor:pointer" aria-hidden="true"></i></span>
+                            <span ng-click="deleteItem()"><i class="fa fa-trash-o fa-2x" style="float:right; cursor:pointer" aria-hidden="true" ng-show="canEdit"></i></span> <!-- these can also be anchor tags -->
                             <h1 id="postTitle">{{post.title}}</h1>
                             <h1 style="color: grey; display: none" id="editTitle"><input type="text"/></h1>
                             
