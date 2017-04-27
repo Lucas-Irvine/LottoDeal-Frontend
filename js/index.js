@@ -117,32 +117,32 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
 
-    // // get all the accounts for all posts
-    // var notificationUrl = "https://localhost:8000/getAccountsForPosts";
-    // var userID = localStorage.getItem("curUserID")
-    // var dataGET = {
-    //     userID: userID
-    // }
+    // get all the accounts for all posts
+    var notificationUrl = "https://localhost:8000/getAccountsForPosts";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        userID: userID
+    }
 
-    // $scope.accounts = []
+    $scope.accounts = []
 
-    // $.ajax({
-    //     url: url,
-    //     type: 'GET',
-    //     success: function(data) {
-    //         var accounts = JSON.parse(data)
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function(data) {
+            var accounts = JSON.parse(data)
             
-    //         $scope.accounts = accounts;
-    //         console.log($scope.posts)
+            $scope.accounts = accounts;
+            console.log($scope.posts)
 
-    //         $("#loading-icon").hide();
-    //         $scope.$apply()
-    //     },
-    //     error: function(response, error) {
-    //         console.log(response)
-    //         console.log(error)
-    //     }
-    // });
+            $("#loading-icon").hide();
+            $scope.$apply()
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
 
 
 
