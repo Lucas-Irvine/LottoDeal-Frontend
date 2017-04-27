@@ -108,6 +108,10 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             console.log($scope.posts)
 
 
+
+
+
+
             // TRY TO GET ALL REVIEWS OF USERS - can this be param of post?
             var accountsArray = []
             $scope.accounts = []
@@ -164,7 +168,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                         $scope.$apply()
                         counter++;
                         if (counter < $scope.posts.length) {
-                            getAccountInfo; // is this called?
+                            getAccountInfo(); // is this called?
                         }
                     },
                     error: function(response, error) {
@@ -173,6 +177,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     }
                 });
             }
+
+
+
 
 
             $("#loading-icon").hide();
