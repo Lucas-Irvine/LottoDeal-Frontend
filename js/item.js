@@ -134,25 +134,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
-        BootstrapDialog.show({
-            title: 'test',
-            message: 'Choose a lower bid or search for similar items',
-            buttons: [{
-                id: 'btn-ok',
-                icon: 'glyphicon glyphicon-check',
-                label: 'OK',
-                cssClass: 'btn-primary',
-                data: {
-                    js: 'btn-confirm',
-                    'user-id': '3'
-                },
-                autospin: false,
-                action: function(dialogRef) {
-                    dialogRef.close();
-                }
-            }]
-        });
-
 
         console.log('initiating bid');
         $scope.price = price;
