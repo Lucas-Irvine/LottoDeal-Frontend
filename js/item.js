@@ -215,6 +215,8 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     $scope.editItem = function() {
         $("postTitle").hide();
         $("editTitle").show();
+
+        $("saveButton").show()
     }
 
 
