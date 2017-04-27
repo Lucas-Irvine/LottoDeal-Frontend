@@ -35,11 +35,12 @@ var app = angular.module("index_app", ["ngRoute"])
 // }])
 
 
+// function to delete a given item 
 function deleteItem () {
         // get all the accounts for all posts
     var deleteUrl = "https://localhost:8000/deleteItem";
     var data = {
-        id: id
+        id: "CORRECT ID HERE"
     }
 
     $.ajax({
@@ -50,7 +51,7 @@ function deleteItem () {
         success: function(message) {
             var success = JSON.parse(message)
             if (success == "0") {
-                alert("You can't delete an item that has bids on it")
+                alert("You can't delete an item that has bids on it!")
             }
             console.log("item successfully deleted")
         },
