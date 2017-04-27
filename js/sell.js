@@ -3,7 +3,7 @@ var app = angular.module("app", []);
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
     var sellerID = localStorage.getItem("curUserID");
-    $("#userID").val(sellerID)
+    $("#userid").val(sellerID)
     console.log(sellerID)
 
     var searchObject = $location.search();
