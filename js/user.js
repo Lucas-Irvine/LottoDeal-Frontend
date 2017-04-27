@@ -221,7 +221,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
             $scope.$apply()
         },
         error: function (response, error) {
-            console.log(response)
+            console.log(JSON.stringify(response))
             console.log(error)
         }
     });
