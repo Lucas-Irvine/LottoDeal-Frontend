@@ -37,9 +37,9 @@ window.fbAsyncInit = function() {
         if (response.status === 'connected') {
             //display user data
             $('#submitForm').attr('action', 'https://localhost:8000/createPost');
-            $('#submitForm').attr('onclick', '');
+            $('#submitButton').attr('onclick', '');
         } else {
-            $('#submitForm').attr('onclick', 'sellLoginCheck()');
+            $('#submitButton').attr('onclick', 'sellLoginCheck()');
             $('#submitForm').attr('action', '');
         }
     });
