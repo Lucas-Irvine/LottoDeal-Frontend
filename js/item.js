@@ -28,8 +28,8 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         statusCode: {
             404: function(response) {
                 var newDoc = document.open("text/html", "replace");
-                console.log(response);
-                newDoc.write(response);
+                // console.log(response);
+                newDoc.write(response.responseText);
                 newDoc.close();
             }
         },
