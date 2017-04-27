@@ -134,6 +134,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
+
         console.log('initiating bid');
         $scope.price = price;
         $scope.amountToCharge = amount;
