@@ -26,6 +26,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             id: id
         },
         statusCode: {
+            200: function(response) {
+                $(document.body).show();
+            },
             404: function(response) {
                 var newDoc = document.open("text/html", "replace");
                 // console.log(response);
