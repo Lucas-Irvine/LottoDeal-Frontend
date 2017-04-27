@@ -11,6 +11,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     var searchObject = $location.search();
     var value = searchObject["value"]
     var id = searchObject["id"]
+    $location.url("");
     console.log('test');
     if (value == null) {
         console.log("No value returned");
