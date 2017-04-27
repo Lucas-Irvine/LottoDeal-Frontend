@@ -72,14 +72,15 @@
 <body ng-controller="sellController">
 
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav id = "navbar-unique" class="navbar navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="col-lg-3">
+        <div class="col-sm-1">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.html">Home</a>
             </div>
         </div>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <div class="col-lg-9">
@@ -98,35 +99,35 @@
                         </form>
                     </li>
                     <li>
-                        <a id = "sell" href="sell.html">Sell</a>
+                        <a id = "home" class="sliding-middle-out" href="index.html">Home</a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notifications <span class="badge">{{notifications.length}}</span></a>
+                    <li>
+                        <a id = "sell" class="sliding-middle-out" href="sell.html">Sell</a>
+                    </li>
 
-                        <ul class="dropdown-menu notifications" role="menu">
-                            <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
+                    <li id="notification_li">
+                        <a href="#" id="notifications" class="sliding-middle-out" ><i class="fa fa-fw fa-bell-o"></i><span id="notification_count">{{notifications.length}}</span>
+                        </a>
+
+                        <div id="notificationContainer">
+                            <div id="notificationTitle"> Notifications
                             </div>
-                            <li class="divider"></li>
-
-                            <div class="notifications-wrapper">
-                                <div ng-repeat= "notification in notifications">
-                                    <a class="content" href="#">
-                                        <div class="notification-item">
-                                            <h4 class="item-title">{{notification.title}}</h4>
-                                            <p class="item-info">{{notification.description}}</p>
-                                        </div>
-                                    </a>
+                            <div id="notificationsBody" class="notifications">
+                                <div ng-repeat="notification in notifications">
+                                    <h4 class="item-title">{{notification.title}}</h4>
+                                    <p class="item-info">{{notification.descrip}}</p>
                                 </div>
                             </div>
-                            <li class="divider"></li>
-                            <div class="notification-footer"><h4 class="menu-title">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4></div>
-                        </ul>
+                            <div id="notificationFooter"><a href="#">See All</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
                     </li>
                     <li>
-                        <a id = "profile" href="profile.html">Account</a>
-                    </li>
-                    <li>
-                        <a href = "#" id = "login" onclick = "showLoginPopup()">Please Login</a>
+                        <a href = "#" id = "login" class="sliding-middle-out" style="cursor: pointer;" onclick = "showLoginPopup()">Login</a>
                     </li>
                 </ul>
             </div>
@@ -135,10 +136,6 @@
     </div>
     <!-- /.container -->
 </nav>
-
-
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="postCreatedModal" role="dialog">
