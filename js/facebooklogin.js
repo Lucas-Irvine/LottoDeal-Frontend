@@ -24,7 +24,7 @@ window.fbAsyncInit = function() {
         else {
         	console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
-            document.getElementById('login').innerHTML = 'Please Login';
+            document.getElementById('login').innerHTML = 'Login';
             document.getElementById('loginTitle').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Facebook Login";
         }
@@ -83,7 +83,7 @@ facebookLoginButton.onclick = function() {
             $('#submitForm').attr('action', '');
             document.getElementById('loginTitle').innerHTML = 'Login';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
-            document.getElementById('login').innerHTML = 'Please Login';
+            document.getElementById('login').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Facebook Login";
         } else {
             fbLogin()
