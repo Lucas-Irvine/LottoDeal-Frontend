@@ -27,6 +27,7 @@
 
     <!-- Custom CSS -->
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/item.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -243,11 +244,11 @@
                             <h1 id="postTitle" ng-show="!editing">{{post.title}}</h1>
                             <h1 ng-show="editing" style="color: grey;" id="editTitle"><input type="text"/></h1>
                             
-                            <a class="type-meta" href="user.html#!/?id={{post.sellerID}}"><i class="fa fa-user"></i>Seller: {{post.sellerName}}</a>
+                            <a class="type-meta" href="user.html#!/?id={{post.sellerID}}"><i class="fa fa-user"></i>By {{post.sellerName}}</a>
                            
 
                             <div class="video-frame">
-                                <iframe src="https://player.vimeo.com/video/67938315" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                               <img ng-src="img/placeholder.jpg" class="img-fluid full-img" id="centered-and-cropped" alt="">
                             </div>
                             <p>{{post.shortDescription}}</p>
                             <h2>${{post.amountRaised}}</h2>                            
@@ -270,7 +271,7 @@
                         <div class="section-tabs">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
-                                <li role="presentation"><a href="#updates" aria-controls="updates" role="tab" data-toggle="tab">Updates</a></li>
+                                <li role="presentation"><a href="#updates" aria-controls="updates" role="tab" data-toggle="tab">Reviews</a></li>
                             </ul>
                         </div>
                     </div>
@@ -280,26 +281,26 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="about">
                                 <div class="about-information">
-                                    <h1 class="section-title">ABOUT {{post.titleUppercase}}</h1>
+                                    <h1 class="section-title">{{post.titleUppercase}}</h1>
                                     <p>{{post.longDescription}}</p>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="updates">
                                 <div class="update-information">
-                                <h1 class="section-title">UPDATES</h1>
+                                <h1 class="section-title">Reviews</h1>
                                     <!--update items-->
                                     <div class="update-post">
-                                        <h4 class="update-title">We've started shipping!</h4>
+                                        <h4 class="update-title">Lucas is a very spectacular html wizard!</h4>
                                         <span class="update-date">Posted 2 days ago</span>
                                         <p>Suspendisse luctus at massa sit amet bibendum. Cras commodo congue urna, vel dictum velit bibendum eget. Vestibulum quis risus euismod, facilisis lorem nec, dapibus leo. Quisque sodales eget dolor iaculis dapibus. Vivamus sit amet lacus ipsum. Nullam varius lobortis neque, et efficitur lacus. Quisque dictum tellus nec mi luctus imperdiet. Morbi vel aliquet velit, accumsan dapibus urna. Cras ligula orci, suscipit id eros non, rhoncus efficitur nisi.</p>
                                     </div>
                                     <div class="update-post">
-                                        <h4 class="update-title">Launch begins manufacturing </h4>
+                                        <h4 class="update-title">His neckbeard game is vv strong</h4>file:///Users/prateekswain/Desktop/LottoDeal-Frontend/login.html
                                         <span class="update-date">Posted 9 days ago</span>
                                         <p>Suspendisse luctus at massa sit amet bibendum. Cras commodo congue urna, vel dictum velit bibendum eget. Vestibulum quis risus euismod, facilisis lorem nec, dapibus leo. Quisque sodales eget dolor iaculis dapibus. Vivamus sit amet lacus ipsum. Nullam varius lobortis neque, et efficitur lacus. Quisque dictum tellus nec mi luctus imperdiet. Morbi vel aliquet velit, accumsan dapibus urna. Cras ligula orci, suscipit id eros non, rhoncus efficitur nisi.</p>
                                     </div>
                                     <div class="update-post">
-                                        <h4 class="update-title">Designs have now been finalized</h4>
+                                        <h4 class="update-title">Does he even benchpress?</h4>
                                         <span class="update-date">Posted 17 days ago</span>
                                         <p>Suspendisse luctus at massa sit amet bibendum. Cras commodo congue urna, vel dictum velit bibendum eget. Vestibulum quis risus euismod, facilisis lorem nec, dapibus leo. Quisque sodales eget dolor iaculis dapibus. Vivamus sit amet lacus ipsum. Nullam varius lobortis neque, et efficitur lacus. Quisque dictum tellus nec mi luctus imperdiet. Morbi vel aliquet velit, accumsan dapibus urna. Cras ligula orci, suscipit id eros non, rhoncus efficitur nisi.</p>
                                     </div>
@@ -322,11 +323,11 @@
                     <div class="section-block summary">
                         <h1 class="section-title">Want to sell your own item?</h1>
                         <div class="profile-contents">
-                            <h2 class="position">Get quick $$$ and have fun doing it</h2>
+                            <h2 class="position">It's as easy as filling a 2 minute form. Our Promise!</h2>
                             <!-- <img src="profile-img.jpg" class="profile-image img responsive" alt="John Doe"> -->
                             <!--social links-->
                             <!--/social links-->
-                            <a href="sell.html" class="btn btn-contact"></i>SELL</a>
+                            <a href="sell.html" class="btn btn-contact"></i>Sell</a>
                         </div>
                     </div>
                    <div class="section-block">
@@ -334,17 +335,17 @@
                         <!--reward blocks-->
                         <div class="reward-block">
                             <h3>$10</h3>
-                            <h2>Early Bird</h2>
+                            <h2>Suggested Item #1</h2>
                             <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet. Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
                             <span><i class="fa fa-users"></i> 180 backers</span>
-                            <a href="" class="btn btn-reward">GET THIS REWARD</a>
+                            <a href="" class="btn btn-reward">Learn More</a>
                         </div>
                         <div class="reward-block popular">
                             <h3>$20</h3>
-                            <h2>Value Bird</h2>
+                            <h2>Suggested Item #2</h2>
                             <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet. Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
                             <span><i class="fa fa-users"></i> 320 backers</span>
-                            <a href="" class="btn btn-reward">GET THIS REWARD</a>
+                            <a href="" class="btn btn-reward">Learn More</a>
                         </div>
                         
                         <!--/reward blocks-->

@@ -11,7 +11,8 @@
 }
 .type-meta {
     /*color:#A7A7A7;*/
-    color: #3cc47c;
+    color: #3cc47c
+    ;
     font-size: 15px;
     display: inline-block;
     margin: 0px 0px 20px 0px;
@@ -102,4 +103,29 @@
     border:0;
     margin-right: 10px;
     color:#A7A7A7;
+}
+
+.btn.btn-reward {
+    background-color: #3cc47c;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 15px;
+}
+
+.reward-block h3 {
+    background: #3cc47c;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0px 0px 10px 0px;
+    padding: 10px;
+    display: table;
+    border-radius: 4px;
+}
+.reward-block h2 {
+    font-size: 20px;
+    font-weight: 300;
+    color: #3cc47c;
+    margin: 15px 0px;
 }
