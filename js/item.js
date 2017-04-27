@@ -39,6 +39,8 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         success: function(data) {
             console.log(data["_id"])
             var parsed = JSON.parse(data)
+            console.log(parsed);
+            console.log(parsed._id)
 
             // amount raised
             parsed.percentageRaised = (Number(parsed.amountRaised) / Number(parsed.price)) * 100;
