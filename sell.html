@@ -16,6 +16,10 @@
     <!-- Custom CSS -->
     <link href="css/main.css" rel="stylesheet">
 
+    <!-- font Awesome CSS -->
+    <link href="css/fontAwesome/css/font-awesome.css" rel="stylesheet">
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,17 +63,6 @@
 </div>
 </div>
 <!-- End Facebook Login code -->
-
-
-
-
-
-
-
-
-
-
-
 
 <body ng-controller="sellController">
 
@@ -160,13 +153,6 @@
     </div>
   </div>
 
-
-<!-- <script>
-  (function() {
-    var cur
-  })
-</script>
- -->
 <!--Page Content -->
 <div class="container content">
 <div class="jumbotron jumbotron-fluid">
@@ -175,56 +161,78 @@
     <p class="lead">It's as easy as filling this form - we'll take care of the rest!</p>
   </div>
 </div>
-  <form id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" >
-    <div class="form-group">
-      <label for="example-text-input">Title</label>
-      <input required id="title" name="title" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Product Name">
-    </div>
-    <div class="form-group">
-      <label for="exampleInput">Price</label>
-    <input required id="price" type="number" min = "1" name="price" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Enter Amount">
-    </div>
 
-    <!-- <div class="form-group">
-      <label for="exampleInputFile">Upload Picture</label>
-      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-      <small id="fileHelp" class="form-text text-muted">
-        Upload a picture of your product. 
-      </small>
-    </div> -->
-    <div class="form-group">
-      <label>Item Picture</label>
-      <input required type="file" accept="image/*" name="picture" id="itemPicture"/>
-    </div>
+  <form class = "sellForm" id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" >
 
+        <div class="contentform">
 
-    <div class="form-group">
-      <!-- <input type="text" name="date" id="expirDate"/>  -->
-    <select required name="expirDate" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="expirDate">
-    <option value="" selected>Time Period</option>
-    <option value="1">1 Day</option>
-    <option value="2">1 Week</option>
-    <option value="3">1 Month</option>
-  </select>
-  <label>To Sell Item</label>
-    </div>
+            <div class="leftForm">
+                <div class="form-group">
+                    <p>Product Name<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-male"></i></span>
+                    <input class = "sellInput" type="text" name="title" data-rule="required" id="title">
+                    <div class="validation"></div>
+                </div>
+
+                <div class="form-group">
+                    <p>Picture<span>*</span></p>
+                    <input required type="file" accept="image/*" name="picture" id="itemPicture" />
+                </div>
+
+            </div>
+
+            <div class="rightForm">
+
+                <div class="form-group">
+                    <p>Selling Price<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <input class = "sellInput" data-rule="required" id="price" type="number" min = "1" name="price" aria-label="Amount (to the nearest dollar)">
+                    <div class="validation"></div>
+                </div>
+
+                <img id="imageUploaded" src="img/placeholder.jpg" alt="uploaded image" height="100" width="150" />
 
 
+            </div>
 
-    <div class="form-group">
-      <label for="exampleTextarea">Product Summary</label>
-      <textarea required id="shortDescription" type="text" name="shortDescription" class="form-control"  rows="3"
-      placeholder="Max 100 characters" maxlength="100"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="exampleTextarea">Detailed Description</label>
-      <textarea required id="longDescription" type="text" name="longDescription" class="form-control"  rows="3"
-      placeholder="Enter Detailed Description"></textarea>
-    </div>
+            <div class="fullForm">
 
-    <input name="userID" id="userid" value="default" style="display: none"/>
-    <button type="submit" id="submitButton" class="btn btn-primary" >Submit</button>
-  </form>
+            <div class="form-group">
+                <p>Product Summary<span>*</span></p>
+                <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                <textarea data-rule="required" id="shortDescription" type="text" name="message"  rows="3"
+                          placeholder="Max 100 characters" maxlength="100">
+                </textarea>
+                <div class="validation"></div>
+            </div>
+
+            <div class="form-group">
+                <p>Detailed Description<span>*</span></p>
+                <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                <textarea data-rule="required" id="longDescription" type="text" name="longDescription"  rows="3"
+                          placeholder="Enter Detailed Description">
+                </textarea>
+                <div class="validation"></div>
+            </div>
+
+
+            <div class="form-group">
+                <!-- <input type="text" name="date" id="expirDate"/>  -->
+                <p>Sell by<span>*</span></p>
+                <select data-rule="required" name="expirDate" id="expirDate">
+                    <option value="" selected>Time Period</option>
+                    <option value="1">1 Day</option>
+                    <option value="2">1 Week</option>
+                    <option value="3">1 Month</option>
+                </select>
+            </div>
+            </div>
+
+        </div>
+
+        <button type="submit" class="sellButton">Send</button>
+
+    </form>
 </div>
 
 <!-- Footer -->

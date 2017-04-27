@@ -1,22 +1,22 @@
 var app = angular.module("app", []);
 
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
-	console.log("got here")
-	var sellerID = localStorage.getItem("curUserID");
-	$("#userid").val(sellerID)
-	console.log(sellerID)
+    console.log("got here")
+    var sellerID = localStorage.getItem("curUserID");
+    $("#userid").val(sellerID)
+    console.log(sellerID)
 
-	var searchObject = $location.search();
-	var value = searchObject["value"]
-	console.log('test');
-	if (value == null) {
-		console.log("No value returned");
-	}
-	else {
-		console.log(value);
-		console.log("Successful item creation!");
-		$("#postCreatedModal").modal()
-	}
+    var searchObject = $location.search();
+    var value = searchObject["value"]
+    console.log('test');
+    if (value == null) {
+        console.log("No value returned");
+    }
+    else {
+        console.log(value);
+        console.log("Successful item creation!");
+        $("#postCreatedModal").modal()
+    }
 
 
 	
@@ -60,6 +60,27 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	// }
 
 }])
+
+/* code taken from http://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename */
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#imageUploaded')
+                .attr('src', e.target.result)
+                .width(150)
+                .height(100);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#itemPicture").change(function(){
+    readURL(this);
+});
 
 
 // should be in controller if used
