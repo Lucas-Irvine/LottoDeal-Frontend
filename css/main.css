@@ -1095,4 +1095,8 @@ i {
     color: #DE5959;
 }
 
+input:focus {
+    outline:none;
+}
+
 
