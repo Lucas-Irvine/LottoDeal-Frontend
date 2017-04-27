@@ -989,7 +989,7 @@ form h1 {
     text-align:left
 }
 
-.sellForm {
+.sellForm, .contactForm {
     border-radius: 5px;
     max-width:700px;
     width:100%;
@@ -998,7 +998,7 @@ form h1 {
     overflow: hidden;
 }
 
-input.sellInput {
+input.sellInput, input.contactInput {
     border-radius: 0px 5px 5px 0px;
     border: 1px solid #eee;
     margin-bottom: 15px;
@@ -1043,7 +1043,7 @@ i {
     border: 1px solid #81BDA4;
 }
 
-.sellButton{
+.sellButton, .contactButton {
     background-color: #81BDA4;
     color: #FFF;
     text-align: center;
@@ -1078,8 +1078,5 @@ i {
     font-size:13px;
     color: #DE5959;
 }
-
-/*
-
 
 
