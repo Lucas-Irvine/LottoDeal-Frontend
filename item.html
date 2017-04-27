@@ -240,8 +240,8 @@
                         <div class="funding-meta">
                             <span ng-click="editItem()"><i class="fa fa-pencil-square-o fa-2x" ng-show="canEdit" style="float:right; padding-left: 10px; cursor:pointer" aria-hidden="true"></i></span>
                             <span ng-click="deleteItem()"><i class="fa fa-trash-o fa-2x" style="float:right; cursor:pointer" aria-hidden="true" ng-show="canEdit"></i></span> <!-- these can also be anchor tags -->
-                            <h1 id="postTitle">{{post.title}}</h1>
-                            <h1 style="color: grey; display: none" id="editTitle"><input type="text"/></h1>
+                            <h1 id="postTitle" ng-show="!editing">{{post.title}}</h1>
+                            <h1 ng-show="editing" style="color: grey;" id="editTitle"><input type="text"/></h1>
                             
                             <a class="type-meta" href="user.html#!/?id={{post.sellerID}}"><i class="fa fa-user"></i>Seller: {{post.sellerName}}</a>
                            
@@ -313,7 +313,7 @@
 
 
 
-                    <button class="btn btn-launch" ng-click="saveChanges()" id="saveButton" style="display:none">Save Changes</button>
+                    <button class="btn btn-launch" ng-click="saveChanges()" id="saveButton" ng-show="editing">Save Changes</button>
                 </div>
                 <!--/tabs-->
                 <!--/main content-->

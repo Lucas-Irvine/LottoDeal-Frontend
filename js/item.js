@@ -22,6 +22,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     $scope.canEdit = false;
 
 
+    $scope.editing = false;
+
+
 
     $.ajax({
         url: url,
@@ -213,10 +216,21 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     }
 
     $scope.editItem = function() {
-        $("#postTitle").hide();
-        $("#editTitle").show();
+        // display editable fields
 
-        $("#saveButton").show()
+        if ($scope.editing == true) {
+            $scope.editing = false;
+        }
+        else {
+            $scope.editing = true;
+        }
+
+               
+
+    }
+
+    $scope.saveChanges = function() {
+        // GET ALL CHANGES AND SEND BACK TO SERVER
     }
 
 
