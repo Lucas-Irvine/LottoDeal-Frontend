@@ -189,8 +189,26 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
         }
 
+    }
 
-
+    var dataDelete = {
+        id: id
+    }
+    $scope.deleteItem = function() {
+        $.ajax({
+            url: 'https://localhost:8000/deleteItem',
+            data: dataDelete,
+            type: 'DELETE',
+            success: function(data) {
+                console.log(data);
+                
+                
+            },
+            error: function(response, error) {
+                console.log(response)
+                console.log(error)
+            }
+        });
     }
 
 
