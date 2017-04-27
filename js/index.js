@@ -119,10 +119,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     // get all the accounts for all posts
     var notificationUrl = "https://localhost:8000/getAccountsForPosts";
-    var userID = localStorage.getItem("curUserID")
-    var dataGET = {
-        userID: userID
-    }
 
     $scope.accounts = []
 
@@ -133,9 +129,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var accounts = JSON.parse(data)
             
             $scope.accounts = accounts;
-            console.log($scope.posts)
-
-            $("#loading-icon").hide();
+            console.log($scope.accounts)
             $scope.$apply()
         },
         error: function(response, error) {
