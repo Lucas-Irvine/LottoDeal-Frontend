@@ -35,9 +35,37 @@ var app = angular.module("index_app", ["ngRoute"])
 // }])
 
 
+function deleteItem () {
+        // get all the accounts for all posts
+    var deleteUrl = "https://localhost:8000/deleteItem";
+    var data = {
+        id: id
+    }
+
+    $.ajax({
+        url: deleteUrl,
+        type: 'DELETE',
+        data: data,
+
+        success: function(message) {
+            var success = JSON.parse(message)
+            if (success == "0") {
+                alert("You can't delete an item that has bids on it")
+            }
+            console.log("item successfully deleted")
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+}
+
+
 
 
 app.controller("indexController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
+    
     $scope.selectedTab = 0
 
     $scope.posts = []
@@ -127,7 +155,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         type: 'GET',
         success: function(data) {
             var accounts = JSON.parse(data)
-            
             $scope.accounts = accounts;
             console.log($scope.accounts)
             $scope.$apply()
@@ -137,6 +164,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             console.log(error)
         }
     });
+
+
+
 
 
 
