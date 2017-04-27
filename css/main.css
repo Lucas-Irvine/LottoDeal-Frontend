@@ -240,35 +240,35 @@ footer.signin {
 
 /* For changing placeholder colors and fonts in the search bar */
 *::-webkit-input-placeholder {
-    color: grey;
+    color: black;
 }
 *:-moz-placeholder {
     /* FF 4-18 */
-    color: grey;
+    color: black;
 }
 *::-moz-placeholder {
     /* FF 19+ */
-    color: grey;
+    color: black;
 }
 *:-ms-input-placeholder {
     /* IE 10+ */
-    color: grey;
+    color: black;
 }
 
 textarea::-webkit-input-placeholder {
-    color: grey !important;
+    color: black !important;
 }
 
 textarea:-moz-placeholder { /* Firefox 18- */
-    color: grey !important;
+    color: black !important;
 }
 
 textarea::-moz-placeholder {  /* Firefox 19+ */
-    color: grey !important;
+    color: black !important;
 }
 
 textarea:-ms-input-placeholder {
-    color: grey !important;
+    color: black !important;
 }
 
 /* non home button navbar styling */
@@ -754,21 +754,26 @@ textarea:-ms-input-placeholder {
 
 
 /*-Funding Meta-*/
-.funding-meta {}
+.funding-meta {
+
+}
+
 .funding-meta h1 {
-    background: #99DEAB;
-    color: #fff;
     border-radius: 4px;
     display: table;
-    padding: 10px;
     font-size: 25px;
     font-weight:700;
 }
 .type-meta {
-    color:#A7A7A7;
-    font-size: 12px;
+    /*color:#A7A7A7;*/
+    color: green;
+    font-size: 15px;
     display: inline-block;
-    margin: 0px 10px 10px 0px;
+    margin: 0px 0px 20px 0px;
+}
+
+.type-meta:hover {
+    color: black;
 }
 .type-meta i.fa {
     color:#99DEAB;
@@ -781,12 +786,21 @@ textarea:-ms-input-placeholder {
     color: #A7A7A7;
     margin: 30px 0px 10px 0px;
 }
+
 .video-frame {
-    position: relative;
+    /*position: absolute;*/
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
     display:block;
+    width: 100%;
+    height: 100%;
+}
+
+.full-img {
+    height: auto;
+    width: 100%;
+    position: relative;
 }
 .video-frame iframe {
     position: absolute;
@@ -865,14 +879,16 @@ textarea:-ms-input-placeholder {
     border:0;
 }
 .btn.btn-launch {
-    background-color: #99DEAB;
+    /*background-color: #99DEAB;*/
+    background-color: #3cc47c;
     color: #FFF;
     font-size: 17px;
     font-weight: 600;
     padding: 10px 25px;
 }
 .btn.btn-launch:hover, .btn.btn-launch:focus,.btn.btn-reward, .btn.btn-reward:hover, .btn.btn-reward :focus {
-    background-color:#85AD90;
+    /*background-color:#85AD90;*/
+    background-color: #57bc90;
     box-shadow:none;
 }
 .btn.btn-reward {
@@ -1006,10 +1022,6 @@ input.sellInput, input.contactInput {
     height: 42px;
     float: left;
     padding: 0px 15px;
-}
-
-input:focus, textarea:focus {
-    outline:none;
 }
 
 textarea {

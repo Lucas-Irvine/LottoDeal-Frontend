@@ -29,6 +29,23 @@ window.fbAsyncInit = function() {
             facebookLoginButton.innerHTML = "Facebook Login";
         }
     });
+
+
+
+
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //display user data
+            $('#submitForm').attr('action', 'https://localhost:8000/createPost');
+            $('#submitButton').attr('onclick', '');
+        } else {
+            $('#submitButton').attr('onclick', 'sellLoginCheck()');
+            $('#submitForm').attr('action', '');
+        }
+    });
+
+
+
 };
 
 (function(d, s, id){
@@ -42,22 +59,6 @@ window.fbAsyncInit = function() {
 
 
 
-
-/* JS for the tabs */
-$(document).ready(function() {
-
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            //display user data
-            $('#submitForm').attr('action', 'https://localhost:8000/createPost');
-            $('#submitForm').attr('onclick', '');
-        } else {
-            $('#submitForm').attr('onclick', 'sellLoginCheck()');
-            $('#submitForm').attr('action', '');
-        }
-    });
-
-});
 
 
 
@@ -78,12 +79,16 @@ facebookLoginButton.onclick = function() {
         if (response.status === 'connected') {
             //display user data
             fbLogout()
+            $('#submitButton').attr('onclick', 'sellLoginCheck()');
+            $('#submitForm').attr('action', '');
             document.getElementById('loginTitle').innerHTML = 'Login';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
             document.getElementById('login').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Facebook Login";
         } else {
             fbLogin()
+            $('#submitForm').attr('action', 'https://localhost:8000/createPost');
+            $('#submitButton').attr('onclick', '');
             document.getElementById('loginTitle').innerHTML = 'Logout';
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Facebook Logout";
