@@ -49,7 +49,8 @@ function createReviewFunction() {
              type: 'POST',
              data: data,
              success: function(data) {
-                 console.log(data)
+                console.log(data)
+                $("#reviewAddedModal").modal()
              },
              error: function(response, error) {
                  console.log(response)
