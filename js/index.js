@@ -68,7 +68,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var posts = JSON.parse(data)
             var items = posts.items;
             var accounts = posts.accounts;
-
+            console.log(accounts);
             $scope.accounts = accounts;
 
             for (i = 0; i < items.length; i++) {
