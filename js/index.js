@@ -129,7 +129,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var accounts = JSON.parse(data)
             
             $scope.accounts = accounts;
-            console.log($scope.accounts)
+            console.log($scope.accounts + "this is the account infomation")
             $scope.$apply()
         },
         error: function(response, error) {
