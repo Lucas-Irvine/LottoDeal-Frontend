@@ -65,7 +65,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         url: url,
         type: 'GET',
         success: function(data) {
-            var items = JSON.parse(data)
+            var posts = JSON.parse(data)
+            var items = posts.items;
+            var accounts = posts.accounts;
+
+            $scope.accounts = accounts;
+
             for (i = 0; i < items.length; i++) {
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
                 // console.log( "Raised" + items[i].percentageRaised);
@@ -106,78 +111,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             }
             $scope.posts = items;
             console.log($scope.posts)
-
-
-
-
-
-
-            // TRY TO GET ALL REVIEWS OF USERS - can this be param of post?
-            var accountsArray = []
-            $scope.accounts = []
-            var counter = 0;
-            if (items.length > 0) {
-                getAccountInfo();
-            }
-
-            function getAccountInfo() {
-                var item = items[counter];
-                if (item != null)
-
-                    console.log(item.length);
-
-                console.log(item + "this is the item")
-
-                // AJAX get TO SERVER for account
-                var newurl = "https://localhost:8000/getAccount";
-                var newuserID = item.sellerID
-                var newdataGET = {
-                    userID: newuserID
-                }
-                console.log('Asking for account info for each seller')
-
-                $.ajax({
-                    url: newurl,
-                    data: newdataGET,
-                    type: 'GET',
-                    async: true,
-                    success: function(data) {
-                        var account = JSON.parse(data);
-                        console.log(account)
-                        var reviews = account.reviews;
-                        var length = reviews.length;
-                        var total = 0;
-                        var average = 0;
-                        var averageRounded = 0;
-                        if (length != 0) {
-                            var total = 0;
-                            for (var i = 0; i < length; i++) {
-                                total += parseInt(reviews[i].stars);
-                            }
-
-                            var average = total / length;
-                            var averageRounded = Math.round(average * 10) / 10
-                        }
-
-                        var account = {
-                            averageRating: averageRounded,
-                        }
-                        $scope.accounts.push(account);
-                        // console.log($scope.accounts + "Hello this is the average rating for a user")
-                        console.log($scope.accounts);
-                        $scope.$apply()
-                        counter++;
-                        if (counter < $scope.posts.length) {
-                            getAccountInfo(); // is this called?
-                        }
-                    },
-                    error: function(response, error) {
-                        console.log(response)
-                        console.log(error)
-                    }
-                });
-            }
-
 
 
 
