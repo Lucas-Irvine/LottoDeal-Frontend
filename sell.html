@@ -49,9 +49,8 @@
                 </h4>
             </div>
             <div class="modal-body">
-                <p id = "successScreen">
-
-                </p>
+                <p id = "loginMessage"></p>
+                <p id = "successScreen"></p>
                 <center><button type="button" class="facebook-button" id="loginToFacebook">
                     Facebook Login
                 </button> </center>
@@ -63,6 +62,12 @@
     </div>
 </div>
 <!-- End Facebook Login code -->
+
+
+
+
+
+
 
 <body ng-controller="sellController">
 
@@ -121,7 +126,7 @@
                         <a id = "profile" href="profile.html">Account</a>
                     </li>
                     <li>
-                        <a href = "#" id = "login" onclick = "showLoginPopup()">Login</a>
+                        <a href = "#" id = "login" onclick = "showLoginPopup()">Please Login</a>
                     </li>
                 </ul>
             </div>
@@ -130,6 +135,9 @@
     </div>
     <!-- /.container -->
 </nav>
+
+
+
 
 
 <!-- Modal -->
@@ -153,6 +161,9 @@
     </div>
 </div>
 
+
+
+
 <!--Page Content -->
 <div class="container content">
     <div class="jumbotron jumbotron-fluid">
@@ -162,7 +173,7 @@
         </div>
     </div>
 
-    <form class = "sellForm" id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" >
+    <form class = "sellForm" onclick = "" id="submitForm" action="" method="post" enctype="multipart/form-data" >
 
         <div class="contentform">
 

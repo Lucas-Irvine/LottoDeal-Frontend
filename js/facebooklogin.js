@@ -24,7 +24,7 @@ window.fbAsyncInit = function() {
         else {
         	console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
-            document.getElementById('login').innerHTML = 'Login';
+            document.getElementById('login').innerHTML = 'Please Login';
             document.getElementById('loginTitle').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Facebook Login";
         }
@@ -38,6 +38,29 @@ window.fbAsyncInit = function() {
 	js.src="https://connect.facebook.net/en_US/all.js";
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+
+
+
+
+/* JS for the tabs */
+$(document).ready(function() {
+
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //display user data
+            $('#submitForm').attr('action', 'https://localhost:8000/createPost');
+            $('#submitForm').attr('onclick', '');
+        } else {
+            $('#submitForm').attr('onclick', 'sellLoginCheck()');
+            $('#submitForm').attr('action', '');
+        }
+    });
+
+});
+
+
+
 
 
 function showLoginPopup() {
@@ -64,6 +87,21 @@ facebookLoginButton.onclick = function() {
             document.getElementById('loginTitle').innerHTML = 'Logout';
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Facebook Logout";
+        }
+    });
+}
+
+
+// when a user tries to sell an item check if they are logged in and open up a modal to login if they are not logged in
+function sellLoginCheck () {
+        FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //display user data
+            return true; 
+        } else {
+            document.getElementById('loginMessage').innerHTML = 'You must login before you are able to sell an item!';
+            showLoginPopup();
+            return false;
         }
     });
 }
