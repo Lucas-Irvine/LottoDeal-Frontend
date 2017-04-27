@@ -188,7 +188,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
             // },
             404: function(response) {
                 var newDoc = document.open("text/html", "replace");
-                // console.log(response);
+                console.log(response);
                 newDoc.write(response.responseText);
                 newDoc.close();
             }
