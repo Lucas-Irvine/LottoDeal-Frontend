@@ -244,11 +244,11 @@
                             <h1 id="postTitle" ng-show="!editing">{{post.title}}</h1>
                             <h1 ng-show="editing" style="color: grey;" id="editTitle"><input type="text"/></h1>
                             
-                            <a class="type-meta" href="user.html#!/?id={{post.sellerID}}"><i class="fa fa-user"></i>By {{post.sellerName}}</a>
+                            <a class="type-meta" href="user.html#!/?id={{post.sellerID}}"><i class="fa fa-user"></i>{{post.sellerName}}</a>
                            
 
                             <div class="video-frame">
-                               <img ng-src="img/placeholder.jpg" class="img-fluid full-img" id="centered-and-cropped" alt="">
+                               <img ng-src="{{post.src}}" class="img-fluid full-img" id="centered-and-cropped" alt="">
                             </div>
                             <p>{{post.shortDescription}}</p>
                             <h2>${{post.amountRaised}}</h2>                            
