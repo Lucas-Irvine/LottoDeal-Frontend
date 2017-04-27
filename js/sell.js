@@ -20,7 +20,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
         console.log("Successful item creation!");
         $("#postCreatedModal").modal()
         $scope.id = id;
-        $scope.apply();
+        $scope.$apply();
     }
 
 
