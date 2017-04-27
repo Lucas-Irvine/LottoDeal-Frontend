@@ -201,14 +201,18 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             type: 'DELETE',
             success: function(data) {
                 console.log(data);
-                
-                
+
+
             },
             error: function(response, error) {
                 console.log(response)
                 console.log(error)
             }
         });
+    }
+
+    $scope.editItem = function() {
+        
     }
 
 
