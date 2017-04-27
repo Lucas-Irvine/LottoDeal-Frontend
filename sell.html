@@ -23,8 +23,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- dynamic loading of pages -->
@@ -37,61 +37,61 @@
 
 <!-- Facebook Login code -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-    id="loginPopup">
+     id="loginPopup">
     <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="loginTitle">
-            Login
-        </h4>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="loginTitle">
+                    Login
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p id = "successScreen">
+
+                </p>
+                <center><button type="button" class="facebook-button" id="loginToFacebook">
+                    Facebook Login
+                </button> </center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-    <div class="modal-body">
-        <p id = "successScreen">
-            
-        </p>
-        <center><button type="button" class="facebook-button" id="loginToFacebook">
-            Facebook Login
-        </button> </center>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-    </div>
-</div>
-</div>
 </div>
 <!-- End Facebook Login code -->
 
 <body ng-controller="sellController">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="col-lg-3">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">Home</a>
-                </div>
-                </div>
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <div class="col-lg-9">
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="col-lg-3">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Home</a>
+            </div>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="col-lg-9">
                 <ul class="nav navbar-nav navbar-right">
-                  <li>
-                      <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
-                          <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
+                    <li>
+                        <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
+                            <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
 
-                              <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText" value="">
-                                  <div class="input-group-btn">
-                                      <button type="submit" class="btn btn-success search-btn"><span class="glyphicon glyphicon-search"></span></button>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-                  </li>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText" value="">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-success search-btn"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
                     <li>
                         <a id = "sell" href="sell.html">Sell</a>
                     </li>
@@ -104,13 +104,13 @@
                             <li class="divider"></li>
 
                             <div class="notifications-wrapper">
-                               <div ng-repeat= "notification in notifications">
-                               <a class="content" href="#">
-                                <div class="notification-item">
-                                    <h4 class="item-title">{{notification.title}}</h4>
-                                    <p class="item-info">{{notification.description}}</p>
-                                </div>
-                                </a>
+                                <div ng-repeat= "notification in notifications">
+                                    <a class="content" href="#">
+                                        <div class="notification-item">
+                                            <h4 class="item-title">{{notification.title}}</h4>
+                                            <p class="item-info">{{notification.description}}</p>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <li class="divider"></li>
@@ -125,44 +125,44 @@
                     </li>
                 </ul>
             </div>
-            </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
-    </nav>
-
-
-    <!-- Modal -->
-  <div class="modal fade" id="postCreatedModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Congratulations, you have successfully posted an item!</h4>
-        </div>
-        <div class="modal-body">
-          <p>Click <a href="item.html">here</a> to view your item and edit it.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
+        <!-- /.navbar-collapse -->
     </div>
-  </div>
+    <!-- /.container -->
+</nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="postCreatedModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Congratulations, you have successfully posted an item!</h4>
+            </div>
+            <div class="modal-body">
+                <p>Click <a href="item.html">here</a> to view your item and edit it.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <!--Page Content -->
 <div class="container content">
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h2 class="display-3">Let's Get Selling</h2>
-    <p class="lead">It's as easy as filling this form - we'll take care of the rest!</p>
-  </div>
-</div>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2 class="display-3">Let's Get Selling</h2>
+            <p class="lead">It's as easy as filling this form - we'll take care of the rest!</p>
+        </div>
+    </div>
 
-  <form class = "sellForm" id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" >
+    <form class = "sellForm" id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" >
 
         <div class="contentform">
 
@@ -197,40 +197,37 @@
 
             <div class="fullForm">
 
-            <div class="form-group">
-                <p>Product Summary<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                <textarea data-rule="required" id="shortDescription" type="text" name="message"  rows="3"
-                          placeholder="Max 100 characters" maxlength="100">
-                </textarea>
-                <div class="validation"></div>
-            </div>
+                <div class="form-group">
+                    <p>Product Summary<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                    <textarea data-rule="required" id="shortDescription" type="text" name="message"  rows="3" placeholder="Max 100 characters" maxlength="100"></textarea>
+                    <div class="validation"></div>
+                </div>
 
-            <div class="form-group">
-                <p>Detailed Description<span>*</span></p>
-                <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                <textarea data-rule="required" id="longDescription" type="text" name="longDescription"  rows="3"
-                          placeholder="Enter Detailed Description">
-                </textarea>
-                <div class="validation"></div>
-            </div>
+                <div class="form-group">
+                    <p>Detailed Description<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                    <textarea data-rule="required" id="longDescription" type="text" name="longDescription"  rows="3" placeholder="Enter Detailed Description"></textarea>
+                    <div class="validation"></div>
+                </div>
 
 
-            <div class="form-group">
-                <!-- <input type="text" name="date" id="expirDate"/>  -->
-                <p>Sell by<span>*</span></p>
-                <select data-rule="required" name="expirDate" id="expirDate">
-                    <option value="" selected>Time Period</option>
-                    <option value="1">1 Day</option>
-                    <option value="2">1 Week</option>
-                    <option value="3">1 Month</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <!-- <input type="text" name="date" id="expirDate"/>  -->
+                    <p>Sell by<span>*</span></p>
+                    <select data-rule="required" name="expirDate" id="expirDate">
+                        <option value="" selected>Time Period</option>
+                        <option value="1">1 Day</option>
+                        <option value="2">1 Week</option>
+                        <option value="3">1 Month</option>
+                    </select>
+                </div>
 
             </div>
 
         </div>
-         <input name="userID" id="userid" value="default" style="display: none"/>
+
+        <input name="userID" id="userid" value="default" style="display: none"/>
         <button type="submit" class="sellButton">Send</button>
 
     </form>
@@ -240,12 +237,12 @@
 <footer>
     <hr>
     <div class="rows">
-      <div class="col-lg-6">
-        <a href="contact.html" class="footerlink">Contact Us</a>
-      </div>
-      <div class="col-lg-6">
-        <a href="about.html" class="footerlink">About Us</a>
-      </div>
+        <div class="col-lg-6">
+            <a href="contact.html" class="footerlink">Contact Us</a>
+        </div>
+        <div class="col-lg-6">
+            <a href="about.html" class="footerlink">About Us</a>
+        </div>
     </div>
     <div class="rows">
         <div class="col-lg-12">
@@ -256,28 +253,28 @@
 
 <script type="text/javascript">console.log(localStorage.getItem("curUserID"))</script>
 
-  <!-- INCLUDE DEPENDENCIES -->
-  <!-- AngularJS Include -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+<!-- INCLUDE DEPENDENCIES -->
+<!-- AngularJS Include -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
-  <!-- Angular Route -->
+<!-- Angular Route -->
 
-  <!-- JQuery Include -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- JQuery Include -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <!-- Bootstrap JS Include -->
+<!-- Bootstrap JS Include -->
 
-  <!-- Custom script -->
-  <script src="js/sell.js"></script>
+<!-- Custom script -->
+<script src="js/sell.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
 
-    <!-- dynamic loading of pages -->
-    <script src="js/tabs.js"></script>
+<!-- dynamic loading of pages -->
+<script src="js/tabs.js"></script>
 
 <!-- for facebook modal login -->
-    <script src="js/facebooklogin.js"></script> 
+<script src="js/facebooklogin.js"></script>
 
 </body>
 </html>
