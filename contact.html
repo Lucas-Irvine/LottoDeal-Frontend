@@ -20,6 +20,9 @@
     <!-- Custom style sheet -->
     <link href="css/main.css" rel="stylesheet">
 
+    <!-- font Awesome CSS -->
+    <link href="css/fontAwesome/css/font-awesome.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -105,56 +108,73 @@
         <!-- /.container -->
     </nav>
 
-    <div class="container content">
-        <hr>
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h2 class="display-3">Wanna Get In Touch?</h2>
-    <p class="lead">Are there any issues/bugs you want to let us know? Or just share some love? Let us know!</p>
-  </div>
-</div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="well well-sm">
-                <!-- //action="email_handler.php" -->
-                    <form class="form-horizontal"  method="post">
-                        <fieldset>
-                            <legend class="text-center header">Contact us</legend>
-
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <input id="fname" name="fname" type="text" placeholder="First Name" class="form-control" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <input id="lname" name="lname" type="text" placeholder="Last Name" class="form-control" required="required">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <input id="email" name="email" type="text" placeholder="Email Address" class="form-control" required="required">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <textarea class="form-control" id="message" name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7" required="required"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" name="submit" class="btn btn-primary btn-lg" onClick="sendEmail()">Submit</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
+        <div class="container content">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h2 class="display-3">Wanna Get In Touch?</h2>
+                    <p class="lead">Are there any issues/bugs you want to let us know? Or just share some love? Let us know!</p>
                 </div>
             </div>
+
+            <form class="contactForm"  method="post">
+
+                <div class="contentform">
+
+                    <div class="leftForm">
+
+                        <div class="form-group">
+                            <p>First Name<span>*</span></p>
+                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                            <input class = "contactInput" id="fname" name="fname" type="text" data-rule="required">
+                            <div class="validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Email Address<span>*</span></p>
+                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                            <input class = "contactInput" id="email" name="email" type="text" data-rule="required">
+                            <div class="validation"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="rightForm">
+
+                        <div class="form-group">
+                            <p>Last Name<span>*</span></p>
+                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                            <input class = "contactInput" id="lname" name="lname" type="text" data-rule="required">
+                            <div class="validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Subject<span>*</span></p>
+                            <span class="icon-case"><i class="fa fa-user"></i></span>
+                            <input class = "contactInput" id="subject" name="subject" type="text" data-rule="required">
+                            <div class="validation"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="fullForm">
+
+                        <div class="form-group">
+                            <p>Message<span>*</span></p>
+                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                            <textarea data-rule="required" id="message" type="text" name="message"  rows="3"
+                                      placeholder="Enter your message for us here. We will get back to you within 2 business days" rows="7">
+                            </textarea>
+                            <div class="validation"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" name="submit" class="contactButton" onclick="sendEmail()">Submit</button>
+
+            </form>
         </div>
-    </div>
 
     <!-- Button trigger modal -->
 
