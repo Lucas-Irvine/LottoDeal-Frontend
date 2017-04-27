@@ -57,20 +57,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     // AJAX POST TO SERVERg]
 
-
-    $scope.accounts = []
-
     $("#loading-icon").show()
     $.ajax({
         url: url,
         type: 'GET',
         success: function(data) {
-            var posts = JSON.parse(data)
-            var items = posts.items;
-            var accounts = posts.accounts;
-            console.log(accounts);
-            $scope.accounts = accounts;
-
+            var items = JSON.parse(data)
             for (i = 0; i < items.length; i++) {
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
                 // console.log( "Raised" + items[i].percentageRaised);
@@ -112,9 +104,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             $scope.posts = items;
             console.log($scope.posts)
 
-
-
-
             $("#loading-icon").hide();
             $scope.$apply()
         },
@@ -123,6 +112,42 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             console.log(error)
         }
     });
+
+
+
+
+
+    // // get all the accounts for all posts
+    // var notificationUrl = "https://localhost:8000/getAccountsForPosts";
+    // var userID = localStorage.getItem("curUserID")
+    // var dataGET = {
+    //     userID: userID
+    // }
+
+    // $scope.accounts = []
+
+    // $.ajax({
+    //     url: url,
+    //     type: 'GET',
+    //     success: function(data) {
+    //         var accounts = JSON.parse(data)
+            
+    //         $scope.accounts = accounts;
+    //         console.log($scope.posts)
+
+    //         $("#loading-icon").hide();
+    //         $scope.$apply()
+    //     },
+    //     error: function(response, error) {
+    //         console.log(response)
+    //         console.log(error)
+    //     }
+    // });
+
+
+
+
+
 
     // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
