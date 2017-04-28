@@ -202,31 +202,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         }
     });
 
-
-
-
-
-
-
-
-    // when you click the notifications marks them as read
-    $scope.readNotifications = function () {
-
-        console.log("hi lucas")
-
-        $("#notificationContainer").fadeToggle(300);
-        document.getElementById("notification_count").innerHTML = "0";
-        $("#notification_count").fadeOut("slow");
-
-
-
-        return false;
-    }
-
-
-
-
-
     $scope.targetPost = null;
 
     // HANDLE ROUTING
@@ -665,15 +640,3 @@ function fbLogout() {
         document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
     });
 }
-
-
-
-//Document Click hiding the popup
-$(document).click(function() {
-    $("#notificationContainer").hide();
-});
-
-//Popup on click
-$("#notificationContainer").click(function() {
-    return false;
-});
