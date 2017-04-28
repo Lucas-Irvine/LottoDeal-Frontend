@@ -246,7 +246,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                                 // event.data.$footerButton.enable();
                                 // event.data.$footerButton.stopSpin();
                                 // dialog.setClosable(true);
-                            var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
                             $button.enable();
                             $button.stopSpin();
                             dialog.setClosable(true);
@@ -256,7 +255,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                             // event.data.$footerButton.enable();
                             // event.data.$footerButton.stopSpin();
                             // dialog.setClosable(true);
-                            var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
                             $button.enable();
                             $button.stopSpin();
                             dialog.setClosable(true);
