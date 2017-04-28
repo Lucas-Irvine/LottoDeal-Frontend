@@ -1,10 +1,11 @@
 var app = angular.module("app", []);
 
 
-var markRead;
+var scope;
 
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
+    scope = $scope;
     var sellerID = localStorage.getItem("curUserID");
     $("#userid").val(sellerID)
     console.log(sellerID)
@@ -219,7 +220,7 @@ $(document).ready(function() {
         $("#notificationContainer").fadeToggle(300);
         $("#notification_count").fadeOut("slow");
 
-        markRead();
+        scope.markRead();
         return false;
     });
 
