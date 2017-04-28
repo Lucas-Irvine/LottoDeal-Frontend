@@ -66,7 +66,7 @@ function saveUserData(response) {
       data = {
         name: response.first_name+ ' ' + response.last_name,
         fbid: response.id,
-        url: response.picture.data.url,
+        url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
         email: response.email,
       }
 
@@ -90,7 +90,7 @@ function saveUserData(response) {
 
 // Fetch the user profile data from facebook
 function getFbUserData(){
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture?type=large'},
         function (response) {
 
             document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
