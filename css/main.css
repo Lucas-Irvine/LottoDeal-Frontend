@@ -408,11 +408,11 @@ textarea:-ms-input-placeholder {
 }
 
 .notificationRead {
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .notificationUnread {
-    background-color: white;
+    background-color: whitesmoke;
 }
 
 #notificationFooter
