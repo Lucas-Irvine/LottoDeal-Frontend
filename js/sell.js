@@ -205,8 +205,3 @@ $(document).click(function() {
     $("#notificationContainer").hide();
 });
 
-$("#notificationContainer").click(function(e) {
-    e.stopPropagation(); // This is the preferred method.
-    return false;        // This should not be used unless you do not want
-                         // any click events registering inside the div
-});
