@@ -246,14 +246,16 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                             var $footerButton = dialog.getButton('btn-1');
                             $footerButton.enable();
                             $footerButton.stopSpin();
-                             dialog.setClosable(true);
+                            dialog.setClosable(true);
+                            dialogRef.close();
+                            window.location.href = 'https://dominicwhyte.github.io/LottoDeal-Frontend/index.html';
                         },
                         error: function(response, error) {
                             console.log('Error deleting item')
                             var $footerButton = dialog.getButton('btn-1');
                             $footerButton.enable();
                             $footerButton.stopSpin();
-                             dialog.setClosable(true);
+                            dialog.setClosable(true);
                         }
                     });
 
