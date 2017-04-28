@@ -513,6 +513,7 @@ textarea:-ms-input-placeholder {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    float: right;
 }
 .card.hovercard .card-info {
     overflow: hidden;
