@@ -276,7 +276,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
             document.getElementById('profileName').innerHTML = account.fullName;
             document.getElementById('profileImage').src = account.pictureURL;
             document.getElementById('profileImageBackground').src = account.pictureURL;
-
+            console.log('test: ' account.pictureURL);
             var reviews = account.reviews;
             var length = reviews.length;
             var total = 0; 
