@@ -420,7 +420,7 @@ textarea:-ms-input-placeholder {
     border-radius: 13px;
     -moz-border-radius: 13px;
     -webkit-border-radius: 13px;
-    font-size: 12px;
+    font-size: 5px;
     right: 13px;
     top: 15px;
 }
