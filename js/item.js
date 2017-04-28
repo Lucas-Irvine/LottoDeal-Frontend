@@ -2,7 +2,6 @@ var app = angular.module("item_app", ["ngRoute"])
 
 
 
-
 $('#myTabs a').click(function(e) {
     console.log('tab clicked');
     e.preventDefault()
@@ -27,13 +26,13 @@ function changeTab(titleID, id) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    
+
 
     document.getElementById(titleID).className += " active";
     document.getElementById(id).className += " active";
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-   // document.getElementById(cityName).style.display = "block";
+    // document.getElementById(cityName).style.display = "block";
     //evt.currentTarget.className += " active";
 }
 
@@ -112,13 +111,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                 console.log("matches")
                 $scope.canEdit = true;
 
-            } 
-            else {
+            } else {
                 console.log(userid + "cannot edit this post");
             }
-
-
-
 
 
 
@@ -231,20 +226,63 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         id: id
     }
     $scope.deleteItem = function() {
-        console.log("Trying to delete");
-        $.ajax({
-            url: 'https://localhost:8000/deleteItem',
-            data: dataDelete,
-            type: 'DELETE',
-            success: function(data) {
-                console.log(data);
+         BootstrapDialog.show({
+            title: 'Are you sure you would like to delete this item?',
+            message: 'This cannot be undone',
+            buttons: [{
+                id: 'btn-1',
+                label: 'Delete Item',
+                action: function(dialog) {
+                    var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+                    $button.disable();
+                    $button.spin();
+                    dialog.setClosable(false);
+                    $.ajax({
+                        url: 'https://localhost:8000/deleteItem',
+                        data: dataDelete,
+                        type: 'DELETE',
+                        success: function(data) {
+                            console.log('Success deleting item')
+                            event.data.$footerButton.enable();
+                            event.data.$footerButton.stopSpin();
+                            dialog.setClosable(true);
 
 
-            },
-            error: function(response, error) {
-                console.log(response)
-                console.log(error)
-            }
+                        },
+                        error: function(response, error) {
+                            console.log('Error deleting item')
+                            event.data.$footerButton.enable();
+                            event.data.$footerButton.stopSpin();
+                            dialog.setClosable(true);
+                        }
+                    });
+
+                    
+                }
+            }]
+        });
+
+
+
+
+        BootstrapDialog.show({
+            title: 'Bid surpasses item price',
+            message: 'Choose a lower bid or search for similar items',
+            buttons: [{
+                id: 'btn-ok',
+                icon: 'glyphicon glyphicon-check',
+                label: 'OK',
+                cssClass: 'btn-primary',
+                data: {
+                    js: 'btn-confirm',
+                    'user-id': '3'
+                },
+                autospin: false,
+                action: function(dialogRef) {
+                    dialogRef.close();
+                    
+                }
+            }]
         });
     }
 
@@ -253,12 +291,11 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
         if ($scope.editing == true) {
             $scope.editing = false;
-        }
-        else {
+        } else {
             $scope.editing = true;
         }
 
-               
+
 
     }
 
