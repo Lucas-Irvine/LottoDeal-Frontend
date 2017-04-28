@@ -30,6 +30,33 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     	$location.url("");
     }
 
+    // AJAX POST TO SERVER
+    var notificationUrl = "https://localhost:8000/getNotifications";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        userID: userID
+    }
+    console.log('Asking for notifications')
+    $.ajax({
+        url: notificationUrl,
+        // data: {
+        //     userID : 'test'
+        // },
+        data: dataGET,
+        type: 'GET',
+        success: function(data) {
+            var notifications = JSON.parse(data)
+            $scope.notifications = notifications;
+            console.log($scope.notifications)
+            console.log("hi")
+            $scope.$apply()
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+
 
 	
 	// //when field is entered
