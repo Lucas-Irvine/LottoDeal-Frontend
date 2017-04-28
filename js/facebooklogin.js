@@ -17,6 +17,7 @@ window.fbAsyncInit = function() {
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
+            $("#signInMessage").hide();
             console.log('logged in')
             // Get and display the user profile data
         }
@@ -24,6 +25,7 @@ window.fbAsyncInit = function() {
         	console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Login';
+            $("#signInMessage").show();
             facebookLoginButton.innerHTML = "Sign In With Facebook";
         }
     });
@@ -82,12 +84,14 @@ facebookLoginButton.onclick = function() {
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
             document.getElementById('login').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Sign In With Facebook";
+            $("#signInMessage").hide();
         } else {
             fbLogin()
             $('#submitForm').attr('action', 'https://localhost:8000/createPost');
             $('#submitButton').attr('onclick', '');
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
+            $("#signInMessage").show();
         }
     });
 }
