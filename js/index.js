@@ -210,7 +210,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
     // when you click the notifications marks them as read
-    function readNotifications() {
+    $scope.readNotifications = function () {
+
+        console.log("hi lucas")
 
         $("#notificationContainer").fadeToggle(300);
         document.getElementById("notification_count").innerHTML = "0";
