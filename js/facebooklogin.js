@@ -16,7 +16,6 @@ window.fbAsyncInit = function() {
             //display user data
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Logout';
-            document.getElementById('loginTitle').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             console.log('logged in')
             // Get and display the user profile data
@@ -25,7 +24,6 @@ window.fbAsyncInit = function() {
         	console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Login';
-            document.getElementById('loginTitle').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Sign In With Facebook";
         }
     });
@@ -81,7 +79,6 @@ facebookLoginButton.onclick = function() {
             fbLogout()
             $('#submitButton').attr('onclick', 'sellLoginCheck()');
             $('#submitForm').attr('action', '');
-            document.getElementById('loginTitle').innerHTML = 'Login';
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
             document.getElementById('login').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Sign In With Facebook";
@@ -89,7 +86,6 @@ facebookLoginButton.onclick = function() {
             fbLogin()
             $('#submitForm').attr('action', 'https://localhost:8000/createPost');
             $('#submitButton').attr('onclick', '');
-            document.getElementById('loginTitle').innerHTML = 'Logout';
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
         }
