@@ -211,25 +211,14 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     // when you click the notifications marks them as read
     function readNotifications() {
-        $("#notifications").click(function() {
-            $("#notificationContainer").fadeToggle(300);
-            document.getElementById("notification_count").innerHTML = "0";
-            $("#notification_count").fadeOut("slow");
+
+        $("#notificationContainer").fadeToggle(300);
+        document.getElementById("notification_count").innerHTML = "0";
+        $("#notification_count").fadeOut("slow");
 
 
 
-            return false;
-        });
-
-        //Document Click hiding the popup
-        $(document).click(function() {
-            $("#notificationContainer").hide();
-        });
-
-        //Popup on click
-        $("#notificationContainer").click(function() {
-            return false;
-        });
+        return false;
     }
 
 
@@ -674,3 +663,15 @@ function fbLogout() {
         document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
     });
 }
+
+
+
+//Document Click hiding the popup
+$(document).click(function() {
+    $("#notificationContainer").hide();
+});
+
+//Popup on click
+$("#notificationContainer").click(function() {
+    return false;
+});
