@@ -236,6 +236,7 @@ $(document).ready(function() {
     $(document).click(function() {
         $("#notificationContainer").hide();
         scope.markRead();
+        check = false;
     });
 
     //Popup on click
