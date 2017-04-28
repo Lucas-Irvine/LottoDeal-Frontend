@@ -506,8 +506,8 @@ textarea:-ms-input-placeholder {
 }
 .card.hovercard .card-info .card-title {
     padding:0 5px;
-    font-size: 20px;
-    line-height: 1;
+    font-size: 40px;
+    line-height: 1.5;
     color: #262626;
     background-color: rgba(255, 255, 255, 0.8);
     -webkit-border-radius: 4px;
@@ -1135,11 +1135,14 @@ input:focus, textarea:focus {
 }
 
 .green {
-    border-bottom: 1px solid #3cc47c ;
+    border-bottom: 1px solid #3cc47c;
 }
 
 #profileImage {
     border-radius: 100%;
+    min-height: 142px;
+    min-width: 142px;
+    border: 1px solid #e2e2e2;
 }
 
 
