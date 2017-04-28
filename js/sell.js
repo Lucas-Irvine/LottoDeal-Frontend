@@ -1,7 +1,11 @@
 var app = angular.module("app", []);
 
+
+var scope;
+
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
+    scope = $scope;
     var sellerID = localStorage.getItem("curUserID");
     $("#userid").val(sellerID)
     console.log(sellerID)
@@ -39,9 +43,6 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     console.log('Asking for notifications')
     $.ajax({
         url: notificationUrl,
-        // data: {
-        //     userID : 'test'
-        // },
         data: dataGET,
         type: 'GET',
         success: function(data) {
@@ -58,7 +59,32 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     });
 
 
-
+	// mark all the notifications as read
+	scope.markRead = function() {
+		// AJAX POST TO SERVER
+	    var readurl = "https://localhost:8000/markRead";
+	    var userID = localStorage.getItem("curUserID")
+	    var data = {
+	        userID: userID
+	    }
+	    console.log('Asking for notifications')
+	    $.ajax({
+	        url: readurl,
+	        data: data,
+	        type: 'GET',
+	        success: function(data) {
+	            var notifications = JSON.parse(data)
+	            $scope.notifications = notifications;
+	            console.log($scope.notifications)
+	            console.log("updated the notifications")
+	            $scope.$apply()
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
 
 	
 	// //when field is entered
@@ -188,17 +214,29 @@ $("#itemPicture").change(function(){
 
 
 
+var check = false;
 
 $(document).ready(function() {
     $("#notifications").click(function() {
-        $("#notificationContainer").fadeToggle(300);
-        $("#notification_count").fadeOut("slow");
+    	if (!check) {
+    		$("#notificationContainer").fadeIn(300);
+    		$("#notification_count").fadeOut("slow");
+    		check = true;
+    	}
+    	else {
+    		$("#notificationContainer").fadeOut(300);
+    		scope.markRead();
+    		check = false;
+    	}
+
         return false;
     });
 
     //Document Click hiding the popup
     $(document).click(function() {
         $("#notificationContainer").hide();
+        scope.markRead();
+        check = false;
     });
 
     //Popup on click

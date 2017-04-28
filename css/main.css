@@ -406,6 +406,15 @@ textarea:-ms-input-placeholder {
     padding: 33px 0px 0px 0px !important;
     min-height:300px;
 }
+
+.notificationRead {
+    background-color: white;
+}
+
+.notificationUnread {
+    background-color: whitesmoke;
+}
+
 #notificationFooter
 {
     background-color: #e9eaed;
@@ -1140,8 +1149,18 @@ input:focus, textarea:focus {
     border: 1px solid #e2e2e2;
 }
 
+.facebook-button {
+    background-color: #3b5998; 
+    color: white;
+}
 
+.fa-facebook {
+    color: white;
+}
 
+#facebook-text {
+    padding-left: 5px;
+}
 
 
 
