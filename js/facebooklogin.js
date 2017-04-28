@@ -152,7 +152,7 @@ function saveUserData(response) {
       data = {
         name: response.first_name+ ' ' + response.last_name,
         fbid: response.id,
-        url: response.picture.data.url,
+        url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
         email: response.email,
       }
 
