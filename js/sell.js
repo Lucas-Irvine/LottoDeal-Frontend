@@ -60,7 +60,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 	// mark all the notifications as read
-	function markRead() {
+	scope.markRead = function() {
 		// AJAX POST TO SERVER
 	    var url = "https://localhost:8000/markRead";
 	    var userID = localStorage.getItem("curUserID")
