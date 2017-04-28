@@ -646,6 +646,7 @@ $(document).ready(function() {
     $("#notifications").click(function() {
         $("#notificationContainer").fadeToggle(300);
         document.getElementsById("notification_count").innerHTML = "0";
+        $("#notification_count").fadeOut("slow");
         return false;
     });
 
