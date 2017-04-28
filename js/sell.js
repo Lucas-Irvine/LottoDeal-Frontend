@@ -39,9 +39,6 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     console.log('Asking for notifications')
     $.ajax({
         url: notificationUrl,
-        // data: {
-        //     userID : 'test'
-        // },
         data: dataGET,
         type: 'GET',
         success: function(data) {
@@ -58,7 +55,32 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     });
 
 
-
+// mark all the notifications as read
+function markRead() {
+	// AJAX POST TO SERVER
+    var url = "https://localhost:8000/markRead";
+    var userID = localStorage.getItem("curUserID")
+    var data = {
+        userID: userID
+    }
+    console.log('Asking for notifications')
+    $.ajax({
+        url: url,
+        data: data,
+        type: 'GET',
+        success: function(data) {
+            var notifications = JSON.parse(data)
+            $scope.notifications = notifications;
+            console.log($scope.notifications)
+            console.log("updated the notifications")
+            $scope.$apply()
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+}
 
 	
 	// //when field is entered
@@ -193,6 +215,8 @@ $(document).ready(function() {
     $("#notifications").click(function() {
         $("#notificationContainer").fadeToggle(300);
         $("#notification_count").fadeOut("slow");
+
+        markRead();
         return false;
     });
 
