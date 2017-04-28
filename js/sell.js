@@ -71,9 +71,9 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 
-        	
+
 	//Document Click hiding the popup
-	$(document).click(function() {
+	$(document).on("click",function() {
 	    $("#notificationContainer").hide();
 	});
 
