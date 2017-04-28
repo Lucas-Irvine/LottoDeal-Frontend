@@ -192,6 +192,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var notifications = JSON.parse(data)
             $scope.notifications = notifications;
             console.log($scope.notifications)
+            console.log("hi")
             $scope.$apply()
         },
         error: function(response, error) {

@@ -381,7 +381,7 @@ textarea:-ms-input-placeholder {
     color: transparent;
     border-width: 10px 10px 10px 10px;
     border-style: solid;
-    border-color: transparent transparent white transparent;
+    border-color: transparent transparent whitesmoke transparent;
     margin-top: -20px;
     margin-left: 200px;
 }
@@ -393,7 +393,7 @@ textarea:-ms-input-placeholder {
     background-color: whitesmoke;
     position: fixed;
     z-index: 1000;
-    width: 384px;
+    width: 398px;
     border-bottom: 1px solid #dddddd;
 }
 #notificationsBody
