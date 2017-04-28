@@ -1,7 +1,7 @@
 var app = angular.module("app", []);
 
 
-var markRead = function();
+var markRead;
 
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
