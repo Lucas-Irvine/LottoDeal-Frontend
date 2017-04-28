@@ -134,35 +134,47 @@
                 <h3 id = "BidCount"> Current Bids</h3>
                 <hr>
                 <div ng-repeat= "item in items">
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-4">
                         <div class="thumbnail" id="item">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="image-item img-fluid">
+                            <a href="item.html#!/?id={{item._id}}">
+                                <img ng-src="{{item.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                            </a>
+                            </div>
                             <div class="caption">
-                                <h5 class="pull-right" id="amountRaised-{{item._id}}">${{item.amountRaised}} of ${{item.price}} raised</h5>
-                                <h4><a href="#">{{item.title}}</a>
-                                </h4>
+                                <p class="pull-right" id="amountRaised-{{item._id}}">${{item.amountRaised}} of ${{item.price}} raised</p>
+                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{item._id}}">{{item.title}}</a>
+                                </p>
                                 <div class="progress" id="thumbnail-bar">
                                     <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{item._id}}" role="progressbar" aria-valuenow="40"
-                                    aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
+                                         aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
+                                    </div>
+                                </div>
+                                <p> {{item.expirationDate}} </p>
+                                <div class="description-container rows">
+                                    <p class="description">
+                                        {{item.shortDescription}}
+                                    </p>
                                 </div>
                             </div>
-                            <h5 class="pull-right">{{item.expirationDate}}</h5>
-                            <h5>You bid a total of ${{bids[$index].amount}} on this item</h5>
+                            <div class="row bid-buttons">
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 1, item.amountRaised, item.price, item.title);" id="{{item._id}}">$1.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 2, item.amountRaised, item.price, item.title);" id="{{item._id}}">$2.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 5, item.amountRaised, item.price, item.title);" id="{{item._id}}">$5.00</button>
+                            </div>
+                            <div class="ratings">
 
-                            <p align="justify">{{item.description}}</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    Seller Rating: {{accounts[$index].averageRating}} / 5
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+
             </div>
         </div>
 
@@ -173,33 +185,33 @@
             <h3>Listed Items</h3>
             <hr>
             <div ng-repeat= "listedItem in listedItems">
-                    <div class="col-sm-4">
+                <div class="col-sm-4">
                         <div class="thumbnail" id="item">
                             <div class="image-item img-fluid">
-                            <a href="item.html#!/?id={{post._id}}">
-                                <img ng-src="{{post.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                            <a href="item.html#!/?id={{listedItem._id}}">
+                                <img ng-src="{{listedItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                             </a>
                             </div>
                             <div class="caption">
-                                <p class="pull-right" id="amountRaised-{{post._id}}">${{post.amountRaised}} of ${{post.price}} raised</p>
-                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{post._id}}">{{post.title}}</a>
+                                <p class="pull-right" id="amountRaised-{{listedItem._id}}">${{listedItem.amountRaised}} of ${{listedItem.price}} raised</p>
+                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{listedItem._id}}">{{listedItem.title}}</a>
                                 </p>
                                 <div class="progress" id="thumbnail-bar">
-                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{post._id}}" role="progressbar" aria-valuenow="40"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:{{post.percentageRaised}}%">
+                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{listedItem._id}}" role="progressbar" aria-valuenow="40"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:{{listedItem.percentageRaised}}%">
                                     </div>
                                 </div>
-                                <p> {{post.expirationDate}} </p>
+                                <p> {{listedItem.expirationDate}} </p>
                                 <div class="description-container rows">
                                     <p class="description">
-                                        {{post.shortDescription}}
+                                        {{listedItem.shortDescription}}
                                     </p>
                                 </div>
                             </div>
                             <div class="row bid-buttons">
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 1, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$1.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 2, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$2.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 5, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$5.00</button>
                             </div>
                             <div class="ratings">
 
@@ -207,11 +219,12 @@
                                     Seller Rating: {{accounts[$index].averageRating}} / 5
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <a href="user.html#!/?id={{post.sellerID}}">Seller: {{post.sellerName}}</a>
+                                    <a href="user.html#!/?id={{listedItem.sellerID}}">Seller: {{listedItem.sellerName}}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
         </div>
 
             <h3> Sold Items </h3>
@@ -219,34 +232,33 @@
 
         <!-- GET Sold items -->
         <div ng-repeat= "soldItem in soldItems">
-            
-                <div class="col-sm-4">
+        <div class="col-sm-4">
                         <div class="thumbnail" id="item">
                             <div class="image-item img-fluid">
-                            <a href="item.html#!/?id={{post._id}}">
-                                <img ng-src="{{post.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                            <a href="item.html#!/?id={{soldItem._id}}">
+                                <img ng-src="{{soldItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                             </a>
                             </div>
                             <div class="caption">
-                                <p class="pull-right" id="amountRaised-{{post._id}}">${{post.amountRaised}} of ${{post.price}} raised</p>
-                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{post._id}}">{{post.title}}</a>
+                                <p class="pull-right" id="amountRaised-{{soldItem._id}}">${{soldItem.amountRaised}} of ${{soldItem.price}} raised</p>
+                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{soldItem.title}}</a>
                                 </p>
                                 <div class="progress" id="thumbnail-bar">
-                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{post._id}}" role="progressbar" aria-valuenow="40"
-                                         aria-valuemin="0" aria-valuemax="100" style="width:{{post.percentageRaised}}%">
+                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{soldItem._id}}" role="progressbar" aria-valuenow="40"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:{{soldItem.percentageRaised}}%">
                                     </div>
                                 </div>
-                                <p> {{post.expirationDate}} </p>
+                                <p> {{soldItem.expirationDate}} </p>
                                 <div class="description-container rows">
                                     <p class="description">
-                                        {{post.shortDescription}}
+                                        {{soldItem.shortDescription}}
                                     </p>
                                 </div>
                             </div>
                             <div class="row bid-buttons">
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(soldItem._id, 1, soldItem.amountRaised, soldItem.price, soldItem.title);" id="{{soldItem._id}}">$1.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(soldItem._id, 2, soldItem.amountRaised, soldItem.price, soldItem.title);" id="{{soldItem._id}}">$2.00</button>
+                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(soldItem._id, 5, soldItem.amountRaised, soldItem.price, soldItem.title);" id="{{soldItem._id}}">$5.00</button>
                             </div>
                             <div class="ratings">
 
@@ -254,7 +266,7 @@
                                     Seller Rating: {{accounts[$index].averageRating}} / 5
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <a href="user.html#!/?id={{post.sellerID}}">Seller: {{post.sellerName}}</a>
+                                    <a href="user.html#!/?id={{soldItem.sellerID}}">Seller: {{soldItem.sellerName}}</a>
                                 </div>
                             </div>
                         </div>
@@ -474,6 +486,7 @@
 
 
 </div>
+
 
 </div>
 </div>
