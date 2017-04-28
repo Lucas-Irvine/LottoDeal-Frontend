@@ -351,11 +351,15 @@ textarea:-ms-input-placeholder {
 .search-btn, .search-btn:active, .search-btn:focus {
     background-color: #5cb85c;
     border-color: #5cb85c;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 .search-btn:hover    {
     background-color: #0FB007;
     border-color: #0FB007;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 /*notification bar styling code modified from http://www.9lessons.info/2014/09/facebook-style-notification-popup-using.html */
