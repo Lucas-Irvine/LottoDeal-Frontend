@@ -65,9 +65,9 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
         console.log("hi lucas")
 
-        $("#notificationContainer").fadeToggle(300);
-        document.getElementById("notification_count").innerHTML = "0";
-        $("#notification_count").fadeOut("slow");
+        // $("#notificationContainer").fadeToggle(300);
+        // document.getElementById("notification_count").innerHTML = "0";
+        // $("#notification_count").fadeOut("slow");
 
     }
 
@@ -202,13 +202,21 @@ $("#itemPicture").change(function(){
 
 
 
-$(document).mouseup(function (e)
-{
-    var container = $("#notificationContainer");
+$(document).ready(function() {
+    $("#notifications").click(function() {
+        $("#notificationContainer").fadeToggle(300);
+        $("#notification_count").fadeOut("slow");
+        return false;
+    });
 
-    if (!container.is(e.target) // if the target of the click isn't the container...
-        && container.has(e.target).length === 0) // ... nor a descendant of the container
-    {
-        container.hide();
-    }
+    //Document Click hiding the popup
+    $(document).click(function() {
+        $("#notificationContainer").hide();
+    });
+
+    //Popup on click
+    $("#notificationContainer").click(function() {
+        return false;
+    });
+
 });
