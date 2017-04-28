@@ -235,7 +235,9 @@ $(document).ready(function() {
     //Document Click hiding the popup
     $(document).click(function() {
         $("#notificationContainer").hide();
-        scope.markRead();
+        if (check) {
+        	scope.markRead();
+        }
         check = false;
     });
 
