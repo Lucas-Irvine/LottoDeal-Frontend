@@ -210,4 +210,4 @@ $(document).ready(function() {
 	    return false;        // This should not be used unless you do not want
 	                         // any click events registering inside the div
 	});
-}
+});
