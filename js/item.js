@@ -103,7 +103,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                 // var dataURL = "data:image/jpeg;base64," + b64;
 
                 // parsed["src"] = dataURL;
-                parsed["src"] = parsed.img.data;
+                parsed["src"] = parsed.img.compressed;
             }
 
 
