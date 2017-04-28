@@ -221,11 +221,11 @@ $(document).ready(function() {
     	if (!check) {
     		$("#notificationContainer").fadeIn(300);
     		$("#notification_count").fadeOut("slow");
-    		scope.markRead();
     		check = true;
     	}
     	else {
     		$("#notificationContainer").fadeOut(300);
+    		scope.markRead();
     		check = false;
     	}
 
