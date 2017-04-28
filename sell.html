@@ -114,8 +114,8 @@
                             <div id="notificationsBody" class="notifications">
                                   <div ng-repeat="notification in notifications">
                                      <div ng-class="{notificationRead: notification.read == true, notificationUnread: notification.read == false}">
-                                      <h4 class="item-title">{{notification.title}}</h4>
-                                      <p class="item-info">{{notification.descrip}}</p>
+                                      <h4 class="item-title"><a href="item.html#!/?id={{notification.post._id}}">{{notification.title}}</a></h4>
+                                      <p class="item-info">{{notification.description}}</p>
                                   </div>
                                 </div>
                             </div>
