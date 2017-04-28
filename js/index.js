@@ -124,7 +124,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     // var b64=btoa(raw)
                     var dataURL = "data:image/jpeg;base64," + b64;
 
-                    items[i]["src"] = dataURL;
+                    if (items[i].img.compressed != null) {
+                        items[i]["src"] = items[i].img.compressed;
+                    }
+                    else {
+                        items[i]["src"] = dataURL;
+                    }
 
 
                     // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
