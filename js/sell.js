@@ -241,9 +241,9 @@ $(document).ready(function() {
         check = false;
     });
 
-    //Popup on click
-    $("#notificationContainer").click(function() {
-        return false;
-    });
+    // //Popup on click
+    // $("#notificationContainer").click(function() {
+    //     return false;
+    // });
 
 });
