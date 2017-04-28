@@ -99,10 +99,11 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                 // console.log(parsed)
                 //    console.log(parsed.img)
 
-                var b64 = base64ArrayBuffer(parsed.img.data.data);
-                var dataURL = "data:image/jpeg;base64," + b64;
+                // var b64 = base64ArrayBuffer(parsed.img.data.data);
+                // var dataURL = "data:image/jpeg;base64," + b64;
 
-                parsed["src"] = dataURL;
+                // parsed["src"] = dataURL;
+                parsed["src"] = parsed.img.data;
             }
 
 
