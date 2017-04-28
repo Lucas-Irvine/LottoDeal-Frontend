@@ -34,6 +34,10 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     	$location.url("");
     }
 
+
+    $scope.notificationLength;
+
+
     // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
     var userID = localStorage.getItem("curUserID")
@@ -48,6 +52,12 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
         success: function(data) {
             var notifications = JSON.parse(data)
             $scope.notifications = notifications;
+            var counter = 0;
+            for (var i = 0;i < notifications.length; i++) {
+            	if (notifications[i].read == false) counter++;
+            }
+            $scope.notificationLength = counter;
+
             console.log($scope.notifications)
             console.log("hi")
             $scope.$apply()
@@ -74,6 +84,11 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	        type: 'GET',
 	        success: function(data) {
 	            var notifications = JSON.parse(data)
+
+
+	            $scope.notificationLength = 0;
+
+
 	            $scope.notifications = notifications;
 	            console.log($scope.notifications)
 	            console.log("updated the notifications")
