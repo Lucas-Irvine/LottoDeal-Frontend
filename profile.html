@@ -130,7 +130,8 @@
 
         <div class="tab-content">
             <div class="tab-pane fade in active" id="tab1" ngStyle="{position: relative}">
-                <h2 id = "BidCount"></h2>
+                <h3 id = "BidCount"> Current Bids</h3>
+                <hr>
                 <div ng-repeat= "item in items">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail" id="item">
@@ -202,12 +203,8 @@
             </div>
         </div>
 
-        <div class = "container>">
-            <div class = "col-lg-12">
-                <h3> Sold Items </h3>
-                <hr>
-            </div>
-        </div>
+            <h3> Sold Items </h3>
+            <hr>
 
         <!-- GET Sold items -->
         <div ng-repeat= "soldItem in soldItems">
@@ -253,10 +250,9 @@
         <div class="col-sm-3">
             <div class="rating-block">
 
-
-
             <div ng-model= "reviewData">
-                <h4>Average Rating</h4>
+                <h3>Average Rating</h3>
+                <hr>
                 <h2 id = "averageRating" class="bold padding-bottom-7">{{reviewData.averageRating}} <small>/ 5</small></h2>
 <!--                 <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -424,13 +420,10 @@
 
     <!-- GET Account Information  -->
     <div ng-model= "account">
-        <p>Name : {{account.fullName}}</p>
-        <p>Current Email Address : {{account.email}}</p>
-    </div>
-
-
+        <div class="jumbotron">
             <form class="form-horizontal" onsubmit = "updateSettings()">
                 <fieldset>
+                <h4>Current Email Address : {{account.email}}</h4>
                     <!-- Text input-->
                     <div class="form-group">
                       <label class="col-md-4 control-label" for="textinput">Change Your Email Address To</label>  
@@ -449,6 +442,8 @@
                 </div>
             </fieldset>
         </form>
+        </div>
+    </div>
 
 
 
@@ -470,7 +465,7 @@
 
 
 <!-- Footer -->
-<footer>
+<footer id="footertabs">
     <hr>
     <div class="rows">
       <div class="col-lg-3">

@@ -153,9 +153,11 @@ footer {
     /*background: #020621; */
     /*background: white;*/
     color: #fea680;
-    bottom: 0;
-    height: 60px;
     position: absolute;
+}
+
+#footertabs {
+    bottom: 0;
 }
 
 .footerlink
