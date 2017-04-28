@@ -1122,6 +1122,24 @@ input:focus, textarea:focus {
 }
 
 
+.green:focus, .green:active {
+    background-color: #3cc47c;
+}
+
+.green:hover {
+    background-color: #62d095;
+}
+
+.btn-primary {
+    background-color: #3cc47c;
+}
+
+#profileImage {
+    border-radius: 100%;
+}
+
+
+
 
 
 
