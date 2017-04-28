@@ -220,7 +220,7 @@ $(document).ready(function() {
     $("#notifications").click(function() {
     	if (!check) {
     		$("#notificationContainer").fadeIn(300);
-    		$("#notification_count").fadeOut("slow");
+    		// $("#notification_count").fadeOut("slow");
     		check = true;
     	}
     	else {
@@ -232,7 +232,7 @@ $(document).ready(function() {
         return false;
     });
 
-    //Document Click hiding the popup
+   	//Document Click hiding the popup
     $(document).click(function() {
         $("#notificationContainer").hide();
         if (check) {
