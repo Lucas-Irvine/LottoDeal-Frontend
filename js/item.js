@@ -247,7 +247,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                             $footerButton.enable();
                             $footerButton.stopSpin();
                             dialog.setClosable(true);
-                            dialogRef.close();
+                            dialog.close();
                             window.location.href = 'https://dominicwhyte.github.io/LottoDeal-Frontend/index.html';
                         },
                         error: function(response, error) {
