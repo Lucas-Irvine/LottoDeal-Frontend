@@ -1,5 +1,8 @@
 var app = angular.module("app", []);
 
+
+var markRead = function();
+
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
     var sellerID = localStorage.getItem("curUserID");
@@ -55,32 +58,32 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     });
 
 
-// mark all the notifications as read
-function markRead() {
-	// AJAX POST TO SERVER
-    var url = "https://localhost:8000/markRead";
-    var userID = localStorage.getItem("curUserID")
-    var data = {
-        userID: userID
-    }
-    console.log('Asking for notifications')
-    $.ajax({
-        url: url,
-        data: data,
-        type: 'GET',
-        success: function(data) {
-            var notifications = JSON.parse(data)
-            $scope.notifications = notifications;
-            console.log($scope.notifications)
-            console.log("updated the notifications")
-            $scope.$apply()
-        },
-        error: function(response, error) {
-            console.log(response)
-            console.log(error)
-        }
-    });
-}
+	// mark all the notifications as read
+	function markRead() {
+		// AJAX POST TO SERVER
+	    var url = "https://localhost:8000/markRead";
+	    var userID = localStorage.getItem("curUserID")
+	    var data = {
+	        userID: userID
+	    }
+	    console.log('Asking for notifications')
+	    $.ajax({
+	        url: url,
+	        data: data,
+	        type: 'GET',
+	        success: function(data) {
+	            var notifications = JSON.parse(data)
+	            $scope.notifications = notifications;
+	            console.log($scope.notifications)
+	            console.log("updated the notifications")
+	            $scope.$apply()
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
 
 	
 	// //when field is entered
