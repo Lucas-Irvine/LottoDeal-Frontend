@@ -72,19 +72,17 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 
-	//Document Click hiding the popup
-	$(document).on("click",function() {
-	    $("#notificationContainer").hide();
-	});
-
-	//Popup on click
-	$("#notificationContainer").click(function() {
-	    return false;
-	});
 
 
+		$(document).click(function() {
+		    $("#notificationContainer").hide();
+		});
+		$("#notificationContainer").click(function(e) {
+		    e.stopPropagation(); // This is the preferred method.
+		    return false;        // This should not be used unless you do not want
+		                         // any click events registering inside the div
+		});
 
-        return false;
     }
 
 
