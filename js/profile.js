@@ -281,7 +281,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
             document.getElementById('profileName').innerHTML = account.fullName;
             document.getElementById('profileImage').src = account.pictureURL;
             document.getElementById('profileImageBackground').src = account.pictureURL;
-
+            console.log(account.pictureURL);
             var reviews = account.reviews;
             var length = reviews.length;
             var total = 0;
@@ -401,7 +401,7 @@ window.fbAsyncInit = function() {
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             //display user data
-            displayFBUserData();
+            console.log('you are logged in');
         } else {
             console.log('Not logged in');
         }
@@ -420,17 +420,3 @@ window.fbAsyncInit = function() {
     js.src = "https://connect.facebook.net/en_US/all.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
-
-// Fetch the user profile data from facebook
-function displayFBUserData() {
-    FB.api('/me', {
-            locale: 'en_US',
-            fields: 'id,first_name,last_name,email,picture'
-        },
-        function(response) {
-            document.getElementById('profileName').innerHTML = response.first_name + " " + response.last_name;
-            document.getElementById('profileImage').src = response.picture.data.url;
-            document.getElementById('profileImageBackground').src = response.picture.data.url;
-        });
-}

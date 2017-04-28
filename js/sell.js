@@ -60,19 +60,6 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 
-    // when you click the notifications marks them as read
-    $scope.readNotifications = function () {
-
-        console.log("hi lucas")
-
-        // $("#notificationContainer").fadeToggle(300);
-        // document.getElementById("notification_count").innerHTML = "0";
-        // $("#notification_count").fadeOut("slow");
-
-    }
-
-
-
 	
 	// //when field is entered
 	// $('#price, #title, #description').bind('keyup', function() {
