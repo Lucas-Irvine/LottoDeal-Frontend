@@ -214,11 +214,21 @@ $("#itemPicture").change(function(){
 
 
 
+var check = false;
 
 $(document).ready(function() {
     $("#notifications").click(function() {
-        $("#notificationContainer").fadeToggle(300);
-        $("#notification_count").fadeOut("slow");
+    	if (!check) {
+    		$("#notificationContainer").fadeIn(300);
+    		$("#notification_count").fadeOut("slow");
+    		scope.markRead();
+    		check = true;
+    	}
+    	else {
+    		$("#notificationContainer").fadeOut(300);
+    		check = false;
+    	}
+
         return false;
     });
 
