@@ -1140,8 +1140,18 @@ input:focus, textarea:focus {
     border: 1px solid #e2e2e2;
 }
 
+.facebook-button {
+    background-color: #3b5998; 
+    color: white;
+}
 
+.fa-facebook {
+    color: white;
+}
 
+#facebook-text {
+    padding-left: 5px;
+}
 
 
 

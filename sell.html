@@ -37,25 +37,25 @@
      id="loginPopup">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-body">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="loginTitle">
-                    Login
-                </h4>
-            </div>
-            <div class="modal-body">
                 <p id = "loginMessage"></p>
                 <p id = "successScreen"></p>
                 <center>
-                <button type="button" class="facebook-button" id="loginToFacebook">
-                  <i class="fa fa-facebook"> Login With Facebook</i>
+                <button type="button" class="facebook-button btn" id="loginToFacebook">
+                  <i class="fa fa-facebook"></i>
+                  <span id="facebook-text">Sign In With Facebook</span>
                 </button> 
                 </center>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            <center>
+              <h5> Why Do I need to sign in?</h5>
+              <p>LottoDeal is an e-commerce platform which deals with financial transactions. 
+              For our community, we hope you login to maintain trust between our buyers and sellers. </p>
+            </center>
             </div>
         </div>
     </div>
