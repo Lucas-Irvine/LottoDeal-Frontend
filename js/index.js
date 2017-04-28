@@ -100,8 +100,16 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 // console.log( "Raised" + items[i].percentageRaised);
                 var expirationDate = new Date(items[i].expirationDate);
                 var date = new Date();
-                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
-                // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
+                var hours = DateDiff.inHours(date, expirationDate)
+                var days = DateDiff.inDays(date, expirationDate)
+
+                if (items[i].expired || hours < 0 || days < 0) {
+                    items[i].expirationDate = "Lottery has expired!";                     
+                }
+                else {
+                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
+                }
+               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
 
                 var image = items[i].img;
                 if (image == null) {
