@@ -67,6 +67,7 @@ function deleteItem () {
 
 app.controller("indexController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
     
+
     $scope.selectedTab = 0
 
     $scope.posts = []
@@ -200,6 +201,39 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             console.log(error)
         }
     });
+
+
+
+
+
+
+
+
+    // when you click the notifications marks them as read
+    function readNotifications() {
+        $("#notifications").click(function() {
+            $("#notificationContainer").fadeToggle(300);
+            document.getElementById("notification_count").innerHTML = "0";
+            $("#notification_count").fadeOut("slow");
+
+
+
+            return false;
+        });
+
+        //Document Click hiding the popup
+        $(document).click(function() {
+            $("#notificationContainer").hide();
+        });
+
+        //Popup on click
+        $("#notificationContainer").click(function() {
+            return false;
+        });
+    }
+
+
+
 
 
     $scope.targetPost = null;
@@ -640,24 +674,3 @@ function fbLogout() {
         document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
     });
 }
-
-
-$(document).ready(function() {
-    $("#notifications").click(function() {
-        $("#notificationContainer").fadeToggle(300);
-        document.getElementById("notification_count").innerHTML = "0";
-        $("#notification_count").fadeOut("slow");
-        return false;
-    });
-
-    //Document Click hiding the popup
-    $(document).click(function() {
-        $("#notificationContainer").hide();
-    });
-
-    //Popup on click
-    $("#notificationContainer").click(function() {
-        return false;
-    });
-
-});
