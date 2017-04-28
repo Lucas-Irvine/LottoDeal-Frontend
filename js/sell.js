@@ -200,10 +200,15 @@ $("#itemPicture").change(function(){
 	// });
 
 
-$(document).ready(function() {
-	$(document).click(function() {
-	    $("#notificationContainer").hide();
-	});
 
 
+$(document).mouseup(function (e)
+{
+    var container = $("#notificationContainer");
+
+    if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        container.hide();
+    }
 });
