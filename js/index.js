@@ -104,7 +104,11 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 var image = items[i].img;
                 if (image == null) {
                     items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
-                } else {
+                } 
+                else if (items[i].img.compressed != null) {
+                    items[i]["src"] = items[i].img.compressed;
+                }
+                else {
                     // WORKING SNIPPET
                     // var binary = '';
                     // var bytes = new Uint8Array(items[i].img.data.data);
@@ -124,12 +128,13 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     // var b64=btoa(raw)
                     var dataURL = "data:image/jpeg;base64," + b64;
 
-                    if (items[i].img.compressed != null) {
-                        items[i]["src"] = items[i].img.compressed;
-                    }
-                    else {
-                        items[i]["src"] = dataURL;
-                    }
+                    // if (items[i].img.compressed != null) {
+                    //     items[i]["src"] = items[i].img.compressed;
+                    // }
+                    // else {
+                    //     items[i]["src"] = dataURL;
+                    // }
+                    items[i]["src"] = dataURL;
 
 
                     // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
