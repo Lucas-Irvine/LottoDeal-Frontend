@@ -33,17 +33,17 @@
     margin: 50px 0px 10px 0px;
 }
 .video-frame {
-    /*position: absolute;*/
+    position: absolute;
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
-    display:block;
+    display: block;
     width: 100%;
     max-height: 100%;
 }
 
 .full-img {
-    height: 100%;
+    height: auto;
     width: 100%;
     position: relative;
 }
