@@ -226,7 +226,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         id: id
     }
     $scope.deleteItem = function() {
-         BootstrapDialog.show({
+        BootstrapDialog.show({
             title: 'Are you sure you would like to delete this item?',
             message: 'This cannot be undone',
             buttons: [{
@@ -243,44 +243,27 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                         type: 'DELETE',
                         success: function(data) {
                             console.log('Success deleting item')
-                            event.data.$footerButton.enable();
-                            event.data.$footerButton.stopSpin();
+                                // event.data.$footerButton.enable();
+                                // event.data.$footerButton.stopSpin();
+                                // dialog.setClosable(true);
+                            var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+                            $button.enable();
+                            $button.stopSpin();
                             dialog.setClosable(true);
-
-
                         },
                         error: function(response, error) {
                             console.log('Error deleting item')
-                            event.data.$footerButton.enable();
-                            event.data.$footerButton.stopSpin();
+                            // event.data.$footerButton.enable();
+                            // event.data.$footerButton.stopSpin();
+                            // dialog.setClosable(true);
+                            var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+                            $button.enable();
+                            $button.stopSpin();
                             dialog.setClosable(true);
                         }
                     });
 
-                    
-                }
-            }]
-        });
 
-
-
-
-        BootstrapDialog.show({
-            title: 'Bid surpasses item price',
-            message: 'Choose a lower bid or search for similar items',
-            buttons: [{
-                id: 'btn-ok',
-                icon: 'glyphicon glyphicon-check',
-                label: 'OK',
-                cssClass: 'btn-primary',
-                data: {
-                    js: 'btn-confirm',
-                    'user-id': '3'
-                },
-                autospin: false,
-                action: function(dialogRef) {
-                    dialogRef.close();
-                    
                 }
             }]
         });
