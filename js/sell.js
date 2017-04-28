@@ -205,12 +205,12 @@ $("#itemPicture").change(function(){
 
 
 	
-//Document Click hiding the popup
-$(document).click(function() {
-    $("#notificationContainer").hide();
-});
+// //Document Click hiding the popup
+// $(document).click(function() {
+//     $("#notificationContainer").hide();
+// });
 
-//Popup on click
-$("#notificationContainer").click(function() {
-    return false;
-});
+// //Popup on click
+// $("#notificationContainer").click(function() {
+//     return false;
+// });
