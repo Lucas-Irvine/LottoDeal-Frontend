@@ -406,6 +406,15 @@ textarea:-ms-input-placeholder {
     padding: 33px 0px 0px 0px !important;
     min-height:300px;
 }
+
+.notificationRead {
+    background-color: whitesmoke;
+}
+
+.notificationUnread {
+    background-color: white;
+}
+
 #notificationFooter
 {
     background-color: #e9eaed;

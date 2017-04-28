@@ -113,7 +113,7 @@
                             </div>
                             <div id="notificationsBody" class="notifications">
                                   <div ng-repeat="notification in notifications">
-                                     <div ng-style = "background-color : (notification.read == true) ? white : whitesmoke>
+                                     <div ng-class="{notificationRead: notification.read == true, notificationUnread: notification.read == 'false'}">
                                       <h4 class="item-title">{{notification.title}}</h4>
                                       <p class="item-info">{{notification.descrip}}</p>
                                   </div>
