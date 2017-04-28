@@ -1,10 +1,43 @@
 var app = angular.module("item_app", ["ngRoute"])
 
+
+
+
 $('#myTabs a').click(function(e) {
     console.log('tab clicked');
     e.preventDefault()
     $(this).tab('show')
 });
+
+//Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
+function changeTab(titleID, id) {
+    console.log('test');
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].className = tabcontent[i].className.replace(" active", "");
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    
+
+    document.getElementById(titleID).className += " active";
+    document.getElementById(id).className += " active";
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+   // document.getElementById(cityName).style.display = "block";
+    //evt.currentTarget.className += " active";
+}
+
+
 
 app.controller("itemController", ["$scope", "$rootScope", "$location", "$routeParams", function($scope, $rootScope, $location, $routeParams) {
     var searchObject = $location.search();
