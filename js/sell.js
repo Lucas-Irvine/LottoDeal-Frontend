@@ -71,6 +71,19 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 
+        	
+	//Document Click hiding the popup
+	$(document).click(function() {
+	    $("#notificationContainer").hide();
+	});
+
+	//Popup on click
+	$("#notificationContainer").click(function() {
+	    return false;
+	});
+
+
+
         return false;
     }
 
@@ -204,13 +217,3 @@ $("#itemPicture").change(function(){
 
 
 
-	
-// //Document Click hiding the popup
-// $(document).click(function() {
-//     $("#notificationContainer").hide();
-// });
-
-// //Popup on click
-// $("#notificationContainer").click(function() {
-//     return false;
-// });
