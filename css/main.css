@@ -1134,6 +1134,10 @@ input:focus, textarea:focus {
     background-color: #3cc47c;
 }
 
+.green {
+    border-bottom: 1px solid #3cc47c ;
+}
+
 #profileImage {
     border-radius: 100%;
 }
