@@ -243,21 +243,17 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                         type: 'DELETE',
                         success: function(data) {
                             console.log('Success deleting item')
-                                // event.data.$footerButton.enable();
-                                // event.data.$footerButton.stopSpin();
-                                // dialog.setClosable(true);
-                            $button.enable();
-                            $button.stopSpin();
-                            dialog.setClosable(true);
+                            var $footerButton = dialog.getButton('btn-1');
+                            $footerButton.enable();
+                            $footerButton.stopSpin();
+                             dialog.setClosable(true);
                         },
                         error: function(response, error) {
                             console.log('Error deleting item')
-                            // event.data.$footerButton.enable();
-                            // event.data.$footerButton.stopSpin();
-                            // dialog.setClosable(true);
-                            $button.enable();
-                            $button.stopSpin();
-                            dialog.setClosable(true);
+                            var $footerButton = dialog.getButton('btn-1');
+                            $footerButton.enable();
+                            $footerButton.stopSpin();
+                             dialog.setClosable(true);
                         }
                     });
 
