@@ -103,7 +103,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 var hours = DateDiff.inHours(date, expirationDate)
                 var days = DateDiff.inDays(date, expirationDate)
 
-                if (item[i].expired || hours < 0 || days < 0) {
+                if (items[i].expired || hours < 0 || days < 0) {
                     items[i].expirationDate = "Lottery has expired!";                     
                 }
                 else {
