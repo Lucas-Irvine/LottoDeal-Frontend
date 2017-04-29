@@ -8,7 +8,7 @@ window.fbAsyncInit = function() {
 		xfbml      : true,
 		cookie     : true,
 		version    : 'v2.8'
-	});
+	});   
 
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
@@ -148,6 +148,9 @@ function getFbUserData(){
 function saveUserData(response) {
 
       var url = "https://localhost:8000/createUser";
+      console.log('Age max: ' + response.age_range.max);
+      console.log('Age max: ' + response.age_range.min);
+      console.log('Gender:' + response.gender);
 
       data = {
         name: response.first_name+ ' ' + response.last_name,
