@@ -28,15 +28,13 @@ function deleteItem () {
 }
 
 
-console.log("userID");
-console.log(userID);
+
 
 
 
 
 app.controller("indexController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
-    console.log("userID");
-    console.log(userID);
+    
 
     $scope.selectedTab = 0
 
