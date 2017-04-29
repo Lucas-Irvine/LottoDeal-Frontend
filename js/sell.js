@@ -3,10 +3,16 @@ var app = angular.module("app", []);
 
 var scope;
 
+
+console.log(userID);
+
+
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
     scope = $scope;
-    var sellerID = localStorage.getItem("curUserID");
+    // var sellerID = localStorage.getItem("curUserID");
+    console.log(userID);
+    var sellerID = userID;
     $("#userid").val(sellerID)
     console.log(sellerID)
 
