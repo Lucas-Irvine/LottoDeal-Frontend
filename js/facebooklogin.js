@@ -137,7 +137,7 @@ function fbLogout() {
 }
 
 function getFbUserData(){
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
         function (response) {
             localStorage.setItem("curUserID", response.id);
             // Save user data
@@ -150,8 +150,8 @@ function saveUserData(response) {
       var url = "https://localhost:8000/createUser";
       
       console.log('Gender:' + response.gender);
-      console.log('Age max: ' + response.age_range);
-      console.log('Age max: ' + response.age_range);
+      console.log('Age max: ' + response.age_range.max);
+      console.log('Age max: ' + response.age_range.min);
 
       data = {
         name: response.first_name+ ' ' + response.last_name,
