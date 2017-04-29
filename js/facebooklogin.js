@@ -139,7 +139,8 @@ function fbLogout() {
 function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
         function (response) {
-            localStorage.setItem("curUserID", response.id);
+            // localStorage.setItem("curUserID", response.id);
+            userID = response.id;
             // Save user data
             saveUserData(response);
         });
