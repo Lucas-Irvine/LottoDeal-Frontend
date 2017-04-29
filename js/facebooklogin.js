@@ -8,7 +8,7 @@ window.fbAsyncInit = function() {
 		xfbml      : true,
 		cookie     : true,
 		version    : 'v2.8'
-	});
+	});   
 
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
@@ -137,7 +137,7 @@ function fbLogout() {
 }
 
 function getFbUserData(){
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
         function (response) {
             // localStorage.setItem("curUserID", response.id);
             userID = response.id;
@@ -149,12 +149,24 @@ function getFbUserData(){
 function saveUserData(response) {
 
       var url = "https://localhost:8000/createUser";
+      
+      console.log('Gender:' + response.gender);
+      console.log('Age max: ' + response.age_range.max);
+      console.log('Age min: ' + response.age_range.min);
+      var avgAge = 25 //default to 25 if unspecified
+
+      if (response.age_range != null) {
+        avgAge = (response.age_range.max + response.age_range.min) / 2
+        console.log('Avg age is' + avgAge);
+      }
 
       data = {
         name: response.first_name+ ' ' + response.last_name,
         fbid: response.id,
+        age: avgAge,
+        gender: response.gender,
         url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
-        email: response.email,
+        email: response.email
       }
 
       // AJAX POST TO SERVER
