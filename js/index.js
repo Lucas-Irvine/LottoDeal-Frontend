@@ -107,7 +107,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     items[i].expirationDate = "Lottery has expired!";                     
                 }
                 else if (items[i].sold) {
-                    items[i].expirationDate = "Item was sold to:" + items[i].winner;
+                    items[i].expirationDate = "Item was sold to:" + items[i].winnerID;
                 }
                 else if (hours < 0 || days < 0) {
                      items[i].expirationDate = "Negative days remaining (not expired yet)";   
