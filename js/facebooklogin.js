@@ -156,6 +156,7 @@ function saveUserData(response) {
 
       if (response.age_range != null) {
         avgAge = (response.age_range.max + response.age_range.min) / 2
+        console.log('Avg age is' + avgAge);
       }
 
       data = {
