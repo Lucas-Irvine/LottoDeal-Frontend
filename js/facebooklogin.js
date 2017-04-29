@@ -148,9 +148,10 @@ function getFbUserData(){
 function saveUserData(response) {
 
       var url = "https://localhost:8000/createUser";
-      console.log('Age max: ' + response.public_profile.age_range.max);
-      console.log('Age max: ' + response.public_profile.age_range.min);
-      console.log('Gender:' + response.public_profile.gender);
+      
+      console.log('Gender:' + response.gender);
+      console.log('Age max: ' + response.age_range.max);
+      console.log('Age max: ' + response.age_range.min);
 
       data = {
         name: response.first_name+ ' ' + response.last_name,
