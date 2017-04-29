@@ -101,6 +101,38 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	    });
 	}
 
+
+	$scope.debugSubmit = function() {
+		var testUrl = "https://localhost:8000/debugPost"
+		var sellerID = localStorage.getItem("curUserID")
+
+		var data = {
+			title: "Test Item",
+			price: "5",
+			longDescription: "This is a great item, with the following features: \
+			- Great \
+			- Awesome \
+			- Cool \
+			- Amazing \
+			You should buy it!",
+			shortDescription: "This is a short description for a great product.",
+			expirDate: "1",
+			userID: sellerID,
+		}
+
+		$.ajax({
+		    url: testUrl,
+		    type: 'POST',
+		    data: data,
+		    success: function(data) {
+				console.log(data)
+		    },
+		    error: function(response, error) {
+				console.log(response)
+				console.log(error)
+		    }
+		});
+	}
 	
 	// //when field is entered
 	// $('#price, #title, #description').bind('keyup', function() {
