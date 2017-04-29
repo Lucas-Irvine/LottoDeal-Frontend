@@ -1,4 +1,4 @@
-var facebookLoginButton = document.getElementById("facebook-text");
+// var facebookLoginButton = document.getElementById("facebook-text");
 
 
 // Facebook Login code -----------------------------------
