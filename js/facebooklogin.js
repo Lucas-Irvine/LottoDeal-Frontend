@@ -151,13 +151,20 @@ function saveUserData(response) {
       
       console.log('Gender:' + response.gender);
       console.log('Age max: ' + response.age_range.max);
-      console.log('Age max: ' + response.age_range.min);
+      console.log('Age min: ' + response.age_range.min);
+      var avgAge = 25 //default to 25 if unspecified
+
+      if (response.age_range != null) {
+        avgAge = (response.age_range.max + response.age_range.min) / 2
+      }
 
       data = {
         name: response.first_name+ ' ' + response.last_name,
         fbid: response.id,
+        age: avgAge,
+        gender: response.gender,
         url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
-        email: response.email,
+        email: response.email
       }
 
       // AJAX POST TO SERVER
