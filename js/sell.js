@@ -77,7 +77,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
                         console.log(notifications[i].datePosted);
                     }
                 }
-                
+
                 else {
                     var month = date.getMonth();
                     var day = date.getDate();
@@ -127,10 +127,55 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	        type: 'GET',
 	        success: function(data) {
 	            var notifications = JSON.parse(data)
-
-
 	            $scope.notificationLength = 0;
+                
+                var monthNames = [
+                    "January", "February", "March",
+                    "April", "May", "June", "July",
+                    "August", "September", "October",
+                    "November", "December"
+                ];
 
+                var curDate = new Date();
+
+                for (i = 0; i < notifications.length; i++) {
+
+                    var date = new Date(notifications[i].datePosted);
+
+                    var hoursAgo = DateDiff.inHours(curDate, date);
+
+                    if (hoursAgo < 24) {
+                        if (hoursAgo == 0) {
+                            notifications[i].datePosted = "Just Now";
+                        }
+                        else {
+                            notifications[i].datePosted = hoursAgo + " hours ago";
+                            console.log(notifications[i].datePosted);
+                        }
+                    }
+
+                    else {
+                        var month = date.getMonth();
+                        var day = date.getDate();
+
+                        /* code taken from http://stackoverflow.com/questions/8888491/
+                         how-do-you-display-javascript-datetime-in-12-hour-am-pm-format */
+
+                        var hours = date.getHours();
+                        var minutes = date.getMinutes();
+                        var ampm = hours >= 12 ? 'pm' : 'am';
+                        hours = hours % 12;
+                        hours = hours ? hours : 12; // the hour '0' should be '12'
+                        minutes = minutes < 10 ? '0'+ minutes : minutes;
+                        var strTime = hours + ':' + minutes + ' ' + ampm;
+
+                        /* --------- */
+
+                        var newDate = monthNames[month] + " " + day + " at " + strTime;
+                        notifications[i].datePosted = monthNames[month] + " " + day + " at " + strTime;
+                        console.log(newDate);
+                    }
+                }
 
 	            $scope.notifications = notifications;
 	            console.log($scope.notifications)
