@@ -22,7 +22,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
     //var sellerID = localStorage.getItem("curUserID");
     // $("#userid").val(sellerID)
-    console.log(sellerID)
+   // console.log(sellerID)
 
     $scope.id = null;
 
