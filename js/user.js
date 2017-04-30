@@ -157,8 +157,13 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
                     items[i]["src"] = dataURL;
                 }
 
-
-
+                var count = 0;
+                for (var j = 0; j < items[i].bids.length; j++) {
+                    if (reviewerID == items[i].bids[j].ID) {
+                        count += items[i].bids[j].amount;
+                    }
+                }
+                items[i]["yourBids"] = count;
             }
             $scope.listedItems = items;
             console.log($scope.listedItems)
@@ -222,6 +227,14 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
                     var dataURL = "data:image/jpeg;base64," + b64;
                     items[i]["src"] = dataURL;
                 }
+
+                var count = 0;
+                for (var j = 0; j < items[i].bids.length; j++) {
+                    if (reviewerID == items[i].bids[j].ID) {
+                        count += items[i].bids[j].amount;
+                    }
+                }
+                items[i]["yourBids"] = count;
 
             }
             $scope.soldItems = items;
