@@ -27,7 +27,7 @@ window.fbAsyncInit = function() {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
             console.log(userID + "saving UserID as a global variable")
-        }).then(getNotifications(userID));
+        });
 
             //saveUserID();
             console.log('logged in')
@@ -41,7 +41,7 @@ window.fbAsyncInit = function() {
             $("#signInMessage").show();
             facebookLoginButton.innerHTML = "Sign In With Facebook";
         }
-    });
+    }).then(getNotifications(userID));
 
 
 
