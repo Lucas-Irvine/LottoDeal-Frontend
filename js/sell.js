@@ -528,6 +528,7 @@ function getFbUserData(){
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
+            $("#userid").val(userID)
             console.log(userID + "saving UserID as a global variable")
 
             // Save user data
