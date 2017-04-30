@@ -65,11 +65,11 @@ window.fbAsyncInit = function() {
 
 
 
-function saveUserID() {
+function fetchUserID() {
      FB.api('/me', {locale: 'en_US', fields: 'id'},
         function (response) {
             //localStorage.setItem("curUserID", response.id);
-            userID = response.id;
+            return response.id;
             console.log(userID + "saving UserID as a global variable")
         });
 }
@@ -211,6 +211,11 @@ var scope;
 
 
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
+
+
+    var userID = await fetchUserID();
+    console.log(userID);
+
     console.log("got here")
     scope = $scope;
     
