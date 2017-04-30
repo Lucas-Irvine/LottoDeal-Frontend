@@ -1,4 +1,4 @@
-
+var app = angular.module("index_app", ["ngRoute"])
 
 // function to delete a given item 
 function deleteItem () {
