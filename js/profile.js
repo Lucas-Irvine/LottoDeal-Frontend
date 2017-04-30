@@ -110,6 +110,9 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                 var date = new Date();
                 items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
             
+                var hours = DateDiff.inHours(date, expirationDate)
+                var days = DateDiff.inDays(date, expirationDate)
+
                 if (items[i].expired) {
                     items[i].expirationDate = "Lottery has expired!";                     
                 }
@@ -167,6 +170,9 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                 var date = new Date();
                 items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
             
+                var hours = DateDiff.inHours(date, expirationDate)
+                var days = DateDiff.inDays(date, expirationDate)
+
                 if (items[i].expired) {
                     items[i].expirationDate = "Lottery has expired!";                     
                 }
