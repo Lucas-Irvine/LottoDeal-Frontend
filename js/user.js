@@ -423,7 +423,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
                         console.log(data);
 
                         for (var i = 0; i < $scope.listedItems.length; i++) {
-                            post = $scope.posts[i]
+                            post = $scope.listedItems[i]
                             console.log(itemID)
                             if (post["_id"] == itemID) {
                                 var newPrice = post.amountRaised + amountToCharge;
