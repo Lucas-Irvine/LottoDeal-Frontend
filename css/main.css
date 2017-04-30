@@ -428,6 +428,10 @@ textarea:-ms-input-placeholder {
     /*border-bottom: 1px solid #dddfe2;*/
 }
 
+.notificationText {
+    border-bottom: 1px solid #dddfe2;
+}
+
 #notificationFooter
 {
     background-color: #e9eaed;
