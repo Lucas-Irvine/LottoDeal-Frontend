@@ -148,11 +148,14 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
                     var date = new Date(notifications[i].datePosted);
 
-                    var hoursAgo = DateDiff.inHours(curDate, date);
+                    var hoursAgo = Math.abs(DateDiff.inHours(curDate, date));
 
                     if (hoursAgo < 24) {
                         if (hoursAgo == 0) {
                             notifications[i].datePosted = "Just Now";
+                        }
+                        else if (hoursAgo == 1) {
+                            notifications[i].datePosted = hoursAgo + " hour ago";
                         }
                         else {
                             notifications[i].datePosted = hoursAgo + " hours ago";
