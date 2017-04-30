@@ -422,7 +422,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
                         console.log('success payment and bid added')
                         console.log(data);
 
-                        for (var i = 0; i < $scope.posts.length; i++) {
+                        for (var i = 0; i < $scope.listedItems.length; i++) {
                             post = $scope.posts[i]
                             console.log(itemID)
                             if (post["_id"] == itemID) {
