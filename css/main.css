@@ -410,12 +410,22 @@ textarea:-ms-input-placeholder {
 
 .notificationRead {
     background-color: white;
-    /*border: 1px solid whitesmoke;*/
+    /*border-bottom: 1px solid #dddfe2;*/
 }
 
 .notificationUnread {
     background-color: whitesmoke;
-    /*border: 1px solid whitesmoke;*/
+    /*border-bottom: 1px solid #dddfe2;*/
+}
+
+.notificationRead:hover {
+    background-color: whitesmoke;
+    /*border-bottom: 1px solid #dddfe2;*/
+}
+
+.notificationUnread:hover {
+    background-color: darkgray;
+    /*border-bottom: 1px solid #dddfe2;*/
 }
 
 #notificationFooter
