@@ -1154,9 +1154,11 @@ input:focus, textarea:focus {
 }
 
 #profileImage {
-    border-radius: 100%;
-    min-height: 142px;
-    min-width: 142px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    width: 142px;
+    height: 142px;
     border: 1px solid #e2e2e2;
 }
 
