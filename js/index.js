@@ -162,7 +162,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         }
     });
 
-    
+
 // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
     var userID = localStorage.getItem("curUserID")
