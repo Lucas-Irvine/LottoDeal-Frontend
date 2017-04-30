@@ -90,7 +90,7 @@
                                 <div ng-repeat="notification in notifications | limitTo: -5">
                                     <div ng-class="{notificationRead: notification.read == true, notificationUnread: notification.read == false}">
                                         <div class = "col-sm-3">
-                                            <img src="img/placeholder.jpg" class="img-rounded">
+                                            <img src="img/placeholder.jpg" height="50px" width="50px" class="img-rounded">
                                         </div>
                                         <div class="col-sm-9">
                                             <span class="item-title"><a href="item.html#!/?id={{notification.itemID}}">{{notification.title}}:&nbsp;</a></span>
