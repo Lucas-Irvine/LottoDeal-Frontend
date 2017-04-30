@@ -222,7 +222,8 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 	$scope.debugSubmit = function() {
 		var testUrl = "https://localhost:8000/debugPost"
-		var sellerID = localStorage.getItem("curUserID")
+        var sellerID = userID;
+//		var sellerID = localStorage.getItem("curUserID")
 
 		var data = {
 			title: "Test Item",
