@@ -36,11 +36,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     scope = $scope;
     $scope.selectedTab = 0
-
     $scope.posts = []
-
-    var url = "https://localhost:8000/getPosts";
-
 
     function hexToBase64(str) {
         return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
@@ -54,13 +50,16 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
     // AJAX POST TO SERVERg]
 
+    var url = "https://localhost:8000/getPosts";
     $("#loading-icon").show()
     $.ajax({
         url: url,
         type: 'GET',
         success: function(data) {
             console.log("completed AJAX call")
-            var items = JSON.parse(data)
+            var items = JSON.parse(data);
+            var soldItems[];
+            var expiredItems[];
             console.log(items);
             for (i = 0; i < items.length; i++) {
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
@@ -124,8 +123,17 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
                     // items[i]["src"] = items[i].img.data.data;
                 }
+                if (items[i].sold == true) {
+                    soldItems.push(items[i]);
+                }
+                if (items[i].expired == true) {
+                    expiredItems.push(items[i]);
+                }
             }
             $scope.posts = items;
+            $scope.soldItems = soldItems;
+            $scope.expiredItems = expiredItems;
+
             console.log($scope.posts)
 
             $("#loading-icon").hide();
