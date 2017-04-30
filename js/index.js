@@ -131,8 +131,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 }
             }
             $scope.posts = items;
-            // $scope.soldItems = soldItems;
-            // $scope.expiredItems = expiredItems;
+            $scope.soldItems = soldItems;
+            $scope.expiredItems = expiredItems;
 
             console.log($scope.posts)
 
@@ -202,7 +202,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
                 if (hoursAgo < 24) {
                     if (hoursAgo == 0) {
-                        notifications[i].datePosted = "Just Now";
+                        notifications[i].datePosted = "Under an hour ago";
                     }
                     else if (hoursAgo == 1) {
                         notifications[i].datePosted = hoursAgo + " hour ago";
@@ -804,3 +804,31 @@ $(document).ready(function() {
     // });
 
 });
+
+//For changing tabs Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
+function changeTab(titleID, id) {
+    console.log('test');
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].className = tabcontent[i].className.replace(" active", "");
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+
+    document.getElementById(titleID).className += " active";
+    document.getElementById(id).className += " active";
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    // document.getElementById(cityName).style.display = "block";
+    //evt.currentTarget.className += " active";
+}
