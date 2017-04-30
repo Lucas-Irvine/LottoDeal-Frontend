@@ -58,8 +58,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         success: function(data) {
             console.log("completed AJAX call")
             var items = JSON.parse(data);
-            var soldItems;
-            var expiredItems;
+            var soldItems = [];
+            var expiredItems = [];
             console.log(items);
             for (i = 0; i < items.length; i++) {
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
