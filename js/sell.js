@@ -66,7 +66,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
                 var date = new Date(notifications[i].datePosted);
 
-                var hoursAgo = DateDiff.inHours(curDate, date);
+                var hoursAgo = Math.abs(DateDiff.inHours(curDate, date));
 
                 if (hoursAgo < 24) {
                     if (hoursAgo == 0) {
