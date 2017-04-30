@@ -247,7 +247,6 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
     $scope.notificationLength = 0;
 
-    postNotification();
 
 
     function getNotifications (userID) {
