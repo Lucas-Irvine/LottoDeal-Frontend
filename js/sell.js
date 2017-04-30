@@ -20,7 +20,16 @@ window.fbAsyncInit = function() {
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
-            saveUserID();
+
+
+     FB.api('/me', {locale: 'en_US', fields: 'id'},
+        function (response) {
+            //localStorage.setItem("curUserID", response.id);
+            userID = response.id;
+            console.log(userID + "saving UserID as a global variable")
+        }).then(getNotifications(userID));
+
+            //saveUserID();
             console.log('logged in')
             // Get and display the user profile data
         }
@@ -60,19 +69,6 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-
-
-
-
-
-function fetchUserID() {
-     FB.api('/me', {locale: 'en_US', fields: 'id'},
-        function (response) {
-            //localStorage.setItem("curUserID", response.id);
-            return response.id;
-            console.log(userID + "saving UserID as a global variable")
-        });
-}
 
 
 function showLoginPopup() {
@@ -253,13 +249,9 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
     postNotification();
 
-    async function postNotification () {
 
-
-
-    var userID = await fetchUserID();
-    console.log(userID)
-
+    function getNotifications (userID) {
+        console.log(userID + "asynchronous call UserID hopefully")
 
 // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
@@ -339,7 +331,6 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
         }
     });
 }
-
 
 	// mark all the notifications as read
 	scope.markRead = function() {
