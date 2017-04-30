@@ -70,6 +70,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
                 if (hoursAgo < 24) {
                     notifications[i].datePosted = hoursAgo + "hours ago";
+                    console.log(notifications[i].datePosted);
                 }
                 else {
                     var month = date.getMonth();
