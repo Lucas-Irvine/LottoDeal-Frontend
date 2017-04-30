@@ -17,11 +17,11 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     console.log("got here")
     scope = $scope;
     
-    var sellerID = userID;
-    console.log("hello its" + sellerID);
+    // var sellerID = userID;
+    // console.log("hello its" + sellerID);
 
     //var sellerID = localStorage.getItem("curUserID");
-    $("#userid").val(sellerID)
+    // $("#userid").val(sellerID)
     console.log(sellerID)
 
     $scope.id = null;
@@ -403,6 +403,7 @@ window.fbAsyncInit = function() {
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
+            $("#userid").val(userID)
             scope.getNotifications(userID);
             console.log(userID + "saving UserID as a global variable")
         });
