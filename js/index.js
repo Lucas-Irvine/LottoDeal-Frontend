@@ -727,16 +727,14 @@ facebookLoginButton.onclick = function() {
         if (response.status === 'connected') {
             //display user data
             fbLogout()
-            $('#submitButton').attr('onclick', 'sellLoginCheck()');
-            $('#submitForm').attr('action', '');
+
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
             document.getElementById('login').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Sign In With Facebook";
             $("#signInMessage").show();
         } else {
             fbLogin()
-            $('#submitForm').attr('action', 'https://localhost:8000/createPost');
-            $('#submitButton').attr('onclick', '');
+
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
