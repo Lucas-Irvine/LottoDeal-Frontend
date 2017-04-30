@@ -36,7 +36,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     }
 
 
-    $scope.notificationLength;
+    $scope.notificationLength = 0;
 
 
 // AJAX POST TO SERVER

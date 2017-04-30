@@ -161,7 +161,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         }
     });
 
-    $scope.notificationLength;
+    $scope.notificationLength = 0;
 
 // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
