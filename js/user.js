@@ -84,8 +84,11 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
     reviewID = id;
 
     var reviewerID = localStorage.getItem("curUserID");
-    if (reviewID == reviewerID) document.getElementById('reviewFormTest').innerHTML = "You Can't Review Yourself";
+    if (reviewID == reviewerID) {
+        $("#reviewForm").hide();
+    }
 
+    
     // USER SHOULD NOT BE ABLE TO REVIEW THEMSELVES IF THEY ARE ON THEIR OWN PAGE - can check this on the backend as well actually (necessary actually)
 
 
