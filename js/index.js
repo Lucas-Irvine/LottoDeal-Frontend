@@ -29,13 +29,12 @@ function deleteItem () {
 
 
 
-
-
+var scope;
 
 
 app.controller("indexController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
-    
 
+    scope = $scope;
     $scope.selectedTab = 0
 
     $scope.posts = []
