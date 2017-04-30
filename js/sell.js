@@ -212,10 +212,6 @@ var scope;
 
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
 
-
-    var userID = await fetchUserID();
-    console.log(userID);
-
     console.log("got here")
     scope = $scope;
     
@@ -254,6 +250,14 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
     $scope.notificationLength = 0;
+
+
+    async function () {
+
+
+        
+    var userID = await fetchUserID();
+    console.log(userID)
 
 
 // AJAX POST TO SERVER
@@ -333,6 +337,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
             console.log(error)
         }
     });
+}
 
 
 	// mark all the notifications as read
