@@ -185,47 +185,45 @@
 
         <div class="contentform">
 
-            <div class="leftForm">
-                <div class="form-group">
+
+           <div class="form-group">
                     <p>Product Name<span>*</span></p>
-                    <span class="icon-case"><i class="fa fa-male"></i></span>
+                    <span class="icon-case"><i class="fa fa-smile-o"></i></span>
                     <input class = "sellInput" type="text" name="title" required id="title">
                     <div class="validation"></div>
                 </div>
 
-                <div class="form-group">
-                    <p>Picture<span>*</span></p>
-                    <input required type="file" accept="image/*" name="picture" id="itemPicture" />
-                </div>
-
-            </div>
-
-            <div class="rightForm">
-
-                <div class="form-group">
+            <div class="form-group">
                     <p>Selling Price<span>*</span></p>
-                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <span class="icon-case"><i class="fa fa-usd"></i></span>
                     <input class = "sellInput" required id="price" type="number" min = "1" name="price" aria-label="Amount (to the nearest dollar)">
                     <div class="validation"></div>
                 </div>
 
+            <div class="leftForm">
+                <div class="form-group">
+                    <p>Picture<span>*</span></p>
+                    <input required type="file" accept="image/*" name="picture" id="itemPicture" />
+                </div>
+            </div>
+
+            <div class="rightForm">
                 <img id="imageUploaded" src="img/placeholder.jpg" alt="uploaded image" height="100" width="150" />
-
-
             </div>
 
             <div class="fullForm">
 
                 <div class="form-group">
                     <p>Product Summary<span>*</span></p>
-                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                    <textarea required id="shortDescription" type="text" name="shortDescription"  rows="3" placeholder="Max 100 characters" maxlength="100"></textarea>
+                    <span class="icon-case"><i class="fa fa-comment-o"></i></span>
+                    <input class = "sellInput" required id="shortDescription" name="shortDescription" type="text" aria-label="Max 200 characters" placeholder="Max 200 Characters">
+                    <!-- <textarea required id="shortDescription" type="text" name="shortDescription" placeholder="text description" maxlength="100"></textarea> -->
                     <div class="validation"></div>
                 </div>
 
                 <div class="form-group">
                     <p>Detailed Description<span>*</span></p>
-                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                    <span class="icon-case"><i class="fa fa-file-text-o"></i></span>
                     <textarea required id="longDescription" type="text" name="longDescription"  rows="3" placeholder="Enter Detailed Description (Max 2000 characters)" maxlength="2000"></textarea>
                     <div class="validation"></div>
                 </div>
@@ -233,7 +231,7 @@
 
                 <div class="form-group">
                     <!-- <input type="text" name="date" id="expirDate"/>  -->
-                    <p>Sell by<span>*</span></p>
+                    <p>Sell by<span>*</span>
                     <select required name="expirDate" id="expirDate">
                         <option value="" selected>Time Period</option>
                         <option value="1">1 Day</option>
@@ -241,6 +239,7 @@
                         <option value="3">1 Month</option>
                         <option value="4">10 seconds </option>
                     </select>
+                    </p>
                 </div>
 
             </div>
@@ -248,11 +247,11 @@
         </div>
 
         <input name="userID" id="userid" value="default" style="display: none"/>
-        <button type="submit" class="sellButton" id = "submitButton">Send</button>
+        <button type="submit" class="sellButton green" id = "submitButton">Send</button>
 
     </form>
 
-    <button class="sellButton" ng-click="debugSubmit()" id="debugSubmit">Create a test item - 6MB image</button>
+    <button class="sellButton green" ng-click="debugSubmit()" id="debugSubmit">Create a test item - 6MB image</button>
 
 </div>
 
