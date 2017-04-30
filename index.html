@@ -88,7 +88,6 @@
                             </div>
                             <div id="notificationsBody" class="notifications">
                                 <div class="row">
-                                <a href="item.html#!/?id={{notification.itemID}}" style="display:block;">
                                 <div ng-repeat="notification in notifications | limitTo: -5">
                                     <div ng-class="{notificationRead: notification.read == true, notificationUnread: notification.read == false}">
                                         <div class = "col-sm-3">
@@ -96,14 +95,13 @@
                                         </div>
                                         <div class="col-sm-9">
                                             <p class="item-info">
-                                                <span class="item-title">{{notification.title}}:&nbsp;</span>
+                                                <span class="item-title"><a href="item.html#!/?id={{notification.itemID}}">{{notification.title}}:&nbsp;</a></span>
                                                 {{notification.description}}
                                             </p>
                                             <p class="item-date">{{notification.datePosted}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                </a>
                                 </div>
                             </div>
                             <!--< div id="notificationFooter"><a href="#">See All</a> -->
