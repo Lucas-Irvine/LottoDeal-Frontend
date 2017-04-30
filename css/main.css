@@ -973,12 +973,21 @@ form h1 {
     text-align:left
 }
 
-.sellForm, .contactForm {
+.contactForm {
     border-radius: 5px;
     max-width:700px;
     width:100%;
     margin: 5% auto;
     background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.sellForm {
+    /*border-radius: 5px;*/
+    max-width:700px;
+    width:100%;
+    margin: 5% auto;
+    /*background-color: #FFFFFF;*/
     overflow: hidden;
 }
 
@@ -1024,11 +1033,12 @@ i {
 
 .contentform {
     padding: 40px 30px;
-    border: 1px solid #81BDA4;
+    border: 1px solid #3cc47c;
+    border-radius: 5px;
 }
 
 .sellButton, .contactButton {
-    background-color: #81BDA4;
+    background-color: #3cc47c;
     color: #FFF;
     text-align: center;
     width: 100%;
@@ -1039,6 +1049,7 @@ i {
     margin-top: 40px;
     font-size: 18px;
 }
+
 
 .leftForm {
     width:49.5%;
