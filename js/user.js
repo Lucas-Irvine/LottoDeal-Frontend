@@ -385,6 +385,109 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
     $scope.targetPost = null;
 
+
+
+    $scope.amountRaised = 0
+    $scope.amountToCharge = 0
+    $scope.itemID = ""
+    $scope.itemTitle = ""
+    $scope.price = 0
+
+    var handler = StripeCheckout.configure({
+        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+        locale: 'auto',
+        token: function(token) {
+            console.log('attempting stripe payment')
+            var userID = localStorage.getItem("curUserID")
+            var amountToCharge = $scope.amountToCharge;
+            var itemTitle = $scope.itemTitle;
+            var itemID = $scope.itemID;
+            var amountRaised = $scope.amountRaised;
+            var price = $scope.price;
+
+            if (userID != null) {
+                data = {
+                    itemID: itemID,
+                    itemTitle: itemTitle,
+                    userID: userID,
+                    stripeToken: token.id,
+                    amount: Number(amountToCharge)
+                }
+                $.ajax({
+                    url: 'https://localhost:8000/performPaymentAndAddBid',
+                    data: data,
+                    type: 'POST',
+                    success: function(data) {
+                        console.log('success payment and bid added')
+                        console.log(data);
+
+                        for (var i = 0; i < $scope.posts.length; i++) {
+                            post = $scope.posts[i]
+                            console.log(itemID)
+                            if (post["_id"] == itemID) {
+                                var newPrice = post.amountRaised + amountToCharge;
+                                post.amountRaised = newPrice;
+                                post.percentageRaised = (newPrice / post.price) * 100;
+                                break;
+                            }
+                        }
+                        $scope.$apply()
+
+                    },
+                    error: function(response, error) {
+                        console.log(response)
+                        console.log(error)
+                    }
+                });
+
+            } else {
+                console.log('UserID is null')
+            }
+        }
+    });
+
+
+    $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
+
+        $scope.price = price;
+        $scope.amountToCharge = amount;
+        $scope.itemID = itemID
+        $scope.itemTitle = itemTitle
+        $scope.amountRaised = amountRaised
+        if (price >= amountRaised + amount) {
+            handler.open({
+                name: 'LottoDeal',
+                description: 'Bid on ' + itemTitle,
+                amount: amount * 100
+            });
+        } else {
+            console.log('Bid overpasses item price!');
+            BootstrapDialog.show({
+                title: 'Bid surpasses item price',
+                message: 'Choose a lower bid or search for similar items',
+                buttons: [{
+                    id: 'btn-ok',
+                    icon: 'glyphicon glyphicon-check',
+                    label: 'OK',
+                    cssClass: 'btn-primary',
+                    data: {
+                        js: 'btn-confirm',
+                        'user-id': '3'
+                    },
+                    autospin: false,
+                    action: function(dialogRef) {
+                        dialogRef.close();
+                    }
+                }]
+            });
+
+        }
+
+
+
+    }
+
 }])
 
 
