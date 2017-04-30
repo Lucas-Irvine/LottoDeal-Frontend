@@ -200,24 +200,6 @@ function saveUserData(response) {
 //End Facebook login code -----------------------------------
 
 
-window.addEventListener("load",function(event) {
-    var $input2 = document.getElementById('dec');
-    var $input1 = document.getElementById('parenta');
-    $input1.addEventListener('keyup', function() {
-        $input2.value = $input1.value;
-    });
-},false);
-
-window.addEventListener("load",function(){
-    document.getElementById('enable').onchange=function(){
-        var txt = document.getElementById('gov1');
-        if(this.checked) txt.disabled=false;
-        else txt.disabled = true;
-    };
-},false);
-
-
-
 var app = angular.module("app", []);
 
 
