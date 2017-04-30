@@ -1,8 +1,12 @@
 var app = angular.module("app", []);
 
 
+var scope;
+
+
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
+    scope = $scope;
     var sellerID = localStorage.getItem("curUserID");
     $("#userid").val(sellerID)
     console.log(sellerID)
@@ -25,9 +29,170 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
         // $scope.$apply();
     }
 
+
+
     $scope.changeURL = function() {
     	$location.url("");
     }
+
+
+    $scope.notificationLength;
+
+
+// AJAX POST TO SERVER
+    var notificationUrl = "https://localhost:8000/getNotifications";
+    var userID = localStorage.getItem("curUserID")
+    var dataGET = {
+        userID: userID
+    }
+    console.log('Asking for notifications')
+    $.ajax({
+        url: notificationUrl,
+        data: dataGET,
+        type: 'GET',
+        success: function(data) {
+            var notifications = JSON.parse(data)
+
+            var monthNames = [
+                "January", "February", "March",
+                "April", "May", "June", "July",
+                "August", "September", "October",
+                "November", "December"
+            ];
+
+            var curDate = new Date();
+
+            for (i = 0; i < notifications.length; i++) {
+
+                var date = new Date(notifications[i].datePosted);
+
+                var hoursAgo = Math.abs(DateDiff.inHours(curDate, date));
+
+                if (hoursAgo < 24) {
+                    if (hoursAgo == 0) {
+                        notifications[i].datePosted = "Just Now";
+                    }
+                    else if (hoursAgo == 1) {
+                        notifications[i].datePosted = hoursAgo + " hour ago";
+                    }
+                    else {
+                        notifications[i].datePosted = hoursAgo + " hours ago";
+                        console.log(notifications[i].datePosted);
+                    }
+                }
+
+                else {
+                    var month = date.getMonth();
+                    var day = date.getDate();
+
+                    /* code taken from http://stackoverflow.com/questions/8888491/
+                     how-do-you-display-javascript-datetime-in-12-hour-am-pm-format */
+
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var ampm = hours >= 12 ? 'pm' : 'am';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0'+ minutes : minutes;
+                    var strTime = hours + ':' + minutes + ' ' + ampm;
+
+                    /* --------- */
+
+                    var newDate = monthNames[month] + " " + day + " at " + strTime;
+                    notifications[i].datePosted = monthNames[month] + " " + day + " at " + strTime;
+                    console.log(newDate);
+                }
+            }
+
+            $scope.notificationLength = notifications.length;
+            $scope.notifications = notifications;
+            console.log($scope.notifications)
+            $scope.$apply()
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+
+
+	// mark all the notifications as read
+	scope.markRead = function() {
+		// AJAX POST TO SERVER
+	    var readurl = "https://localhost:8000/markRead";
+	    var userID = localStorage.getItem("curUserID")
+	    var data = {
+	        userID: userID
+	    }
+	    console.log('Asking for notifications')
+	    $.ajax({
+	        url: readurl,
+	        data: data,
+	        type: 'GET',
+	        success: function(data) {
+	            var notifications = JSON.parse(data)
+	            $scope.notificationLength = 0;
+
+                var monthNames = [
+                    "January", "February", "March",
+                    "April", "May", "June", "July",
+                    "August", "September", "October",
+                    "November", "December"
+                ];
+
+                var curDate = new Date();
+
+                for (i = 0; i < notifications.length; i++) {
+
+                    var date = new Date(notifications[i].datePosted);
+
+                    var hoursAgo = DateDiff.inHours(curDate, date);
+
+                    if (hoursAgo < 24) {
+                        if (hoursAgo == 0) {
+                            notifications[i].datePosted = "Just Now";
+                        }
+                        else {
+                            notifications[i].datePosted = hoursAgo + " hours ago";
+                            console.log(notifications[i].datePosted);
+                        }
+                    }
+
+                    else {
+                        var month = date.getMonth();
+                        var day = date.getDate();
+
+                        /* code taken from http://stackoverflow.com/questions/8888491/
+                         how-do-you-display-javascript-datetime-in-12-hour-am-pm-format */
+
+                        var hours = date.getHours();
+                        var minutes = date.getMinutes();
+                        var ampm = hours >= 12 ? 'pm' : 'am';
+                        hours = hours % 12;
+                        hours = hours ? hours : 12; // the hour '0' should be '12'
+                        minutes = minutes < 10 ? '0'+ minutes : minutes;
+                        var strTime = hours + ':' + minutes + ' ' + ampm;
+
+                        /* --------- */
+
+                        var newDate = monthNames[month] + " " + day + " at " + strTime;
+                        notifications[i].datePosted = monthNames[month] + " " + day + " at " + strTime;
+                        console.log(newDate);
+                    }
+                }
+
+	            $scope.notifications = notifications;
+	            console.log($scope.notifications)
+	            console.log("updated the notifications")
+	            $scope.$apply()
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
+
 
 	$scope.debugSubmit = function() {
 		var testUrl = "https://localhost:8000/debugPost"
@@ -185,3 +350,39 @@ $("#itemPicture").change(function(){
 	// 	});
 
 	// });
+
+
+
+var check = false;
+
+$(document).ready(function() {
+    $("#notifications").click(function() {
+    	if (!check) {
+    		$("#notificationContainer").fadeIn(300);
+    		// $("#notification_count").fadeOut("slow");
+    		check = true;
+    	}
+    	else {
+    		$("#notificationContainer").fadeOut(300);
+    		scope.markRead();
+    		check = false;
+    	}
+
+        return false;
+    });
+
+   	//Document Click hiding the popup
+    $(document).click(function() {
+        $("#notificationContainer").hide();
+        if (check) {
+        	scope.markRead();
+        }
+        check = false;
+    });
+
+    // //Popup on click
+    // $("#notificationContainer").click(function() {
+    //     return false;
+    // });
+
+});
