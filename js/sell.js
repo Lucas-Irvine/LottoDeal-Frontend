@@ -252,8 +252,8 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     $scope.notificationLength = 0;
 
     postNotification();
-    
-    async function () postNotification {
+
+    async function postNotification () {
 
 
 
