@@ -1,4 +1,4 @@
-// var facebookLoginButton = document.getElementById("facebook-text");
+
 var userID;
 console.log(userID + "saving UserID as a global variable")
 
