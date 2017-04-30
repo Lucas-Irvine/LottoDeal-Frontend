@@ -101,6 +101,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
                 }
             }
 
+            $scope.notificationLength = notifications.length;
             $scope.notifications = notifications;
             console.log($scope.notifications)
             $scope.$apply()
@@ -128,7 +129,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	        success: function(data) {
 	            var notifications = JSON.parse(data)
 	            $scope.notificationLength = 0;
-                
+
                 var monthNames = [
                     "January", "February", "March",
                     "April", "May", "June", "July",

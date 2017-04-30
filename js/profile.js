@@ -201,7 +201,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
         success: function(data) {
             var items = JSON.parse(data)
 
-
             var monthNames = [
                 "January", "February", "March",
                 "April", "May", "June", "July",
@@ -210,7 +209,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
             ];
 
             for (i = 0; i < items.length; i++) {
-
 
                 var date = new Date(items[i].datePosted)
                 var month = date.getMonth();

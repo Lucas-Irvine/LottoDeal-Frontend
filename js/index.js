@@ -91,6 +91,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 } 
                 else if (items[i].img.compressed != null) {
                     items[i]["src"] = items[i].img.compressed;
+
                 }
                 else {
                     // WORKING SNIPPET
