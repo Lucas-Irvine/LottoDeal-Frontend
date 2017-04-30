@@ -131,8 +131,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 }
             }
             $scope.posts = items;
-            $scope.soldItems = soldItems;
-            $scope.expiredItems = expiredItems;
+            // $scope.soldItems = soldItems;
+            // $scope.expiredItems = expiredItems;
 
             console.log($scope.posts)
 
