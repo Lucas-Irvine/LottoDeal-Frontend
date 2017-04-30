@@ -186,14 +186,14 @@
            <div class="form-group">
                     <p>Product Name<span>*</span></p>
                     <span class="icon-case"><i class="fa fa-smile-o"></i></span>
-                    <input class = "sellInput" type="text" name="title" required id="title">
+                    <input class = "sellInput" type="text" name="title" required id="title" max="100">
                     <div class="validation"></div>
                 </div>
 
             <div class="form-group">
                     <p>Selling Price<span>*</span></p>
                     <span class="icon-case"><i class="fa fa-usd"></i></span>
-                    <input class = "sellInput" required id="price" type="number" min = "1" name="price" aria-label="Amount (to the nearest dollar)">
+                    <input class = "sellInput" required id="price" type="number" min = "1" max="1000000000" name="price" aria-label="Amount (to the nearest dollar)">
                     <div class="validation"></div>
                 </div>
 
@@ -213,7 +213,7 @@
                 <div class="form-group">
                     <p>Product Summary<span>*</span></p>
                     <span class="icon-case"><i class="fa fa-comment-o"></i></span>
-                    <input class = "sellInput" required id="shortDescription" name="shortDescription" type="text" aria-label="Max 200 characters" placeholder="Max 200 Characters">
+                    <input class = "sellInput" required id="shortDescription" name="shortDescription" type="text" max="200" aria-label="Max 200 characters" placeholder="Max 200 Characters">
                     <!-- <textarea required id="shortDescription" type="text" name="shortDescription" placeholder="text description" maxlength="100"></textarea> -->
                     <div class="validation"></div>
                 </div>
