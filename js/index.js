@@ -226,7 +226,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     notifications[i].datePosted = monthNames[month] + " " + day + " at " + strTime;
                     console.log(newDate);
                 }
-                if (notifications[i].read) {
+                if (!notifications[i].read) {
                     $scope.notificationLength++;
                 }
             }

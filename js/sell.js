@@ -102,7 +102,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
                     notifications[i].datePosted = monthNames[month] + " " + day + " at " + strTime;
                     console.log(newDate);
                 }
-                if (notifications[i].read) {
+                if (!notifications[i].read) {
                     $scope.notificationLength++;
                 }
             }
