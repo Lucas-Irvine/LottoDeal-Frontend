@@ -1,5 +1,5 @@
 // var facebookLoginButton = document.getElementById("facebook-text");
-var userID = null;
+var userID;
 console.log(userID + "saving UserID as a global variable")
 
 
@@ -20,10 +20,12 @@ window.fbAsyncInit = function() {
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
+            saveUserID();
             console.log('logged in')
             // Get and display the user profile data
         }
         else {
+            userID = null;
             console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Login';
@@ -63,7 +65,14 @@ window.fbAsyncInit = function() {
 
 
 
-
+function saveUserID() {
+     FB.api('/me', {locale: 'en_US', fields: 'id'},
+        function (response) {
+            //localStorage.setItem("curUserID", response.id);
+            userID = response.id;
+            console.log(userID + "saving UserID as a global variable")
+        });
+}
 
 
 function showLoginPopup() {
@@ -131,8 +140,10 @@ function fbLogin() {
 // Logout from facebook
 function fbLogout() {
     //delete local storage
-    delete localStorage.curUserID;
+    // delete localStorage.curUserID;
 
+    userID = null;
+    
     FB.logout(function() {
         console.log('Successfully logged out')
     });
