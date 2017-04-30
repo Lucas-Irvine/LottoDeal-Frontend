@@ -21,12 +21,14 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
     if (value == null) {
         console.log("No value returned");
     }
-    else {
-        console.log(value);
+    else if (value == "success") {
+    	console.log(value);
         console.log("Successful item creation!");
         $("#postCreatedModal").modal()
         $scope.id = id;
-        // $scope.$apply();
+    }
+    else {
+  		$("#invalidFormModal").modal();
     }
 
 
