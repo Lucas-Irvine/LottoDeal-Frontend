@@ -26,6 +26,7 @@ window.fbAsyncInit = function() {
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
+            getNotifications(userID);
             console.log(userID + "saving UserID as a global variable")
         });
 
@@ -41,7 +42,7 @@ window.fbAsyncInit = function() {
             $("#signInMessage").show();
             facebookLoginButton.innerHTML = "Sign In With Facebook";
         }
-    }).then(getNotifications(userID));
+    });
 
 
 
@@ -199,6 +200,23 @@ function saveUserData(response) {
 //End Facebook login code -----------------------------------
 
 
+window.addEventListener("load",function(event) {
+    var $input2 = document.getElementById('dec');
+    var $input1 = document.getElementById('parenta');
+    $input1.addEventListener('keyup', function() {
+        $input2.value = $input1.value;
+    });
+},false);
+
+window.addEventListener("load",function(){
+    document.getElementById('enable').onchange=function(){
+        var txt = document.getElementById('gov1');
+        if(this.checked) txt.disabled=false;
+        else txt.disabled = true;
+    };
+},false);
+
+
 
 var app = angular.module("app", []);
 
@@ -249,9 +267,10 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 
-    function getNotifications (userID) {
-        console.log(userID + "asynchronous call UserID hopefully")
 
+
+
+function getNotifications(userID) {
 // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
     //var userID = localStorage.getItem("curUserID")
@@ -329,6 +348,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
             console.log(error)
         }
     });
+
 }
 
 	// mark all the notifications as read
