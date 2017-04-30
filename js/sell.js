@@ -427,6 +427,7 @@ window.fbAsyncInit = function() {
 
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
+            console.log("you're connected")
             //display user data
             $('#submitForm').attr('action', 'https://localhost:8000/createPost');
             $('#submitButton').attr('onclick', '');
