@@ -143,7 +143,7 @@ function fbLogout() {
     // delete localStorage.curUserID;
 
     userID = null;
-    
+
     FB.logout(function() {
         console.log('Successfully logged out')
     });
@@ -218,7 +218,11 @@ var scope;
 app.controller("sellController", ["$scope", "$http", "$location",  function($scope, $http, $location) {
     console.log("got here")
     scope = $scope;
-    var sellerID = localStorage.getItem("curUserID");
+    
+    var sellerID = userID;
+    console.log("hello its" + sellerID);
+
+    //var sellerID = localStorage.getItem("curUserID");
     $("#userid").val(sellerID)
     console.log(sellerID)
 
@@ -254,7 +258,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
-    var userID = localStorage.getItem("curUserID")
+    //var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -335,7 +339,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 	scope.markRead = function() {
 		// AJAX POST TO SERVER
 	    var readurl = "https://localhost:8000/markRead";
-	    var userID = localStorage.getItem("curUserID")
+	    //var userID = localStorage.getItem("curUserID")
 	    var data = {
 	        userID: userID
 	    }
