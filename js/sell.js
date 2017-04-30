@@ -26,7 +26,7 @@ window.fbAsyncInit = function() {
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
-            getNotifications(userID);
+            scope.getNotifications(userID);
             console.log(userID + "saving UserID as a global variable")
         });
 
@@ -252,7 +252,7 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 
 
 
-function getNotifications(userID) {
+    scope.getNotifications = function(userID) {
 // AJAX POST TO SERVER
     var notificationUrl = "https://localhost:8000/getNotifications";
     //var userID = localStorage.getItem("curUserID")
