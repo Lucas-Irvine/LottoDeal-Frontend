@@ -115,7 +115,7 @@
                             <div id="notificationTitle"> Notifications
                         </div>
                         <div id="notificationsBody" class="notifications">
-                            <div ng-repeat="notification in notifications">
+                            <div ng-repeat="notification in notifications | limitTo: -5">
                                 <div ng-class="{notificationRead: notification.read == true, notificationUnread: notification.read == false}">
                                     <h4 class="item-title"><a href="item.html#!/?id={{notification.itemID}}">{{notification.title}}</a></h4>
                                     <p class="item-info">{{notification.description}}</p>
@@ -202,19 +202,17 @@
     <form class = "sellForm" onclick = "" id="submitForm" action="" method="post" enctype="multipart/form-data" >
 
         <div class="contentform">
-
-
            <div class="form-group">
                     <p>Product Name<span>*</span></p>
                     <span class="icon-case"><i class="fa fa-smile-o"></i></span>
-                    <input class = "sellInput" type="text" name="title" required id="title" max="100">
+                    <input required class = "sellInput" type="text" name="title" id="title" maxlength="100">
                     <div class="validation"></div>
                 </div>
 
             <div class="form-group">
                     <p>Selling Price<span>*</span></p>
                     <span class="icon-case"><i class="fa fa-usd"></i></span>
-                    <input class = "sellInput" required id="price" type="number" min = "1" max="1000000000" name="price" aria-label="Amount (to the nearest dollar)">
+                    <input required class = "sellInput" id="price" type="number" min = "1" max="1000000000" name="price" aria-label="Amount (to the nearest dollar)">
                     <div class="validation"></div>
                 </div>
 
@@ -234,7 +232,7 @@
                 <div class="form-group">
                     <p>Product Summary<span>*</span></p>
                     <span class="icon-case"><i class="fa fa-comment-o"></i></span>
-                    <input class = "sellInput" required id="shortDescription" name="shortDescription" type="text" max="200" aria-label="Max 200 characters" placeholder="Max 200 Characters">
+                    <input required class = "sellInput" id="shortDescription" name="shortDescription" type="text" maxlength="200" aria-label="Max 200 characters" placeholder="Max 200 Characters">
                     <!-- <textarea required id="shortDescription" type="text" name="shortDescription" placeholder="text description" maxlength="100"></textarea> -->
                     <div class="validation"></div>
                 </div>
