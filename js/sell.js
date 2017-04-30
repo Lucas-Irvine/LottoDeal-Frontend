@@ -69,9 +69,15 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
                 var hoursAgo = DateDiff.inHours(curDate, date);
 
                 if (hoursAgo < 24) {
-                    notifications[i].datePosted = hoursAgo + " hours ago";
-                    console.log(notifications[i].datePosted);
+                    if (hoursAgo == 0) {
+                        notifications[i].datePosted = "Just Now";
+                    }
+                    else {
+                        notifications[i].datePosted = hoursAgo + " hours ago";
+                        console.log(notifications[i].datePosted);
+                    }
                 }
+                
                 else {
                     var month = date.getMonth();
                     var day = date.getDate();
