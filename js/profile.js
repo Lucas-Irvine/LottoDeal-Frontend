@@ -7,6 +7,7 @@ $(document).ready(function() {
 });
 
 
+var userID;
 
 // copied from http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
 function validateEmail(email) {
@@ -24,7 +25,7 @@ function updateSettings() {
 
         console.log("updating your settings")
 
-        var userID = localStorage.getItem("curUserID");
+        // var userID = localStorage.getItem("curUserID");
 
 
 
@@ -52,6 +53,11 @@ function updateSettings() {
 }
 
 
+
+
+var scope;
+
+
 var app = angular.module("profile_app", ["ngRoute"])
 
 app.controller("profileController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
@@ -62,10 +68,12 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     $scope.listedItems = []
 
 
+    scope = $scope;
+
     var url = "https://localhost:8000/getBidsofUsers";
 
     // AJAX POST TO SERVER for bids
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -92,7 +100,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX POST TO SERVER for bidded items
     var url = "https://localhost:8000/getBiddedItemsofUsers";
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -152,7 +160,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX POST TO SERVER for listed items
     var url = "https://localhost:8000/getListedItemsForUsers";
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -218,7 +226,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX POST TO SERVER for sold items
     var url = "https://localhost:8000/getSoldItemsForUsers";
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -278,7 +286,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX POST TO SERVER for reviews
     var url = "https://localhost:8000/getReviews";
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         sellerID: userID
     }
@@ -322,7 +330,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX POST TO SERVER for reviews
     var url = "https://localhost:8000/getReviewerImagesandNames";
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -349,7 +357,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX get TO SERVER for account
     var url = "https://localhost:8000/getAccount";
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -405,7 +413,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     // AJAX get TO SERVER for account
     var url = "https://localhost:8000/getAccount";
-    var userID = localStorage.getItem("curUserID")
+    // var userID = localStorage.getItem("curUserID")
     var dataGET = {
         userID: userID
     }
@@ -537,37 +545,177 @@ var DateDiff = {
     },
 }
 
+
+
+
+
 // -------------------- For Facebook login -----------------------------------------
 
-// Facebook Javascript SDK configuration and setup
+
+
+    // Facebook Login code -----------------------------------
 window.fbAsyncInit = function() {
     FB.init({
-        appId: '228917890846081',
-        xfbml: true,
-        cookie: true,
-        version: 'v2.8'
-    });
+        appId      : '228917890846081',
+        xfbml      : true,
+        cookie     : true,
+        version    : 'v2.8'
+    });   
 
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             //display user data
-            console.log('you are logged in');
-        } else {
+            document.getElementById('successScreen').innerHTML = "";
+            document.getElementById('login').innerHTML = 'Logout';
+            facebookLoginButton.innerHTML = "Sign Out With Facebook";
+            $("#signInMessage").hide();
+
+
+     FB.api('/me', {locale: 'en_US', fields: 'id'},
+        function (response) {
+            //localStorage.setItem("curUserID", response.id);
+            userID = response.id;
+            $("#userid").val(userID)
+            scope.getNotifications(userID);
+            console.log(userID + "saving UserID as a global variable when logging in ")
+        });
+
+            //saveUserID();
+            console.log('logged in')
+            // Get and display the user profile data
+        }
+        else {
+            userID = undefined;
             console.log('Not logged in');
+            document.getElementById('successScreen').innerHTML = "";
+            document.getElementById('login').innerHTML = 'Login';
+            $("#signInMessage").show();
+            facebookLoginButton.innerHTML = "Sign In With Facebook";
         }
     });
+
+
+
+
+
 };
 
-// Load the Javascript SDK asynchronously
-
-(function(d, s, id) {
+(function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {
-        return;
-    }
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://connect.facebook.net/en_US/all.js";
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src="https://connect.facebook.net/en_US/all.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+
+
+function showLoginPopup() {
+    $('#loginPopup').modal({
+        keyboard: false
+    })
+};
+
+var facebookLoginButton = document.getElementById("loginToFacebook");
+
+// When the user clicks the button, open the modal 
+facebookLoginButton.onclick = function() {
+    console.log('logging in/out')
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //display user data
+            fbLogout()
+
+            document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
+            document.getElementById('login').innerHTML = 'Login';
+            facebookLoginButton.innerHTML = "Sign In With Facebook";
+            $("#signInMessage").show();
+        } else {
+            fbLogin()
+
+            document.getElementById('login').innerHTML = 'Logout';
+            facebookLoginButton.innerHTML = "Sign Out With Facebook";
+            $("#signInMessage").hide();
+        }
+    });
+}
+
+
+
+function fbLogin() {
+    var window = FB.login(function (response) {
+        if (response.authResponse) {
+            // Get and display the user profile data
+            document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
+            console.log('Successfully logged in')
+            getFbUserData();
+        } else {
+            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        }
+    }, {scope: 'email'});
+}
+
+// Logout from facebook
+function fbLogout() {
+    //delete local storage
+    // delete localStorage.curUserID;
+
+    userID = undefined;
+
+    FB.logout(function() {
+        console.log('Successfully logged out')
+    });
+}
+
+function getFbUserData(){
+    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
+        function (response) {
+            //localStorage.setItem("curUserID", response.id);
+            userID = response.id;
+            $("#userid").val(userID)
+            console.log(userID + "saving UserID as a global variable")
+
+            // Save user data
+            saveUserData(response);
+        });
+}
+
+function saveUserData(response) {
+
+      var url = "https://localhost:8000/createUser";
+      
+      console.log('Gender:' + response.gender);
+      console.log('Age max: ' + response.age_range.max);
+      console.log('Age min: ' + response.age_range.min);
+      var avgAge = 25 //default to 25 if unspecified
+
+      if (response.age_range != null) {
+        avgAge = (response.age_range.max + response.age_range.min) / 2
+        console.log('Avg age is' + avgAge);
+      }
+
+      data = {
+        name: response.first_name+ ' ' + response.last_name,
+        fbid: response.id,
+        age: avgAge,
+        gender: response.gender,
+        url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
+        email: response.email
+      }
+
+      // AJAX POST TO SERVER
+      $.ajax({
+        url: url,
+        type: 'post',
+        data: data,
+        success: function(data) {
+        console.log(data)
+        },
+        error: function(response, error) {
+        console.log(response)
+        console.log(error)
+        }
+    });
+}
+//End Facebook login code -----------------------------------
