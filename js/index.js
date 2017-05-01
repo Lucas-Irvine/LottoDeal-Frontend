@@ -62,6 +62,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var items = JSON.parse(data);
             var soldItems = [];
             var expiredItems = [];
+            var listedItems = [];
             console.log(items);
             for (i = 0; i < items.length; i++) {
                 items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
@@ -128,11 +129,15 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 if (items[i].sold == true) {
                     soldItems.push(items[i]);
                 }
-                if (items[i].expired == true) {
+                else if (items[i].expired == true) {
                     expiredItems.push(items[i]);
                 }
+                else {
+                    listedItems.push(items[i]);
+                }
+
             }
-            $scope.posts = items;
+            $scope.posts = listedItems;
             $scope.soldItems = soldItems;
             $scope.expiredItems = expiredItems;
 
