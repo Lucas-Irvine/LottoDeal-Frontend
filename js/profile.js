@@ -70,6 +70,10 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     scope = $scope;
 
+    scope.applyAngular = function(userID) {
+
+
+
     var url = "https://localhost:8000/getBidsofUsers";
 
     // AJAX POST TO SERVER for bids
@@ -456,6 +460,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
     });
 
     $scope.targetPost = null;
+}
 
 }])
 
@@ -576,8 +581,7 @@ window.fbAsyncInit = function() {
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
-            $("#userid").val(userID)
-            scope.getNotifications(userID);
+            scope.applyAngular(userID);
             console.log(userID + "saving UserID as a global variable when logging in ")
         });
 
@@ -673,7 +677,7 @@ function getFbUserData(){
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
-            $("#userid").val(userID)
+            scope.applyAngular(userID);
             console.log(userID + "saving UserID as a global variable")
 
             // Save user data
