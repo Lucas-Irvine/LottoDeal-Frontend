@@ -90,8 +90,8 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
     scope.applyAngular = function(reviewerID) {
 
 
-    if (reviewID == reviewerID) {
-        $("#reviewForm").hide();
+    if (reviewID != reviewerID) {
+        $("#reviewForm").show();
     }
 
     
