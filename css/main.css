@@ -56,14 +56,14 @@ html {
 /*    height: 130px;*/
 }
 
-.caption > a {
+#Cardtitle {
     white-space: nowrap;
     color: black;
     font-size: 14px;
     text-overflow: ellipsis;
 }
 
-.caption > a:hover {
+#Cardtitle:hover {
     text-decoration: none;
     color:#3cc47c;
 }
@@ -71,7 +71,7 @@ html {
 .ratings {
     padding-right: 10px;
     padding-left: 10px;
-    color: #d17581;
+    color: #3cc47c;
 }
 
 .thumbnail {
