@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="contact_app">
 
 
 
@@ -39,7 +39,46 @@
 
 </head>
 
-<body>
+
+
+
+
+<!-- Facebook Login code -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="loginPopup">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p id = "loginMessage"></p>
+                <p id = "successScreen"></p>
+                <center>
+                <button type="button" class="facebook-button btn" id="loginToFacebook">
+                  <i class="fa fa-facebook"></i>
+                  <span id="facebook-text">Sign In With Facebook</span>
+                </button> 
+                </center>
+            </div>
+            <div class="modal-footer">
+            <center id = "signInMessage">
+              <h5> Why Do I need to sign in?</h5>
+              <p>LottoDeal is an e-commerce platform which deals with financial transactions. 
+              For our community, we hope you login to maintain trust between our buyers and sellers. </p>
+            </center>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Facebook Login code -->
+
+
+
+
+
+
+<body ng-controller="contactController" ng-cloak>
 
 <!-- Navigation -->
 <nav id = "navbar-unique" class="navbar navbar-fixed-top row" role="navigation">
@@ -252,6 +291,7 @@
     <!-- dynamic loading of pages -->
     <script src="js/tabs.js"></script>
     <script src="js/contact.js"></script>
+    <script src="./js/notification.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/facebooklogin.js"></script>
 </body>
