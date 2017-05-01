@@ -219,11 +219,10 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="tablinks active" id="listedTitleID"><a  aria-controls="about" role="tab" data-toggle="tab" onclick="changeTab('listedTitleID', 'listedID')">Listed</a></li>
                             <li role="presentation" class="tablinks" id="soldTitleID"><a  aria-controls="updates" role="tab" data-toggle="tab" onclick="changeTab('soldTitleID', 'soldID')">Sold</a></li>
+                            <li role="presentation" class="tablinks" id="expiredTitleID"><a  aria-controls="updates" role="tab" data-toggle="tab" onclick="changeTab('expiredTitleID', 'expiredID')">Expired</a></li>
                         </ul>
                     </div>
                 </div>
-
-
 
                 <!--tab panes-->
                 <div class="section-block">
@@ -283,16 +282,16 @@
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
                                             <div class="image-item img-fluid">
-                                                <a href="item.html#!/?id={{post._id}}">
+                                                <a href="item.html#!/?id={{soldItem._id}}">
                                                     <img ng-src="{{soldItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                                 </a>
                                             </div>
                                             <div class="caption">
-                                                <p class="pull-right" id="amountRaised-{{post._id}}">${{soldItem.amountRaised}} of ${{soldItem.price}} raised</p>
+                                                <p class="pull-right" id="amountRaised-{{soldItem._id}}">${{soldItem.amountRaised}} of ${{soldItem.price}} raised</p>
                                                 <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{soldItem.title}}</a>
                                                 </p>
                                                 <div class="progress" id="thumbnail-bar">
-                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{post._id}}" role="progressbar" aria-valuenow="40"
+                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{soldItem._id}}" role="progressbar" aria-valuenow="40"
                                                          aria-valuemin="0" aria-valuemax="100" style="width:{{soldItem.percentageRaised}}%">
                                                     </div>
                                                 </div>
@@ -304,11 +303,6 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="row bid-buttons">
-                                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
-                                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
-                                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
-                                            </div>
                                             <div class="ratings">
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -316,6 +310,51 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <a href="user.html#!/?id={{soldItem.sellerID}}">Seller: {{soldItem.sellerName}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end of ng repeat -->
+                            </div>
+                        </div>
+                        <!-- expired items start -->
+
+                        <!-- sold items pane -->
+                        <div role="tabpanel" class="tab-pane tabcontent" id="expiredID">
+                            <div class="expiredItems">
+                                <h1 class="section-title">Sold Items</h1>
+                                <div ng-repeat="expiredItem in expiredItems | filter:searchText">
+                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                        <div class="thumbnail" id="item">
+                                            <div class="image-item img-fluid">
+                                                <a href="item.html#!/?id={{expiredItem._id}}">
+                                                    <img ng-src="{{expiredItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="caption">
+                                                <p class="pull-right" id="amountRaised-{{expiredItem._id}}">${{expiredItem.amountRaised}} of ${{expiredItem.price}} raised</p>
+                                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{soldItem.title}}</a>
+                                                </p>
+                                                <div class="progress" id="thumbnail-bar">
+                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{expiredItem._id}}" role="progressbar" aria-valuenow="40"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{expiredItem.percentageRaised}}%">
+                                                    </div>
+                                                </div>
+                                                <p>{{expiredItem.expirationDate}}</p>
+                                                <div class="description-container rows">
+                                                    <p class="description">
+                                                        {{expiredItem.shortDescription}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="ratings">
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    Seller Rating: {{accounts[$index].averageRating}} / 5
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <a href="user.html#!/?id={{expiredItem.sellerID}}">Seller: {{expiredItem.sellerName}}</a>
                                                 </div>
                                             </div>
                                         </div>
