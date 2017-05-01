@@ -275,10 +275,11 @@
                                 <!-- end of ng repeat -->
                             </div>
                         </div>
+                        <!-- sold items pane -->
                         <div role="tabpanel" class="tab-pane tabcontent" id="soldID">
                             <div class="soldItems">
                                 <h1 class="section-title">Sold Items</h1>
-                                <div ng-repeat="post in posts | filter:searchText">
+                                <div ng-repeat="soldItem in soldItems | filter:searchText">
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
                                             <div class="image-item img-fluid">
@@ -287,18 +288,18 @@
                                                 </a>
                                             </div>
                                             <div class="caption">
-                                                <p class="pull-right" id="amountRaised-{{post._id}}">${{post.amountRaised}} of ${{post.price}} raised</p>
-                                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{post._id}}">{{post.title}}</a>
+                                                <p class="pull-right" id="amountRaised-{{post._id}}">${{soldItem.amountRaised}} of ${{soldItem.price}} raised</p>
+                                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{soldItem.title}}</a>
                                                 </p>
                                                 <div class="progress" id="thumbnail-bar">
                                                     <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{post._id}}" role="progressbar" aria-valuenow="40"
                                                          aria-valuemin="0" aria-valuemax="100" style="width:{{post.percentageRaised}}%">
                                                     </div>
                                                 </div>
-                                                <p> {{post.expirationDate}} </p>
+                                                <p> {{soldItem.expirationDate}} </p>
                                                 <div class="description-container rows">
                                                     <p class="description">
-                                                        {{post.shortDescription}}
+                                                        {{soldItem.shortDescription}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -313,7 +314,7 @@
                                                     Seller Rating: {{accounts[$index].averageRating}} / 5
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <a href="user.html#!/?id={{post.sellerID}}">Seller: {{post.sellerName}}</a>
+                                                    <a href="user.html#!/?id={{post.sellerID}}">Seller: {{soldItem.sellerName}}</a>
                                                 </div>
                                             </div>
                                         </div>
