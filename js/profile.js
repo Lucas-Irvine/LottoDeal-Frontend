@@ -379,7 +379,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
             document.getElementById('profileName').innerHTML = account.fullName;
             document.getElementById('profileImage').src = account.pictureURL;
-            document.getElementById('profileImageBackground').src = account.pictureURL;
             console.log(account.pictureURL);
             var reviews = account.reviews;
             var length = reviews.length;
