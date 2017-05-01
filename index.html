@@ -128,7 +128,6 @@
                                 <div id="notificationTitle"> Notifications
                             </div>
                             <div id="notificationsBody" class="notifications">
-                                <div class="row">
                                 <div ng-repeat="notification in notifications | limitTo: -5">
                                     <div ng-class="{notificationRead: notification.read == true, notificationUnread: notification.read == false}">
                                         <div class="notificationText">
@@ -141,7 +140,6 @@
                                                 {{notification.description}}
                                             </p>
                                             <p class="item-date">{{notification.datePosted}}</p>
-                                        </div>
                                         </div>
                                     </div>
                                 </div>
