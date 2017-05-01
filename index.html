@@ -129,7 +129,9 @@
                             </div>
                             <div id="notificationsBody" class="notifications">
                                 <div ng-repeat="notification in notifications">
-                                    <div ng-class="{'notificationRead': notification.read == true, 'notificationUnread': notification.read == false}">
+                                                                        <!-- style="color:{{payment.number>50?'red':'blue'}}" -->
+                                <!-- ng-class="{'notificationRead': notification.read == true, 'notificationUnread': notification.read == false}" -->
+                                    <div style="background-color: {{notfication.read?'white':'whitesmoke'}}">
                                         <div class="notificationText">
                                         <div class = "col-sm-3">
                                             <img src="img/placeholder.jpg" height="50px" width="50px" class="img-rounded">
