@@ -56,8 +56,11 @@ html {
 /*    height: 130px;*/
 }
 
-.caption h4 {
+.caption > a {
     white-space: nowrap;
+    color: black;
+    font-size: 14px;
+    text-overflow: ellipsis;
 }
 
 .ratings {
