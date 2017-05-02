@@ -354,6 +354,20 @@ window.fbAsyncInit = function() {
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
+
+
+
+
+
+
+            $('#notification_li').show(); // shows the notification bar
+
+
+
+
+
+
+
             //display user data
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Logout';
@@ -381,7 +395,6 @@ window.fbAsyncInit = function() {
             document.getElementById('login').innerHTML = 'Login';
             $("#signInMessage").show();
             facebookLoginButton.innerHTML = "Sign In With Facebook";
-            $('#notification_li').hide();
         }
     });
 
