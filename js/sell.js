@@ -381,6 +381,7 @@ window.fbAsyncInit = function() {
             document.getElementById('login').innerHTML = 'Login';
             $("#signInMessage").show();
             facebookLoginButton.innerHTML = "Sign In With Facebook";
+            $('#notification_li').attr('display', 'none');
         }
     });
 
@@ -396,7 +397,6 @@ window.fbAsyncInit = function() {
         } else {
             $('#submitButton').attr('onclick', 'sellLoginCheck()');
             $('#submitForm').attr('action', '');
-            $('#notification_li').attr('display', 'none');
         }
     });
 
