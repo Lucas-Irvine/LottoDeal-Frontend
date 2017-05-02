@@ -396,6 +396,7 @@ window.fbAsyncInit = function() {
         } else {
             $('#submitButton').attr('onclick', 'sellLoginCheck()');
             $('#submitForm').attr('action', '');
+            $('#notification_li').attr('display', 'none');
         }
     });
 
