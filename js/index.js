@@ -262,6 +262,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 }
 
+    var userIDs;
     // mark all the notifications as read
     scope.markRead = function() {
         // AJAX POST TO SERVER
@@ -291,6 +292,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 var curDate = new Date();
 
                 for (i = 0; i < notifications.length; i++) {
+
+                    userIDs.push(notifications[i].itemID);
 
                     var date = new Date(notifications[i].datePosted);
 
@@ -343,6 +346,36 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             }
         });
     }
+
+    var images;
+
+    /* get the images for the notifications */
+
+    for (var i = 0; i < itemIDs.length; i++) {
+        /* get pictures for notifications */
+        var url = "https://localhost:8000/getImage";
+        var data = {
+            itemID: itemIDs[i];
+    }
+        $.ajax({
+            url: readurl,
+            data: data,
+            type: 'GET',
+            success: function (data) {
+                var image = JSON.parse(data);
+                images.push() = image;
+                console.log("got the notification images")
+            },
+            error: function (response, error) {
+                console.log(response)
+                console.log(error)
+            }
+        });
+    }
+
+    $scope.images = images;
+    $scope.$apply()
+
 
     $scope.targetPost = null;
 

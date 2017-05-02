@@ -132,7 +132,9 @@
                                     <div ng-class="{'notificationRead': notification.read == true, 'notificationUnread': notification.read == false}">
                                         <div class="notificationText">
                                         <div class = "col-sm-3">
-                                            <img src="img/placeholder.jpg" height="50px" width="50px" class="img-rounded">
+                                            <div ng-repeat="image in images | limitTo: -5">
+                                                <img ng-src="{{image}}" height="50px" width="50px" class="img-rounded">
+                                            </div>
                                         </div>
                                             <p class="item-info">
                                                 <span class="item-title"><a href="item.html#!/?id={{notification.itemID}}">{{notification.title}}:&nbsp;</a></span>
@@ -212,7 +214,6 @@
                 <br>
 
                 <!--tabs-->
-                <div class="section-block">
                     <div class="section-tabs">
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="tablinks active" id="listedTitleID"><a  aria-controls="about" role="tab" data-toggle="tab" onclick="changeTab('listedTitleID', 'listedID')">Listed</a></li>
@@ -220,7 +221,6 @@
                             <li role="presentation" class="tablinks" id="expiredTitleID"><a  aria-controls="updates" role="tab" data-toggle="tab" onclick="changeTab('expiredTitleID', 'expiredID')">Expired</a></li>
                         </ul>
                     </div>
-                </div>
 
                 <!--tab panes-->
                     <div class="tab-content">
