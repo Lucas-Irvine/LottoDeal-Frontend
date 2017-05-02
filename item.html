@@ -264,13 +264,13 @@
                         <h1 class="section-title">Other Items</h1>
                         <!--reward blocks-->
                         <div ng-repeat="suggestion in suggestions">
-                        <div class="reward-block">
-                            <h3>$10</h3>
-                            <h2>{{suggestion.title}}</h2>
-                            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet. Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
-                            <span><i class="fa fa-users"></i> 180 backers</span>
-                            <a href="" class="btn btn-reward">Learn More</a>
-                        </div>
+                            <div class="reward-block">
+                                <h3>${{suggestion.price}}</h3>
+                                <h2>{{suggestion.title}}</h2>
+                                <p>{{suggestion.shortDescription}}</p>
+                                <span><i class="fa fa-users"></i> {{suggestion.bids.length}} bidders</span>
+                                <a href="item.html#!/?id={{suggestion._id}}" class="btn btn-reward">Learn More</a>
+                            </div>
                         </div>
                         <!--/reward blocks-->
                     </div>
