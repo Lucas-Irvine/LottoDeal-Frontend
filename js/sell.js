@@ -360,14 +360,6 @@ window.fbAsyncInit = function() {
 
 
 
-            $('#notification_li').show(); // shows the notification bar
-
-
-
-
-
-
-
             //display user data
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Logout';
@@ -479,7 +471,7 @@ function sellLoginCheck () {
 function fbLogin() {
     var window = FB.login(function (response) {
         if (response.authResponse) {
-            $('#notification_li').show(); // shows the notification bar
+    
             // Get and display the user profile data
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
@@ -496,7 +488,6 @@ function fbLogout() {
     // delete localStorage.curUserID;
 
     userID = undefined;
-    $('#notification_li').hide(); // shows the notification bar
 
     FB.logout(function() {
         console.log('Successfully logged out')
