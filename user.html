@@ -371,6 +371,67 @@
         </div>
     </div>
 
+
+
+
+
+
+        <div class="row">
+            <div class="col-sm-7">
+                <hr/>
+                <div class="review-block">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <img ng-src="https://avatars1.githubusercontent.com/u/19854080?v=3&s=400" class="img-rounded">
+                            <div class="review-block-name"><a href="google.com">Dom</a></div>
+                            <div class="review-block-date">Date Posted: 1/1/17</div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="review-block-rate">
+
+                                <div class="ratingStatic" style="color: gold;">
+                                    <!-- &#9734; is not filled in triangle-->
+                                    <!-- &#9733; is filled in triangle-->
+
+                                    <span name="rating" ng-show="{{review.stars}} >= 1">&#9733;</span>
+                              
+
+
+                                    <span name="rating" ng-show="{{review.stars}} >= 2">&#9733;</span> 
+                                   
+
+                                    <span name="rating" ng-show="{{review.stars}} >= 3">&#9733;</span> 
+                             
+
+                                   
+                                    <span name="rating" ng-show="{{review.stars}} < 4">&#9734;</span> 
+
+                                    
+                                    <span name="rating" ng-show="{{review.stars}} < 5">&#9734;</span>
+                                </div>
+
+
+                           <!--  <span type = "radio" name = "rating" ng-show="matchCount==1">{{review.stars}} / 5</span> -->
+
+
+
+                            </div>
+                            <div class="review-block-description">supaaaa great guy -- Lucas Irvinve</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
     <!-- GET Reviews  -->
     <div ng-repeat= "review in reviews">
         <div class="row">

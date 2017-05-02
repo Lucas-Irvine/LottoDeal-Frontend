@@ -381,7 +381,7 @@ window.fbAsyncInit = function() {
             document.getElementById('login').innerHTML = 'Login';
             $("#signInMessage").show();
             facebookLoginButton.innerHTML = "Sign In With Facebook";
-            $('#notification_li').attr('display', 'none');
+            $('#notification_li').hide();
         }
     });
 
