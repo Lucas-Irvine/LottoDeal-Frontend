@@ -87,7 +87,6 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
 
 
-    scope.applyAngular = function(reviewerID) {
 
 
     if (reviewID != reviewerID && reviewerID != undefined) {
@@ -500,7 +499,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
 
     }
-}
+
 
 }])
 
@@ -652,7 +651,7 @@ function getFbUserData(){
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             reviewerID = response.id;
-            scope.applyAngular(reviewerID)
+
             console.log(reviewerID + "saving UserID as a global variable")
 
             // Save user data
