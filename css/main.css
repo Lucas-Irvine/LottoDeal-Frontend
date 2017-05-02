@@ -327,7 +327,7 @@ textarea:-ms-input-placeholder {
 }
 .sliding-middle-out:hover:after, #navbar-unique .navbar-header > a:hover:after {
     width: 100%;
-    background: green;
+    background: #3cc47c;
 }
 
 /*.sliding-middle-out {
@@ -455,7 +455,7 @@ textarea:-ms-input-placeholder {
 {
     padding: 1px 3px 1px 3px;
     position: absolute;
-    background: green;
+    background: #3cc47c;
     color: white;
     border-radius: 13px;
     -moz-border-radius: 13px;
@@ -1195,6 +1195,11 @@ input:focus, textarea:focus {
 
 .fa-facebook {
     color: white;
+}
+
+.facebook-button:hover {
+    color: white;
+    background:#5573B2;
 }
 
 #facebook-text {
