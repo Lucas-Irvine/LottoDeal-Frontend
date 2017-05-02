@@ -262,7 +262,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 }
 
-    var userIDs;
+    var itemIDs = [];
     // mark all the notifications as read
     scope.markRead = function() {
         // AJAX POST TO SERVER
@@ -293,7 +293,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
                 for (i = 0; i < notifications.length; i++) {
 
-                    userIDs.push(notifications[i].itemID);
+                    itemIDs.push(notifications[i].itemID);
 
                     var date = new Date(notifications[i].datePosted);
 
