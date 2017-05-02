@@ -428,7 +428,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
         });
     }
 
-    
+
 
 
     $scope.account = []
@@ -649,7 +649,6 @@ window.fbAsyncInit = function() {
         function (response) {
             //localStorage.setItem("curUserID", response.id);
             reviewerID = response.id;
-            scope.applyAngular(reviewerID)
             console.log(reviewerID + "saving UserID as a global variable when logging in ")
         });
 
