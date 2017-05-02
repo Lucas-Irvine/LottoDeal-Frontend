@@ -60,7 +60,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         url: suggestionsURL,
         type: 'GET',
         data: {
-            id: '1641988472497790'
+            userID: '1641988472497790'
         },
         statusCode: {
             200: function(response) {
