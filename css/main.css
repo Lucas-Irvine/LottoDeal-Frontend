@@ -1222,6 +1222,8 @@ input:focus, textarea:focus {
 
 }
 
-
+.specialimage {
+    padding-left: 0px;
+}
 
 
