@@ -257,6 +257,53 @@ app.controller("sellController", ["$scope", "$http", "$location",  function($sco
 }])
 
 
+
+
+
+//Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
+var DateDiff = {
+
+    inHours: function(d1, d2) {
+        var t2 = d2.getTime();
+        var t1 = d1.getTime();
+        if (t2 == null || t1 == null) {
+            return 0
+        }
+        return (parseInt((t2 - t1) / (3600 * 1000))) % 24;
+    },
+
+    inDays: function(d1, d2) {
+        var t2 = d2.getTime();
+        var t1 = d1.getTime();
+        if (t2 == null || t1 == null) {
+            return 0
+        }
+        return parseInt((t2 - t1) / (24 * 3600 * 1000));
+    },
+
+    // inWeeks: function(d1, d2) {
+    //     var t2 = d2.getTime();
+    //     var t1 = d1.getTime();
+
+    //     return parseInt((t2-t1)/(24*3600*1000*7));
+    // },
+
+    // inMonths: function(d1, d2) {
+    //     var d1Y = d1.getFullYear();
+    //     var d2Y = d2.getFullYear();
+    //     var d1M = d1.getMonth();
+    //     var d2M = d2.getMonth();
+
+    //     return (d2M+12*d2Y)-(d1M+12*d1Y);
+    // },
+
+    // inYears: function(d1, d2) {
+    //     return d2.getFullYear()-d1.getFullYear();
+    // }
+}
+
+
+
 /* code taken from http://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename */
 
 function readURL(input) {
