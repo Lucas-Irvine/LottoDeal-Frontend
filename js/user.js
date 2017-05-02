@@ -8,8 +8,8 @@ $(document).ready(function() {
 });
 
 
-var reviewerID;
-var reviewID;
+var reviewerID; // person who is reviewing
+var reviewID; // person being reviewed
 
 // change the number of stars selected
 function changeStars(stars) {
@@ -31,7 +31,7 @@ function createReviewFunction() {
         var sellerID = reviewID;
         var reviewDes = $("#reviewDes").val();
         var stars = $("#numStars").val(); 
-        // var reviewerID = localStorage.getItem("curUserID");
+        // var userID = localStorage.getItem("curUserID");
         console.log(stars)
 
         if (stars != 0) {
@@ -90,7 +90,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
     scope.applyAngular = function(reviewerID) {
 
 
-    if (reviewID != reviewerID) {
+    if (reviewID != reviewerID && reviewerID != undefined) {
         $("#reviewForm").show();
     }
 
@@ -654,7 +654,7 @@ function getFbUserData(){
             //localStorage.setItem("curUserID", response.id);
             reviewerID = response.id;
             scope.applyAngular(reviewerID)
-            console.log(userID + "saving UserID as a global variable")
+            console.log(reviewerID + "saving UserID as a global variable")
 
             // Save user data
             saveUserData(response);
