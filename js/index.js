@@ -430,7 +430,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var amountRaised = $scope.amountRaised;
             var price = $scope.price;
 
-            if (userID != null) {
+            if (userID != undefined) {
                 data = {
                     itemID: itemID,
                     itemTitle: itemTitle,
@@ -466,6 +466,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 });
 
             } else {
+
+                document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
+                showLoginPopup();
                 console.log('UserID is null')
             }
         }
