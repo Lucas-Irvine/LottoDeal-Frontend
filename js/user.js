@@ -367,7 +367,6 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
             document.getElementById('profileName').innerHTML = account.fullName;
             document.getElementById('profileImage').src = account.pictureURL;
-            document.getElementById('profileImageBackground').src = account.pictureURL;
             var reviews = account.reviews;
             var length = reviews.length;
             var total = 0; 
@@ -558,7 +557,7 @@ window.fbAsyncInit = function() {
             //localStorage.setItem("curUserID", response.id);
             reviewerID = response.id;
             scope.applyAngular(reviewerID)
-            console.log(userID + "saving UserID as a global variable when logging in ")
+            console.log(reviewerID + "saving UserID as a global variable when logging in ")
         });
 
             //saveUserID();
