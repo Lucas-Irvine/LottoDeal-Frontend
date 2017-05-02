@@ -364,6 +364,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             success: function (data) {
                 var image = JSON.parse(data);
                 images.push() = image;
+                $scope.images = images;
+                $scope.$apply()
                 console.log("got the notification images")
             },
             error: function (response, error) {
@@ -372,9 +374,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             }
         });
     }
-
-    $scope.images = images;
-    $scope.$apply()
 
 
     $scope.targetPost = null;
