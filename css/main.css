@@ -1192,8 +1192,8 @@ input:focus, textarea:focus {
     background-repeat: no-repeat;
     background-position: 50%;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 48px;
+    height: 48px;
     border: 1px solid #e2e2e2;
 }
 
