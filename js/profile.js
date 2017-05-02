@@ -592,7 +592,9 @@ window.fbAsyncInit = function() {
             userID = undefined;
             console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
+            document.getElementById('loginMessage').innerHTML = "Please login before you can see your account details.";
             document.getElementById('login').innerHTML = 'Login';
+            showLoginPopup();
             $("#signInMessage").show();
             facebookLoginButton.innerHTML = "Sign In With Facebook";
         }
