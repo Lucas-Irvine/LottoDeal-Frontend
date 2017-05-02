@@ -761,6 +761,7 @@ function fbLogin() {
     var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
+            document.getElementById('loginMessage').innerHTML = ""
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
             getFbUserData();
@@ -778,6 +779,7 @@ function fbLogout() {
     userID = undefined;
 
     FB.logout(function() {
+        document.getElementById('loginMessage').innerHTML = ""
         console.log('Successfully logged out')
     });
 }
