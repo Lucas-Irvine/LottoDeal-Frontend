@@ -287,7 +287,7 @@
                                                 </a>
                                             </div>
                                             <div class="caption">
-                                                <p class="pull-right" id="amountRaised-{{soldItem._id}}"> <strog>${{soldItem.amountRaised}}</strog> of <strong>${{soldItem.price}} </strong> raised</p>
+                                                <p class="pull-right" id="amountRaised-{{soldItem._id}}"> <strong>${{soldItem.amountRaised}}</strong> of <strong>${{soldItem.price}}</strong> raised</p>
                                                 <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{soldItem.title}}</a>
                                                 </p>
                                                 <div class="progress" id="thumbnail-bar">
@@ -334,7 +334,7 @@
                                             </div>
                                             <div class="caption">
                                                 <p class="pull-right" id="amountRaised-{{expiredItem._id}}">${{expiredItem.amountRaised}} of ${{expiredItem.price}} raised</p>
-                                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{soldItem.title}}</a>
+                                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{expiredItem.title}}</a>
                                                 </p>
                                                 <div class="progress" id="thumbnail-bar">
                                                     <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{expiredItem._id}}" role="progressbar" aria-valuenow="40"
