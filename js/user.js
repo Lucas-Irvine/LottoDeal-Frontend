@@ -344,7 +344,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
 
 
-
+    var itemIDs = [];
     scope.markRead = function() {
         // AJAX POST TO SERVER
         var readurl = "https://localhost:8000/markRead";
@@ -505,7 +505,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
             var amountRaised = $scope.amountRaised;
             var price = $scope.price;
 
-            if (userID != null) {
+            if (reviewerID != undefined) {
                 data = {
                     itemID: itemID,
                     itemTitle: itemTitle,

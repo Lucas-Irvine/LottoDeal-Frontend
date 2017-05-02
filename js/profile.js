@@ -104,7 +104,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
 
 
-
+    var itemIDs = [];
     scope.markRead = function() {
         // AJAX POST TO SERVER
         var readurl = "https://localhost:8000/markRead";
