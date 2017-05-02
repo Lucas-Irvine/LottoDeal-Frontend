@@ -412,7 +412,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
         locale: 'auto',
         token: function(token) {
             console.log('attempting stripe payment')
-            var userID = localStorage.getItem("curUserID")
+            // var userID = localStorage.getItem("curUserID")
             var amountToCharge = $scope.amountToCharge;
             var itemTitle = $scope.itemTitle;
             var itemID = $scope.itemID;
@@ -423,7 +423,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
                 data = {
                     itemID: itemID,
                     itemTitle: itemTitle,
-                    userID: userID,
+                    userID: reviewerID,
                     stripeToken: token.id,
                     amount: Number(amountToCharge)
                 }
