@@ -355,7 +355,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         /* get pictures for notifications */
         var url = "https://localhost:8000/getImage";
         var data = {
-            itemID: itemIDs[i];
+            itemID: itemIDs[i]
     }
         $.ajax({
             url: readurl,
