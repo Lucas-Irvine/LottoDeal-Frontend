@@ -736,6 +736,7 @@ var facebookLoginButton = document.getElementById("loginToFacebook");
 // When the user clicks the button, open the modal 
 facebookLoginButton.onclick = function() {
     console.log('logging in/out')
+    document.getElementById('loginMessage').innerHTML = ""
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             //display user data
@@ -761,7 +762,6 @@ function fbLogin() {
     var window = FB.login(function (response) {
         if (response.authResponse) {
             // Get and display the user profile data
-            document.getElementById('loginMessage').innerHTML = ""
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
             getFbUserData();
@@ -779,7 +779,6 @@ function fbLogout() {
     userID = undefined;
 
     FB.logout(function() {
-        document.getElementById('loginMessage').innerHTML = ""
         console.log('Successfully logged out')
     });
 }
