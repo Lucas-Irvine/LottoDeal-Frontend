@@ -50,6 +50,32 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     scope = $scope;
 
 
+    window.fbAsyncInit = function() {
+
+        FB.init({
+            appId: '228917890846081',
+            status: true,
+            cookie: true,
+            xfbml: true
+        });
+        FB.getLoginStatus(function(response) {
+            userID = response.userID;
+            console.log(userID + "saving UserID as a global variable when logging in ")
+            getSuggestions();
+        });
+    };
+
+    (function(d) {
+        var js, id = 'facebook-jssdk';
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        d.getElementsByTagName('head')[0].appendChild(js);
+    }(document));
 
     // $scope.post = null;
 
@@ -531,35 +557,6 @@ function base64ArrayBuffer(arrayBuffer) {
 
 
 // Facebook Login code -----------------------------------
-
-
-
-window.fbAsyncInit = function() {
-
-    FB.init({
-        appId: '228917890846081',
-        status: true,
-        cookie: true,
-        xfbml: true
-    });
-    FB.getLoginStatus(function(response) {
-        userID = response.userID;
-        getSuggestions();
-        console.log(userID + "saving UserID as a global variable when logging in ")
-    });
-};
-
-(function(d) {
-    var js, id = 'facebook-jssdk';
-    if (d.getElementById(id)) {
-        return;
-    }
-    js = d.createElement('script');
-    js.id = id;
-    js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
-    d.getElementsByTagName('head')[0].appendChild(js);
-}(document));
 
 
 
