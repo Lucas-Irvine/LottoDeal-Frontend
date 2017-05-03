@@ -252,13 +252,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 }
             }
 
-
-
-
-
-
-
-
                 var getImageForNotificationsURL = "https://localhost:8000/getImagesForNotifications";
 
                 var data = {
