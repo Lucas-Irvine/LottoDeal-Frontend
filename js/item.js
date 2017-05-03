@@ -55,7 +55,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     }, {
         title: 'test2'
     }];
-    
+
 
     // var suggestionsURL = "https://localhost:8000/getSuggestions"
 
@@ -96,9 +96,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
 
-
-
-       var itemIDs = [];
+    var itemIDs = [];
     // mark all the notifications as read
     scope.markRead = function() {
         // AJAX POST TO SERVER
@@ -138,17 +136,13 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     if (hoursAgo < 24) {
                         if (hoursAgo == 0) {
                             notifications[i].datePosted = "Just Now";
-                        }
-                        else if (hoursAgo == 1) {
+                        } else if (hoursAgo == 1) {
                             notifications[i].datePosted = hoursAgo + " hour ago";
-                        }
-                        else {
+                        } else {
                             notifications[i].datePosted = hoursAgo + " hours ago";
                             console.log(notifications[i].datePosted);
                         }
-                    }
-
-                    else {
+                    } else {
                         var month = date.getMonth();
                         var day = date.getDate();
 
@@ -160,7 +154,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                         var ampm = hours >= 12 ? 'pm' : 'am';
                         hours = hours % 12;
                         hours = hours ? hours : 12; // the hour '0' should be '12'
-                        minutes = minutes < 10 ? '0'+ minutes : minutes;
+                        minutes = minutes < 10 ? '0' + minutes : minutes;
                         var strTime = hours + ':' + minutes + ' ' + ampm;
 
                         /* --------- */
@@ -324,10 +318,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
 
-
-
-
-
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
 
         console.log('initiating bid');
@@ -367,11 +357,10 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                 });
 
             }
-        }
-        else {
-                document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
-                showLoginPopup();
-                console.log('UserID is undefined')
+        } else {
+            document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
+            showLoginPopup();
+            console.log('UserID is undefined')
         }
 
     }
@@ -545,23 +534,16 @@ function base64ArrayBuffer(arrayBuffer) {
 
 
 
-
-
-
-
-
-
-
-    // Facebook Login code -----------------------------------
+// Facebook Login code -----------------------------------
 window.fbAsyncInit = function() {
     FB.init({
-        appId      : '228917890846081',
-        xfbml      : true,
-        cookie     : true,
-        version    : 'v2.8'
-    });   
+        appId: '228917890846081',
+        xfbml: true,
+        cookie: true,
+        version: 'v2.8'
+    });
     console.log('test1')
-    // Check whether the user already logged in
+        // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             //display user data
@@ -571,20 +553,22 @@ window.fbAsyncInit = function() {
             $("#signInMessage").hide();
 
 
-     FB.api('/me', {locale: 'en_US', fields: 'id'},
-        function (response) {
-            //localStorage.setItem("curUserID", response.id);
-            userID = response.id;
-            $("#userid").val(userID)
-            scope.getNotifications(userID);
-            console.log(userID + "saving UserID as a global variable when logging in ")
-        });
+            FB.api('/me', {
+                    locale: 'en_US',
+                    fields: 'id'
+                },
+                function(response) {
+                    //localStorage.setItem("curUserID", response.id);
+                    userID = response.id;
+                    $("#userid").val(userID)
+                    scope.getNotifications(userID);
+                    console.log(userID + "saving UserID as a global variable when logging in ")
+                });
 
             //saveUserID();
             console.log('logged in')
-            // Get and display the user profile data
-        }
-        else {
+                // Get and display the user profile data
+        } else {
             userID = undefined;
             console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
@@ -593,53 +577,25 @@ window.fbAsyncInit = function() {
             facebookLoginButton.innerHTML = "Sign In With Facebook";
         }
     });
-
-
 
 
 
 };
 
-
-FB.init({
-        appId      : '228917890846081',
-        xfbml      : true,
-        cookie     : true,
-        version    : 'v2.8'
-    });   
-    console.log('test1')
-    // Check whether the user already logged in
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            //display user data
-            document.getElementById('successScreen').innerHTML = "";
-            document.getElementById('login').innerHTML = 'Logout';
-            facebookLoginButton.innerHTML = "Sign Out With Facebook";
-            $("#signInMessage").hide();
-
-
-     FB.api('/me', {locale: 'en_US', fields: 'id'},
-        function (response) {
-            //localStorage.setItem("curUserID", response.id);
-            userID = response.id;
-            $("#userid").val(userID)
-            scope.getNotifications(userID);
-            console.log(userID + "saving UserID as a global variable when logging in ")
+window.fbAsyncInit = function(){
+    
+        FB.init({ appId:'228917890846081', status:true,  cookie:true, xfbml:true});
+        FB.getLoginStatus(function(response){
+        console.log(response);
         });
+    };
 
-            //saveUserID();
-            console.log('logged in')
-            // Get and display the user profile data
-        }
-        else {
-            userID = undefined;
-            console.log('Not logged in');
-            document.getElementById('successScreen').innerHTML = "";
-            document.getElementById('login').innerHTML = 'Login';
-            $("#signInMessage").show();
-            facebookLoginButton.innerHTML = "Sign In With Facebook";
-        }
-    });
+    (function(d){
+        var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+        js = d.createElement('script'); js.id = id; js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        d.getElementsByTagName('head')[0].appendChild(js);
+    }(document));
 
 // (function(d, s, id){
 //     var js, fjs = d.getElementsByTagName(s)[0];
@@ -685,7 +641,7 @@ function showLoginPopup() {
 
 
 function fbLogin() {
-    var window = FB.login(function (response) {
+    var window = FB.login(function(response) {
         if (response.authResponse) {
             // Get and display the user profile data
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
@@ -694,7 +650,9 @@ function fbLogin() {
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
         }
-    }, {scope: 'email'});
+    }, {
+        scope: 'email'
+    });
 }
 
 // Logout from facebook
@@ -709,9 +667,12 @@ function fbLogout() {
     });
 }
 
-function getFbUserData(){
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
-        function (response) {
+function getFbUserData() {
+    FB.api('/me', {
+            locale: 'en_US',
+            fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'
+        },
+        function(response) {
             //localStorage.setItem("curUserID", response.id);
             userID = response.id;
             $("#userid").val(userID)
@@ -724,38 +685,38 @@ function getFbUserData(){
 
 function saveUserData(response) {
 
-      var url = "https://localhost:8000/createUser";
-      
-      console.log('Gender:' + response.gender);
-      console.log('Age max: ' + response.age_range.max);
-      console.log('Age min: ' + response.age_range.min);
-      var avgAge = 25 //default to 25 if unspecified
+    var url = "https://localhost:8000/createUser";
 
-      if (response.age_range != null) {
+    console.log('Gender:' + response.gender);
+    console.log('Age max: ' + response.age_range.max);
+    console.log('Age min: ' + response.age_range.min);
+    var avgAge = 25 //default to 25 if unspecified
+
+    if (response.age_range != null) {
         avgAge = (response.age_range.max + response.age_range.min) / 2
         console.log('Avg age is' + avgAge);
-      }
+    }
 
-      data = {
-        name: response.first_name+ ' ' + response.last_name,
+    data = {
+        name: response.first_name + ' ' + response.last_name,
         fbid: response.id,
         age: avgAge,
         gender: response.gender,
         url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
         email: response.email
-      }
+    }
 
-      // AJAX POST TO SERVER
-      $.ajax({
+    // AJAX POST TO SERVER
+    $.ajax({
         url: url,
         type: 'post',
         data: data,
         success: function(data) {
-        console.log(data)
+            console.log(data)
         },
         error: function(response, error) {
-        console.log(response)
-        console.log(error)
+            console.log(response)
+            console.log(error)
         }
     });
 }
