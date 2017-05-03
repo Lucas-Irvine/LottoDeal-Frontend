@@ -186,7 +186,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
     var url = "https://localhost:8000/getItem"
 
-    // var userid = localStorage.getItem("curUserID");
+    var userid = userID;
     // console.log(userid)
 
     $scope.canEdit = false;
