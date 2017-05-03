@@ -60,6 +60,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         });
         FB.getLoginStatus(function(response) {
             userID = response.userID;
+            console.log(response);
             console.log(userID + "saving UserID as a global variable when logging in ")
             getSuggestions();
         });
@@ -114,6 +115,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     console.log(error)
                 }
             });
+        }
+        else {
+            console.log("Error: userID is null");
         }
     }
 
