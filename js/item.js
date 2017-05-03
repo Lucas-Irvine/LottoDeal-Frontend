@@ -59,7 +59,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             xfbml: true
         });
         FB.getLoginStatus(function(response) {
-            userID = response.userID;
+            userID = response.authResponse.userID;
             console.log(response);
             console.log(userID + "saving UserID as a global variable when logging in ")
             getSuggestions();
