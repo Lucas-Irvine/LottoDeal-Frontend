@@ -335,6 +335,49 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     }
                 }
 
+
+
+
+
+
+
+
+
+
+
+
+                var getImageForNotificationsURL = "https://localhost:8000/getImagesForNotifications";
+
+                var data = {
+                    itemIDs: itemIDs
+                }
+
+                    $.ajax({
+                    url: getImageForNotificationsURL,
+                    type: 'GET',
+                    data: data,
+                    success: function(data) {
+                        var images = JSON.parse(data)
+                        $scope.images = images;
+                        console.log($scope.images)
+                        $scope.$apply()
+                    },
+                    error: function(response, error) {
+                        console.log(response)
+                        console.log(error)
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
+
                 $scope.notifications = notifications;
                 console.log($scope.notifications)
                 console.log("updated the notifications")

@@ -63,7 +63,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         url: suggestionsURL,
         type: 'GET',
         data: {
-            userID: '1641988472497790'
+            userID: userID //'1641988472497790'
         },
         statusCode: {
             200: function(response) {
@@ -182,7 +182,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             }
         });
     }
-    
+
 
     var url = "https://localhost:8000/getItem"
 
