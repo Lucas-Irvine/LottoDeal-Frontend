@@ -616,30 +616,30 @@ function showLoginPopup() {
     })
 };
 
-var facebookLoginButton = document.getElementById("loginToFacebook");
+// var facebookLoginButton = document.getElementById("loginToFacebook");
 
-// When the user clicks the button, open the modal 
-facebookLoginButton.onclick = function() {
-    console.log('logging in/out')
-    document.getElementById('loginMessage').innerHTML = ""
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            //display user data
-            fbLogout()
+// // When the user clicks the button, open the modal 
+// facebookLoginButton.onclick = function() {
+//     console.log('logging in/out')
+//     document.getElementById('loginMessage').innerHTML = ""
+//     FB.getLoginStatus(function(response) {
+//         if (response.status === 'connected') {
+//             //display user data
+//             fbLogout()
 
-            document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
-            document.getElementById('login').innerHTML = 'Login';
-            facebookLoginButton.innerHTML = "Sign In With Facebook";
-            $("#signInMessage").show();
-        } else {
-            fbLogin()
+//             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
+//             document.getElementById('login').innerHTML = 'Login';
+//             facebookLoginButton.innerHTML = "Sign In With Facebook";
+//             $("#signInMessage").show();
+//         } else {
+//             fbLogin()
 
-            document.getElementById('login').innerHTML = 'Logout';
-            facebookLoginButton.innerHTML = "Sign Out With Facebook";
-            $("#signInMessage").hide();
-        }
-    });
-}
+//             document.getElementById('login').innerHTML = 'Logout';
+//             facebookLoginButton.innerHTML = "Sign Out With Facebook";
+//             $("#signInMessage").hide();
+//         }
+//     });
+// }
 
 
 
