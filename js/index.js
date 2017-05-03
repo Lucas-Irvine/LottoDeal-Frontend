@@ -693,6 +693,35 @@ function changeTab(titleID, id) {
 }
 
 
+function checkIfUser(userID) {
+    // get all the accounts for all posts
+    var checkURL = "https://localhost:8000/checkIfUser";
+
+    $scope.accounts = []
+    var data = {
+        userID: userID
+    }
+
+    $.ajax({
+        url: checkURL,
+        type: 'GET',
+        data: data,
+        success: function(data) {
+            var status = data
+            if (status = false) {
+                document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
+                showLoginPopup();
+                console.log('UserID is null')
+            }
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+}
+
+
 
 
 
@@ -722,6 +751,7 @@ window.fbAsyncInit = function() {
             userID = response.id;
             $("#userid").val(userID)
             scope.getNotifications(userID);
+            checkIfUser(userID);
             console.log(userID + "saving UserID as a global variable when logging in ")
         });
 
