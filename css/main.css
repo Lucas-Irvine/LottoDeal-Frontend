@@ -152,6 +152,7 @@ html {
 .description {
     text-align: left;
     padding-top: 5%;
+    max-height: 280px;
 }
 
 /* the footer of the page */

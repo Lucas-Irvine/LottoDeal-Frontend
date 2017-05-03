@@ -230,17 +230,21 @@
                                                     <img ng-src="{{post.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                                 </a>
                                             </div>
-                                            <div class="caption">
-                                                <div class="col-lg-8 col-md-8 col-sm-8"><a id="Cardtitle" href="item.html#!/?id={{post._id}}"><strong>{{post.title}} </strong></a>
+                                            <div class="caption container-fluid">
+                                                <div class="row">
+                                                <div class="col-lg-8 col-md-8 col-sm-8 hideoverflow"><a id="Cardtitle" href="item.html#!/?id={{post._id}}"><strong>{{post.title}} </strong></a>
                                                 </div>
 
                                                 <div class="pull-right col-lg-4 col-md-4 col-sm-4" id="amountRaised-{{post._id}}"><strong>${{post.amountRaised}}</strong> of <strong>${{post.price}}</strong> raised
                                                 </div>
+                                                </div>
+                                                <div class="row">
                                                 <div class="progress" id="thumbnail-bar">
                                                     <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{post._id}}" role="progressbar" aria-valuenow="40"
                                                          aria-valuemin="0" aria-valuemax="100" style="width:{{post.percentageRaised}}%">
                                                     </div>
                                                 </div>
+                                            </div>
                                                 <p align="right"> {{post.expirationDate}} </p>
                                                 <div class="row bid-buttons">
                                                     <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
