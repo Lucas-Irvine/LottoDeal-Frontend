@@ -600,6 +600,47 @@ window.fbAsyncInit = function() {
 
 };
 
+
+FB.init({
+        appId      : '228917890846081',
+        xfbml      : true,
+        cookie     : true,
+        version    : 'v2.8'
+    });   
+    console.log('test1')
+    // Check whether the user already logged in
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            //display user data
+            document.getElementById('successScreen').innerHTML = "";
+            document.getElementById('login').innerHTML = 'Logout';
+            facebookLoginButton.innerHTML = "Sign Out With Facebook";
+            $("#signInMessage").hide();
+
+
+     FB.api('/me', {locale: 'en_US', fields: 'id'},
+        function (response) {
+            //localStorage.setItem("curUserID", response.id);
+            userID = response.id;
+            $("#userid").val(userID)
+            scope.getNotifications(userID);
+            console.log(userID + "saving UserID as a global variable when logging in ")
+        });
+
+            //saveUserID();
+            console.log('logged in')
+            // Get and display the user profile data
+        }
+        else {
+            userID = undefined;
+            console.log('Not logged in');
+            document.getElementById('successScreen').innerHTML = "";
+            document.getElementById('login').innerHTML = 'Login';
+            $("#signInMessage").show();
+            facebookLoginButton.innerHTML = "Sign In With Facebook";
+        }
+    });
+
 // (function(d, s, id){
 //     var js, fjs = d.getElementsByTagName(s)[0];
 //     if (d.getElementById(id)) {return;}
