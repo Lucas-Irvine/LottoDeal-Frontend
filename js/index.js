@@ -697,7 +697,6 @@ function checkIfUser(userID) {
     // get all the accounts for all posts
     var checkURL = "https://localhost:8000/checkIfUser";
 
-    $scope.accounts = []
     var data = {
         userID: userID
     }
