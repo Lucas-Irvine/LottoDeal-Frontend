@@ -417,6 +417,11 @@ textarea:-ms-input-placeholder {
     min-height:300px;
 }
 
+.notificationPic {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 .notificationRead {
     background-color: white;
     border-bottom: 1px solid #dddfe2;

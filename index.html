@@ -132,10 +132,7 @@
                                     <div ng-class="{'notificationRead': notification.read == true, 'notificationUnread': notification.read == false}">
                                         <div class="notificationText">
                                         <div class = "col-sm-3">
-                                           
-                                            <img ng-src="{{images[$index]}}" height="50px" width="50px" class="img-rounded">
-                       
-                                           
+                                            <img ng-src="{{images[$index]}}" height="50px" width="50px" class="img-rounded notificationPic">
                                         </div>
                                             <p class="item-info">
                                                 <span class="item-title"><a href="item.html#!/?id={{notification.itemID}}">{{notification.title}}:&nbsp;</a></span>
