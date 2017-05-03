@@ -180,6 +180,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 
 
+    var itemIDs = [];
 
     scope.getNotifications = function(userID) {
 // AJAX POST TO SERVER
@@ -206,6 +207,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
             var curDate = new Date();
 
             for (i = 0; i < notifications.length; i++) {
+                itemIDs.push(notifications[i].itemID);
+
 
                 var date = new Date(notifications[i].datePosted);
 
@@ -223,7 +226,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                         console.log(notifications[i].datePosted);
                     }
                 }
-
                 else {
                     var month = date.getMonth();
                     var day = date.getDate();
@@ -250,6 +252,38 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                 }
             }
 
+
+
+
+
+
+
+
+                var getImageForNotificationsURL = "https://localhost:8000/getImagesForNotifications";
+
+                var data = {
+                    itemIDs: itemIDs
+                }
+
+                    $.ajax({
+                    url: getImageForNotificationsURL,
+                    type: 'GET',
+                    data: data,
+                    success: function(data) {
+                        var images = JSON.parse(data)
+                        $scope.images = images;
+                        console.log($scope.images)
+                        $scope.$apply()
+                    },
+                    error: function(response, error) {
+                        console.log(response)
+                        console.log(error)
+                    }
+                });
+
+
+
+
             $scope.notifications = notifications;
             console.log($scope.notifications)
             $scope.$apply()
@@ -262,7 +296,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
 }
 
-    var itemIDs = [];
+
+    $scope.images = []
+
     // mark all the notifications as read
     scope.markRead = function() {
         // AJAX POST TO SERVER
@@ -293,7 +329,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
                 for (i = 0; i < notifications.length; i++) {
 
-                    itemIDs.push(notifications[i].itemID);
 
                     var date = new Date(notifications[i].datePosted);
 
@@ -334,50 +369,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                         console.log(newDate);
                     }
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-                var getImageForNotificationsURL = "https://localhost:8000/getImagesForNotifications";
-
-                var data = {
-                    itemIDs: itemIDs
-                }
-
-                    $.ajax({
-                    url: getImageForNotificationsURL,
-                    type: 'GET',
-                    data: data,
-                    success: function(data) {
-                        var images = JSON.parse(data)
-                        $scope.images = images;
-                        console.log($scope.images)
-                        $scope.$apply()
-                    },
-                    error: function(response, error) {
-                        console.log(response)
-                        console.log(error)
-                    }
-                });
-
-
-
-
-
-
-
-
-
-
-
                 $scope.notifications = notifications;
                 console.log($scope.notifications)
                 console.log("updated the notifications")
@@ -390,33 +381,33 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         });
     }
 
-    var images;
+    // var images;
 
-    /* get the images for the notifications */
+    // /* get the images for the notifications */
 
-    for (var i = 0; i < itemIDs.length; i++) {
-        /* get pictures for notifications */
-        var url = "https://localhost:8000/getImage";
-        var data = {
-            itemID: itemIDs[i]
-    }
-        $.ajax({
-            url: readurl,
-            data: data,
-            type: 'GET',
-            success: function (data) {
-                var image = JSON.parse(data);
-                images.push() = image;
-                $scope.images = images;
-                $scope.$apply()
-                console.log("got the notification images")
-            },
-            error: function (response, error) {
-                console.log(response)
-                console.log(error)
-            }
-        });
-    }
+    // for (var i = 0; i < itemIDs.length; i++) {
+    //     /* get pictures for notifications */
+    //     var url = "https://localhost:8000/getImage";
+    //     var data = {
+    //         itemID: itemIDs[i]
+    // }
+    //     $.ajax({
+    //         url: readurl,
+    //         data: data,
+    //         type: 'GET',
+    //         success: function (data) {
+    //             var image = JSON.parse(data);
+    //             images.push() = image;
+    //             $scope.images = images;
+    //             $scope.$apply()
+    //             console.log("got the notification images")
+    //         },
+    //         error: function (response, error) {
+    //             console.log(response)
+    //             console.log(error)
+    //         }
+    //     });
+    // }
 
 
     $scope.targetPost = null;
