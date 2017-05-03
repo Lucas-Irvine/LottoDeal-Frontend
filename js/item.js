@@ -49,51 +49,47 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
     scope = $scope;
 
-    //GET SUGGESTIONS
-    var test = [{
-        title: 'test'
-    }, {
-        title: 'test2'
-    }];
-
-
-    // var suggestionsURL = "https://localhost:8000/getSuggestions"
-
-    // $.ajax({
-    //     url: suggestionsURL,
-    //     type: 'GET',
-    //     data: {
-    //         userID: userID //'1641988472497790'
-    //     },
-    //     statusCode: {
-    //         200: function(response) {
-    //             $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
-    //         },
-    //         404: function(response) {
-    //             var newDoc = document.open("text/html", "replace");
-    //             // console.log(response);
-    //             newDoc.write(response.responseText);
-    //             newDoc.close();
-    //         }
-    //     },
-    //     success: function(data) {
-    //         var parsed = JSON.parse(data)
-    //         console.log(parsed)
-    //         console.log("retrieved suggestions")
-
-
-    //         $scope.suggestions = parsed;
-    //         $scope.$apply();
-    //     },
-    //     error: function(response, error) {
-    //         console.log(response)
-    //         console.log(error)
-    //     }
-    // });
 
 
     // $scope.post = null;
 
+    function getSuggestions() {
+        //GET SUGGESTIONS
+        var suggestionsURL = "https://localhost:8000/getSuggestions"
+        if (userID != null) {
+            $.ajax({
+                url: suggestionsURL,
+                type: 'GET',
+                data: {
+                    userID: userID
+                },
+                statusCode: {
+                    200: function(response) {
+                        $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
+                    },
+                    404: function(response) {
+                        var newDoc = document.open("text/html", "replace");
+                        // console.log(response);
+                        newDoc.write(response.responseText);
+                        newDoc.close();
+                    }
+                },
+                success: function(data) {
+                    var parsed = JSON.parse(data)
+                    console.log(parsed)
+                    console.log("retrieved suggestions")
+
+
+                    $scope.suggestions = parsed;
+                    $scope.$apply();
+                },
+                error: function(response, error) {
+                    console.log(response)
+                    console.log(error)
+                }
+            });
+        }
+    }
 
 
     var itemIDs = [];
@@ -535,67 +531,86 @@ function base64ArrayBuffer(arrayBuffer) {
 
 
 // Facebook Login code -----------------------------------
+
+
+
 window.fbAsyncInit = function() {
+
     FB.init({
         appId: '228917890846081',
-        xfbml: true,
+        status: true,
         cookie: true,
-        version: 'v2.8'
+        xfbml: true
     });
-    console.log('test1')
-        // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            //display user data
-            document.getElementById('successScreen').innerHTML = "";
-            document.getElementById('login').innerHTML = 'Logout';
-            facebookLoginButton.innerHTML = "Sign Out With Facebook";
-            $("#signInMessage").hide();
-
-
-            FB.api('/me', {
-                    locale: 'en_US',
-                    fields: 'id'
-                },
-                function(response) {
-                    //localStorage.setItem("curUserID", response.id);
-                    userID = response.id;
-                    $("#userid").val(userID)
-                    scope.getNotifications(userID);
-                    console.log(userID + "saving UserID as a global variable when logging in ")
-                });
-
-            //saveUserID();
-            console.log('logged in')
-                // Get and display the user profile data
-        } else {
-            userID = undefined;
-            console.log('Not logged in');
-            document.getElementById('successScreen').innerHTML = "";
-            document.getElementById('login').innerHTML = 'Login';
-            $("#signInMessage").show();
-            facebookLoginButton.innerHTML = "Sign In With Facebook";
-        }
+        userID = response.userID;
+        getSuggestions();
+        console.log(userID + "saving UserID as a global variable when logging in ")
     });
-
-
-
 };
 
-window.fbAsyncInit = function(){
-    
-        FB.init({ appId:'228917890846081', status:true,  cookie:true, xfbml:true});
-        FB.getLoginStatus(function(response){
-        console.log(response);
-        });
-    };
+(function(d) {
+    var js, id = 'facebook-jssdk';
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement('script');
+    js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    d.getElementsByTagName('head')[0].appendChild(js);
+}(document));
 
-    (function(d){
-        var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-        js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        d.getElementsByTagName('head')[0].appendChild(js);
-    }(document));
+
+
+// window.fbAsyncInit = function() {
+//     FB.init({
+//         appId: '228917890846081',
+//         xfbml: true,
+//         cookie: true,
+//         version: 'v2.8'
+//     });
+//     console.log('test1')
+//         // Check whether the user already logged in
+//     FB.getLoginStatus(function(response) {
+//         if (response.status === 'connected') {
+//             //display user data
+//             document.getElementById('successScreen').innerHTML = "";
+//             document.getElementById('login').innerHTML = 'Logout';
+//             facebookLoginButton.innerHTML = "Sign Out With Facebook";
+//             $("#signInMessage").hide();
+
+
+//             FB.api('/me', {
+//                     locale: 'en_US',
+//                     fields: 'id'
+//                 },
+//                 function(response) {
+//                     //localStorage.setItem("curUserID", response.id);
+//                     userID = response.id;
+//                     $("#userid").val(userID)
+//                     scope.getNotifications(userID);
+//                     console.log(userID + "saving UserID as a global variable when logging in ")
+//                 });
+
+//             //saveUserID();
+//             console.log('logged in')
+//                 // Get and display the user profile data
+//         } else {
+//             userID = undefined;
+//             console.log('Not logged in');
+//             document.getElementById('successScreen').innerHTML = "";
+//             document.getElementById('login').innerHTML = 'Login';
+//             $("#signInMessage").show();
+//             facebookLoginButton.innerHTML = "Sign In With Facebook";
+//         }
+//     });
+
+
+
+// };
+
+
 
 // (function(d, s, id){
 //     var js, fjs = d.getElementsByTagName(s)[0];
@@ -607,11 +622,11 @@ window.fbAsyncInit = function(){
 
 
 
-function showLoginPopup() {
-    $('#loginPopup').modal({
-        keyboard: false
-    })
-};
+// function showLoginPopup() {
+//     $('#loginPopup').modal({
+//         keyboard: false
+//     })
+// };
 
 // var facebookLoginButton = document.getElementById("loginToFacebook");
 
@@ -640,84 +655,84 @@ function showLoginPopup() {
 
 
 
-function fbLogin() {
-    var window = FB.login(function(response) {
-        if (response.authResponse) {
-            // Get and display the user profile data
-            document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
-            console.log('Successfully logged in')
-            getFbUserData();
-        } else {
-            document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
-        }
-    }, {
-        scope: 'email'
-    });
-}
+// function fbLogin() {
+//     var window = FB.login(function(response) {
+//         if (response.authResponse) {
+//             // Get and display the user profile data
+//             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
+//             console.log('Successfully logged in')
+//             getFbUserData();
+//         } else {
+//             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+//         }
+//     }, {
+//         scope: 'email'
+//     });
+// }
 
-// Logout from facebook
-function fbLogout() {
-    //delete local storage
-    // delete localStorage.curUserID;
+// // Logout from facebook
+// function fbLogout() {
+//     //delete local storage
+//     // delete localStorage.curUserID;
 
-    userID = undefined;
+//     userID = undefined;
 
-    FB.logout(function() {
-        console.log('Successfully logged out')
-    });
-}
+//     FB.logout(function() {
+//         console.log('Successfully logged out')
+//     });
+// }
 
-function getFbUserData() {
-    FB.api('/me', {
-            locale: 'en_US',
-            fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'
-        },
-        function(response) {
-            //localStorage.setItem("curUserID", response.id);
-            userID = response.id;
-            $("#userid").val(userID)
-            console.log(userID + "saving UserID as a global variable")
+// function getFbUserData() {
+//     FB.api('/me', {
+//             locale: 'en_US',
+//             fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'
+//         },
+//         function(response) {
+//             //localStorage.setItem("curUserID", response.id);
+//             userID = response.id;
+//             $("#userid").val(userID)
+//             console.log(userID + "saving UserID as a global variable")
 
-            // Save user data
-            saveUserData(response);
-        });
-}
+//             // Save user data
+//             saveUserData(response);
+//         });
+// }
 
-function saveUserData(response) {
+// function saveUserData(response) {
 
-    var url = "https://localhost:8000/createUser";
+//     var url = "https://localhost:8000/createUser";
 
-    console.log('Gender:' + response.gender);
-    console.log('Age max: ' + response.age_range.max);
-    console.log('Age min: ' + response.age_range.min);
-    var avgAge = 25 //default to 25 if unspecified
+//     console.log('Gender:' + response.gender);
+//     console.log('Age max: ' + response.age_range.max);
+//     console.log('Age min: ' + response.age_range.min);
+//     var avgAge = 25 //default to 25 if unspecified
 
-    if (response.age_range != null) {
-        avgAge = (response.age_range.max + response.age_range.min) / 2
-        console.log('Avg age is' + avgAge);
-    }
+//     if (response.age_range != null) {
+//         avgAge = (response.age_range.max + response.age_range.min) / 2
+//         console.log('Avg age is' + avgAge);
+//     }
 
-    data = {
-        name: response.first_name + ' ' + response.last_name,
-        fbid: response.id,
-        age: avgAge,
-        gender: response.gender,
-        url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
-        email: response.email
-    }
+//     data = {
+//         name: response.first_name + ' ' + response.last_name,
+//         fbid: response.id,
+//         age: avgAge,
+//         gender: response.gender,
+//         url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
+//         email: response.email
+//     }
 
-    // AJAX POST TO SERVER
-    $.ajax({
-        url: url,
-        type: 'post',
-        data: data,
-        success: function(data) {
-            console.log(data)
-        },
-        error: function(response, error) {
-            console.log(response)
-            console.log(error)
-        }
-    });
-}
+//     // AJAX POST TO SERVER
+//     $.ajax({
+//         url: url,
+//         type: 'post',
+//         data: data,
+//         success: function(data) {
+//             console.log(data)
+//         },
+//         error: function(response, error) {
+//             console.log(response)
+//             console.log(error)
+//         }
+//     });
+// }
 //End Facebook login code -----------------------------------
