@@ -57,42 +57,42 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     }];
     
 
-    var suggestionsURL = "https://localhost:8000/getSuggestions"
+    // var suggestionsURL = "https://localhost:8000/getSuggestions"
 
-    $.ajax({
-        url: suggestionsURL,
-        type: 'GET',
-        data: {
-            userID: userID //'1641988472497790'
-        },
-        statusCode: {
-            200: function(response) {
-                $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
-            },
-            404: function(response) {
-                var newDoc = document.open("text/html", "replace");
-                // console.log(response);
-                newDoc.write(response.responseText);
-                newDoc.close();
-            }
-        },
-        success: function(data) {
-            var parsed = JSON.parse(data)
-            console.log(parsed)
-            console.log("retrieved suggestions")
-
-
-            $scope.suggestions = parsed;
-            $scope.$apply();
-        },
-        error: function(response, error) {
-            console.log(response)
-            console.log(error)
-        }
-    });
+    // $.ajax({
+    //     url: suggestionsURL,
+    //     type: 'GET',
+    //     data: {
+    //         userID: userID //'1641988472497790'
+    //     },
+    //     statusCode: {
+    //         200: function(response) {
+    //             $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
+    //         },
+    //         404: function(response) {
+    //             var newDoc = document.open("text/html", "replace");
+    //             // console.log(response);
+    //             newDoc.write(response.responseText);
+    //             newDoc.close();
+    //         }
+    //     },
+    //     success: function(data) {
+    //         var parsed = JSON.parse(data)
+    //         console.log(parsed)
+    //         console.log("retrieved suggestions")
 
 
-    $scope.post = null;
+    //         $scope.suggestions = parsed;
+    //         $scope.$apply();
+    //     },
+    //     error: function(response, error) {
+    //         console.log(response)
+    //         console.log(error)
+    //     }
+    // });
+
+
+    // $scope.post = null;
 
 
 
