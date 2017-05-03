@@ -272,7 +272,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
                     success: function(data) {
                         var images = JSON.parse(data)
                         if (images.length > 5) {
-                            images = images.slice(images.length-5, images.length-1)
+                            images = images.slice(-5);
                         }
                         $scope.images = images;
                         console.log($scope.images)
