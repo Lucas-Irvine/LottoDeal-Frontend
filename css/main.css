@@ -1232,4 +1232,11 @@ input:focus, textarea:focus {
     padding-left: 0px;
 }
 
+.hideoverflow {
+     overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:100%;
+    display:block;
+}
 
