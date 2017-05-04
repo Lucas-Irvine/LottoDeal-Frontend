@@ -116,7 +116,7 @@ html {
 
 /* Images on the home page */
 .image-item {
-    height: 150px;
+    height: 180px;
     width: auto;
 }
 
@@ -127,7 +127,7 @@ html {
     -webkit-transition: opacity .4s ease-out;
     -o-transition: opacity .4s ease-out;
     border-radius: 6px;
-    height: 150px;
+    height: 180px;
     width: 100%;
 }
 
