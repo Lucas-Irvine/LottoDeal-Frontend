@@ -156,7 +156,7 @@ html {
 
 .description {
     text-align: left;
-    padding-top: 5%;
+    /*padding-top: 5%;*/
 }
 
 /* the footer of the page */
@@ -1243,5 +1243,10 @@ input:focus, textarea:focus {
     text-overflow:ellipsis;
     width:100%;
     display:block;
+}
+
+.cardbottom {
+    bottom:0px;
+    padding: 9px;
 }
 
