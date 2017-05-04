@@ -709,6 +709,7 @@ function checkIfUser(userID) {
         url: checkURL,
         type: 'GET',
         data: data,
+        async: false,
         success: function(data) {
             var status = data;
 
