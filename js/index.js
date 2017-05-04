@@ -513,33 +513,35 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         $scope.itemTitle = itemTitle
         $scope.amountRaised = amountRaised
         if (userID != undefined) {
-            if (price >= amountRaised + amount) {
-                handler.open({
-                    name: 'LottoDeal',
-                    description: 'Bid on ' + itemTitle,
-                    amount: amount * 100
-                });
-            } else {
-                console.log('Bid overpasses item price!');
-                BootstrapDialog.show({
-                    title: 'Bid surpasses item price',
-                    message: 'Choose a lower bid or search for similar items',
-                    buttons: [{
-                        id: 'btn-ok',
-                        icon: 'glyphicon glyphicon-check',
-                        label: 'OK',
-                        cssClass: 'btn-primary',
-                        data: {
-                            js: 'btn-confirm',
-                            'user-id': '3'
-                        },
-                        autospin: false,
-                        action: function(dialogRef) {
-                            dialogRef.close();
-                        }
-                    }]
-                });
+            if (checkIfUser(userID)) {
+                if (price >= amountRaised + amount) {
+                    handler.open({
+                        name: 'LottoDeal',
+                        description: 'Bid on ' + itemTitle,
+                        amount: amount * 100
+                    });
+                } else {
+                    console.log('Bid overpasses item price!');
+                    BootstrapDialog.show({
+                        title: 'Bid surpasses item price',
+                        message: 'Choose a lower bid or search for similar items',
+                        buttons: [{
+                            id: 'btn-ok',
+                            icon: 'glyphicon glyphicon-check',
+                            label: 'OK',
+                            cssClass: 'btn-primary',
+                            data: {
+                                js: 'btn-confirm',
+                                'user-id': '3'
+                            },
+                            autospin: false,
+                            action: function(dialogRef) {
+                                dialogRef.close();
+                            }
+                        }]
+                    });
 
+                }
             }
         }
         else {
@@ -709,10 +711,12 @@ function checkIfUser(userID) {
             var status = data;
 
             if (status == "false") {
+                return false;
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
                 showLoginPopup();
                 console.log('UserID is null')
             }
+            return true;
         },
         error: function(response, error) {
             console.log(response)
