@@ -114,7 +114,7 @@ html {
 
 /* Images on the home page */
 .image-item {
-    height: 200px;
+    height: 150px;
     width: auto;
 }
 
@@ -125,7 +125,7 @@ html {
     -webkit-transition: opacity .4s ease-out;
     -o-transition: opacity .4s ease-out;
     border-radius: 6px;
-    height: 200px;
+    height: 150px;
     width: 100%;
 }
 
@@ -1244,5 +1244,6 @@ input:focus, textarea:focus {
 .cardbottom {
     padding: 9px !important;
     bottom: 0;
+    width: 100%;
 }
 
