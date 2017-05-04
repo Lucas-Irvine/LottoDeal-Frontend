@@ -76,8 +76,9 @@ html {
     color: #3cc47c;
     width: 100%;
     padding-bottom: 3px;
-    position: absolute;
-    bottom:0;
+    padding-top: 5px;
+    /*position: absolute;
+    bottom:0;*/
 }
 
 .thumbnail {
