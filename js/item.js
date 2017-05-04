@@ -297,7 +297,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         locale: 'auto',
         token: function(token) {
             console.log('attempting stripe payment')
-            var userID = localStorage.getItem("curUserID")
             var amountToCharge = $scope.amountToCharge;
             var itemTitle = $scope.itemTitle;
             var itemID = $scope.itemID;
@@ -308,7 +307,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                 data = {
                     itemID: itemID,
                     itemTitle: itemTitle,
-                    userID: userID,
+                    accessToken: accessToken,
                     stripeToken: token.id,
                     amount: Number(amountToCharge)
                 }
@@ -319,7 +318,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     success: function(data) {
                         console.log('success payment and bid added')
                         console.log(data);
-
 
                         post = $scope.post
                         console.log(itemID)
@@ -357,14 +355,14 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         $scope.itemTitle = itemTitle
         $scope.amountRaised = amountRaised
 
-        if (userID != undefined) {
+        if (accessToken != undefined) {
 
             if (price >= amountRaised + amount) {
                 handler.open({
                     name: 'LottoDeal',
                     description: 'Bid on ' + itemTitle,
                     amount: amount * 100
-                });
+                });p
             } else {
                 console.log('Bid overpasses item price!');
                 BootstrapDialog.show({
@@ -385,14 +383,12 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                         }
                     }]
                 });
-
             }
         } else {
             document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
             showLoginPopup();
             console.log('UserID is undefined')
         }
-
     }
 
     var dataDelete = {
