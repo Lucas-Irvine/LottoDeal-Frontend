@@ -223,6 +223,7 @@
                             <div class="listedItems">
                                 <h1 class="section-title">Listed Items</h1>
                                 <div ng-repeat="post in posts | filter:searchText">
+                                    
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
                                             <div class="image-item img-fluid">
@@ -263,6 +264,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
                                 <!-- end of ng repeat -->
                             </div>
@@ -272,7 +275,8 @@
                             <div class="soldItems">
                                 <h1 class="section-title">Sold Items</h1>
                                 <div ng-repeat="soldItem in soldItems | filter:searchText">
-                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                    
+                                   <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
                                             <div class="image-item img-fluid">
                                                 <a href="item.html#!/?id={{soldItem._id}}">
@@ -280,44 +284,50 @@
                                                 </a>
                                             </div>
                                             <div class="caption">
-                                                <p class="pull-right" id="amountRaised-{{soldItem._id}}"> <strong>${{soldItem.amountRaised}}</strong> of <strong>${{soldItem.price}}</strong> raised</p>
-                                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{soldItem.title}}</a>
-                                                </p>
-                                                <div class="progress" id="thumbnail-bar">
-                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{soldItem._id}}" role="progressbar" aria-valuenow="40"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{soldItem.percentageRaised}}%">
-                                                    </div>
-                                                </div>
-                                                <p>Item was sold to:&nbsp;<a href="user.html#!/?id={{soldItem.winnerID}}">{{soldItem.expirationDate}}</a>
+                                                <p><a id="Cardtitle" href="item.html#!/?id={{soldItem._id}}"><strong>{{soldItem.title}} </strong></a>
                                                 </p>
                                                 <div class="description-container rows">
                                                     <p class="description">
                                                         {{soldItem.shortDescription}}
                                                     </p>
                                                 </div>
-                                                 <div class="ratings">
+                                            </div>
+                                            <div class="cardbottom">
+                                            <p class="pull-right" id="amountRaised-{{soldItem._id}}"><strong>${{soldItem.amountRaised}}</strong> of <strong>${{soldItem.price}}</strong> raised</p>
+                                                
+                                            <p>Winner:&nbsp;
+                                                <a href="user.html#!/?id={{soldItem.winnerID}}">{{soldItem.expirationDate}}</a>
+                                            </p>
 
-                                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                                    Seller Rating: {{accounts[$index].averageRating}} / 5
+                                            <div class="progress" id="thumbnail-bar">
+                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{soldItem._id}}" role="progressbar" aria-valuenow="40"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{soldItem.percentageRaised}}%">
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                                <div class="ratings">
+                                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                                    Rating: {{accounts[$index].averageRating}} / 5
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7">
                                                     <a href="user.html#!/?id={{soldItem.sellerID}}">Seller: {{soldItem.sellerName}}</a>
                                                 </div>
                                             </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <!-- end of ng repeat -->
                             </div>
                         </div>
                         <!-- expired items start -->
 
-                        <!-- sold items pane -->
+                        <!-- expired items pane -->
                         <div role="tabpanel" class="tab-pane tabcontent" id="expiredID">
                             <div class="expiredItems">
                                 <h1 class="section-title">Expired Items</h1>
                                 <div ng-repeat="expiredItem in expiredItems | filter:searchText">
+                                    
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
                                             <div class="image-item img-fluid">
@@ -326,32 +336,34 @@
                                                 </a>
                                             </div>
                                             <div class="caption">
-                                                <p class="pull-right" id="amountRaised-{{expiredItem._id}}">${{expiredItem.amountRaised}} of ${{expiredItem.price}} raised</p>
-                                                <p style="text-decoration-line: bold;"><a href="item.html#!/?id={{soldItem._id}}">{{expiredItem.title}}</a>
+                                                <p><a id="Cardtitle" href="item.html#!/?id={{expiredItem._id}}"><strong>{{expiredItem.title}} </strong></a>
                                                 </p>
-                                                <div class="progress" id="thumbnail-bar">
-                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{expiredItem._id}}" role="progressbar" aria-valuenow="40"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{expiredItem.percentageRaised}}%">
-                                                    </div>
-                                                </div>
-                                                <p>{{expiredItem.expirationDate}}</p>
                                                 <div class="description-container rows">
                                                     <p class="description">
                                                         {{expiredItem.shortDescription}}
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="ratings">
+                                            <div class="cardbottom">
+                                            <p class="pull-right" id="amountRaised-{{expiredItem._id}}"><strong>${{expiredItem.amountRaised}}</strong> of <strong>${{expiredItem.price}}</strong> raised</p>
 
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    Seller Rating: {{accounts[$index].averageRating}} / 5
+                                            <div class="progress" id="thumbnail-bar">
+                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{expiredItem._id}}" role="progressbar" aria-valuenow="40"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:{{expiredItem.percentageRaised}}%">
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="ratings">
+                                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                                    Rating: {{accounts[$index].averageRating}} / 5
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7">
                                                     <a href="user.html#!/?id={{expiredItem.sellerID}}">Seller: {{expiredItem.sellerName}}</a>
                                                 </div>
                                             </div>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                                 <!-- end of ng repeat -->
                             </div>
