@@ -1,6 +1,6 @@
 
 
-var app = angular.module("app", ['serverModule']);
+var app = angular.module("app", ['serverModule'], ['ngRoute']);
 
 
 
