@@ -264,12 +264,155 @@ function serverGet(dateFunctions) {
 	    }
 	}
 
+	
+
 	this.testFunction = function() {
 		console.log("this function is working");
 	}
 }
 
 function serverPost() {
+	this.bid = function(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document) {
+		var handler = StripeCheckout.configure({
+	        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+	        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+	        locale: 'auto',
+	        token: function(token) {
+	            console.log('attempting stripe payment')
+	            var amountToCharge = $scope.amountToCharge;
+	            var itemTitle = $scope.itemTitle;
+	            var itemID = $scope.itemID;
+	            var amountRaised = $scope.amountRaised;
+	            var price = $scope.price;
+
+	            if (accessToken != undefined) {
+	                data = {
+	                    itemID: itemID,
+	                    itemTitle: itemTitle,
+	                    accessToken: accessToken,
+	                    stripeToken: token.id,
+	                    amount: Number(amountToCharge)
+	                }
+	                $.ajax({
+	                    url: 'https://localhost:8000/performPaymentAndAddBid',
+	                    data: data,
+	                    type: 'POST',
+	                    success: function(data) {
+	                        console.log('success payment and bid added')
+	                        console.log(data);
+
+	                        post = $scope.post
+	                        console.log(itemID)
+	                        if (post["_id"] == itemID) {
+	                            var newPrice = post.amountRaised + amountToCharge;
+	                            post.amountRaised = newPrice;
+	                            post.percentageRaised = (newPrice / post.price) * 100;
+	                        }
+
+	                        $scope.$apply()
+
+	                    },
+	                    error: function(response, error) {
+	                        console.log(response)
+	                        console.log(error)
+	                    }
+	                });
+
+	            } else {
+	                document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
+	                showLoginPopup();
+	                console.log('UserID is undefined')
+	            }
+	        }
+	    });
+
+		console.log('initiating bid');
+        $scope.price = price;
+        $scope.amountToCharge = amount;
+        $scope.itemID = itemID
+        $scope.itemTitle = itemTitle
+        $scope.amountRaised = amountRaised
+
+        if (accessToken != undefined) {
+
+            if (price >= amountRaised + amount) {
+                handler.open({
+                    name: 'LottoDeal',
+                    description: 'Bid on ' + itemTitle,
+                    amount: amount * 100
+                });
+            } else {
+                console.log('Bid overpasses item price!');
+                BootstrapDialog.show({
+                    title: 'Bid surpasses item price',
+                    message: 'Choose a lower bid or search for similar items',
+                    buttons: [{
+                        id: 'btn-ok',
+                        icon: 'glyphicon glyphicon-check',
+                        label: 'OK',
+                        cssClass: 'btn-primary',
+                        data: {
+                            js: 'btn-confirm',
+                            'user-id': '3'
+                        },
+                        autospin: false,
+                        action: function(dialogRef) {
+                            dialogRef.close();
+                        }
+                    }]
+                });
+            }
+        } else {
+            document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
+            showLoginPopup();
+            console.log('UserID is undefined')
+        }
+	}
+
+	this.deleteItem = function(id, accessToken, $scope) {
+		BootstrapDialog.show({
+            title: 'Are you sure you would like to delete this item?',
+            message: 'This cannot be undone',
+            buttons: [{
+                id: 'btn-1',
+                label: 'Delete Item',
+                action: function(dialog) {
+                    var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+                    $button.disable();
+                    $button.spin();
+                    dialog.setClosable(false);
+                    $.ajax({
+                        url: 'https://localhost:8000/deleteItem',
+                        data: {
+                            accessToken: accessToken,
+                            id: id
+                        },
+                        type: 'DELETE',
+                        success: function(data) {
+                            console.log('Success deleting item')
+                            var $footerButton = dialog.getButton('btn-1');
+                            $footerButton.enable();
+                            $footerButton.stopSpin();
+                            dialog.setClosable(true);
+                            dialog.close();
+                            window.location.href = 'https://dominicwhyte.github.io/LottoDeal-Frontend/index.html';
+                        },
+                        error: function(response, error) {
+                            console.log('Error deleting item')
+                            var $footerButton = dialog.getButton('btn-1');
+                            $footerButton.enable();
+                            $footerButton.stopSpin();
+                            dialog.setClosable(true);
+                        }
+                    });
+
+
+                }
+            }]
+        });
+	}
+
+
 	this.testFunction = function() {
 		console.log("this function is working")
 	}
