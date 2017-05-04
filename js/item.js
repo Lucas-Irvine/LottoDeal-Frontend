@@ -10,6 +10,7 @@ $('#myTabs a').click(function(e) {
 
 
 var userID;
+var accessToken;
 var scope;
 
 //Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
@@ -60,6 +61,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         });
         FB.getLoginStatus(function(response) {
             userID = response.authResponse.userID;
+            accessToken = response.authResponse.accessToken;
             console.log(response);
             console.log(userID + "saving UserID as a global variable when logging in ")
             getSuggestions();
@@ -88,7 +90,8 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                 url: suggestionsURL,
                 type: 'GET',
                 data: {
-                    userID: userID
+                    userID: userID,
+                    accessToken: accessToken
                 },
                 statusCode: {
                     200: function(response) {
