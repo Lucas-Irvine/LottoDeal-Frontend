@@ -1,28 +1,75 @@
-// var facebookLoginButton = document.getElementById("facebook-text");
+function checkIfUser(userID, callback) {
+    // get all the accounts for all posts
+    var checkURL = "https://localhost:8000/checkIfUser";
+
+    var data = {
+        userID: userID
+    }
+
+    $.ajax({
+        url: checkURL,
+        type: 'GET',
+        data: data,
+        success: function(data) {
+            status = data;
+
+            if (status == "false") {
+                document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
+                showLoginPopup();
+                console.log('UserID is null')
+            }
+            callback();
+        },
+        error: function(response, error) {
+            console.log(response)
+            console.log(error)
+        }
+    });
+}
 
 
-// Facebook Login code -----------------------------------
+$('#loginPopup').on('hidden.bs.modal', function () {
+  document.getElementById('successScreen').innerHTML = '';
+  document.getElementById('loginMessage').innerHTML = ""
+})
+
+
+    // Facebook Login code -----------------------------------
 window.fbAsyncInit = function() {
-	FB.init({
-		appId      : '228917890846081',
-		xfbml      : true,
-		cookie     : true,
-		version    : 'v2.8'
-	});   
+    FB.init({
+        appId      : '228917890846081',
+        xfbml      : true,
+        cookie     : true,
+        version    : 'v2.8'
+    });   
 
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
-    	if (response.status === 'connected') {
+        if (response.status === 'connected') {
             //display user data
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
+
+
+     FB.api('/me', {locale: 'en_US', fields: 'id'},
+        function (response) {
+            //localStorage.setItem("curUserID", response.id);
+            userID = response.id;
+            $("#userid").val(userID)
+            scope.getNotifications(userID);
+            // checkIfUser(userID);
+            console.log(userID + "saving UserID as a global variable when logging in ")
+        });
+
+            //saveUserID();
             console.log('logged in')
             // Get and display the user profile data
         }
         else {
-        	console.log('Not logged in');
+            userID = undefined;
+            console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Login';
             $("#signInMessage").show();
@@ -32,9 +79,12 @@ window.fbAsyncInit = function() {
 
 
 
-
+    // only used for sell page to make the action of selling invalid
+    // change this later to do the same as index bidding where you use
+    // checkuser 
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
+            console.log("you're connected")
             //display user data
             $('#submitForm').attr('action', 'https://localhost:8000/createPost');
             $('#submitButton').attr('onclick', '');
@@ -49,25 +99,19 @@ window.fbAsyncInit = function() {
 };
 
 (function(d, s, id){
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) {return;}
-	js = d.createElement(s); js.id = id;
-	js.src="https://connect.facebook.net/en_US/all.js";
-	fjs.parentNode.insertBefore(js, fjs);
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src="https://connect.facebook.net/en_US/all.js";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
 
 
-
-
-
-
-
-
 function showLoginPopup() {
-	$('#loginPopup').modal({
-  		keyboard: false
-	})
+    $('#loginPopup').modal({
+        keyboard: false
+    })
 };
 
 var facebookLoginButton = document.getElementById("loginToFacebook");
@@ -75,20 +119,24 @@ var facebookLoginButton = document.getElementById("loginToFacebook");
 // When the user clicks the button, open the modal 
 facebookLoginButton.onclick = function() {
     console.log('logging in/out')
+    document.getElementById('loginMessage').innerHTML = ""
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
             //display user data
             fbLogout()
-            $('#submitButton').attr('onclick', 'sellLoginCheck()');
-            $('#submitForm').attr('action', '');
+
+            // below is used for the sell page but should be dleeted once we use check user
+            // $('#submitButton').attr('onclick', 'sellLoginCheck()');
+            // $('#submitForm').attr('action', '');
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
             document.getElementById('login').innerHTML = 'Login';
             facebookLoginButton.innerHTML = "Sign In With Facebook";
             $("#signInMessage").show();
         } else {
             fbLogin()
-            $('#submitForm').attr('action', 'https://localhost:8000/createPost');
-            $('#submitButton').attr('onclick', '');
+            // below is same as above
+            // $('#submitForm').attr('action', 'https://localhost:8000/createPost');
+            // $('#submitButton').attr('onclick', '');
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
@@ -97,19 +145,23 @@ facebookLoginButton.onclick = function() {
 }
 
 
-// when a user tries to sell an item check if they are logged in and open up a modal to login if they are not logged in
-function sellLoginCheck () {
-        FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            //display user data
-            return true; 
-        } else {
-            document.getElementById('loginMessage').innerHTML = 'You must login before you are able to sell an item!';
-            showLoginPopup();
-            return false;
-        }
-    });
-}
+
+
+// this is from sell might delete
+
+// // when a user tries to sell an item check if they are logged in and open up a modal to login if they are not logged in
+// function sellLoginCheck () {
+//         FB.getLoginStatus(function(response) {
+//         if (response.status === 'connected') {
+//             //display user data
+//             return true; 
+//         } else {
+//             document.getElementById('loginMessage').innerHTML = 'You must login before you are able to sell an item!';
+//             showLoginPopup();
+//             return false;
+//         }
+//     });
+// }
 
 
 
@@ -129,7 +181,9 @@ function fbLogin() {
 // Logout from facebook
 function fbLogout() {
     //delete local storage
-    delete localStorage.curUserID;
+    // delete localStorage.curUserID;
+
+    userID = undefined;
 
     FB.logout(function() {
         console.log('Successfully logged out')
@@ -139,8 +193,12 @@ function fbLogout() {
 function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
         function (response) {
-            localStorage.setItem("curUserID", response.id);
-            // userID = response.id;
+            //localStorage.setItem("curUserID", response.id);
+            userID = response.id;
+            $("#userid").val(userID)
+            scope.getNotifications(userID);
+            console.log(userID + "saving UserID as a global variable")
+
             // Save user data
             saveUserData(response);
         });
