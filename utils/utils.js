@@ -2,6 +2,7 @@ angular.module('utilsModule', [])
 .service('dateFunctions', dateFunctions)
 
 function dateFunctions() {
+	//Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
 	this.DateDiff = {
 		inHours: function(d1, d2) {
             var t2 = d2.getTime();
