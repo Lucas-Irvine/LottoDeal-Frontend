@@ -50,8 +50,8 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
 
 
 
-    scope.getNotifications = function(userID) {
-        serverGet.getNotifications(userID, $scope);
+    scope.getNotifications = function(accessToken) {
+        serverGet.getNotifications(accessToken, $scope);
 
     }
 

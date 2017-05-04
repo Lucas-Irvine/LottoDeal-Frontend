@@ -56,7 +56,7 @@ window.fbAsyncInit = function() {
      FB.api('/me', {locale: 'en_US', fields: 'id'},
         function (response) {
             //localStorage.setItem("curUserID", response.id);
-            userID = response.id;
+            accessToken = response.authResponse.accessToken;
             $("#userid").val(userID)
             scope.getNotifications(userID);
             // checkIfUser(userID);
@@ -194,7 +194,7 @@ function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
         function (response) {
             //localStorage.setItem("curUserID", response.id);
-            userID = response.id;
+            accessToken = response.authResponse.accessToken;
             $("#userid").val(userID)
             scope.getNotifications(userID);
             console.log(userID + "saving UserID as a global variable")
