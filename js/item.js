@@ -61,7 +61,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         });
         FB.getLoginStatus(function(response) {
             userID = response.authResponse.userID;
+
             accessToken = response.authResponse.accessToken;
+            console.log('setting the access token to: ' + accessToken)
             console.log(response);
             console.log(userID + "saving UserID as a global variable when logging in ")
             getSuggestions();
