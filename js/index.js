@@ -1,7 +1,7 @@
 var app = angular.module("index_app", ["ngRoute"])
 
 var userID;
-var status = 'false';
+var status = 'true';
 
 
 // function to delete a given item 
