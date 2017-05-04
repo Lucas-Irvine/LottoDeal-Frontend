@@ -303,7 +303,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             var amountRaised = $scope.amountRaised;
             var price = $scope.price;
 
-            if (userID != undefined) {
+            if (accessToken != undefined) {
                 data = {
                     itemID: itemID,
                     itemTitle: itemTitle,
