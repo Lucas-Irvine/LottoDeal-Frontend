@@ -8,14 +8,13 @@ $('#myTabs a').click(function(e) {
     $(this).tab('show')
 });
 
-
+var sellerID;
 var userID;
 var accessToken;
 var scope;
 
 //Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
 function changeTab(titleID, id) {
-    console.log('test');
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -35,10 +34,6 @@ function changeTab(titleID, id) {
 
     document.getElementById(titleID).className += " active";
     document.getElementById(id).className += " active";
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    // document.getElementById(cityName).style.display = "block";
-    //evt.currentTarget.className += " active";
 }
 
 
@@ -61,6 +56,15 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         });
         FB.getLoginStatus(function(response) {
             userID = response.authResponse.userID;
+            sellerID = sellerID;
+            // check if user can edit
+            if (sellerID == userID) {
+                console.log("matches")
+                $scope.canEdit = true;
+
+            } else {
+                console.log(userID + "cannot edit this post");
+            }
 
             accessToken = response.authResponse.accessToken;
             console.log('setting the access token to: ' + accessToken)
@@ -119,8 +123,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     console.log(error)
                 }
             });
-        }
-        else {
+        } else {
             console.log("Error: userID is null");
         }
     }
@@ -228,7 +231,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         },
         statusCode: {
             200: function(response) {
-                $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
+                $(document.body).show();
             },
             404: function(response) {
                 var newDoc = document.open("text/html", "replace");
@@ -251,7 +254,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             parsed.hoursToGo = DateDiff.inHours(date, expirationDate)
             parsed.daysToGo = DateDiff.inDays(date, expirationDate)
             parsed.titleUppercase = parsed.title.toUpperCase();
-
+            sellerID = parsed.sellerID;
 
             var image = parsed.img;
 
@@ -270,12 +273,12 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
             // check if user can edit
-            if (parsed.sellerID == userid) {
+            if (parsed.sellerID == userID) {
                 console.log("matches")
                 $scope.canEdit = true;
 
             } else {
-                console.log(userid + "cannot edit this post");
+                console.log(userID + "cannot edit this post");
             }
 
 
@@ -303,7 +306,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             var amountRaised = $scope.amountRaised;
             var price = $scope.price;
 
-            if (userID != undefined) {
+            if (accessToken != undefined) {
                 data = {
                     itemID: itemID,
                     itemTitle: itemTitle,
@@ -362,7 +365,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     name: 'LottoDeal',
                     description: 'Bid on ' + itemTitle,
                     amount: amount * 100
-                });p
+                });
             } else {
                 console.log('Bid overpasses item price!');
                 BootstrapDialog.show({
@@ -391,9 +394,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         }
     }
 
-    var dataDelete = {
-        id: id
-    }
     $scope.deleteItem = function() {
         BootstrapDialog.show({
             title: 'Are you sure you would like to delete this item?',
@@ -408,7 +408,10 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     dialog.setClosable(false);
                     $.ajax({
                         url: 'https://localhost:8000/deleteItem',
-                        data: dataDelete,
+                        data: {
+                            accessToken: accessToken,
+                            id: id
+                        },
                         type: 'DELETE',
                         success: function(data) {
                             console.log('Success deleting item')
@@ -442,9 +445,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         } else {
             $scope.editing = true;
         }
-
-
-
     }
 
     $scope.saveChanges = function() {
@@ -474,15 +474,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
             return parseInt((t2 - t1) / (24 * 3600 * 1000));
         }
     };
-
-
-    // console.log($routeParams)
-    // console.log($routeParams.id)
-
-    // console.log(searchObject);
-
-    // console.log($location.search('id'));
-    // $(document.body).show()
 }])
 
 
@@ -557,183 +548,3 @@ function base64ArrayBuffer(arrayBuffer) {
 
     return base64
 }
-
-
-
-// Facebook Login code -----------------------------------
-
-
-
-// window.fbAsyncInit = function() {
-//     FB.init({
-//         appId: '228917890846081',
-//         xfbml: true,
-//         cookie: true,
-//         version: 'v2.8'
-//     });
-//     console.log('test1')
-//         // Check whether the user already logged in
-//     FB.getLoginStatus(function(response) {
-//         if (response.status === 'connected') {
-//             //display user data
-//             document.getElementById('successScreen').innerHTML = "";
-//             document.getElementById('login').innerHTML = 'Logout';
-//             facebookLoginButton.innerHTML = "Sign Out With Facebook";
-//             $("#signInMessage").hide();
-
-
-//             FB.api('/me', {
-//                     locale: 'en_US',
-//                     fields: 'id'
-//                 },
-//                 function(response) {
-//                     //localStorage.setItem("curUserID", response.id);
-//                     userID = response.id;
-//                     $("#userid").val(userID)
-//                     scope.getNotifications(userID);
-//                     console.log(userID + "saving UserID as a global variable when logging in ")
-//                 });
-
-//             //saveUserID();
-//             console.log('logged in')
-//                 // Get and display the user profile data
-//         } else {
-//             userID = undefined;
-//             console.log('Not logged in');
-//             document.getElementById('successScreen').innerHTML = "";
-//             document.getElementById('login').innerHTML = 'Login';
-//             $("#signInMessage").show();
-//             facebookLoginButton.innerHTML = "Sign In With Facebook";
-//         }
-//     });
-
-
-
-// };
-
-
-
-// (function(d, s, id){
-//     var js, fjs = d.getElementsByTagName(s)[0];
-//     if (d.getElementById(id)) {return;}
-//     js = d.createElement(s); js.id = id;
-//     js.src="https://connect.facebook.net/en_US/all.js";
-//     fjs.parentNode.insertBefore(js, fjs);
-// }(document, 'script', 'facebook-jssdk'));
-
-
-
-// function showLoginPopup() {
-//     $('#loginPopup').modal({
-//         keyboard: false
-//     })
-// };
-
-// var facebookLoginButton = document.getElementById("loginToFacebook");
-
-// // When the user clicks the button, open the modal 
-// facebookLoginButton.onclick = function() {
-//     console.log('logging in/out')
-//     document.getElementById('loginMessage').innerHTML = ""
-//     FB.getLoginStatus(function(response) {
-//         if (response.status === 'connected') {
-//             //display user data
-//             fbLogout()
-
-//             document.getElementById('successScreen').innerHTML = 'Thanks for Logging Out';
-//             document.getElementById('login').innerHTML = 'Login';
-//             facebookLoginButton.innerHTML = "Sign In With Facebook";
-//             $("#signInMessage").show();
-//         } else {
-//             fbLogin()
-
-//             document.getElementById('login').innerHTML = 'Logout';
-//             facebookLoginButton.innerHTML = "Sign Out With Facebook";
-//             $("#signInMessage").hide();
-//         }
-//     });
-// }
-
-
-
-// function fbLogin() {
-//     var window = FB.login(function(response) {
-//         if (response.authResponse) {
-//             // Get and display the user profile data
-//             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
-//             console.log('Successfully logged in')
-//             getFbUserData();
-//         } else {
-//             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
-//         }
-//     }, {
-//         scope: 'email'
-//     });
-// }
-
-// // Logout from facebook
-// function fbLogout() {
-//     //delete local storage
-//     // delete localStorage.curUserID;
-
-//     userID = undefined;
-
-//     FB.logout(function() {
-//         console.log('Successfully logged out')
-//     });
-// }
-
-// function getFbUserData() {
-//     FB.api('/me', {
-//             locale: 'en_US',
-//             fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'
-//         },
-//         function(response) {
-//             //localStorage.setItem("curUserID", response.id);
-//             userID = response.id;
-//             $("#userid").val(userID)
-//             console.log(userID + "saving UserID as a global variable")
-
-//             // Save user data
-//             saveUserData(response);
-//         });
-// }
-
-// function saveUserData(response) {
-
-//     var url = "https://localhost:8000/createUser";
-
-//     console.log('Gender:' + response.gender);
-//     console.log('Age max: ' + response.age_range.max);
-//     console.log('Age min: ' + response.age_range.min);
-//     var avgAge = 25 //default to 25 if unspecified
-
-//     if (response.age_range != null) {
-//         avgAge = (response.age_range.max + response.age_range.min) / 2
-//         console.log('Avg age is' + avgAge);
-//     }
-
-//     data = {
-//         name: response.first_name + ' ' + response.last_name,
-//         fbid: response.id,
-//         age: avgAge,
-//         gender: response.gender,
-//         url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
-//         email: response.email
-//     }
-
-//     // AJAX POST TO SERVER
-//     $.ajax({
-//         url: url,
-//         type: 'post',
-//         data: data,
-//         success: function(data) {
-//             console.log(data)
-//         },
-//         error: function(response, error) {
-//             console.log(response)
-//             console.log(error)
-//         }
-//     });
-// }
-//End Facebook login code -----------------------------------
