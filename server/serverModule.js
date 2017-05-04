@@ -1,8 +1,10 @@
-angular.module('serverModule', [])
-.service('serverGet', serverGet)
+angular.module('serverModule', ['utilsModule'])
+.service('serverGet', ["dateFunctions", serverGet])
 .service('serverPost', serverPost);
 
-function serverGet() {
+function serverGet(dateFunctions) {
+	var DateDiff = dateFunctions.DateDiff; // define dateDiff
+
 	this.getPosts = function() {
 
 	}
