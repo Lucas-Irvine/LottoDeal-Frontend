@@ -706,8 +706,9 @@ function checkIfUser(userID) {
         type: 'GET',
         data: data,
         success: function(data) {
-            var status = data
-            if (status == false) {
+            var status = data;
+
+            if (status == "false") {
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
                 showLoginPopup();
                 console.log('UserID is null')
