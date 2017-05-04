@@ -1,6 +1,8 @@
 var app = angular.module("index_app", ["ngRoute"])
 
 var userID;
+var status;
+
 
 // function to delete a given item 
 function deleteItem () {
@@ -513,8 +515,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         $scope.itemTitle = itemTitle
         $scope.amountRaised = amountRaised
         if (userID != undefined) {
-            var status = checkIfUser(userID);
-            console.log(status);
+            checkIfUser(userID);
             if (status == true) {
                 if (price >= amountRaised + amount) {
                     handler.open({
@@ -705,8 +706,6 @@ function checkIfUser(userID) {
         userID: userID
     }
 
-    var status;
-
     $.ajax({
         url: checkURL,
         type: 'GET',
@@ -728,7 +727,6 @@ function checkIfUser(userID) {
             console.log(error)
         }
     });
-    return status;
 }
 
 // $('#loginPopup').on('hidden.bs.modal', function () {
