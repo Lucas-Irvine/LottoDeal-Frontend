@@ -223,6 +223,49 @@
                             <div class="listedItems">
                                 <h1 class="section-title">Listed Items</h1>
                                 <div ng-repeat="post in posts | filter:searchText">
+
+                                <!-- test code starts -->
+                                <div class="col-sm-6 col-md-4 col-lg-4">
+                                        <div class="thumbnail" id="item">
+                                            <div class="image-item img-fluid">
+                                                <a href="item.html#!/?id={{post._id}}">
+                                                    <img ng-src="img/banner.jpg" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="caption">
+                                                <p class="pull-right" id="amountRaised-{{post._id}}"><strong>$50</strong> of <strong>$10000</strong> raised</p>
+                                                <p><a id="Cardtitle" href="item.html#!/?id={{post._id}}"><strong>danse danse danse indila France Sophie french bae omg </strong></a>
+                                                </p>
+                                                <div class="progress" id="thumbnail-bar">
+                                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{post._id}}" role="progressbar" aria-valuenow="40"
+                                                         aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                                                    </div>
+                                                </div>
+                                                <p align="right"> 23 Days 2 Hours left </p>
+                                                <div class="row bid-buttons">
+                                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
+                                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
+                                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
+                                                </div>
+                                                <div class="description-container rows">
+                                                    <p class="description">
+                                                        Hella gorgeous French Bae awaits at Monaco. Will see her in a few months maybe idk
+                                                        anyway what good memories hmm. Time to move on and make more. Will germans be racist? Will I have great beer? I'll find out. 
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ratings">
+   
+                                                <div class="col-lg-5 col-md-5 col-sm-5">
+                                                    Rating: 5 / 5
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                                    <a href="user.html#!/?id={{post.sellerID}}">Seller: Prateek Swain</a>
+                                                </div>
+                                            </div>
+                                    </div>
+                                <!-- test code ends -->
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
                                             <div class="image-item img-fluid">
