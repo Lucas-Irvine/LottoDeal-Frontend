@@ -707,6 +707,7 @@ function checkIfUser(userID) {
         data: data,
         success: function(data) {
             var status = data
+            console.log(status);
             if (status = false) {
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
                 showLoginPopup();
