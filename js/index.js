@@ -705,13 +705,14 @@ function checkIfUser(userID) {
         userID: userID
     }
 
+    var status;
+
     $.ajax({
         url: checkURL,
         type: 'GET',
         data: data,
-        async: false,
         success: function(data) {
-            var status = data;
+            status = data;
 
             if (status == "false") {
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
@@ -727,6 +728,7 @@ function checkIfUser(userID) {
             console.log(error)
         }
     });
+    return status;
 }
 
 // $('#loginPopup').on('hidden.bs.modal', function () {
