@@ -119,8 +119,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     console.log(error)
                 }
             });
-        }
-        else {
+        } else {
             console.log("Error: userID is null");
         }
     }
@@ -362,7 +361,7 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     name: 'LottoDeal',
                     description: 'Bid on ' + itemTitle,
                     amount: amount * 100
-                });p
+                });
             } else {
                 console.log('Bid overpasses item price!');
                 BootstrapDialog.show({
