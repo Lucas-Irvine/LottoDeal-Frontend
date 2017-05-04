@@ -725,9 +725,9 @@ function checkIfUser(userID) {
     });
 }
 
-$('#loginPopup').on('hidden.bs.modal', function () {
-  checkIfUser(userID);
-})
+// $('#loginPopup').on('hidden.bs.modal', function () {
+//   checkIfUser(userID);
+// })
 
 
 
@@ -758,7 +758,7 @@ window.fbAsyncInit = function() {
             userID = response.id;
             $("#userid").val(userID)
             scope.getNotifications(userID);
-            checkIfUser(userID);
+            // checkIfUser(userID);
             console.log(userID + "saving UserID as a global variable when logging in ")
         });
 
