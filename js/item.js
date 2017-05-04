@@ -87,12 +87,11 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
     function getSuggestions() {
         //GET SUGGESTIONS
         var suggestionsURL = "https://localhost:8000/getSuggestions"
-        if (userID != null) {
+        if (accessToken != null) {
             $.ajax({
                 url: suggestionsURL,
                 type: 'GET',
                 data: {
-                    userID: userID,
                     accessToken: accessToken
                 },
                 statusCode: {
