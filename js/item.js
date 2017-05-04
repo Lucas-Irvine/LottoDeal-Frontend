@@ -269,12 +269,12 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
 
 
             // check if user can edit
-            if (parsed.sellerID == userid) {
+            if (parsed.sellerID == userID) {
                 console.log("matches")
                 $scope.canEdit = true;
 
             } else {
-                console.log(userid + "cannot edit this post");
+                console.log(userID + "cannot edit this post");
             }
 
 
@@ -390,9 +390,6 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
         }
     }
 
-    var dataDelete = {
-        id: id
-    }
     $scope.deleteItem = function() {
         BootstrapDialog.show({
             title: 'Are you sure you would like to delete this item?',
@@ -407,7 +404,9 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     dialog.setClosable(false);
                     $.ajax({
                         url: 'https://localhost:8000/deleteItem',
-                        data: dataDelete,
+                        data: {
+                            accessToken: accessToken
+                        },
                         type: 'DELETE',
                         success: function(data) {
                             console.log('Success deleting item')
