@@ -719,9 +719,8 @@ function checkIfUser(userID, callback) {
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
                 showLoginPopup();
                 console.log('UserID is null')
-                callback();
-
             }
+            callback();
         },
         error: function(response, error) {
             console.log(response)
