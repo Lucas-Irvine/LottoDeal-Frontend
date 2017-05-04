@@ -1240,7 +1240,7 @@ input:focus, textarea:focus {
     display:block;
 }
 
-.cardbottom {
+#bottomitem {
     padding: 9px !important;
     position: absolute;
     bottom: 0;
