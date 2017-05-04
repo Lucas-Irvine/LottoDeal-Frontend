@@ -513,7 +513,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         $scope.itemTitle = itemTitle
         $scope.amountRaised = amountRaised
         if (userID != undefined) {
-            if (checkIfUser(userID)) {
+            var status = checkIfUser(userID);
+            if (status == true) {
                 if (price >= amountRaised + amount) {
                     handler.open({
                         name: 'LottoDeal',
@@ -711,10 +712,11 @@ function checkIfUser(userID) {
             var status = data;
 
             if (status == "false") {
-                return false;
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
                 showLoginPopup();
                 console.log('UserID is null')
+                return false;
+
             }
             return true;
         },
@@ -725,9 +727,9 @@ function checkIfUser(userID) {
     });
 }
 
-$('#loginPopup').on('hidden.bs.modal', function () {
-  checkIfUser(userID);
-})
+// $('#loginPopup').on('hidden.bs.modal', function () {
+//   checkIfUser(userID);
+// })
 
 
 
@@ -758,7 +760,7 @@ window.fbAsyncInit = function() {
             userID = response.id;
             $("#userid").val(userID)
             scope.getNotifications(userID);
-            checkIfUser(userID);
+            // checkIfUser(userID);
             console.log(userID + "saving UserID as a global variable when logging in ")
         });
 
