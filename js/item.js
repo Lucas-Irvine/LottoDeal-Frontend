@@ -409,7 +409,8 @@ app.controller("itemController", ["$scope", "$rootScope", "$location", "$routePa
                     $.ajax({
                         url: 'https://localhost:8000/deleteItem',
                         data: {
-                            accessToken: accessToken
+                            accessToken: accessToken,
+                            id: id
                         },
                         type: 'DELETE',
                         success: function(data) {
