@@ -514,6 +514,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         $scope.amountRaised = amountRaised
         if (userID != undefined) {
             var status = checkIfUser(userID);
+            console.log(status);
             if (status == true) {
                 if (price >= amountRaised + amount) {
                     handler.open({
