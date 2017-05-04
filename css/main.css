@@ -74,6 +74,8 @@ html {
     padding-right: 10px;
     padding-left: 10px;
     color: #3cc47c;
+    width: 100%;
+    padding-bottom: 3px;
 }
 
 .thumbnail {
@@ -83,13 +85,6 @@ html {
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
-}
-
-.ratings {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 3px;
 }
 
 .bid-buttons {
@@ -1246,7 +1241,8 @@ input:focus, textarea:focus {
 }
 
 .cardbottom {
-    bottom:0px !important;
     padding: 9px !important;
+    position: absolute;
+    bottom: 0;
 }
 
