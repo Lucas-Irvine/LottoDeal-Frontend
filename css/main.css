@@ -58,7 +58,8 @@ html {
 }
 
 #Cardtitle {
-    white-space: nowrap;
+    /*max-width: 90px;*/
+    /*white-space: nowrap;*/
     color: black;
     font-size: 14px;
     text-overflow: ellipsis;
