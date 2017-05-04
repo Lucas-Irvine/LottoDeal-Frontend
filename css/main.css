@@ -1246,5 +1246,6 @@ input:focus, textarea:focus {
     padding: 9px !important;
     bottom: 0;
     width: 100%;
+    position: absolute;
 }
 
