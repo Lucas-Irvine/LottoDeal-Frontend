@@ -729,9 +729,10 @@ function checkIfUser(userID, callback) {
     });
 }
 
-// $('#loginPopup').on('hidden.bs.modal', function () {
-//   checkIfUser(userID);
-// })
+$('#loginPopup').on('hidden.bs.modal', function () {
+  document.getElementById('successScreen').innerHTML = '';
+  document.getElementById('loginMessage').innerHTML = ""
+})
 
 
 
