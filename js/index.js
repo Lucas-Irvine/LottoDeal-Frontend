@@ -721,6 +721,9 @@ function checkIfUser(userID) {
     });
 }
 
+$('#loginPopup').on('hidden.bs.modal', function () {
+  checkIfUser(userID);
+})
 
 
 
