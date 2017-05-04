@@ -515,8 +515,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
         $scope.itemTitle = itemTitle
         $scope.amountRaised = amountRaised
         if (userID != undefined) {
-            checkIfUser(userID);
-            if (status == 'true') {
+            checkIfUser(userID, function() {
+                if (status == 'true') {
                 if (price >= amountRaised + amount) {
                     handler.open({
                         name: 'LottoDeal',
@@ -546,6 +546,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", function
 
                 }
             }
+            });
+
         }
         else {
                 document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
@@ -698,7 +700,7 @@ function changeTab(titleID, id) {
 }
 
 
-function checkIfUser(userID) {
+function checkIfUser(userID, callback) {
     // get all the accounts for all posts
     var checkURL = "https://localhost:8000/checkIfUser";
 
@@ -717,10 +719,9 @@ function checkIfUser(userID) {
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
                 showLoginPopup();
                 console.log('UserID is null')
-                return false;
+                callback();
 
             }
-            return true;
         },
         error: function(response, error) {
             console.log(response)
