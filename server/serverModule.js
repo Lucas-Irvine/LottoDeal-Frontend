@@ -2,11 +2,15 @@ angular.module('serverModule', ['utilsModule'])
 .service('serverGet', ["dateFunctions", serverGet])
 .service('serverPost', serverPost);
 
+var prodUrl = "https://162.243.121.223:8000/";
+var debugUrl = "https://localhost:8000/"
+
+
 function serverGet(dateFunctions) {
 	var DateDiff = dateFunctions.DateDiff; // define dateDiff
 
 	this.getPosts = function(loadingIcon, $scope) {
-		var url = "https://localhost:8000/getPosts";
+		var url = prodUrl + "getPosts";
 	    loadingIcon.show()
 	    $.ajax({
 	        url: url,
@@ -111,7 +115,7 @@ function serverGet(dateFunctions) {
 
 		var itemIDs = [];
 
-		var notificationUrl = "https://localhost:8000/getNotifications";
+		var notificationUrl = prodUrl + "getNotifications";
 	    var dataGET = {
 	        accessToken: accessToken
 	    }
@@ -175,7 +179,7 @@ function serverGet(dateFunctions) {
 	                }
 	            }
 
-	                var getImageForNotificationsURL = "https://localhost:8000/getImagesForNotifications";
+	                var getImageForNotificationsURL = prodUrl + "getImagesForNotifications";
 
 	                var data = {
 	                    itemIDs: itemIDs
@@ -215,7 +219,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getSuggestions = function(accessToken, $scope) {
-		var suggestionsURL = "https://localhost:8000/getSuggestions"
+		var suggestionsURL = prodUrl + "getSuggestions"
         if (accessToken != null) {
             $.ajax({
                 url: suggestionsURL,
@@ -254,7 +258,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getItem = function(id, $scope, accessToken, userID) {
-		var url = "https://localhost:8000/getItem"
+		var url = prodUrl + "getItem"
 
 		$.ajax({
 	        url: url,
@@ -341,7 +345,7 @@ function serverGet(dateFunctions) {
     this.markRead = function(accessToken, $scope) {
     	var itemIDs = [];
 
-    	var readurl = "https://localhost:8000/markRead";
+    	var readurl = prodUrl + "markRead";
         // var userID = localStorage.getItem("curUserID")
 
         console.log(accessToken + "here's the userID in mark read");
@@ -420,7 +424,7 @@ function serverGet(dateFunctions) {
 	
 
 	this.getAccountsForPosts = function($scope) {
-		var accountUrl = "https://localhost:8000/getAccountsForPosts";
+		var accountUrl = prodUrl + "getAccountsForPosts";
 
 	    $scope.accounts = []
 
@@ -441,7 +445,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getPublicAccount = function($scope, id) {
-		var url = "https://localhost:8000/getPublicAccount";
+		var url = prodUrl + "getPublicAccount";
 	    var dataGET = {
 	        userID: id
 	    }
@@ -487,7 +491,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getListedItemsForUsers = function(userID, $scope) {
-		var url = "https://localhost:8000/getListedItemsForUsers";
+		var url = prodUrl + "getListedItemsForUsers";
 	    var dataGET = {
 	        userID: userID
 	    }
@@ -567,7 +571,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getSoldItemsForUsers = function(userID, $scope) {
-		var url = "https://localhost:8000/getSoldItemsForUsers";
+		var url = prodUrl + "getSoldItemsForUsers";
 	    var dataGET = {
 	        userID: userID
 	    }
@@ -636,7 +640,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getAccount = function(accessToken, $scope) {
-		var url = "https://localhost:8000/getAccount";
+		var url = prodUrl + "getAccount";
 
 	    var dataGET = {
 	        accessToken: accessToken
@@ -689,7 +693,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getReviews = function(id, $scope) {
-		var url = "https://localhost:8000/getReviews";
+		var url = prodUrl + "getReviews";
 	    var dataGET = {
 	        sellerID: id
 	    }
@@ -744,7 +748,7 @@ function serverGet(dateFunctions) {
 	}
 
     this.getReviewsOfSeller = function(itemID, $scope) {
-        var url = "https://localhost:8000/getReviewsOfSeller";
+        var url = prodUrl + "getReviewsOfSeller";
         var dataGET = {
             itemID: itemID
         }
@@ -799,7 +803,7 @@ function serverGet(dateFunctions) {
     }
 
 	this.getReviewerImagesAndNames = function(id, $scope) {
-		var url = "https://localhost:8000/getReviewerImagesandNames";
+		var url = prodUrl + "getReviewerImagesandNames";
 	    var dataGET = {
 	        userID: id
 	    }
@@ -822,7 +826,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getBidsOfUsers = function(accessToken, $scope) {
-		var url = "https://localhost:8000/getBidsofUsers";
+		var url = prodUrl + "getBidsofUsers";
 
 	    var dataGET = {
 	        accessToken: accessToken
@@ -850,7 +854,7 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getBiddedItemsOfUsers = function(accessToken, $scope) {
-		var url = "https://localhost:8000/getBiddedItemsofUsers";
+		var url = prodUrl + "getBiddedItemsofUsers";
 	    var dataGET = {
 	        accessToken: accessToken
 	    }
@@ -938,7 +942,7 @@ function serverPost() {
 	                }
 
 	                $.ajax({
-	                    url: 'https://localhost:8000/performPaymentAndAddBid',
+	                    url: prodUrl + 'performPaymentAndAddBid',
 	                    data: data,
 	                    type: 'POST',
 	                    statusCode: {
@@ -1138,7 +1142,7 @@ function serverPost() {
                     $button.spin();
                     dialog.setClosable(false);
                     $.ajax({
-                        url: 'https://localhost:8000/deleteItem',
+                        url: prodUrl + 'deleteItem',
                         data: {
                             accessToken: accessToken,
                             id: id
@@ -1169,7 +1173,7 @@ function serverPost() {
 	}
 
 	this.updateSettings = function(accessToken, email) {
-		var url = "https://localhost:8000/updateSettings";
+		var url = prodUrl + "updateSettings";
 
         console.log("updating your settings")
 
