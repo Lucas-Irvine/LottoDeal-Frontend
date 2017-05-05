@@ -171,12 +171,12 @@ footer {
 
 .footerlink
 {
-    color: #3cc47c;
+    color:#fea680;
 }
 
 .footerlink:hover {
     text-decoration: none;
-    color: black;
+    color: #3cc47c;
 }
 
 
