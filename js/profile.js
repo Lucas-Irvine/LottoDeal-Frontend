@@ -65,6 +65,17 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
 
     scope.applyAngular = function(userID) {
 
+        scope.getNotifications = function (userID) {
+            serverGet.getNotifications(accessToken, $scope);
+        }
+
+        $scope.images = []
+
+        // mark all the notifications as read
+        scope.markRead = function () {
+            serverGet.markRead(accessToken, $scope);
+        }
+
 
 
     var url = "https://localhost:8000/getBidsofUsers";
