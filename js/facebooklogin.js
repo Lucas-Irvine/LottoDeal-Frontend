@@ -166,24 +166,6 @@ facebookLoginButton.onclick = function() {
 
 
 
-// this is from sell might delete
-
-// // when a user tries to sell an item check if they are logged in and open up a modal to login if they are not logged in
-// function sellLoginCheck () {
-//         FB.getLoginStatus(function(response) {
-//         if (response.status === 'connected') {
-//             //display user data
-//             return true; 
-//         } else {
-//             document.getElementById('loginMessage').innerHTML = 'You must login before you are able to sell an item!';
-//             showLoginPopup();
-//             return false;
-//         }
-//     });
-// }
-
-
-
 function fbLogin() {
     var window = FB.login(function (response) {
         if (response.authResponse) {
