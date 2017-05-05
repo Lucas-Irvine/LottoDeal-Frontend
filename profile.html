@@ -395,7 +395,7 @@
                                 <div ng-model= "reviewData">
                                     <h3>Average Rating</h3>
                                     <hr>
-                                    <h2 id = "averageRating" class="bold padding-bottom-7">{{reviewData.averageRating}} <small>/ 5</small></h2>
+                                    <h2 id = "averageRating" class="bold padding-bottom-7">{{account.averageRating}} <small>/ 5</small></h2>
 
                                 </div>
 
@@ -409,12 +409,26 @@
                     <!-- GET Reviews  -->
                     <div ng-repeat= "review in reviews">
                         <div class="row">
+                            
+
+                         <div class="jumbotron">
+                            <div class="container-fluid">
+
+
                             <div class="col-sm-7">
                                 <hr/>
                                 <div class="review-block">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <img ng-src="{{reviewers[$index].pictureURL}}" class="img-rounded">
+
+
+
+                                        <div class=" col-lg-1 col-lg-md-2 col-sm-2 specialimage">
+                                            <img id="reviewImage" ng-src="{{reviewers[$index].pictureURL}}">
+                                        </div>
+
+
+
                                             <div class="review-block-name"><a href="user.html#!/?id={{reviewers[$index].fbid}}">{{reviewers[$index].fullName}}</a></div>
                                             <div class="review-block-date">Date Posted: {{review.datePosted}}</div>
                                         </div>
@@ -453,6 +467,14 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            </div>
+                            </div>
+
+
+
+
                         </div>
                     </div>
 

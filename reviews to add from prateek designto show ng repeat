@@ -1,0 +1,50 @@
+<div class="row">
+            <!-- <div class="col-lg-7 col-md-7 col-sm-7"> -->
+                <h3>Listed Items</h3>
+                <hr>
+                <div class="jumbotron">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class=" col-lg-1 col-lg-md-2 col-sm-2 specialimage">
+                            <img id="reviewImage" ng-src="https://avatars1.githubusercontent.com/u/19854080?v=3&s=400" class="img-rounded">
+                        </div>
+                        <div class="col-lg-11 col-md-10 col-sm-10">
+
+             <!--            <div class="row"> -->
+                            <div class="col-lg-12 col-md-12 col-sm-6">
+                                <!-- <div class="review-block-name"> --><a id="card-title" href="google.com">Dom</a><!-- </div> -->
+                             </div>
+
+                             <div class="col-lg-12 col-md-12 col-sm-6">
+                                <!-- <div class="review-block-rate"> -->
+
+                                <div class="ratingStatic" style="color: gold;">
+                                    <!-- &#9734; is not filled in triangle-->
+                                    <!-- &#9733; is filled in triangle-->
+
+                                    <span name="rating" >&#9733;</span>
+                                    <span name="rating" >&#9733;</span>                                 
+                                    <span name="rating" >&#9733;</span> 
+                                    <span name="rating" >&#9734;</span> 
+                                   <span name="rating" >&#9734;</span>
+                                </div>
+
+
+                           <!--  <span type = "radio" name = "rating" ng-show="matchCount==1">{{review.stars}} / 5</span> -->
+                            <!-- </div> -->
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+             <div class="row">
+                <br>
+                         <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="review-block-date">Posted on 1/1/17</div>
+                        </div>
+                     <div class="col-lg-12 col-md-12 col-sm-12">   
+                    <p id="reviewDes">supaaaa great guy -- Lucas Irvine</p> 
+                    </div>
+               </div>
+            </div>
+            </div>
+        </div>
