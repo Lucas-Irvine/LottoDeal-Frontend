@@ -92,6 +92,7 @@ window.fbAsyncInit = function() {
             if ($("#accessToken") != undefined) {
                 $("#accessToken").val(accessToken);
             }
+            userID = response.id;
             scope.getNotifications(accessToken);
             // checkIfUser(accessToken);
             console.log(accessToken + "saving accessToken as a global variable when logging in ")
@@ -172,7 +173,7 @@ function fbLogin() {
             // Get and display the user profile data
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
-
+            userID = response.id;
         FB.getAuthResponse(function(response) {
             if (response.status === 'connected') {
                 accessToken = response.authResponse.accessToken;
