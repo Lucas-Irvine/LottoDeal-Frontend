@@ -128,9 +128,8 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     }
 }])
 
-    function showLoginPopup() {
-        $('#loginPopup').modal({
-            keyboard: false
-        })
-    };
-}
+function showLoginPopup() {
+    $('#loginPopup').modal({
+        keyboard: false
+    })
+};
