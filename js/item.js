@@ -6,11 +6,6 @@ $('#myTabs a').click(function(e) {
     $(this).tab('show')
 });
 
-// var sellerID;
-// var userID;
-// var accessToken;
-// var scope;
-
 //Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
 function changeTab(titleID, id) {
     // Declare all variables
@@ -33,10 +28,6 @@ function changeTab(titleID, id) {
     document.getElementById(id).className += " active";
 }
 
-
-var scope;
-
-
 app.controller("itemController", ["$scope", "$location", "serverGet", "serverPost", function($scope, $location, serverGet, serverPost) {
     var searchObject = $location.search();
     var id = searchObject['id'];
@@ -44,70 +35,19 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
 
     scope = $scope;
 
-
-
-
-    // window.fbAsyncInit = function() {
-
-    //     FB.init({
-    //         appId: '228917890846081',
-    //         status: true,
-    //         cookie: true,
-    //         xfbml: true
-    //     });
-    //     FB.getLoginStatus(function(response) {
-    //         userID = response.authResponse.userID;
-    //         sellerID = sellerID;
-    //         // check if user can edit
-    //         if (sellerID == userID) {
-    //             console.log("matches")
-    //             $scope.canEdit = true;
-
-    //         } else {
-    //             console.log(userID + "cannot edit this post");
-    //         }
-
-    //         accessToken = response.authResponse.accessToken;
-    //         console.log('setting the access token to: ' + accessToken)
-    //         console.log(response);
-    //         console.log(userID + "saving UserID as a global variable when logging in ")
-    //         getSuggestions();
-    //     });
-    // };
-
-    // (function(d) {
-    //     var js, id = 'facebook-jssdk';
-    //     if (d.getElementById(id)) {
-    //         return;
-    //     }
-    //     js = d.createElement('script');
-    //     js.id = id;
-    //     js.async = true;
-    //     js.src = "//connect.facebook.net/en_US/all.js";
-    //     d.getElementsByTagName('head')[0].appendChild(js);
-    // }(document));
-
     function getSuggestions() {
         serverGet.getSuggestions(accessToken, $scope)
     }
-
-
-    var itemIDs = [];
-
+    
     scope.markRead = function() {
-        serverGet.markRead(userID, $scope);
+        serverGet.markRead(accessToken, $scope);
     }
+
+    $scope.images = []
 
     scope.getNotifications = function(accessToken) {
         serverGet.getNotifications(accessToken, $scope);
     }
-    // var userid = userID;
-    // console.log(userid)
-
-    $scope.canEdit = false;
-
-
-    $scope.editing = false;
 
     console.log(accessToken);
     // serverGet.getItem(id, $scope, accessToken);
@@ -120,19 +60,6 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
         serverPost.deleteItem(id, accessToken, $scope)
     }
 
-    $scope.editItem = function() {
-        // display editable fields
-
-        if ($scope.editing == true) {
-            $scope.editing = false;
-        } else {
-            $scope.editing = true;
-        }
-    }
-
-    $scope.saveChanges = function() {
-        // GET ALL CHANGES AND SEND BACK TO SERVER
-    }
 }])
 
 function showLoginPopup() {

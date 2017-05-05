@@ -767,7 +767,7 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
-	this.getBidsOfUsers = function(accessToken) {
+	this.getBidsOfUsers = function(accessToken, $scope) {
 		var url = "https://localhost:8000/getBidsofUsers";
 
 	    var dataGET = {
