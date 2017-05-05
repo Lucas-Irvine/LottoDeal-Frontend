@@ -104,8 +104,8 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
 
 
 
-    scope.getListedItemsForUsers = function(accessToken) {
-        serverGet.getListedItemsForUsers(accessToken, $scope)
+    scope.getListedItemsForUsers = function(reviewID) {
+        serverGet.getListedItemsForUsers(reviewID, $scope)
     }
 
 
@@ -113,22 +113,22 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
 
 
 
-    scope.getSoldItemsForUsers = function(accessToken) {
-        serverGet.getSoldItemsForUsers(accessToken, $scope)
+    scope.getSoldItemsForUsers = function(reviewID) {
+        serverGet.getSoldItemsForUsers(reviewID, $scope)
     }
 
 
     $scope.reviews = []
 
-    scope.getReviews = function(accessToken) {
-        serverGet.getReviews(accessToken, $scope)
+    scope.getReviews = function(reviewID) {
+        serverGet.getReviews(reviewID, $scope)
     }
 
     
     $scope.reviewers = []
     // loads reviewers images and names into the above
-    scope.getReviewerImagesandNames = function(accessToken) {
-        serverGet.getReviewerImagesandNames(accessToken, $scope)
+    scope.getReviewerImagesandNames = function(reviewID) {
+        serverGet.getReviewerImagesandNames(reviewID, $scope)
     }
 
 
