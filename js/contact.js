@@ -10,7 +10,7 @@ app.controller("contactController", ["$scope", "$rootScope", "$location", "serve
     scope = $scope;
     $scope.selectedTab = 0
 
-    scope.getNotifications = function (userID) {
+    scope.getNotifications = function(accessToken) {
         serverGet.getNotifications(accessToken, $scope);
     }
 
