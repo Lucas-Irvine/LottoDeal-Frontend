@@ -253,7 +253,7 @@ function serverGet(dateFunctions) {
         }
 	}
 
-	this.getItem = function(id, $scope, accessToken) {
+	this.getItem = function(id, $scope, accessToken, userID) {
 		var url = "https://localhost:8000/getItem"
 
 		$.ajax({
@@ -297,40 +297,40 @@ function serverGet(dateFunctions) {
 	            }
 
 	            // check if user can edit
-	            var editUrl = "https://localhost:8000/verifyAccessToken";
-	            $.ajax({
-			        url: editUrl,
-			        type: 'GET',
-			        data: {
-			            accessToken: accessToken
-			        },
-			        success: function(response) {
-			        	if (parsed.sellerID == response) {
-			                console.log("matches")
-			                $scope.canEdit = true;
+	      //       var editUrl = "https://localhost:8000/verifyAccessToken";
+	      //       $.ajax({
+			    //     url: editUrl,
+			    //     type: 'GET',
+			    //     data: {
+			    //         accessToken: accessToken
+			    //     },
+			    //     success: function(response) {
+			    //     	if (parsed.sellerID == response) {
+			    //             console.log("matches")
+			    //             $scope.canEdit = true;
 
-			            } else {
-			                console.log(response + "cannot edit this post");
-			            }
+			    //         } else {
+			    //             console.log(response + "cannot edit this post");
+			    //         }
 
-			            $scope.post = parsed;
-			            $scope.$apply();
-			        },
-			        error: function(response, error) {
-			        	console.log(response);
-			        	console.log(error);
-			        }
-			    });
-	            // if (parsed.sellerID == userID) {
-	            //     console.log("matches")
-	            //     $scope.canEdit = true;
+			    //         $scope.post = parsed;
+			    //         $scope.$apply();
+			    //     },
+			    //     error: function(response, error) {
+			    //     	console.log(response);
+			    //     	console.log(error);
+			    //     }
+			    // });
+	            if (parsed.sellerID == userID) {
+	                console.log("matches")
+	                $scope.canEdit = true;
 
-	            // } else {
-	            //     console.log(userID + "cannot edit this post");
-	            // }
+	            } else {
+	                console.log(userID + "cannot edit this post");
+	            }
 
-	            // $scope.post = parsed;
-	            // $scope.$apply();
+	            $scope.post = parsed;
+	            $scope.$apply();
 	        },
 	        error: function(response, error) {
 	            console.log(response)
