@@ -141,17 +141,17 @@
 </nav>
 
 
-    <div class="container">
+<div class="container">
     <div class="col-lg-12">
-            <br>
-            <div class="container-fluid">
+        <br>
+        <div class="container-fluid">
             <div class="useravatar col-lg-3">
                 <img alt="" id = "profileImage" src="">
             </div>
             <div class="card-info col-lg-9"> <h2 class="card-title section-title" id = "profileName"></h2>
             </div>
-            </div>
-            <br>
+        </div>
+        <br>
         <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
             <div class="btn-group" role="group">
                 <button type="button" id="stars" class="btn btn-primary green" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -182,331 +182,322 @@
         <div class="tab-content">
             <div class="tab-pane fade in active" id="tab1" ngStyle="{position: relative}">
                 <div class="row">
-                <h3 id = "BidCount"> Current Bids</h3>
-                <hr>
-                <div ng-repeat= "item in items">
-                <div ng-show="item.sold == false">
-                   <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="thumbnail" id="item">
-                        <div class="image-item img-fluid">
-                            <a href="item.html#!/?id={{item._id}}">
-                                <img ng-src="{{item.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
-                            </a>
-                        </div>
-                        <div class="caption">
-                            <p><a id="Cardtitle" href="item.html#!/?id={{item._id}}"><strong>{{item.title}} </strong></a>
-                            </p>
-                            <div class="description-container rows">
-                                <p class="description">
-                                    {{item.shortDescription}}
-                                </p>
+                    <h3 id = "BidCount"> Current Bids</h3>
+                    <hr>
+                    <div ng-repeat= "item in items">
+                        <div ng-show="item.sold == false">
+                            <div class="col-sm-6 col-md-4 col-lg-4">
+                                <div class="thumbnail" id="item">
+                                    <div class="image-item img-fluid">
+                                        <a href="item.html#!/?id={{item._id}}">
+                                            <img ng-src="{{item.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="caption">
+                                        <p><a id="Cardtitle" href="item.html#!/?id={{item._id}}"><strong>{{item.title}} </strong></a>
+                                        </p>
+                                        <div class="description-container rows">
+                                            <p class="description">
+                                                {{item.shortDescription}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="cardbottom">
+                                        <p class="pull-right" id="amountRaised-{{item._id}}"><strong>${{item.amountRaised}}</strong> of <strong>${{item.price}}</strong> raised</p>
+                                        <p align="left"> {{item.expirationDate}} </p>
+                                        <div class="progress" id="thumbnail-bar">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{item._id}}" role="progressbar" aria-valuenow="40"
+                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
+                                            </div>
+                                        </div>
+                                        <div class="row bid-buttons">
+                                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 1, item.amountRaised, item.price, item.title);" id="{{item._id}}">$1.00</button>
+                                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 2, item.amountRaised, item.price, item.title);" id="{{item._id}}">$2.00</button>
+                                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 5, item.amountRaised, item.price, item.title);" id="{{item._id}}">$5.00</button>
+                                        </div>
+                                        <div class="ratings">
+                                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                                Rating: {{accounts[$index].averageRating}} / 5
+                                            </div>
+                                            <div class="col-lg-7 col-md-7 col-sm-7">
+                                                <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
-                        <div class="cardbottom">
-                            <p class="pull-right" id="amountRaised-{{item._id}}"><strong>${{item.amountRaised}}</strong> of <strong>${{item.price}}</strong> raised</p>
-                            <p align="left"> {{item.expirationDate}} </p>
-                            <div class="progress" id="thumbnail-bar">
-                                <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{item._id}}" role="progressbar" aria-valuenow="40"
-                                aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <h3 id = "BidCount"> Old Bids</h3>
+                    <hr>
+                    <div ng-repeat= "item in items">
+                        <div ng-show="item.sold == true">
+                            <div class="col-sm-6 col-md-4 col-lg-4">
+                                <div class="thumbnail" id="item">
+                                    <div class="image-item img-fluid">
+                                        <a href="item.html#!/?id={{item._id}}">
+                                            <img ng-src="{{item.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="caption">
+                                        <p><a id="Cardtitle" href="item.html#!/?id={{item._id}}"><strong>{{item.title}} </strong></a>
+                                        </p>
+                                        <div class="description-container rows">
+                                            <p class="description">
+                                                {{item.shortDescription}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="cardbottom">
+                                        <p class="pull-right" id="amountRaised-{{item._id}}"><strong>${{item.amountRaised}}</strong> of <strong>${{item.price}}</strong> raised</p>
+                                        <p align="left">Winner: <a href="user.html#!/?id={{item.winnerID}}">{{item.expirationDate}} </a> </p>
+                                        <div class="progress" id="thumbnail-bar">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{item._id}}" role="progressbar" aria-valuenow="40"
+                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
+                                            </div>
+                                        </div>
+                                        <div class="ratings">
+                                            <div class="col-lg-5 col-md-5 col-sm-5">
+                                                Rating: {{accounts[$index].averageRating}} / 5
+                                            </div>
+                                            <div class="col-lg-7 col-md-7 col-sm-7">
+                                                <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row bid-buttons">
-                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 1, item.amountRaised, item.price, item.title);" id="{{item._id}}">$1.00</button>
-                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 2, item.amountRaised, item.price, item.title);" id="{{item._id}}">$2.00</button>
-                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 5, item.amountRaised, item.price, item.title);" id="{{item._id}}">$5.00</button>
-                        </div>
-                        <div class="ratings">
-                            <div class="col-lg-5 col-md-5 col-sm-5">
-                                Rating: {{accounts[$index].averageRating}} / 5
-                            </div>
-                            <div class="col-lg-7 col-md-7 col-sm-7">
-                                <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
-        </div>
-        
-        </div>
+            <!-- Items tab -->
 
-        <div class="row">
-            <h3 id = "BidCount"> Old Bids</h3>
-            <hr>
-                <div ng-repeat= "item in items">
-                <div ng-show="item.sold == true">
-                   <div class="col-sm-6 col-md-4 col-lg-4">
-                    <div class="thumbnail" id="item">
-                        <div class="image-item img-fluid">
-                            <a href="item.html#!/?id={{item._id}}">
-                                <img ng-src="{{item.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
-                            </a>
-                        </div>
-                        <div class="caption">
-                            <p><a id="Cardtitle" href="item.html#!/?id={{item._id}}"><strong>{{item.title}} </strong></a>
-                            </p>
-                            <div class="description-container rows">
-                                <p class="description">
-                                    {{item.shortDescription}}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="cardbottom">
-                            <p class="pull-right" id="amountRaised-{{item._id}}"><strong>${{item.amountRaised}}</strong> of <strong>${{item.price}}</strong> raised</p>
-                            <p align="left">Winner: <a href="user.html#!/?id={{item.winnerID}}">{{item.expirationDate}} </a> </p>
-                            <div class="progress" id="thumbnail-bar">
-                                <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{item._id}}" role="progressbar" aria-valuenow="40"
-                                aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
-                            </div>
-                        </div>
-                        <div class="ratings">
-                            <div class="col-lg-5 col-md-5 col-sm-5">
-                                Rating: {{accounts[$index].averageRating}} / 5
-                            </div>
-                            <div class="col-lg-7 col-md-7 col-sm-7">
-                                <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="tab-pane fade in" id="tab2">
+                <div class="row">
+                    <h3>Listed Items</h3>
+                    <hr>
+                    <div ng-repeat= "listedItem in listedItems">
 
-        </div>
-        </div>
-        </div>
-
-    </div>
-
-        <!-- Items tab -->
-
-        <div class="tab-pane fade in" id="tab2">
-            <div class="row">
-                <h3>Listed Items</h3>
-                <hr>
-                <div ng-repeat= "listedItem in listedItems">
-
-                    <div class="col-sm-6 col-md-4 col-lg-4">
-                        <div class="thumbnail" id="item">
-                            <div class="image-item img-fluid">
-                                <a href="item.html#!/?id={{listedItem._id}}">
-                                    <img ng-src="{{listedItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
-                                </a>
-                            </div>
-                            <div class="caption">
-                                <p><a id="Cardtitle" href="item.html#!/?id={{listedItem._id}}"><strong>{{listedItem.title}} </strong></a>
-                                </p>
-                                <div class="description-container rows">
-                                    <p class="description">
-                                        {{listedItem.shortDescription}}
+                        <div class="col-sm-6 col-md-4 col-lg-4">
+                            <div class="thumbnail" id="item">
+                                <div class="image-item img-fluid">
+                                    <a href="item.html#!/?id={{listedItem._id}}">
+                                        <img ng-src="{{listedItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                    </a>
+                                </div>
+                                <div class="caption">
+                                    <p><a id="Cardtitle" href="item.html#!/?id={{listedItem._id}}"><strong>{{listedItem.title}} </strong></a>
                                     </p>
+                                    <div class="description-container rows">
+                                        <p class="description">
+                                            {{listedItem.shortDescription}}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="cardbottom">
-                                <p class="pull-right" id="amountRaised-{{listedItem._id}}"><strong>${{listedItem.amountRaised}}</strong> of <strong>${{listedItem.price}}</strong> raised</p>
-                                <p align="left"> {{listedItem.expirationDate}} </p>
-                                <div class="progress" id="thumbnail-bar">
-                                    <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{listedItem._id}}" role="progressbar" aria-valuenow="40"
-                                    aria-valuemin="0" aria-valuemax="100" style="width:{{listedItem.percentageRaised}}%">
-                                </div>
-                            </div>
-                            <div class="row bid-buttons">
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 1, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$1.00</button>
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 2, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$2.00</button>
-                                <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 5, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$5.00</button>
-                            </div>
-                            <div class="ratings">
-                                <div class="col-lg-5 col-md-5 col-sm-5">
-                                    Rating: {{accounts[$index].averageRating}} / 5
-                                </div>
-                                <div class="col-lg-7 col-md-7 col-sm-7">
-                                    <a href="user.html#!/?id={{listedItem.sellerID}}">Seller: {{listedItem.sellerName}}</a>
+                                <div class="cardbottom">
+                                    <p class="pull-right" id="amountRaised-{{listedItem._id}}"><strong>${{listedItem.amountRaised}}</strong> of <strong>${{listedItem.price}}</strong> raised</p>
+                                    <p align="left"> {{listedItem.expirationDate}} </p>
+                                    <div class="progress" id="thumbnail-bar">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{listedItem._id}}" role="progressbar" aria-valuenow="40"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:{{listedItem.percentageRaised}}%">
+                                        </div>
+                                    </div>
+                                    <div class="row bid-buttons">
+                                        <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 1, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$1.00</button>
+                                        <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 2, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$2.00</button>
+                                        <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 5, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$5.00</button>
+                                    </div>
+                                    <div class="ratings">
+                                        <div class="col-lg-5 col-md-5 col-sm-5">
+                                            Rating: {{accounts[$index].averageRating}} / 5
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-7">
+                                            <a href="user.html#!/?id={{listedItem.sellerID}}">Seller: {{listedItem.sellerName}}</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
-            </div>
-        </div>
+                <div class="rows">
+                    <h3> Sold Items </h3>
+                    <hr>
 
-        <div class="rows">
-            <h3> Sold Items </h3>
-            <hr>
+                    <!-- GET Sold items -->
+                    <div ng-repeat= "soldItem in soldItems">
 
-        <!-- GET Sold items -->
-        <div ng-repeat= "soldItem in soldItems">
+                        <div class="col-sm-6 col-md-4 col-lg-4">
+                            <div class="thumbnail" id="item">
+                                <div class="image-item img-fluid">
+                                    <a href="item.html#!/?id={{soldItem._id}}">
+                                        <img ng-src="{{soldItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                    </a>
+                                </div>
+                                <div class="caption">
+                                    <p><a id="Cardtitle" href="item.html#!/?id={{soldItem._id}}"><strong>{{soldItem.title}} </strong></a>
+                                    </p>
+                                    <div class="description-container rows">
+                                        <p class="description">
+                                            {{soldItem.shortDescription}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="cardbottom">
+                                    <p class="pull-right" id="amountRaised-{{soldItem._id}}"><strong>${{soldItem.amountRaised}}</strong> of <strong>${{soldItem.price}}</strong> raised</p>
 
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="thumbnail" id="item">
-                    <div class="image-item img-fluid">
-                        <a href="item.html#!/?id={{soldItem._id}}">
-                            <img ng-src="{{soldItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
-                        </a>
-                    </div>
-                    <div class="caption">
-                        <p><a id="Cardtitle" href="item.html#!/?id={{soldItem._id}}"><strong>{{soldItem.title}} </strong></a>
-                        </p>
-                        <div class="description-container rows">
-                            <p class="description">
-                                {{soldItem.shortDescription}}
-                            </p>
+                                    <p> Winner:
+                                        <a href="user.html#!/?id={{soldItem.winnerID}}">{{soldItem.expirationDate}}</a>
+                                    </p>
+
+                                    <div class="progress" id="thumbnail-bar">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{soldItem._id}}" role="progressbar" aria-valuenow="40"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:{{soldItem.percentageRaised}}%">
+                                        </div>
+                                    </div>
+                                    <div class="ratings">
+                                        <div class="col-lg-5 col-md-5 col-sm-5">
+                                            Rating: {{accounts[$index].averageRating}} / 5
+                                        </div>
+                                        <div class="col-lg-7 col-md-7 col-sm-7">
+                                            <a href="user.html#!/?id={{soldItem.sellerID}}">Seller: {{soldItem.sellerName}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cardbottom">
-                        <p class="pull-right" id="amountRaised-{{soldItem._id}}"><strong>${{soldItem.amountRaised}}</strong> of <strong>${{soldItem.price}}</strong> raised</p>
 
-                        <p> Winner: 
-                        <a href="user.html#!/?id={{soldItem.winnerID}}">{{soldItem.expirationDate}}</a>
-                        </p>
-
-                        <div class="progress" id="thumbnail-bar">
-                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{soldItem._id}}" role="progressbar" aria-valuenow="40"
-                            aria-valuemin="0" aria-valuemax="100" style="width:{{soldItem.percentageRaised}}%">
-                        </div>
-                    </div>
-                    <div class="ratings">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Rating: {{accounts[$index].averageRating}} / 5
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-sm-7">
-                            <a href="user.html#!/?id={{soldItem.sellerID}}">Seller: {{soldItem.sellerName}}</a>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-    </div>
-    </div>
-</div>
 
 
-<!-- Reviews Tab -->
-<div class="tab-pane fade in" id="tab3">
-    <div class="container">
+            <!-- Reviews Tab -->
+            <div class="tab-pane fade in" id="tab3">
+                <div class="container">
 
 
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="rating-block">
-
-            <div ng-model= "reviewData">
-                <h3>Average Rating</h3>
-                <hr>
-                <h2 id = "averageRating" class="bold padding-bottom-7">{{reviewData.averageRating}} <small>/ 5</small></h2>
-
-                </div>
-
-
-
-            </div>
-        </div>
-
-    </div>
-
-    <!-- GET Reviews  -->
-    <div ng-repeat= "review in reviews">
-        <div class="row">
-            <div class="col-sm-7">
-                <hr/>
-                <div class="review-block">
                     <div class="row">
                         <div class="col-sm-3">
-                            <img ng-src="{{reviewers[$index].pictureURL}}" class="img-rounded">
-                            <div class="review-block-name"><a href="user.html#!/?id={{reviewers[$index].fbid}}">{{reviewers[$index].fullName}}</a></div>
-                            <div class="review-block-date">Date Posted: {{review.datePosted}}</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="review-block-rate">
+                            <div class="rating-block">
 
-                                <div class="ratingStatic" style="color: gold;">
-                                    <!-- &#9734; is not filled in triangle-->
-                                    <!-- &#9733; is filled in triangle-->
+                                <div ng-model= "reviewData">
+                                    <h3>Average Rating</h3>
+                                    <hr>
+                                    <h2 id = "averageRating" class="bold padding-bottom-7">{{reviewData.averageRating}} <small>/ 5</small></h2>
 
-                                    <span name="rating" ng-show="{{review.stars}} >= 1">&#9733;</span>
-                                    <span name="rating" ng-show="{{review.stars}} < 1">&#9734;</span>
-
-
-                                    <span name="rating" ng-show="{{review.stars}} >= 2">&#9733;</span> 
-                                    <span name="rating" ng-show="{{review.stars}} < 2">&#9734;</span>
-
-                                    <span name="rating" ng-show="{{review.stars}} >= 3">&#9733;</span> 
-                                    <span name="rating" ng-show="{{review.stars}} < 3">&#9734;</span>
-
-                                    <span name="rating" ng-show="{{review.stars}} >= 4">&#9733;</span> 
-                                    <span name="rating" ng-show="{{review.stars}} < 4">&#9734;</span> 
-
-                                    <span name="rating" ng-show="{{review.stars}} == 5">&#9733;</span>
-                                    <span name="rating" ng-show="{{review.stars}} < 5">&#9734;</span>
                                 </div>
-
-
-                           <!--  <span type = "radio" name = "rating" ng-show="matchCount==1">{{review.stars}} / 5</span> -->
 
 
 
                             </div>
-                            <div class="review-block-description">{{review.reviewDes}}</div>
+                        </div>
+
+                    </div>
+
+                    <!-- GET Reviews  -->
+                    <div ng-repeat= "review in reviews">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <hr/>
+                                <div class="review-block">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <img ng-src="{{reviewers[$index].pictureURL}}" class="img-rounded">
+                                            <div class="review-block-name"><a href="user.html#!/?id={{reviewers[$index].fbid}}">{{reviewers[$index].fullName}}</a></div>
+                                            <div class="review-block-date">Date Posted: {{review.datePosted}}</div>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="review-block-rate">
+
+                                                <div class="ratingStatic" style="color: gold;">
+                                                    <!-- &#9734; is not filled in triangle-->
+                                                    <!-- &#9733; is filled in triangle-->
+
+                                                    <span name="rating" ng-show="{{review.stars}} >= 1">&#9733;</span>
+                                                    <span name="rating" ng-show="{{review.stars}} < 1">&#9734;</span>
+
+
+                                                    <span name="rating" ng-show="{{review.stars}} >= 2">&#9733;</span>
+                                                    <span name="rating" ng-show="{{review.stars}} < 2">&#9734;</span>
+
+                                                    <span name="rating" ng-show="{{review.stars}} >= 3">&#9733;</span>
+                                                    <span name="rating" ng-show="{{review.stars}} < 3">&#9734;</span>
+
+                                                    <span name="rating" ng-show="{{review.stars}} >= 4">&#9733;</span>
+                                                    <span name="rating" ng-show="{{review.stars}} < 4">&#9734;</span>
+
+                                                    <span name="rating" ng-show="{{review.stars}} == 5">&#9733;</span>
+                                                    <span name="rating" ng-show="{{review.stars}} < 5">&#9734;</span>
+                                                </div>
+
+
+                                                <!--  <span type = "radio" name = "rating" ng-show="matchCount==1">{{review.stars}} / 5</span> -->
+
+
+
+                                            </div>
+                                            <div class="review-block-description">{{review.reviewDes}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
-            </div>
-        </div>
-    </div>
+            </div> <!-- /container -->
 
 
-</div>
-</div> <!-- /container -->
+            <!-- settings tab -->
 
+            <div class="tab-pane fade in" id="tab4">
 
-<!-- settings tab -->
+                <!-- GET Account Information  -->
+                <div ng-model= "account">
+                    <div class="jumbotron">
+                        <form class="form-horizontal" onsubmit = "updateSettings()">
+                            <fieldset>
+                                <h4>Current Email Address : {{account.email}}</h4>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Change Your Email Address To</label>
+                                    <div class="col-md-4">
+                                        <input id="newEmail" name="textinput" type="text" placeholder="Your New Email" required class="form-control input-md">
 
-<div class="tab-pane fade in" id="tab4">
-
-
-
-
-
-    <!-- GET Account Information  -->
-    <div ng-model= "account">
-        <div class="jumbotron">
-            <form class="form-horizontal" onsubmit = "updateSettings()">
-                <fieldset>
-                <h4>Current Email Address : {{account.email}}</h4>
-                    <!-- Text input-->
-                    <div class="form-group">
-                      <label class="col-md-4 control-label" for="textinput">Change Your Email Address To</label>  
-                      <div class="col-md-4">
-                          <input id="newEmail" name="textinput" type="text" placeholder="Your New Email" required class="form-control input-md">
-
-                      </div>
-                  </div>
-                  <!-- Button (Double) -->
-                  <div class="form-group">
-                      <label class="col-md-4 control-label" for="button1id">Update Settings</label>
-                      <div class="col-md-8">
-                        <button id="button1id" type = "submit" name="button1id" class="btn btn-success">Update</button>
-                        <button id="button2id" type = "reset" name="button2id" class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                                <!-- Button (Double) -->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="button1id">Update Settings</label>
+                                    <div class="col-md-8">
+                                        <button id="button1id" type = "submit" name="button1id" class="btn btn-success">Update</button>
+                                        <button id="button2id" type = "reset" name="button2id" class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
-            </fieldset>
-        </form>
+
+
+
+            </div>
+
         </div>
     </div>
-
-
-
-</div>
-
-
-
-
-
-
-</div>
-</div>
 </div>
 
 
