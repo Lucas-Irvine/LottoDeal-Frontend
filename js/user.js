@@ -66,9 +66,9 @@ function createReviewFunction() {
 
 }
 
-var app = angular.module("user_app", ["ngRoute"])
+var app = angular.module("user_app", ["serverModule"])
 
-app.controller("userController", ["$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
+app.controller("userController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
 
 
     scope = $scope;
@@ -91,10 +91,6 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
     
     // USER SHOULD NOT BE ABLE TO REVIEW THEMSELVES IF THEY ARE ON THEIR OWN PAGE - can check this on the backend as well actually (necessary actually)
-
-
-
-
 
 
 
@@ -426,52 +422,54 @@ app.controller("userController", ["$scope", "$rootScope", "$location", function(
 
     $scope.account = []
 
+    serverGet.getPublicProfile($scope, id);
+
     // AJAX get TO SERVER for account
-    var url = "https://localhost:8000/getAccount";
-    var dataGET = {
-        userID: id
-    }
-    console.log('Asking for account info')
+    // var url = "https://localhost:8000/getAccount";
+    // var dataGET = {
+    //     userID: id
+    // }
+    // console.log('Asking for account info')
     
-    $.ajax({
-        url: url,
-        data: dataGET,
-        type: 'GET',
-        success: function (data) {
-            var account = JSON.parse(data)
-            console.log("Here's your account for another user" + account)
+    // $.ajax({
+    //     url: url,
+    //     data: dataGET,
+    //     type: 'GET',
+    //     success: function (data) {
+    //         var account = JSON.parse(data)
+    //         console.log("Here's your account for another user" + account)
 
 
 
-            document.getElementById('profileName').innerHTML = account.fullName;
-            document.getElementById('profileImage').src = account.pictureURL;
-            var reviews = account.reviews;
-            var length = reviews.length;
-            var total = 0; 
-            var average = 0;
-            var averageRounded = 0;
-            if (length != 0) {
-                var total = 0; 
-                for (var i = 0; i < length; i++) {
-                    total += parseInt(reviews[i].stars);
-                }
+    //         document.getElementById('profileName').innerHTML = account.fullName;
+    //         document.getElementById('profileImage').src = account.pictureURL;
+    //         var reviews = account.reviews;
+    //         var length = reviews.length;
+    //         var total = 0; 
+    //         var average = 0;
+    //         var averageRounded = 0;
+    //         if (length != 0) {
+    //             var total = 0; 
+    //             for (var i = 0; i < length; i++) {
+    //                 total += parseInt(reviews[i].stars);
+    //             }
 
-                var average = total/length;
-                var averageRounded = Math.round(average*10)/10
-            }
+    //             var average = total/length;
+    //             var averageRounded = Math.round(average*10)/10
+    //         }
 
-            var account = {
-                averageRating : averageRounded,
-            }
+    //         var account = {
+    //             averageRating : averageRounded,
+    //         }
             
-            $scope.account = account;
-            $scope.$apply()
-        },
-        error: function (response, error) {
-            console.log(response)
-            console.log(error)
-        }
-    });
+    //         $scope.account = account;
+    //         $scope.$apply()
+    //     },
+    //     error: function (response, error) {
+    //         console.log(response)
+    //         console.log(error)
+    //     }
+    // });
 
 
     $scope.targetPost = null;
