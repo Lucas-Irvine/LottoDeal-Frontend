@@ -62,9 +62,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
 
 
     scope = $scope;
-
-    scope.applyAngular = function(userID) {
-
+    
         scope.getNotifications = function(accessToken) {
             serverGet.getNotifications(accessToken, $scope);
         }
@@ -412,6 +410,5 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     });
 
     $scope.targetPost = null;
-}
 
 }])
