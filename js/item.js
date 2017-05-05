@@ -34,6 +34,8 @@ function changeTab(titleID, id) {
 }
 
 
+var scope;
+
 
 app.controller("itemController", ["$scope", "$location", "serverGet", "serverPost", function($scope, $location, serverGet, serverPost) {
     var searchObject = $location.search();
