@@ -1,3 +1,5 @@
+var scope;
+
 app.controller("aboutController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
 
     scope = $scope;
