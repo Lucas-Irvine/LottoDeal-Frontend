@@ -94,7 +94,7 @@ window.fbAsyncInit = function() {
             }
             userID = response.id;
 
-            if (document.URL.contains("item.html")) {
+            if (window.location.href.indexOf("item.html") > -1) {
                 scope.getSuggestions();
             }
 
@@ -217,7 +217,7 @@ function getFbUserData(){
 
 
 
-            if (document.URL.contains("item.html")) {
+            if (window.location.href.indexOf("item.html") > -1) {
                 scope.getSuggestions();
             }
 
