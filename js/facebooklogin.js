@@ -80,11 +80,13 @@ window.fbAsyncInit = function() {
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
 
+            accessToken = response.authResponse.accessToken;
+
 
      FB.api('/me', {locale: 'en_US', fields: 'id'},
         function (response) {
             //localStorage.setItem("curaccessToken", response.id);
-            accessToken = response.authResponse.accessToken;
+            
 
             // sell page
             if ($("#accessToken") != undefined) {
@@ -188,6 +190,9 @@ function fbLogin() {
             // Get and display the user profile data
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
+
+            
+            accessToken = response.authResponse.accessToken;
             getFbUserData();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
@@ -211,7 +216,6 @@ function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
         function (response) {
             //localStorage.setItem("curaccessToken", response.id);
-            accessToken = response.authResponse.accessToken;
 
             // for sell page
             if ($("#accessToken") != undefined) {
