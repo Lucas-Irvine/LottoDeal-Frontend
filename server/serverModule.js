@@ -1049,6 +1049,66 @@ function serverPost() {
 	    });
 	}
 
+	this.getBiddedItemsOfUsers = function(accessToken) {
+		var url = "https://localhost:8000/getBiddedItemsofUsers";
+	    var dataGET = {
+	        accessToken: accessToken
+	    }
+	    console.log('Asking for Items')
+	    $.ajax({
+	        url: url,
+	        data: dataGET,
+	        type: 'GET',
+	        success: function(data) {
+	            var items = JSON.parse(data)
+	            for (i = 0; i < items.length; i++) {
+	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
+	                console.log("Raised" + items[i].percentageRaised);
+	                var expirationDate = new Date(items[i].expirationDate);
+	                var date = new Date();
+	                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+	            
+	                var hours = DateDiff.inHours(date, expirationDate)
+	                var days = DateDiff.inDays(date, expirationDate)
+
+	                if (items[i].expired) {
+	                    items[i].expirationDate = "Lottery has expired!";                     
+	                }
+	                else if (items[i].sold) {
+	                    items[i].expirationDate =  items[i].winnerName;
+	                }
+	                else if (hours < 0 || days < 0) {
+	                     items[i].expirationDate = "Negative days remaining (not expired yet)";   
+	                }
+	                else {
+	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
+	                }
+	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
+
+	                var image = items[i].img;
+	                if (image == null) {
+	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
+	                } 
+	                else if (items[i].img.compressed != null) {
+	                    items[i]["src"] = items[i].img.compressed;
+	                }
+	                else {
+	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
+	                    var dataURL = "data:image/jpeg;base64," + b64;
+	                    items[i]["src"] = dataURL;
+	                }
+	            }
+	            $scope.items = items;
+	            console.log($scope.items)
+	            $scope.$apply()
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
+
 	this.testFunction = function() {
 		console.log("this function is working")
 	}
