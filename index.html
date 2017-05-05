@@ -266,6 +266,9 @@
                             <div class="soldItems">
                                 <h1 class="section-title">Sold Items</h1>
                                 <div ng-repeat="soldItem in soldItems | filter:searchText">
+                                    <div ng-if"soldItems.length==0">
+                                        <p>There don't appear to be any sold items</p>
+                                    </div>
                                     
                                    <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
