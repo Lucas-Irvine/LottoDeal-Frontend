@@ -5,14 +5,112 @@ angular.module('serverModule', ['utilsModule'])
 function serverGet(dateFunctions) {
 	var DateDiff = dateFunctions.DateDiff; // define dateDiff
 
-	this.getPosts = function() {
+	this.getPosts = function(loadingIcon, $scope) {
+		var url = "https://localhost:8000/getPosts";
+	    loadingIcon.show()
+	    $.ajax({
+	        url: url,
+	        type: 'GET',
+	        success: function(data) {
+	            console.log("completed AJAX call")
+	            var items = JSON.parse(data);
+	            var soldItems = [];
+	            var expiredItems = [];
+	            var listedItems = [];
+	            console.log(items);
+	            for (i = 0; i < items.length; i++) {
+	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
+	                // console.log( "Raised" + items[i].percentageRaised);
+	                var expirationDate = new Date(items[i].expirationDate);
+	                var date = new Date();
+	                var hours = DateDiff.inHours(date, expirationDate)
+	                var days = DateDiff.inDays(date, expirationDate)
 
+	                if (items[i].expired) {
+	                    items[i].expirationDate = "Lottery has expired!";                     
+	                }
+	                else if (items[i].sold) {
+	                    items[i].expirationDate = items[i].winnerName;
+	                }
+	                else if (hours < 0 || days < 0) {
+	                     items[i].expirationDate = "Negative days remaining (not expired yet)";   
+	                }
+	                else {
+	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
+	                }
+	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
+
+	                var image = items[i].img;
+	                if (image == null) {
+	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
+	                } 
+	                else if (items[i].img.compressed != null) {
+	                    items[i]["src"] = items[i].img.compressed;
+
+	                }
+	                else {
+	                    // WORKING SNIPPET
+	                    // var binary = '';
+	                    // var bytes = new Uint8Array(items[i].img.data.data);
+	                    // var len = bytes.byteLength;
+	                    // for (var j = 0; j < len; j++) {
+	                    //     binary += String.fromCharCode(bytes[j]);
+	                    // }
+	                    // END WORKING SNIPPET
+
+
+	                    // NOTE: EITHER ONE OF THE BELOW LINES WORK, SHOULD BE TESTED FOR SPEED
+	                    // var b64 = btoa(binary);
+	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
+
+	                    // var raw = String.fromCharCode.apply(null, items[i].img.data.data)
+
+	                    // var b64=btoa(raw)
+	                    var dataURL = "data:image/jpeg;base64," + b64;
+
+	                    // if (items[i].img.compressed != null) {
+	                    //     items[i]["src"] = items[i].img.compressed;
+	                    // }
+	                    // else {
+	                    //     items[i]["src"] = dataURL;
+	                    // }
+	                    items[i]["src"] = dataURL;
+
+
+	                    // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
+	                    // items[i]["src"] = items[i].img.data.data;
+	                }
+	                if (items[i].sold == true) {
+	                    soldItems.push(items[i]);
+	                }
+	                else if (items[i].expired == true) {
+	                    expiredItems.push(items[i]);
+	                }
+	                else {
+	                    listedItems.push(items[i]);
+	                }
+
+	            }
+	            $scope.posts = listedItems;
+	            $scope.soldItems = soldItems;
+	            $scope.expiredItems = expiredItems;
+
+	            console.log($scope.posts)
+
+	            loadingIcon.hide();
+	            $scope.$apply()
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
 	}
 
-	this.getNotifications = function(userID, $scope) {
+	this.getNotifications = function(accessToken, $scope, itemIDs) {
 		var notificationUrl = "https://localhost:8000/getNotifications";
 	    var dataGET = {
-	        userID: userID
+	        accessToken: accessToken
 	    }
 	    console.log('Asking for notifications')
 	    $.ajax({
@@ -32,12 +130,13 @@ function serverGet(dateFunctions) {
 	            var curDate = new Date();
 
 	            for (i = 0; i < notifications.length; i++) {
+	                itemIDs.push(notifications[i].itemID);
 	                var date = new Date(notifications[i].datePosted);
 	                var hoursAgo = Math.abs(DateDiff.inHours(curDate, date));
 
 	                if (hoursAgo < 24) {
 	                    if (hoursAgo == 0) {
-	                        notifications[i].datePosted = "Just Now";
+	                        notifications[i].datePosted = "Under an hour ago";
 	                    }
 	                    else if (hoursAgo == 1) {
 	                        notifications[i].datePosted = hoursAgo + " hour ago";
@@ -47,7 +146,6 @@ function serverGet(dateFunctions) {
 	                        console.log(notifications[i].datePosted);
 	                    }
 	                }
-
 	                else {
 	                    var month = date.getMonth();
 	                    var day = date.getDate();
@@ -73,6 +171,34 @@ function serverGet(dateFunctions) {
 	                    $scope.notificationLength++;
 	                }
 	            }
+
+	                var getImageForNotificationsURL = "https://localhost:8000/getImagesForNotifications";
+
+	                var data = {
+	                    itemIDs: itemIDs
+	                }
+
+	                    $.ajax({
+	                    url: getImageForNotificationsURL,
+	                    type: 'GET',
+	                    data: data,
+	                    success: function(data) {
+	                        var images = JSON.parse(data)
+	                        if (images.length > 5) {
+	                            images = images.slice(-5);
+	                        }
+	                        $scope.images = images;
+	                        console.log($scope.images)
+	                        $scope.$apply()
+	                    },
+	                    error: function(response, error) {
+	                        console.log(response)
+	                        console.log(error)
+	                    }
+	                });
+
+
+
 
 	            $scope.notifications = notifications;
 	            console.log($scope.notifications)
@@ -124,7 +250,7 @@ function serverGet(dateFunctions) {
         }
 	}
 
-	this.getItem = function(id, $scope) {
+	this.getItem = function(id, $scope, userID) {
 		var url = "https://localhost:8000/getItem"
 
 		$.ajax({
@@ -185,13 +311,13 @@ function serverGet(dateFunctions) {
 	        }
 	    });
 
-	    this.markRead = function(userID, $scope) {
+	    this.markRead = function(accessToken, $scope) {
 	    	var readurl = "https://localhost:8000/markRead";
 	        // var userID = localStorage.getItem("curUserID")
 
-	        console.log(userID + "here's the userID in mark read");
+	        console.log(accessToken + "here's the userID in mark read");
 	        var data = {
-	            userID: userID
+	            accessToken: accessToken
 	        }
 	        console.log('Asking for notifications')
 	        $.ajax({
@@ -264,7 +390,26 @@ function serverGet(dateFunctions) {
 	    }
 	}
 
-	
+	this.getAccountsForPosts = function($scope) {
+		var accountUrl = "https://localhost:8000/getAccountsForPosts";
+
+	    $scope.accounts = []
+
+	    $.ajax({
+	        url: accountUrl,
+	        type: 'GET',
+	        success: function(data) {
+	            var accounts = JSON.parse(data)
+	            $scope.accounts = accounts;
+	            console.log($scope.accounts)
+	            $scope.$apply()
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
 
 	this.testFunction = function() {
 		console.log("this function is working");
