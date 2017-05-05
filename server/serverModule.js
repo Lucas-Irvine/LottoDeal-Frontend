@@ -487,6 +487,155 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	this.getListedItemsForUsers = function(accessToken, $scope) {
+		var url = "https://localhost:8000/getListedItemsForUsers";
+	    var dataGET = {
+	        accessToken: accessToken
+	    }
+	    console.log('Asking for ListedItems')
+	    $.ajax({
+	        url: url,
+	        data: dataGET,
+	        type: 'GET',
+	        statusCode: {
+	            // 200: function(response) {
+	            //     $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
+	            // },
+	            404: function(response) {
+	                var newDoc = document.open("text/html", "replace");
+	                // console.log(response);
+	                newDoc.write(response.responseText);
+	                newDoc.close();
+	            }
+	        },
+	        success: function (data) {
+	            var items = JSON.parse(data)
+	            console.log(items);
+	            for (i = 0; i < items.length; i++) {
+	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
+	                console.log( "Raised" + items[i].percentageRaised);
+	                var expirationDate = new Date(items[i].expirationDate);
+	                var date = new Date();
+	                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+	            
+	                var hours = DateDiff.inHours(date, expirationDate)
+	                var days = DateDiff.inDays(date, expirationDate)
+
+	                if (items[i].expired) {
+	                    items[i].expirationDate = "Lottery has expired!";                     
+	                }
+	                else if (items[i].sold) {
+	                    items[i].expirationDate = "Item was sold to:" + items[i].winnerName;
+	                }
+	                else if (hours < 0 || days < 0) {
+	                     items[i].expirationDate = "Negative days remaining (not expired yet)";   
+	                }
+	                else {
+	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
+	                }
+	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
+
+	                var image = items[i].img;
+	                if (image == null) {
+	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
+	                } 
+	                else if (items[i].img.compressed != null) {
+	                    items[i]["src"] = items[i].img.compressed;
+	                }
+	                else {
+	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
+	                    var dataURL = "data:image/jpeg;base64," + b64;
+	                    items[i]["src"] = dataURL;
+	                }
+
+	                var count = 0;
+	                for (var j = 0; j < items[i].bids.length; j++) {
+	                    if (accessToken == items[i].bids[j].ID) {
+	                        count += items[i].bids[j].amount;
+	                    }
+	                }
+	                items[i]["yourBids"] = count;
+	            }
+	            $scope.listedItems = items;
+	            console.log($scope.listedItems)
+	            $scope.$apply()
+	        },
+	        error: function (response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
+
+	this.getSoldItemsForUsers = function(accessToken, $scope) {
+		var url = "https://localhost:8000/getSoldItemsForUsers";
+	    var dataGET = {
+	        accessToken: accessToken
+	    }
+	    console.log('Asking for SoldItems')
+	    $.ajax({
+	        url: url,
+	        data: dataGET,
+	        type: 'GET',
+	        success: function (data) {
+	            var items = JSON.parse(data)
+	            for (i = 0; i < items.length; i++) {
+	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
+	                console.log( "Raised" + items[i].percentageRaised);
+	                var expirationDate = new Date(items[i].expirationDate);
+	                var date = new Date();
+	                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+	            
+	                var hours = DateDiff.inHours(date, expirationDate)
+	                var days = DateDiff.inDays(date, expirationDate)
+
+	                if (items[i].expired) {
+	                    items[i].expirationDate = "Lottery has expired!";                     
+	                }
+	                else if (items[i].sold) {
+	                    items[i].expirationDate = "Item was sold to:" + items[i].winnerName;
+	                }
+	                else if (hours < 0 || days < 0) {
+	                     items[i].expirationDate = "Negative days remaining (not expired yet)";   
+	                }
+	                else {
+	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
+	                }
+	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
+
+	                var image = items[i].img;
+	                if (image == null) {
+	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
+	                } 
+	                else if (items[i].img.compressed != null) {
+	                    items[i]["src"] = items[i].img.compressed;
+	                }
+	                else {
+	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
+	                    var dataURL = "data:image/jpeg;base64," + b64;
+	                    items[i]["src"] = dataURL;
+	                }
+
+	                var count = 0;
+	                for (var j = 0; j < items[i].bids.length; j++) {
+	                    if (accessToken == items[i].bids[j].ID) {
+	                        count += items[i].bids[j].amount;
+	                    }
+	                }
+	                items[i]["yourBids"] = count;
+
+	            }
+	            $scope.soldItems = items;
+	            console.log($scope.soldItems)
+	            $scope.$apply()
+	        },
+	        error: function (response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
+
 	this.testFunction = function() {
 		console.log("this function is working");
 	}
