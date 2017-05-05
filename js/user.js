@@ -66,6 +66,8 @@ function createReviewFunction() {
 
 }
 
+var scope;
+
 var app = angular.module("user_app", ["serverModule"])
 
 app.controller("userController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
