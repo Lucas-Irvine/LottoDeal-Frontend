@@ -345,13 +345,14 @@
                                                 </div>
                                             </div>
                                             <div class="cardbottom">
+                                            <p> Item Expired</p>
                                             <p class="pull-right" id="amountRaised-{{expiredItem._id}}"><strong>${{expiredItem.amountRaised}}</strong> of <strong>${{expiredItem.price}}</strong> raised</p>
 
                                             <div class="progress" id="thumbnail-bar">
                                                     <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{expiredItem._id}}" role="progressbar" aria-valuenow="40"
                                                          aria-valuemin="0" aria-valuemax="100" style="width:{{expiredItem.percentageRaised}}%">
                                                     </div>
-                                                </div>
+                                            </div>
                                                 <div class="ratings">
                                                 <div class="col-lg-5 col-md-5 col-sm-5">
                                                     Rating: {{accounts[$index].averageRating}} / 5
@@ -449,6 +450,7 @@
 
 <!-- Custom script and global variables -->
 <script type='text/javascript' > 
+  var userID;
   var accessToken;
   var scope; 
 </script>

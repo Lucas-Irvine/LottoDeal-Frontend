@@ -851,7 +851,7 @@ textarea:-ms-input-placeholder {
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #FFF;
-    background-color: #99DEAB;
+    background-color: #3cc47c;
     border: 0;
     border-radius: 4px;
     font-weight:700;
