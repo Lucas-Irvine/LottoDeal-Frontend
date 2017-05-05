@@ -107,7 +107,10 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
-	this.getNotifications = function(accessToken, $scope, itemIDs) {
+	this.getNotifications = function(accessToken, $scope) {
+
+		var itemsIDs = [];
+
 		var notificationUrl = "https://localhost:8000/getNotifications";
 	    var dataGET = {
 	        accessToken: accessToken

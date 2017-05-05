@@ -191,8 +191,11 @@ function fbLogin() {
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
 
-            
-            accessToken = response.authResponse.accessToken;
+        FB.getAuthResponse(function(response) {
+            if (response.status === 'connected') {
+                accessToken = response.authResponse.accessToken;
+            }
+        });
             getFbUserData();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
