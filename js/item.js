@@ -39,7 +39,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
 
     scope = $scope;
 
-    function getSuggestions() {
+    scope.getSuggestions = function() {
         serverGet.getSuggestions(accessToken, $scope)
     }
 
@@ -50,11 +50,10 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     $scope.images = []
 
     scope.getNotifications = function(accessToken) {
+        console.log(accessToken + "in get notifications");
         serverGet.getNotifications(accessToken, $scope);
     }
 
-    console.log(accessToken);
-    // serverGet.getItem(id, $scope, accessToken);
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document);

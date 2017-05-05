@@ -93,6 +93,12 @@ window.fbAsyncInit = function() {
                 $("#accessToken").val(accessToken);
             }
             userID = response.id;
+
+            if (document.URL.contains("item.html")) {
+                scope.getSuggestions();
+            }
+
+
             scope.getNotifications(accessToken);
             // checkIfUser(accessToken);
             console.log(accessToken + "saving accessToken as a global variable when logging in ")
@@ -207,6 +213,16 @@ function getFbUserData(){
             if ($("#accessToken") != undefined) {
                 $("#accessToken").val(accessToken);
             }
+
+
+
+
+            if (document.URL.contains("item.html")) {
+                scope.getSuggestions();
+            }
+
+
+
             scope.getNotifications(accessToken);
             console.log(accessToken + "saving accessToken as a global variable")
 
