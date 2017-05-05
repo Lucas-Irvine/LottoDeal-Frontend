@@ -1,3 +1,4 @@
+var userID;
 var app = angular.module("about_app", ["serverModule"])
 var scope;
 
