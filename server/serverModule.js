@@ -236,7 +236,7 @@ function serverGet(dateFunctions) {
                 },
                 success: function(data) {
                     var parsed = JSON.parse(data)
-                    console.log(parsed)
+                    //console.log(parsed)
                     console.log("retrieved suggestions")
 
 
