@@ -51,7 +51,7 @@ function updateSettings() {
 var scope;
 
 
-var app = angular.module("profile_app", ["ngRoute"])
+var app = angular.module("profile_app", ["serverModule"])
 
 app.controller("profileController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
     $scope.selectedTab = 0
@@ -64,6 +64,17 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     scope = $scope;
 
     scope.applyAngular = function(userID) {
+
+        scope.getNotifications = function (userID) {
+            serverGet.getNotifications(accessToken, $scope);
+        }
+
+        $scope.images = []
+
+        // mark all the notifications as read
+        scope.markRead = function () {
+            serverGet.markRead(accessToken, $scope);
+        }
 
 
 

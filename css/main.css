@@ -1181,6 +1181,7 @@ input:focus, textarea:focus {
 @media (min-width: 768px) {
     #home {
         display: none;
+        max-height: 50px;
     }
 }
 
