@@ -1,3 +1,7 @@
+var userID;
+var app = angular.module("app", []);
+var scope;
+
 var app = angular.module("item_app", ["serverModule"])
 
 $('#myTabs a').click(function(e) {
