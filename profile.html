@@ -12,7 +12,7 @@
     <title>LottoDeal</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/main.css" rel="stylesheet">
@@ -546,19 +546,34 @@
     </div>
 </footer>
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+    <!-- Custom script and global variables -->
+    <script type='text/javascript' >
+        var userID;
+        var accessToken;
+        var scope;
+    </script>
 
-<!-- Custom script -->
-<script src="./js/profile.js"></script>
-<script src="./js/notification.js"></script>
+    <!-- AngularJS Include -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
 
-<!-- dynamic loading of pages -->
-<script src="js/tabs.js"></script>
+    <script type='text/javascript' src="js/facebooklogin.js"></script>
 
+    <!-- Custom script -->
+    <script src="./js/notification.js"></script>
+    <script src="./js/profile.js.js"></script>
+
+    <!-- utils code import -->
+    <script src="./utils/utils.js"></script>
+
+    <!-- server code import -->
+    <script src="./server/serverModule.js"></script>
+
+    <!-- dynamic loading of pages -->
+    <script src="js/tabs.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
 </body>
 
 </html>
