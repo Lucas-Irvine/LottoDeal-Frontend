@@ -245,7 +245,7 @@ footer.signin {
 /* The entire navbar */
 
 .navbar {
-    background-color: white;
+    background-color: whitesmoke;
     border-color: rgba(34, 34, 34, 0.05); /* black */
     font-family: "Helvetica Neue", Helvetica;
     -webkit-transition: all 0.35s;
