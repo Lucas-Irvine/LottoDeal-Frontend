@@ -16,5 +16,4 @@ app.controller("aboutController", ["$scope", "$rootScope", "$location", "serverG
     scope.markRead = function () {
         serverGet.markRead(accessToken, $scope);
     }
-}
-]);
+}])
