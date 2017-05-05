@@ -98,7 +98,9 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
         serverGet.markRead(userID, $scope);
     }
 
-    
+    scope.getNotifications = function(accessToken) {
+        serverGet.getNotifications(accessToken, $scope);
+    }
     // var userid = userID;
     // console.log(userid)
 
