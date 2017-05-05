@@ -364,7 +364,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
 
     $scope.account = []
 
-    serverGet.getAccounnt(accessToken, $scope);
+    serverGet.getAccount(accessToken, $scope);
 
     // AJAX get TO SERVER for account
     // var url = "https://localhost:8000/getAccount";
