@@ -191,7 +191,12 @@ function fbLogin() {
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             console.log('Successfully logged in')
 
-            
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                accessToken = response.authResponse.accessToken;
+            }
+        });
+
             accessToken = response.authResponse.accessToken;
             getFbUserData();
         } else {
