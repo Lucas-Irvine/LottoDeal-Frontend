@@ -121,6 +121,3 @@ function readURL(input) {
 $("#itemPicture").change(function(){
     readURL(this);
 });
-
-
---------------------------------

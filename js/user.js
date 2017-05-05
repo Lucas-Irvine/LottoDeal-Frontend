@@ -71,21 +71,12 @@ var scope;
 var app = angular.module("user_app", ["serverModule"])
 
 app.controller("userController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
-
-
     scope = $scope;
-
-
-    
     var searchObject = $location.search();
     var id = searchObject['id'];
     console.log(id);
 
     reviewID = id;
-
-
-
-
 
     if (reviewID != userID && accessToken != undefined) {
         $("#reviewForm").show();
