@@ -38,7 +38,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     function getSuggestions() {
         serverGet.getSuggestions(accessToken, $scope)
     }
-    
+
     scope.markRead = function() {
         serverGet.markRead(accessToken, $scope);
     }
