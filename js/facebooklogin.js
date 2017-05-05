@@ -99,6 +99,9 @@ window.fbAsyncInit = function() {
                 scope.getItem();
             }
 
+            if (window.location.href.indexOf("user.html") > -1) {
+                scope.checkIfReviewingSelf(accessToken, userID);
+            }
 
             //scope.getNotifications(accessToken);
             
@@ -221,6 +224,10 @@ function getFbUserData(){
             if (window.location.href.indexOf("item.html") > -1) {
                 scope.getSuggestions();
                 scope.getItem();
+            }
+
+            if (window.location.href.indexOf("user.html") > -1) {
+                scope.checkIfReviewingSelf(accessToken, userID);
             }
 
 

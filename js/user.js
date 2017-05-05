@@ -78,8 +78,10 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
 
     reviewID = id;
 
-    if (reviewID != userID && accessToken != undefined) {
-        $("#reviewForm").show();
+    scope.checkIfReviewingSelf = function(accessToken, userID) {
+        if (reviewID != userID && accessToken != undefined) {
+            $("#reviewForm").show();
+        }
     }
 
     
@@ -95,37 +97,34 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
 
 
 
-    scope.getListedItemsForUsers = function(reviewID) {
-        serverGet.getListedItemsForUsers(reviewID, $scope)
-    }
+    
+    serverGet.getListedItemsForUsers(reviewID, $scope)
+    
 
 
     $scope.soldItems = []
 
 
 
-    scope.getSoldItemsForUsers = function(reviewID) {
-        serverGet.getSoldItemsForUsers(reviewID, $scope)
-    }
+    
+    serverGet.getSoldItemsForUsers(reviewID, $scope)
+    
 
 
     $scope.reviews = []
 
-    scope.getReviews = function(reviewID) {
-        serverGet.getReviews(reviewID, $scope)
-    }
+
+    serverGet.getReviews(reviewID, $scope)
+    
 
     
     $scope.reviewers = []
     // loads reviewers images and names into the above
-    scope.getReviewerImagesandNames = function(reviewID) {
-        serverGet.getReviewerImagesandNames(reviewID, $scope)
-    }
+
+    serverGet.getReviewerImagesandNames(reviewID, $scope)
+    
 
 
-
-
-   
 
     scope.markRead = function() {
         serverGet.markRead(accessToken, $scope)
