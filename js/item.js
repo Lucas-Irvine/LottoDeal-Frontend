@@ -55,6 +55,10 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     }
 
 
+    scope.getItem = function () {
+        serverGet.getItem(id, $scope, accessToken, userID);
+    }
+
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document);
     }

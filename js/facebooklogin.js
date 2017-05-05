@@ -96,6 +96,7 @@ window.fbAsyncInit = function() {
 
             if (window.location.href.indexOf("item.html") > -1) {
                 scope.getSuggestions();
+                scope.getItem();
             }
 
 
@@ -219,6 +220,7 @@ function getFbUserData(){
 
             if (window.location.href.indexOf("item.html") > -1) {
                 scope.getSuggestions();
+                scope.getItem();
             }
 
 
