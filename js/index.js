@@ -5,7 +5,7 @@ var app = angular.module("index_app", ["serverModule"])
 // function to delete a given item 
 function deleteItem () {
         // get all the accounts for all posts
-    var deleteUrl = "https://localhost:8000/deleteItem";
+    var deleteUrl = "https://162.243.121.223:8000//deleteItem";
     var data = {
         id: "CORRECT ID HERE"
     }
