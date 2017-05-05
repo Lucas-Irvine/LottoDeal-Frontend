@@ -103,7 +103,7 @@ window.fbAsyncInit = function() {
                 scope.checkIfReviewingSelf(accessToken, userID);
             }
 
-            //scope.getNotifications(accessToken);
+            scope.getNotifications(accessToken);
             
             console.log(accessToken + "saving accessToken as a global variable when logging in ")
         });
@@ -232,7 +232,7 @@ function getFbUserData(){
 
 
 
-            // scope.getNotifications(accessToken);
+            scope.getNotifications(accessToken);
             console.log(accessToken + "saving accessToken as a global variable")
 
             // Save user data

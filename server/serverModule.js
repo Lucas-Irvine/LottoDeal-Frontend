@@ -274,8 +274,8 @@ function serverGet(dateFunctions) {
 	        },
 	        success: function(data) {
 	            var parsed = JSON.parse(data)
-	            console.log(parsed);
-	            console.log(parsed._id)
+	            //console.log(parsed);
+	            //console.log(parsed._id)
 
 	            // amount raised
 	            parsed.percentageRaised = (Number(parsed.amountRaised) / Number(parsed.price)) * 100;
