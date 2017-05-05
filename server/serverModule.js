@@ -273,7 +273,6 @@ function serverGet(dateFunctions) {
 	            }
 	        },
 	        success: function(data) {
-	            console.log(data)
 	            var parsed = JSON.parse(data)
 	            console.log(parsed);
 	            console.log(parsed._id)
@@ -749,7 +748,7 @@ function serverGet(dateFunctions) {
         var dataGET = {
             itemID: itemID
         }
-        console.log('Asking for Reviews')
+        console.log('Asking for Reviews of Seller')
         $.ajax({
             url: url,
             data: dataGET,
