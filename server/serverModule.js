@@ -891,8 +891,8 @@ function serverPost() {
 	                    	401: function(response) {
 	                    		console.log("Oops, you can't bid on this item anymore!")
 	                    		BootstrapDialog.show({
-			                        title: 'Bid surpasses item price',
-			                        message: 'Choose a lower bid or search for similar items',
+			                        title: "Oops, you can't bid on this item anymore!",
+			                        message: 'Your credit card was not charged. This item is either expired or sold.',
 			                        buttons: [{
 			                            id: 'btn-ok',
 			                            icon: 'glyphicon glyphicon-check',
