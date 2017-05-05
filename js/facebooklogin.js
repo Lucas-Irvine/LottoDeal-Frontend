@@ -31,8 +31,6 @@ function checkIfUser(accessToken, callback) {
 // Check if a form is okay to submit before acces
 // http://stackoverflow.com/questions/40711082/call-a-javascript-function-before-action-in-html-form
 function sellCheck() {
-//do something here
-
     if (accessToken != undefined) {
         checkIfUser(accessToken, function(){
             if (status == 'true') {
@@ -53,8 +51,7 @@ function sellCheck() {
         document.getElementById('loginMessage').innerHTML = 'You must login before you are able to sell an item!';
         showLoginPopup();
         return false;
-    }
-  
+    }  
 }
 
 
@@ -113,21 +110,6 @@ window.fbAsyncInit = function() {
     });
 
 
-
-    // only used for sell page to make the action of selling invalid
-    // change this later to do the same as index bidding where you use
-    // checkuser 
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            console.log("you're connected")
-            //display user data
-            $('#submitForm').attr('action', 'https://localhost:8000/createPost');
-            $('#submitButton').attr('onclick', '');
-        } else {
-            $('#submitButton').attr('onclick', 'sellLoginCheck()');
-            $('#submitForm').attr('action', '');
-        }
-    });
 
 
 
