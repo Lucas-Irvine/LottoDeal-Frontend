@@ -316,6 +316,8 @@ function serverGet(dateFunctions) {
 	}
 
     this.markRead = function(accessToken, $scope) {
+    	var itemIDs = [];
+
     	var readurl = "https://localhost:8000/markRead";
         // var userID = localStorage.getItem("curUserID")
 
