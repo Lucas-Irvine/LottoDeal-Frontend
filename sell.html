@@ -199,7 +199,7 @@
         </div>
     </div>
 
-    <form class = "sellForm" onclick = "" id="submitForm" action="" method="post" enctype="multipart/form-data" >
+    <form class = "sellForm" id="submitForm" action="https://localhost:8000/createPost" method="post" enctype="multipart/form-data" onsubmit="return sellCheck()">
 
         <div class="contentform">
            <div class="form-group">
@@ -262,7 +262,7 @@
 
         </div>
 
-        <input name="userID" id="userid" value="default" style="display: none"/>
+        <input name="accessToken" id="accessToken" value="default" style="display: none"/>
         <button type="submit" class="sellButton green" id = "submitButton">Send</button>
 
     </form>

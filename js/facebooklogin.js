@@ -1,9 +1,9 @@
-function checkIfUser(userID, callback) {
+function checkIfUser(accessToken, callback) {
     // get all the accounts for all posts
     var checkURL = "https://localhost:8000/checkIfUser";
 
     var data = {
-        userID: userID
+        accessToken: accessToken
     }
 
     $.ajax({
@@ -16,7 +16,7 @@ function checkIfUser(userID, callback) {
             if (status == "false") {
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
                 showLoginPopup();
-                console.log('UserID is null')
+                console.log('accessToken is null')
             }
             callback();
         },
@@ -26,6 +26,37 @@ function checkIfUser(userID, callback) {
         }
     });
 }
+
+
+// Check if a form is okay to submit before acces
+// http://stackoverflow.com/questions/40711082/call-a-javascript-function-before-action-in-html-form
+function sellCheck() {
+//do something here
+
+    if (accessToken != undefined) {
+        checkIfUser(accessToken, function(){
+            if (status == 'true') {
+                //to submit the form
+                return true;
+            }
+            else {
+                document.getElementById('loginMessage').innerHTML = 'You must login and logout before you are able to sell an item!';
+                showLoginPopup();
+                // to not submit the form
+                return false;
+            }
+
+
+        });
+    }
+    else {
+        document.getElementById('loginMessage').innerHTML = 'You must login before you are able to sell an item!';
+        showLoginPopup();
+        return false;
+    }
+  
+}
+
 
 
 $('#loginPopup').on('hidden.bs.modal', function () {
@@ -55,20 +86,24 @@ window.fbAsyncInit = function() {
 
      FB.api('/me', {locale: 'en_US', fields: 'id'},
         function (response) {
-            //localStorage.setItem("curUserID", response.id);
+            //localStorage.setItem("curaccessToken", response.id);
             accessToken = response.authResponse.accessToken;
-            $("#userid").val(userID)
-            scope.getNotifications(userID);
-            // checkIfUser(userID);
-            console.log(userID + "saving UserID as a global variable when logging in ")
+
+            // sell page
+            if ($("#accessToken") != undefined) {
+                $("#accessToken").val(accessToken);
+            }
+            scope.getNotifications(accessToken);
+            // checkIfUser(accessToken);
+            console.log(accessToken + "saving accessToken as a global variable when logging in ")
         });
 
-            //saveUserID();
+            //saveaccessToken();
             console.log('logged in')
             // Get and display the user profile data
         }
         else {
-            userID = undefined;
+            accessToken = undefined;
             console.log('Not logged in');
             document.getElementById('successScreen').innerHTML = "";
             document.getElementById('login').innerHTML = 'Login';
@@ -181,9 +216,9 @@ function fbLogin() {
 // Logout from facebook
 function fbLogout() {
     //delete local storage
-    // delete localStorage.curUserID;
+    // delete localStorage.curaccessToken;
 
-    userID = undefined;
+    accessToken = undefined;
 
     FB.logout(function() {
         console.log('Successfully logged out')
@@ -193,11 +228,15 @@ function fbLogout() {
 function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
         function (response) {
-            //localStorage.setItem("curUserID", response.id);
+            //localStorage.setItem("curaccessToken", response.id);
             accessToken = response.authResponse.accessToken;
-            $("#userid").val(userID)
-            scope.getNotifications(userID);
-            console.log(userID + "saving UserID as a global variable")
+
+            // for sell page
+            if ($("#accessToken") != undefined) {
+                $("#accessToken").val(accessToken);
+            }
+            scope.getNotifications(accessToken);
+            console.log(accessToken + "saving accessToken as a global variable")
 
             // Save user data
             saveUserData(response);

@@ -333,12 +333,6 @@ $("#itemPicture").change(function(){
 
 
 
-
-
-
-
-
-
 //     // Facebook Login code -----------------------------------
 // window.fbAsyncInit = function() {
 //     FB.init({
