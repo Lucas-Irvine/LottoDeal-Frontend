@@ -50,8 +50,8 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
 
 
 
-    scope.getNotifications = function(userID) {
-        serverGet.getNotifications(userID, $scope);
+    scope.getNotifications = function(accessToken) {
+        serverGet.getNotifications(accessToken, $scope);
 
     }
 
@@ -140,12 +140,12 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
 	// mark all the notifications as read
 	scope.markRead = function() {
 
-        console.log(userID + "i'm in mark read iwth this person's user ID")
+        console.log(accessToken + "i'm in mark read iwth this person's user ID")
 		// AJAX POST TO SERVER
 	    var readurl = "https://localhost:8000/markRead";
 	    //var userID = localStorage.getItem("curUserID")
 	    var data = {
-	        userID: userID
+	        accessToken: accessToken
 	    }
 	    console.log('Asking for notifications')
 	    $.ajax({
@@ -222,7 +222,7 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
 
 	$scope.debugSubmit = function() {
 		var testUrl = "https://localhost:8000/debugPost"
-        var sellerID = userID;
+        var sellerID = accessToken;
 //		var sellerID = localStorage.getItem("curUserID")
 
 		var data = {
@@ -236,7 +236,7 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
 			You should buy it!",
 			shortDescription: "This is a short description for a great product.",
 			expirDate: "1",
-			userID: sellerID,
+			accessToken: sellerID,
 		}
 
 		$.ajax({
@@ -324,12 +324,6 @@ function readURL(input) {
 $("#itemPicture").change(function(){
     readURL(this);
 });
-
-
-
-
-
-
 
 
 

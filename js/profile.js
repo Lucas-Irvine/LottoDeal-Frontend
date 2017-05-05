@@ -216,7 +216,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                     items[i].expirationDate = "Lottery has expired!";                     
                 }
                 else if (items[i].sold) {
-                    items[i].expirationDate = "Winner:" + items[i].winnerName;
+                    items[i].expirationDate = "Winner: " + items[i].winnerName;
                 }
                 else if (hours < 0 || days < 0) {
                      items[i].expirationDate = "Negative days remaining (not expired yet)";   
@@ -338,7 +338,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", functi
                     items[i].expirationDate = "Lottery has expired!";                     
                 }
                 else if (items[i].sold) {
-                    items[i].expirationDate = "Item was sold to:" + items[i].winnerName;
+                    items[i].expirationDate = "Winner: " + items[i].winnerName;
                 }
                 else if (hours < 0 || days < 0) {
                      items[i].expirationDate = "Negative days remaining (not expired yet)";   
