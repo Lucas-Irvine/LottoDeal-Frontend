@@ -23,7 +23,7 @@ function createReviewFunction() {
     // console.log(id);
 
 
-    var url = "https://localhost:8000/createReview";
+    var url = "https://162.243.121.223:8000/createReview";
 
         console.log(numStars);
 
