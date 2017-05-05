@@ -62,64 +62,65 @@
 
 <body ng-controller="profileController" ng-cloak> <!-- hides until content loads -->
 
-    <!-- Navigation -->
-    <nav id = "navbar-unique" class="navbar navbar-fixed-top row" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="col-sm-3">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <img id="logoimg" src="ldlogo.png" alt="Home">
-                    </a>
-                </div>
+<!-- Navigation -->
+<nav id = "navbar-unique" class="navbar navbar-fixed-top row" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="col-sm-3">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Home</a>
             </div>
+        </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <div class="col-lg-9">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
-                                <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="col-lg-9">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
+                        <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
 
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText" value="">
-                                        <div class="input-group-btn">
-                                            <button type="submit" class="btn btn-success search-btn"><span class="glyphicon glyphicon-search"></span></button>
-                                        </div>
-                                    </div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText" value="">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-success search-btn"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
-                            </form>
-                        </li>
-                        <li>
-                            <a id = "home" class="sliding-middle-out" href="index.html">
-                                Home
-                            </a>
-                            </a>
-                        </li>
-                        <li>
-                            <a id = "sell" class="sliding-middle-out" href="sell.html">Sell</a>
-                        </li>
-
-                        <li id="notification_li">
-                            <a id="notifications" class="sliding-middle-out" ><i class="fa fa-fw fa-bell-o"></i><span id="notification_count" ng-cloak>{{notificationLength}}</span>
-                            </a>
-
-                            <div id="notificationContainer">
-                                <div id="notificationTitle"> Notifications
                             </div>
-                            <div id="notificationsBody" class="notifications">
-                                <div ng-repeat="notification in notifications">
-                                    <div ng-class="{notificationRead: notification.read == true, notificationUnread: notification.read == false}">
-                                        <h4 class="item-title"><a href="item.html#!/?id={{notification.itemID}}">{{notification.title}}</a></h4>
-                                        <p class="item-info">{{notification.description}}</p>
+                        </div>
+                    </form>
+                </li>
+                <li>
+                    <a id = "home" class="sliding-middle-out" href="index.html">Home</a>
+                </li>
+                <li>
+                    <a id = "sell" class="sliding-middle-out" href="sell.html">Sell</a>
+                </li>
+
+                <li id="notification_li">
+                    <a id="notifications" class="sliding-middle-out" ><i class="fa fa-fw fa-bell-o"></i><span id="notification_count" ng-cloak>{{notificationLength}}</span>
+                    </a>
+
+                    <div id="notificationContainer">
+                        <div id="notificationTitle"> Notifications
+                        </div>
+                        <div id="notificationsBody" class="notifications">
+                            <div ng-repeat="notification in notifications | limitTo: -5">
+                                <div ng-class="{'notificationRead': notification.read == true, 'notificationUnread': notification.read == false}">
+                                    <div class="notificationText">
+                                        <div class = "col-xs-3">
+                                            <img ng-src="{{images[$index]}}" height="50px" width="50px" class="img-rounded notificationPic">
+                                        </div>
+                                        <p class="item-info">
+                                            <span class="item-title"><a href="item.html#!/?id={{notification.itemID}}">{{notification.title}}:&nbsp;</a></span>
+                                            {{notification.description}}
+                                        </p>
                                         <p class="item-date">{{notification.datePosted}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <!--< div id="notificationFooter"><a href="#">See All</a> -->
-                            <!--</div>-->
-                </div>
+                        </div>
+                        <!--< div id="notificationFooter"><a href="#">See All</a> -->
+                        <!--</div>-->
+                    </div>
 
 
 
@@ -131,13 +132,11 @@
                 <li>
                     <a href = "#" id = "login" class="sliding-middle-out" style="cursor: pointer;" onclick = "showLoginPopup()">Login</a>
                 </li>
-                </ul>
-            </div>
+            </ul>
         </div>
-        <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+    </div>
+    <!-- /.container -->
+</nav>
 
 
     <div class="container">
