@@ -103,6 +103,18 @@ window.fbAsyncInit = function() {
                 scope.checkIfReviewingSelf(accessToken, userID);
             }
 
+
+            if (window.location.href.indexOf("profile.html") > -1) {
+                scope.getAccount();
+                scope.getBidsOfUsers();
+                scope.getBiddedItemsOfUsers();
+                scope.getListedItemsForUsers();
+                scope.getSoldItemsForUsers();
+                scope.getReviews();
+                scope.getReviewerImagesAndNames();
+            }
+
+
             scope.getNotifications(accessToken);
             
             console.log(accessToken + "saving accessToken as a global variable when logging in ")
@@ -230,6 +242,16 @@ function getFbUserData(){
                 scope.checkIfReviewingSelf(accessToken, userID);
             }
 
+
+            if (window.location.href.indexOf("profile.html") > -1) {
+                scope.getAccount();
+                scope.getBidsOfUsers();
+                scope.getBiddedItemsOfUsers();
+                scope.getListedItemsForUsers();
+                scope.getSoldItemsForUsers();
+                scope.getReviews();
+                scope.getReviewerImagesAndNames();
+            }
 
 
             scope.getNotifications(accessToken);

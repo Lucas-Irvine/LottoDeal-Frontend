@@ -38,9 +38,13 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
 
     scope = $scope;
 
+    $scope.notificationLength = 0;
+
     $scope.account = []
 
-    serverGet.getAccount(accessToken, $scope);
+    scope.getAccount = function() {
+        serverGet.getAccount(accessToken, $scope);
+    }
 
     scope.getNotifications = function(accessToken) {
         serverGet.getNotifications(accessToken, $scope);
@@ -53,33 +57,48 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
         serverGet.markRead(accessToken, $scope);
     }
 
-
-    serverGet.getBidsOfUsers(accessToken, $scope);
+    scope.getBidsOfUsers = function() {
+        serverGet.getBidsOfUsers(accessToken, $scope);
+    }
+    
 
 
     var itemIDs = [];
 
-    serverGet.getBiddedItemsOfUsers(accessToken, $scope);
+    scope.getBiddedItemsOfUsers = function() {
+        serverGet.getBiddedItemsOfUsers(accessToken, $scope);
+    }
     
-
-    serverGet.getListedItemsForUsers(userID, $scope);
+    
+    scope.getListedItemsForUsers = function() {
+        serverGet.getListedItemsForUsers(userID, $scope);
+    }
 
     $scope.soldItems = []
 
+    scope.getSoldItemsForUsers = function() {
+        serverGet.getSoldItemsForUsers(userID, $scope);
+    }
 
-    serverGet.getSoldItemsForUsers(userID, $scope);
+   
 
 
     //Start reviews
     $scope.reviews = []
 
 
-    serverGet.getReviews(userID, $scope);
+    scope.getReviews = function() {
+        serverGet.getReviews(userID, $scope);
+    }
+
+    scope.getReviewerImagesAndNames = function() {
+        serverGet.getReviewerImagesAndNames(userID, $scope);
+    }
 
 
     $scope.reviewers = []
 
-    serverGet.getReviewerImagesAndNames(userID, $scope);
+    
 
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
