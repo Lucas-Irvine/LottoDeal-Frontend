@@ -253,7 +253,7 @@ function serverGet(dateFunctions) {
         }
 	}
 
-	this.getItem = function(id, $scope) {
+	this.getItem = function(id, $scope, accessToken) {
 		var url = "https://localhost:8000/getItem"
 
 		$.ajax({
