@@ -1,6 +1,9 @@
+var prodUrl = "https://162.243.121.223:8000/";
+var debug = "https://localhost:8000/"
+
 function checkIfUser(accessToken, callback) {
     // get all the accounts for all posts
-    var checkURL = "https://localhost:8000/checkIfUser";
+    var checkURL = prodUrl + "checkIfUser";
 
     var data = {
         accessToken: accessToken
@@ -263,7 +266,7 @@ function getFbUserData(){
 
 function saveUserData(response) {
 
-      var url = "https://localhost:8000/createUser";
+      var url = prodUrl + "createUser";
       
       console.log('Gender:' + response.gender);
       console.log('Age max: ' + response.age_range.max);
