@@ -795,7 +795,7 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
-	this.getBiddedItemsOfUsers = function(accessToken) {
+	this.getBiddedItemsOfUsers = function(accessToken, $scope) {
 		var url = "https://localhost:8000/getBiddedItemsofUsers";
 	    var dataGET = {
 	        accessToken: accessToken
@@ -890,6 +890,24 @@ function serverPost() {
 	                    statusCode: {
 	                    	401: function(response) {
 	                    		console.log("Oops, you can't bid on this item anymore!")
+	                    		BootstrapDialog.show({
+			                        title: 'Bid surpasses item price',
+			                        message: 'Choose a lower bid or search for similar items',
+			                        buttons: [{
+			                            id: 'btn-ok',
+			                            icon: 'glyphicon glyphicon-check',
+			                            label: 'OK',
+			                            cssClass: 'btn-primary',
+			                            data: {
+			                                js: 'btn-confirm',
+			                                'user-id': '3'
+			                            },
+			                            autospin: false,
+			                            action: function(dialogRef) {
+			                                dialogRef.close();
+			                            }
+			                        }]
+			                    });
 	                    	},
 		                    404: function(response) {
 		                        var newDoc = document.open("text/html", "replace");
@@ -925,6 +943,18 @@ function serverPost() {
 	                        else if (page == "user") {
 		                        for (var i = 0; i < $scope.listedItems.length; i++) {
 		                            post = $scope.listedItems[i]
+		                            console.log(itemID)
+		                            if (post["_id"] == itemID) {
+		                                var newPrice = post.amountRaised + amountToCharge;
+		                                post.amountRaised = newPrice;
+		                                post.percentageRaised = (newPrice / post.price) * 100;
+		                                break;
+		                            }
+		                        }
+	                        }
+	                        else if (page == "profile") {
+		                        for (var i = 0; i < $scope.items.length; i++) {
+		                            post = $scope.items[i]
 		                            console.log(itemID)
 		                            if (post["_id"] == itemID) {
 		                                var newPrice = post.amountRaised + amountToCharge;
