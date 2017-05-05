@@ -31,13 +31,17 @@ var app = angular.module("profile_app", ["serverModule"])
 app.controller("profileController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
     $scope.selectedTab = 0
 
+    scope = $scope;
+
     $scope.bids = []
     $scope.items = []
     $scope.listedItems = []
 
+    $scope.account = []
 
-    scope = $scope;
-    
+    serverGet.getAccount(accessToken, $scope);
+
+
     scope.getNotifications = function(accessToken) {
         serverGet.getNotifications(accessToken, $scope);
     }
@@ -78,9 +82,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     serverGet.getReviewerImagesAndNames(userID, $scope);
 
     
-    $scope.account = []
 
-    serverGet.getAccount(accessToken, $scope);
 
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
