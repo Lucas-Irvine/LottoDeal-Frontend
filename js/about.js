@@ -17,3 +17,4 @@ app.controller("aboutController", ["$scope", "$rootScope", "$location", "serverG
         serverGet.markRead(accessToken, $scope);
     }
 }
+]);
