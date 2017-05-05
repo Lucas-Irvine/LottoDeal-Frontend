@@ -16,7 +16,7 @@ html {
 /* You can change the height of the carousel by changing the height in the class below */
 
 .carousel {
-    height: 70%;
+    /*height: 70%;*/
 }
 
 .item,
