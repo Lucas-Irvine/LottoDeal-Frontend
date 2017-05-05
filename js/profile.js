@@ -51,7 +51,7 @@ function updateSettings() {
 var scope;
 
 
-var app = angular.module("profile_app", ["ngRoute"])
+var app = angular.module("profile_app", ["serverModule"])
 
 app.controller("profileController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
     $scope.selectedTab = 0
