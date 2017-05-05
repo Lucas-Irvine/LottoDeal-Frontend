@@ -1,3 +1,4 @@
+var app = angular.module("about_app", ["serverModule"])
 var scope;
 
 app.controller("aboutController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
