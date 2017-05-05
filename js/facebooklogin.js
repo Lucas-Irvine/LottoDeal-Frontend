@@ -83,8 +83,7 @@ window.fbAsyncInit = function() {
             accessToken = response.authResponse.accessToken;
 
 
-     FB.api('/me', {locale: 'en_US', fields: 'id'},
-        function (response) {
+   
             //localStorage.setItem("curaccessToken", response.id);
             
 
@@ -92,7 +91,7 @@ window.fbAsyncInit = function() {
             if ($("#accessToken") != undefined) {
                 $("#accessToken").val(accessToken);
             }
-            userID = response.id;
+            userID = response.authResponse.userID;;
 
             if (window.location.href.indexOf("item.html") > -1) {
                 scope.getSuggestions();
@@ -118,7 +117,7 @@ window.fbAsyncInit = function() {
             scope.getNotifications(accessToken);
             
             console.log(accessToken + "saving accessToken as a global variable when logging in ")
-        });
+    
 
             //saveaccessToken();
             console.log('logged in')
