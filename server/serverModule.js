@@ -423,7 +423,7 @@ function serverGet(dateFunctions) {
 }
 
 function serverPost() {
-	this.bid = function(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document) {
+	this.bid = function(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, page) {
 		var handler = StripeCheckout.configure({
 	        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
 	        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
@@ -451,13 +451,38 @@ function serverPost() {
 	                    success: function(data) {
 	                        console.log('success payment and bid added')
 	                        console.log(data);
-
-	                        post = $scope.post
-	                        console.log(itemID)
-	                        if (post["_id"] == itemID) {
-	                            var newPrice = post.amountRaised + amountToCharge;
-	                            post.amountRaised = newPrice;
-	                            post.percentageRaised = (newPrice / post.price) * 100;
+	                        if (page == "item") {
+	                        	post = $scope.post
+		                        console.log(itemID)
+		                        if (post["_id"] == itemID) {
+		                            var newPrice = post.amountRaised + amountToCharge;
+		                            post.amountRaised = newPrice;
+		                            post.percentageRaised = (newPrice / post.price) * 100;
+		                        }
+	                        }
+	                        else if (page == "index") {
+	                        	for (var i = 0; i < $scope.posts.length; i++) {
+		                            post = $scope.posts[i]
+		                            console.log(itemID)
+		                            if (post["_id"] == itemID) {
+		                                var newPrice = post.amountRaised + amountToCharge;
+		                                post.amountRaised = newPrice;
+		                                post.percentageRaised = (newPrice / post.price) * 100;
+		                                break;
+		                            }
+		                        }
+	                        }
+	                        else if (page == "user") {
+		                        for (var i = 0; i < $scope.listedItems.length; i++) {
+		                            post = $scope.listedItems[i]
+		                            console.log(itemID)
+		                            if (post["_id"] == itemID) {
+		                                var newPrice = post.amountRaised + amountToCharge;
+		                                post.amountRaised = newPrice;
+		                                post.percentageRaised = (newPrice / post.price) * 100;
+		                                break;
+		                            }
+		                        }
 	                        }
 
 	                        $scope.$apply()
