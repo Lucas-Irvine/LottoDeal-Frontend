@@ -49,7 +49,6 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
     $scope.notificationLength = 0;
 
 
-
     scope.getNotifications = function(accessToken) {
         serverGet.getNotifications(accessToken, $scope);
 
