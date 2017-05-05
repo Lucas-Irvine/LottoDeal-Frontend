@@ -6,10 +6,10 @@ $('#myTabs a').click(function(e) {
     $(this).tab('show')
 });
 
-var sellerID;
-var userID;
-var accessToken;
-var scope;
+// var sellerID;
+// var userID;
+// var accessToken;
+// var scope;
 
 //Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
 function changeTab(titleID, id) {
