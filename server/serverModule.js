@@ -636,6 +636,59 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	this.getAccount = function(accessToken, $scope) {
+		var url = "https://localhost:8000/getAccount";
+
+	    var dataGET = {
+	        accessToken: accessToken
+	    }
+	    console.log('Asking for account info')
+
+	    $.ajax({
+	        url: url,
+	        data: dataGET,
+	        type: 'GET',
+	        success: function(data) {
+	            var account = JSON.parse(data)
+	            console.log("Here's your account for another user" + account)
+
+
+
+	            document.getElementById('profileName').innerHTML = account.fullName;
+	            document.getElementById('profileImage').src = account.pictureURL;
+	            console.log(account.pictureURL);
+	            var reviews = account.reviews;
+	            var length = reviews.length;
+	            var total = 0;
+	            var average = 0;
+	            var averageRounded = 0;
+	            if (length != 0) {
+	                var total = 0;
+	                for (var i = 0; i < length; i++) {
+	                    total += parseInt(reviews[i].stars);
+	                }
+
+	                var average = total / length;
+	                var averageRounded = Math.round(average * 10) / 10
+	            } else {
+	                document.getElementById('averageRating').innerHTML = "No Ratings Yet";
+	            }
+
+	            var account = {
+	                averageRating: averageRounded,
+	            }
+
+	            $scope.account = account;
+	            $scope.$apply()
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+
+	}
+
 	this.testFunction = function() {
 		console.log("this function is working");
 	}
