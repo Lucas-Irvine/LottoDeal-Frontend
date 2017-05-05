@@ -121,7 +121,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
     $scope.reviewers = []
     // loads reviewers images and names into the above
 
-    serverGet.getReviewerImagesandNames(reviewID, $scope)
+    serverGet.getReviewerImagesAndNames(reviewID, $scope)
     
 
 
