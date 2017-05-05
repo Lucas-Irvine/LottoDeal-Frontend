@@ -67,6 +67,10 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
         serverPost.deleteItem(id, accessToken, $scope)
     }
 
+    scope.getItem = function () {
+        serverGet.getItem(id, $scope, accessToken, userID)
+    }
+
 }])
 
 function showLoginPopup() {
