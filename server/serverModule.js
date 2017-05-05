@@ -794,10 +794,22 @@ function serverPost() {
 	                    stripeToken: token.id,
 	                    amount: Number(amountToCharge)
 	                }
+
 	                $.ajax({
 	                    url: 'https://localhost:8000/performPaymentAndAddBid',
 	                    data: data,
 	                    type: 'POST',
+	                    statusCode: {
+	                    	401: function(response) {
+	                    		console.log("Oops, you can't bid on this item anymore!")
+	                    	},
+		                    404: function(response) {
+		                        var newDoc = document.open("text/html", "replace");
+		                        // console.log(response);
+		                        newDoc.write(response.responseText);
+		                        newDoc.close();
+		                    }
+		                },
 	                    success: function(data) {
 	                        console.log('success payment and bid added')
 	                        console.log(data);
@@ -984,6 +996,58 @@ function serverPost() {
         });
 	}
 
+	this.updateSettings = function(accessToken, email) {
+		var url = "https://localhost:8000/updateSettings";
+
+        console.log("updating your settings")
+
+        data = {
+            email: email,
+            accessToken: accessToken,
+        }
+
+        // AJAX POST TO SERVER
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function(data) {
+                console.log(data)
+            },
+            error: function(response, error) {
+                console.log(response)
+                console.log(error)
+            }
+        });
+	}
+
+	this.getBidsOfUsers = function(accessToken) {
+		var url = "https://localhost:8000/getBidsofUsers";
+
+	    var dataGET = {
+	        accessToken: accessToken
+	    }
+	    console.log('Asking for Bids')
+	    $.ajax({
+	        url: url,
+	        data: dataGET,
+	        type: 'GET',
+	        success: function(data) {
+	            var bids = JSON.parse(data)
+	            if (bids.length != 0) {
+	                $scope.bids = bids;
+	                console.log($scope.bids)
+	                $scope.$apply()
+	            } else {
+	                document.getElementById('BidCount').innerHTML = "No Bids Yet";
+	            }
+	        },
+	        error: function(response, error) {
+	            console.log(response)
+	            console.log(error)
+	        }
+	    });
+	}
 
 	this.testFunction = function() {
 		console.log("this function is working")
