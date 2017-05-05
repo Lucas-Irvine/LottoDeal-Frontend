@@ -48,6 +48,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     }
 
     $scope.images = []
+    $scope.notificationLength = 0;
 
     scope.getNotifications = function(accessToken) {
         console.log(accessToken + "in get notifications");
