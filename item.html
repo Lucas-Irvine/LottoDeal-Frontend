@@ -222,7 +222,7 @@
                         <div class="section-tabs">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="tablinks active" id="aboutTitleID"><a  aria-controls="about" role="tab" data-toggle="tab" onclick="changeTab('aboutTitleID', 'aboutID')">About</a></li>
-                                <li role="presentation" class="tablinks" id="reviewTitleID"><a  aria-controls="updates" role="tab" data-toggle="tab" onclick="changeTab('reviewTitleID', 'reviewID')">Updates</a></li>
+                                <li role="presentation" class="tablinks" id="reviewTitleID"><a  aria-controls="reviews" role="tab" data-toggle="tab" onclick="changeTab('reviewTitleID', 'reviewID')">Reviews</a></li>
                             </ul>
                         </div>
                     </div>
@@ -242,10 +242,12 @@
                                 <div class="update-information">
                                 <h1 class="section-title">REVIEWS</h1>
                                     <!--update items-->
+                                    <div ng-repeat="itemReview in itemReviews">
                                     <div class="update-post">
-                                        <h4 class="update-title">We've started shipping!</h4>
-                                        <span class="update-date">Posted 2 days ago</span>
-                                        <p>Suspendisse luctus at massa sit amet bibendum. Cras commodo congue urna, vel dictum velit bibendum eget. Vestibulum quis risus euismod, facilisis lorem nec, dapibus leo. Quisque sodales eget dolor iaculis dapibus. Vivamus sit amet lacus ipsum. Nullam varius lobortis neque, et efficitur lacus. Quisque dictum tellus nec mi luctus imperdiet. Morbi vel aliquet velit, accumsan dapibus urna. Cras ligula orci, suscipit id eros non, rhoncus efficitur nisi.</p>
+                                        <h4 class="update-title">{{itemReview.userID}}</h4>
+                                        <span class="update-date">Posted {{itemReview.datePosted}}</span>
+                                        <p> {{itemReview.reviewDes}}</p>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

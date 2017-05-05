@@ -744,6 +744,61 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+    this.getReviewsOfSeller = function(itemID, $scope) {
+        var url = "https://localhost:8000/getReviewsOfSeller";
+        var dataGET = {
+            itemID: itemID
+        }
+        console.log('Asking for Reviews')
+        $.ajax({
+            url: url,
+            data: dataGET,
+            type: 'GET',
+            statusCode: {
+                // 200: function(response) {
+                //     $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
+                // },
+                404: function(response) {
+                    var newDoc = document.open("text/html", "replace");
+                    console.log(response);
+                    newDoc.write(response.responseText);
+                    newDoc.close();
+                }
+            },
+            success: function (data) {
+                var items = JSON.parse(data)
+
+
+                var monthNames = [
+                    "January", "February", "March",
+                    "April", "May", "June", "July",
+                    "August", "September", "October",
+                    "November", "December"
+                ];
+
+                for (i = 0; i < items.length; i++) {
+
+
+                    var date = new Date(items[i].datePosted)
+                    var month = date.getMonth();
+                    var day = date.getDate();
+                    var year = date.getFullYear();
+                    var newDate = monthNames[month] + " " + day + ", " + year;
+                    items[i].datePosted = newDate;
+                    console.log(newDate);
+                }
+
+                $scope.itemReviews = items;
+                console.log($scope.itemReviews)
+                $scope.$apply()
+            },
+            error: function (response, error) {
+                console.log(JSON.stringify(response))
+                console.log(error)
+            }
+        });
+    }
+
 	this.getReviewerImagesAndNames = function(id, $scope) {
 		var url = "https://localhost:8000/getReviewerImagesandNames";
 	    var dataGET = {
