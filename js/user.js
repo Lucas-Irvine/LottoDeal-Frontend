@@ -428,7 +428,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
 
     serverGet.getPublicProfile($scope, id);
 
-    scope.getNotifications = function(accesToken) {
+    scope.getNotifications = function(accessToken) {
         serverGet.getNotifications(accessToken, $scope)
     }
 
