@@ -1,3 +1,7 @@
+var userID;
+var app = angular.module("app", []);
+var scope;
+
 var app = angular.module("item_app", ["serverModule"])
 
 $('#myTabs a').click(function(e) {
@@ -38,7 +42,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     function getSuggestions() {
         serverGet.getSuggestions(accessToken, $scope)
     }
-    
+
     scope.markRead = function() {
         serverGet.markRead(accessToken, $scope);
     }

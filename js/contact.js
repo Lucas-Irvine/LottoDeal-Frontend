@@ -3,7 +3,6 @@ var app = angular.module("app", []);
 var scope;
 
 var app = angular.module("contact_app", ["serverModule"])
-var scope;
 
 app.controller("contactController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
 

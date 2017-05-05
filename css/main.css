@@ -1186,8 +1186,8 @@ input:focus, textarea:focus {
 }
 
 #logoimg {
-    max-width: 50px;
     max-height: 50px;
+    margin-top: -15px;
 }
 
 .green:focus, .green:active {

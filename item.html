@@ -78,7 +78,7 @@
 
 
 
-    <body ng-controller="itemController" ng-cloak> <!-- hides until content loads -->
+<body ng-controller="itemController" ng-cloak> <!-- hides until content loads -->
     <!-- style="display:none;" -->
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -125,7 +125,7 @@
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notifications <span class="badge">{{notifications.length}}</span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-bell-o"></i>Notifications <span class="badge" ng-cloak>{{notifications.length}}</span></a>
 
                         <ul class="dropdown-menu notifications" role="menu">
                             <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
@@ -136,8 +136,8 @@
                                <div ng-repeat= "notification in notifications">
                                <a class="content" href="#">
                                 <div class="notification-item">
-                                    <h4 class="item-title">{{notification.title}}</h4>
-                                    <p class="item-info">{{notification.description}}</p>
+                                    <h4 class="item-title" ng-cloak>{{notification.title}}</h4>
+                                    <p class="item-info" ng-cloak >{{notification.description}}</p>
                                 </div>
                                 </a>
                                 </div>
@@ -194,18 +194,18 @@
                         <div class="funding-meta">
                             <!-- <span ng-click="editItem()"><i class="fa fa-pencil-square-o fa-2x" ng-show="canEdit" style="float:right; padding-left: 10px; cursor:pointer" aria-hidden="true"></i></span> -->
                             <span ng-click="deleteItem()"><i class="fa fa-trash-o fa-2x" style="float:right; cursor:pointer" aria-hidden="true" ng-show="canEdit"></i></span> <!-- these can also be anchor tags -->
-                            <h1 id="postTitle" ng-show="!editing">{{post.title}}</h1>
+                            <h1 id="postTitle" ng-show="!editing" ng-cloak>{{post.title}}</h1>
                             <h1 ng-show="editing" style="color: grey;" id="editTitle"><input type="text"/></h1>
                             
-                            <a class="type-meta" href="user.html#!/?id={{post.sellerID}}"><i class="fa fa-user"></i>{{post.sellerName}}</a>
+                            <a class="type-meta" href="user.html#!/?id={{post.sellerID}}" ng-cloak><i class="fa fa-user"></i>{{post.sellerName}}</a>
                            
 
                             <div class="video-frame">
                                <img ng-src="{{post.src}}" class="img-fluid full-img" id="centered-and-cropped" alt="">
                             </div>
-                            <p>{{post.shortDescription}}</p>
-                            <h2>${{post.amountRaised}}</h2>                            
-                            <span class="contribution">of <strong>${{post.price}}</strong> raised</span>
+                            <p ng-cloak>{{post.shortDescription}}</p>
+                            <h2 ng-cloak>${{post.amountRaised}}</h2>
+                            <span class="contribution" ng-cloak>of <strong>${{post.price}}</strong> raised</span>
                             <div class="progress">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:{{post.percentageRaised}}%">
                                     <span class="sr-only">45% Complete</span>
@@ -213,7 +213,7 @@
                             </div>
 
                         </div>
-                        <span class="count-down"><strong>{{post.hoursToGo}}</strong> Hours <strong>{{post.daysToGo}}</strong>Days left</span>
+                        <span class="count-down" ng-cloak><strong>{{post.hoursToGo}}</strong> Hours <strong>{{post.daysToGo}}</strong>Days left</span>
                          <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
                         <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
                         <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
@@ -237,8 +237,8 @@
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane tabcontent active" id="aboutID">
                                 <div class="about-information">
-                                    <h1 class="section-title">ABOUT {{post.titleUppercase}}</h1>
-                                    <p>{{post.longDescription}}</p>
+                                    <h1 class="section-title" ng-cloak>ABOUT {{post.titleUppercase}}</h1>
+                                    <p ng-cloak>{{post.longDescription}}</p>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane tabcontent" id="reviewID">
@@ -278,10 +278,10 @@
                         <!--reward blocks-->
                         <div ng-repeat="suggestion in suggestions">
                             <div class="reward-block">
-                                <h3>${{suggestion.price}}</h3>
-                                <h2>{{suggestion.title}}</h2>
-                                <p>{{suggestion.shortDescription}}</p>
-                                <span><i class="fa fa-users"></i> {{suggestion.bids.length}} bidders</span>
+                                <h3 ng-cloak>${{suggestion.price}}</h3>
+                                <h2 ng-cloak>{{suggestion.title}}</h2>
+                                <p ng-cloak>{{suggestion.shortDescription}}</p>
+                                <span ng-cloak><i class="fa fa-users"></i> {{suggestion.bids.length}} bidders</span>
                                 <a id="test" href="item.html#!/?id={{suggestion._id}}" target="_blank" class="btn btn-reward">Learn More</a>
                             </div>
                         </div>
@@ -317,10 +317,10 @@
 
 
 </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
 
-    <!-- Angular route -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+    <!-- AngularJS Include -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -335,12 +335,14 @@
     <script type='text/javascript' src="js/item.js"></script>
     <script type='text/javascript' src="js/facebooklogin.js"></script>
 
-
-<!-- server code import -->
-<script src="./utils/utils.js"></script>
-<script src="./server/serverModule.js"></script>
-
+    <!-- Custom script -->
     <script src="./js/notification.js"></script>
+
+
+
+    <!-- server code import -->
+    <script src="./utils/utils.js"></script>
+    <script src="./server/serverModule.js"></script>
 
 
     <!-- dynamic loading of pages -->
