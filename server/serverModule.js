@@ -273,7 +273,7 @@ function serverGet(dateFunctions) {
 	            }
 	        },
 	        success: function(data) {
-	            console.log(data["_id"])
+	            console.log(data)
 	            var parsed = JSON.parse(data)
 	            console.log(parsed);
 	            console.log(parsed._id)
