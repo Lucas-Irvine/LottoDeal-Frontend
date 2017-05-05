@@ -94,7 +94,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     }
 
     
-    var userid = userID;
+    // var userid = userID;
     // console.log(userid)
 
     $scope.canEdit = false;
