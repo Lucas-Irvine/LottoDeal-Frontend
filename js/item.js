@@ -56,7 +56,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
 
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
-        serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document);
+        serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "item");
     }
 
     $scope.getReviewsOfSeller = function(itemID, $scope) {
