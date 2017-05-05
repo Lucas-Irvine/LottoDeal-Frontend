@@ -36,7 +36,7 @@ function deleteItem () {
 var scope;
 
 
-app.controller("indexController", ["$scope", "$rootScope", "$location", "serverGet", function($scope, $rootScope, $location, serverGet) {
+app.controller("indexController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
 
     scope = $scope;
     $scope.selectedTab = 0
