@@ -108,6 +108,8 @@ function serverGet(dateFunctions) {
 	}
 
 	this.getNotifications = function(accessToken, $scope, itemIDs) {
+		var itemIDs = []
+
 		var notificationUrl = "https://localhost:8000/getNotifications";
 	    var dataGET = {
 	        accessToken: accessToken
