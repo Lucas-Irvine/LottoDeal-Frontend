@@ -38,6 +38,10 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
 
     scope = $scope;
 
+    $scope.account = []
+
+    serverGet.getAccount(accessToken, $scope);
+
     scope.getNotifications = function(accessToken) {
         serverGet.getNotifications(accessToken, $scope);
     }
@@ -76,11 +80,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     $scope.reviewers = []
 
     serverGet.getReviewerImagesAndNames(userID, $scope);
-
-    
-    $scope.account = []
-
-    serverGet.getAccount(accessToken, $scope);
 
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
