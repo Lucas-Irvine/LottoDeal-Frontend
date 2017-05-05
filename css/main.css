@@ -16,7 +16,7 @@ html {
 /* You can change the height of the carousel by changing the height in the class below */
 
 .carousel {
-    height: 70%;
+    /*height: 70%;*/
 }
 
 .item,
@@ -165,21 +165,24 @@ footer {
     /*background: #020621; */
     /*background: white;*/
     /*color: #fea680;*/
-    color: #E6E7E8;
+    /*color: #E6E7E8;*/
+    color:white;
     position: absolute;
     /*background-color: whitesmoke;*/
-    background-color: #131a22;
+    background-color: #3cc47c;
 }
 
 .footerlink
 {
-    color:#E6E7E8;
+    /*color:#E6E7E8;*/
+    color: white;
 }
 
 .footerlink:hover {
     text-decoration: none;
     /*color: #3cc47c;*/
-    color: #95999d;
+    /*color: #95999d;*/
+    color:gray;
 }
 
 
