@@ -186,12 +186,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 
     $scope.notificationLength = 0;
 
-
-
-    var itemIDs = [];
-
     scope.getNotifications = function(userID) {
-        serverGet.getNotifications(accessToken, $scope, itemIDs);
+        serverGet.getNotifications(accessToken, $scope);
     }
 
 
