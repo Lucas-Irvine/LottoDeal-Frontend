@@ -166,11 +166,12 @@ footer {
     /*background: white;*/
     color: #fea680;
     position: absolute;
+    background-color: whitesmoke;
 }
 
 .footerlink
 {
-    color: #fea680;
+    color: #3cc47c;
 }
 
 .footerlink:hover {
@@ -492,7 +493,13 @@ textarea:-ms-input-placeholder {
     background-position: center;
 }
 
+.btn-success {
+    background:#3cc47c;
+}
 
+.btn-success:hover  {
+    background:#99DEAB;
+}
 
 /* USER PROFILE PAGE */
 .card {
@@ -1249,4 +1256,5 @@ input:focus, textarea:focus {
     width: 100%;
     position: absolute;
 }
+
 
