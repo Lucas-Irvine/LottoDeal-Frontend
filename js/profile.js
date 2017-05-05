@@ -38,6 +38,8 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
 
     scope = $scope;
 
+    $scope.notificationLength = 0;
+
     $scope.account = []
 
     scope.getAccount = function() {
