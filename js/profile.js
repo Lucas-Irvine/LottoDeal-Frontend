@@ -36,13 +36,14 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
 
 
     function updateSettings() {
-    var email = $("#newEmail").val();
-    if (validateEmail(email)) {
-       serverPost.updateSettings(accessToken, email);
-    } else {
-        alert("Not a valid email address");
+        var email = $("#newEmail").val();
+        if (validateEmail(email)) {
+           serverPost.updateSettings(accessToken, email);
+           alert("Updated Your Settings!")
+        } else {
+            alert("Not a valid email address");
+        }
     }
-}
 
     scope.getAccount = function() {
         serverGet.getAccount(accessToken, $scope);
