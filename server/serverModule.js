@@ -879,8 +879,12 @@ function serverGet(dateFunctions) {
 	        data: dataGET,
 	        type: 'GET',
 	        success: function(data) {
-	            var items = JSON.parse(data)
+	            var allAccountsAndItems = JSON.parse(data)
+	            var items = allAccountsAndItems.items;
+
 	            for (i = 0; i < items.length; i++) {
+
+
 	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
 	                console.log("Raised" + items[i].percentageRaised);
 	                var expirationDate = new Date(items[i].expirationDate);
@@ -917,6 +921,12 @@ function serverGet(dateFunctions) {
 	                    items[i]["src"] = dataURL;
 	                }
 	            }
+
+	            var curBidsAccounts = allAccountsAndItems.curBidsAccounts;
+	            var oldBidsAccounts = allAccountsAndItems.oldBidsAccounts;
+	            
+	            $scope.curBidsAccounts = curBidsAccounts;
+	            $scope.oldBidsAccounts = oldBidsAccounts;
 	            $scope.items = items;
 	            console.log($scope.items)
 	            $scope.$apply()

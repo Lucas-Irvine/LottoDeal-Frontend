@@ -185,7 +185,7 @@
                     <h3 id = "BidCount"> Current Bids</h3>
                     <hr>
                     <div ng-repeat= "item in items">
-                        <div ng-show="item.sold == false">
+                        <div ng-show="item.sold == false && !item.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
                                 <div class="thumbnail" id="item">
                                     <div class="image-item img-fluid">
@@ -213,7 +213,7 @@
                                     
                                         <div class="ratings">
                                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                                Rating: {{accounts[$index].averageRating}} / 5
+                                                Rating: {{curBidsAccounts[$index].averageRating}} / 5
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-7">
                                                 <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
@@ -232,7 +232,7 @@
                     <h3 id = "BidCount"> Old Bids</h3>
                     <hr>
                     <div ng-repeat= "item in items">
-                        <div ng-show="item.sold == true">
+                        <div ng-show="item.sold == true || item.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
                                 <div class="thumbnail" id="item">
                                     <div class="image-item img-fluid">
@@ -259,7 +259,7 @@
                                         </div>
                                         <div class="ratings">
                                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                                Rating: {{accounts[$index].averageRating}} / 5
+                                                Rating: {{oldBidsAccounts[$index].averageRating}} / 5
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-7">
                                                 <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
