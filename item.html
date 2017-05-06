@@ -222,7 +222,7 @@
                         <div class="section-tabs">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="tablinks active" id="aboutTitleID"><a  aria-controls="about" role="tab" data-toggle="tab" onclick="changeTab('aboutTitleID', 'aboutID')">About</a></li>
-                                <li role="presentation" class="tablinks" id="reviewTitleID"><a  aria-controls="reviews" role="tab" data-toggle="tab" onclick="changeTab('reviewTitleID', 'reviewID')">Reviews</a></li>
+                                <li role="presentation" class="tablinks" id="reviewTitleID"><a  aria-controls="reviews" role="tab" data-toggle="tab" onclick="changeTab('reviewTitleID', 'reviewID')">Seller Reviews</a></li>
                             </ul>
                         </div>
                     </div>
@@ -244,9 +244,9 @@
                                     <!--update items-->
                                     <div ng-repeat="itemReview in itemReviews">
                                     <div class="update-post">
-                                        <h4 class="update-title">{{itemReview.userID}}</h4>
+                                        <h4 class="update-title">test{{itemReview.userID}}</h4>
                                         <span class="update-date">Posted {{itemReview.datePosted}}</span>
-                                        <p> {{itemReview.reviewDes}}</p>
+                                        <p> test{{itemReview.reviewDes}}</p>
                                     </div>
                                     </div>
                                 </div>

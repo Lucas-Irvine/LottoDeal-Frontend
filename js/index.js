@@ -29,7 +29,7 @@ function deleteItem () {
     });
 }
 
-
+console.log('test');
 
 var scope;
 
