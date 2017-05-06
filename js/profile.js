@@ -103,13 +103,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     $scope.reviewers = []
 
     
-
-
-    $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
-        serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "profile");
-    }
-    
-
     $scope.targetPost = null;
 
 }])
