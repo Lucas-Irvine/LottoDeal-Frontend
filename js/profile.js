@@ -39,7 +39,8 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
         var email = $("#newEmail").val();
         if (validateEmail(email)) {
            serverPost.updateSettings(accessToken, email);
-           alert("Updated Your Settings!")
+           $scope.email = email;
+           $("#newEmail").val("");
         } else {
             alert("Not a valid email address");
         }
