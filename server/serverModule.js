@@ -436,7 +436,7 @@ function serverGet(dateFunctions) {
 	        type: 'GET',
 	        success: function(data) {
 	            var allAccounts = JSON.parse(data)
-
+	            console.log(allAccounts);
 
 
 	            $scope.listedAccounts = allAccounts.listedAccounts;
@@ -453,7 +453,7 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
-	
+
 	this.getPublicAccount = function($scope, id) {
 		var url = prodUrl + "getPublicAccount";
 	    var dataGET = {
