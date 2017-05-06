@@ -14,14 +14,6 @@ function validateEmail(email) {
 }
 
 
-function updateSettings() {
-    var email = $("#newEmail").val();
-    if (validateEmail(email)) {
-       serverPost.updateSettings(accessToken, email);
-    } else {
-        alert("Not a valid email address");
-    }
-}
 
 var scope;
 
@@ -41,6 +33,16 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     $scope.notificationLength = 0;
 
     $scope.account = []
+
+
+    function updateSettings() {
+    var email = $("#newEmail").val();
+    if (validateEmail(email)) {
+       serverPost.updateSettings(accessToken, email);
+    } else {
+        alert("Not a valid email address");
+    }
+}
 
     scope.getAccount = function() {
         serverGet.getAccount(accessToken, $scope);
