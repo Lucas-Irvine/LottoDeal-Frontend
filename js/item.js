@@ -61,6 +61,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     }
 
     $scope.getReviewsOfSeller = function(itemID, $scope) {
+        console.log('Getting the reviews');
         serverGet.getReviewsOfSeller(itemID, $scope)
     }
 

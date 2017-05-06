@@ -240,14 +240,19 @@
                             </div>
                             <div role="tabpanel" class="tab-pane tabcontent" id="reviewID">
                                 <div class="update-information">
-                                <h1 class="section-title">REVIEWS</h1>
+                                <h1 class="section-title">SELLER REVIEWS</h1>
                                     <!--update items-->
                                     <div ng-repeat="itemReview in itemReviews">
                                     <div class="update-post">
-                                        <h4 class="update-title">test{{itemReview.userID}}</h4>
+                                        <h4 class="update-title">{{itemReview.userID}}</h4>
                                         <span class="update-date">Posted {{itemReview.datePosted}}</span>
-                                        <p> test{{itemReview.reviewDes}}</p>
+                                        <p> {{itemReview.reviewDes}}</p>
                                     </div>
+                                    </div>
+                                    <div class="update-post">
+                                        <h4 class="update-title">test</h4>
+                                        <span class="update-date">Posted test</span>
+                                        <p> test</p>
                                     </div>
                                 </div>
                             </div>
