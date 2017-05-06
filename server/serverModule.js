@@ -773,6 +773,7 @@ function serverGet(dateFunctions) {
                 }
             },
             success: function (data) {
+            	console.log('Got reviews of sellers');
                 var items = JSON.parse(data)
 
 
