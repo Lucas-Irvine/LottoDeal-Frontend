@@ -59,17 +59,16 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "item");
     }
-    console.log('preparing to get reviews');
-    $scope.getReviewsOfSeller = function(itemID, $scope) {
-        console.log('Getting the reviews!!!!');
-        serverGet.getReviewsOfSeller(itemID, $scope)
-    }
+
+
+    serverGet.getReviewsOfSeller(id, $scope)
+
 
     $scope.deleteItem = function() {
         serverPost.deleteItem(id, accessToken, $scope)
     }
 
-    scope.getItem = function () {
+    scope.getItem = function() {
         serverGet.getItem(id, $scope, accessToken, userID)
     }
 
