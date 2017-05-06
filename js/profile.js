@@ -35,7 +35,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     $scope.account = []
 
 
-    function updateSettings() {
+    $scope.updateSettings = function() {
         var email = $("#newEmail").val();
         if (validateEmail(email)) {
            serverPost.updateSettings(accessToken, email);
