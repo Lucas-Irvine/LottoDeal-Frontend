@@ -487,7 +487,7 @@
                 <!-- GET Account Information  -->
                 <div ng-model= "account">
                     <div class="jumbotron">
-                        <form class="form-horizontal" onsubmit = "updateSettings()">
+                        <form class="form-horizontal" ng-submit = "updateSettings()">
                             <fieldset>
                                 <h4>Current Email Address : {{email}}</h4>
                                 <!-- Text input-->
