@@ -426,9 +426,6 @@
                                         <div class=" col-lg-1 col-lg-md-2 col-sm-2 specialimage">
                                             <img id="reviewImage" ng-src="{{reviewers[$index].pictureURL}}">
                                         </div>
-
-
-
                                             <div class="review-block-name"><a href="user.html#!/?id={{reviewers[$index].fbid}}">{{reviewers[$index].fullName}}</a></div>
                                             <div class="review-block-date">Date Posted: {{review.datePosted}}</div>
                                         </div>
@@ -551,15 +548,18 @@
         var scope;
     </script>
 
-        <!-- utils code import -->
+    <!-- AngularJS Include -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+
+
+
+    <!-- utils code import -->
     <script src="./utils/utils.js"></script>
 
     <!-- server code import -->
     <script src="./server/serverModule.js"></script>
 
-
-    <!-- AngularJS Include -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    
 
     <script type='text/javascript' src="js/facebooklogin.js"></script>
     <script src="./js/profile.js"></script>
@@ -568,6 +568,7 @@
     <!-- Custom script -->
     <script src="./js/notification.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
 
     <!-- dynamic loading of pages -->
     <script src="js/tabs.js"></script>
