@@ -660,6 +660,10 @@ function serverGet(dateFunctions) {
 	            document.getElementById('profileName').innerHTML = account.fullName;
 	            document.getElementById('profileImage').src = account.pictureURL;
 	            console.log(account.pictureURL);
+	            
+	            $scope.email = account.email;
+
+
 	            var reviews = account.reviews;
 	            var length = reviews.length;
 	            var total = 0;
