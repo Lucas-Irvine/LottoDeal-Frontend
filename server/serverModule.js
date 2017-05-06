@@ -422,19 +422,28 @@ function serverGet(dateFunctions) {
         });
     }
 	
-
 	this.getAccountsForPosts = function($scope) {
 		var accountUrl = prodUrl + "getAccountsForPosts";
 
-	    $scope.accounts = []
+
+
+		$scope.listedAccounts = [];
+    	$scope.soldAccounts = [];
+    	$scope.expiredAccounts = [];
 
 	    $.ajax({
 	        url: accountUrl,
 	        type: 'GET',
 	        success: function(data) {
-	            var accounts = JSON.parse(data)
-	            $scope.accounts = accounts;
-	            console.log($scope.accounts)
+	            var allAccounts = JSON.parse(data)
+
+
+
+	            $scope.listedAccounts = allAccounts.listedAccounts;
+    			$scope.soldAccounts = allAccounts.soldAccounts;
+    			$scope.expiredAccounts = allAccounts.expiredAccounts;
+
+
 	            $scope.$apply()
 	        },
 	        error: function(response, error) {
@@ -444,6 +453,7 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	
 	this.getPublicAccount = function($scope, id) {
 		var url = prodUrl + "getPublicAccount";
 	    var dataGET = {
