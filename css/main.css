@@ -797,6 +797,7 @@ textarea:-ms-input-placeholder {
     display: table;
     font-size: 25px;
     font-weight:700;
+    word-wrap: break-word;
 }
 .type-meta {
     /*color:#A7A7A7;*/
