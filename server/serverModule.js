@@ -976,8 +976,7 @@ function serverGet(dateFunctions) {
 	            $scope.oldBiddedItems = oldBiddedItems;
 	            $scope.curBiddedItems = curBiddedItems;
 	            	            	            
-	            $scope.items = items;
-	            console.log($scope.items)
+
 	            $scope.$apply()
 	        },
 	        error: function(response, error) {
