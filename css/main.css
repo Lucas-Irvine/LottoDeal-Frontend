@@ -12,6 +12,10 @@ p {
     word-wrap: break-word;
 }
 
+h1 {
+    word-wrap: break-word;
+}
+
 /* For the carousel */
 html {
     height: 100%;
