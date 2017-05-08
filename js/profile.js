@@ -14,14 +14,6 @@ function validateEmail(email) {
 }
 
 
-function updateSettings() {
-    var email = $("#newEmail").val();
-    if (validateEmail(email)) {
-       serverPost.updateSettings(accessToken, email);
-    } else {
-        alert("Not a valid email address");
-    }
-}
 
 var scope;
 
@@ -41,6 +33,18 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     $scope.notificationLength = 0;
 
     $scope.account = []
+
+
+    $scope.updateSettings = function() {
+        var email = $("#newEmail").val();
+        if (validateEmail(email)) {
+           serverPost.updateSettings(accessToken, email);
+           $scope.email = email;
+           $("#newEmail").val("");
+        } else {
+            alert("Not a valid email address");
+        }
+    }
 
     scope.getAccount = function() {
         serverGet.getAccount(accessToken, $scope);
@@ -99,13 +103,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     $scope.reviewers = []
 
     
-
-
-    $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
-        serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "profile");
-    }
-    
-
     $scope.targetPost = null;
 
 }])

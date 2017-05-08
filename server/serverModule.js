@@ -422,19 +422,28 @@ function serverGet(dateFunctions) {
         });
     }
 	
-
 	this.getAccountsForPosts = function($scope) {
 		var accountUrl = prodUrl + "getAccountsForPosts";
 
-	    $scope.accounts = []
+
+
+		$scope.listedAccounts = [];
+    	$scope.soldAccounts = [];
+    	$scope.expiredAccounts = [];
 
 	    $.ajax({
 	        url: accountUrl,
 	        type: 'GET',
 	        success: function(data) {
-	            var accounts = JSON.parse(data)
-	            $scope.accounts = accounts;
-	            console.log($scope.accounts)
+	            var allAccounts = JSON.parse(data)
+	            console.log(allAccounts);
+
+
+	            $scope.listedAccounts = allAccounts.listedAccounts;
+    			$scope.soldAccounts = allAccounts.soldAccounts;
+    			$scope.expiredAccounts = allAccounts.expiredAccounts;
+
+
 	            $scope.$apply()
 	        },
 	        error: function(response, error) {
@@ -443,6 +452,7 @@ function serverGet(dateFunctions) {
 	        }
 	    });
 	}
+
 
 	this.getPublicAccount = function($scope, id) {
 		var url = prodUrl + "getPublicAccount";
@@ -660,6 +670,10 @@ function serverGet(dateFunctions) {
 	            document.getElementById('profileName').innerHTML = account.fullName;
 	            document.getElementById('profileImage').src = account.pictureURL;
 	            console.log(account.pictureURL);
+	            
+	            $scope.email = account.email;
+
+
 	            var reviews = account.reviews;
 	            var length = reviews.length;
 	            var total = 0;
@@ -769,6 +783,7 @@ function serverGet(dateFunctions) {
                 }
             },
             success: function (data) {
+            	console.log('Got reviews of sellers');
                 var items = JSON.parse(data)
 
 
@@ -864,8 +879,12 @@ function serverGet(dateFunctions) {
 	        data: dataGET,
 	        type: 'GET',
 	        success: function(data) {
-	            var items = JSON.parse(data)
+	            var allAccountsAndItems = JSON.parse(data)
+	            var items = allAccountsAndItems.items;
+
 	            for (i = 0; i < items.length; i++) {
+
+
 	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
 	                console.log("Raised" + items[i].percentageRaised);
 	                var expirationDate = new Date(items[i].expirationDate);
@@ -902,6 +921,12 @@ function serverGet(dateFunctions) {
 	                    items[i]["src"] = dataURL;
 	                }
 	            }
+
+	            var curBidsAccounts = allAccountsAndItems.curBidsAccounts;
+	            var oldBidsAccounts = allAccountsAndItems.oldBidsAccounts;
+	            
+	            $scope.curBidsAccounts = curBidsAccounts;
+	            $scope.oldBidsAccounts = oldBidsAccounts;
 	            $scope.items = items;
 	            console.log($scope.items)
 	            $scope.$apply()

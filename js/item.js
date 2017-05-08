@@ -60,15 +60,15 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "item");
     }
 
-    $scope.getReviewsOfSeller = function(itemID, $scope) {
-        serverGet.getReviewsOfSeller(itemID, $scope)
-    }
+
+    serverGet.getReviewsOfSeller(id, $scope)
+
 
     $scope.deleteItem = function() {
         serverPost.deleteItem(id, accessToken, $scope)
     }
 
-    scope.getItem = function () {
+    scope.getItem = function() {
         serverGet.getItem(id, $scope, accessToken, userID)
     }
 

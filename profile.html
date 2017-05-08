@@ -185,7 +185,7 @@
                     <h3 id = "BidCount"> Current Bids</h3>
                     <hr>
                     <div ng-repeat= "item in items">
-                        <div ng-show="item.sold == false">
+                        <div ng-show="item.sold == false && !item.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
                                 <div class="thumbnail" id="item">
                                     <div class="image-item img-fluid">
@@ -210,14 +210,10 @@
                                                  aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
                                             </div>
                                         </div>
-                                        <div class="row bid-buttons">
-                                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 1, item.amountRaised, item.price, item.title);" id="{{item._id}}">$1.00</button>
-                                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 2, item.amountRaised, item.price, item.title);" id="{{item._id}}">$2.00</button>
-                                            <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(item._id, 5, item.amountRaised, item.price, item.title);" id="{{item._id}}">$5.00</button>
-                                        </div>
+                                    
                                         <div class="ratings">
                                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                                Rating: {{accounts[$index].averageRating}} / 5
+                                                Rating: {{curBidsAccounts[$index].averageRating}} / 5
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-7">
                                                 <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
@@ -236,7 +232,7 @@
                     <h3 id = "BidCount"> Old Bids</h3>
                     <hr>
                     <div ng-repeat= "item in items">
-                        <div ng-show="item.sold == true">
+                        <div ng-show="item.sold == true || item.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
                                 <div class="thumbnail" id="item">
                                     <div class="image-item img-fluid">
@@ -263,7 +259,7 @@
                                         </div>
                                         <div class="ratings">
                                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                                Rating: {{accounts[$index].averageRating}} / 5
+                                                Rating: {{oldBidsAccounts[$index].averageRating}} / 5
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-7">
                                                 <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
@@ -311,14 +307,9 @@
                                              aria-valuemin="0" aria-valuemax="100" style="width:{{listedItem.percentageRaised}}%">
                                         </div>
                                     </div>
-                                    <div class="row bid-buttons">
-                                        <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 1, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$1.00</button>
-                                        <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 2, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$2.00</button>
-                                        <button type="button" class="btn btn-success btn-sm" buttonType="bidButton" ng-click="bid(listedItem._id, 5, listedItem.amountRaised, listedItem.price, listedItem.title);" id="{{listedItem._id}}">$5.00</button>
-                                    </div>
                                     <div class="ratings">
                                         <div class="col-lg-5 col-md-5 col-sm-5">
-                                            Rating: {{accounts[$index].averageRating}} / 5
+                                            Rating: {{account.averageRating}} / 5
                                         </div>
                                         <div class="col-lg-7 col-md-7 col-sm-7">
                                             <a href="user.html#!/?id={{listedItem.sellerID}}">Seller: {{listedItem.sellerName}}</a>
@@ -368,7 +359,7 @@
                                     </div>
                                     <div class="ratings">
                                         <div class="col-lg-5 col-md-5 col-sm-5">
-                                            Rating: {{accounts[$index].averageRating}} / 5
+                                            Rating: {{account.averageRating}} / 5
                                         </div>
                                         <div class="col-lg-7 col-md-7 col-sm-7">
                                             <a href="user.html#!/?id={{soldItem.sellerID}}">Seller: {{soldItem.sellerName}}</a>
@@ -395,7 +386,7 @@
                                 <div ng-model= "reviewData">
                                     <h3>Average Rating</h3>
                                     <hr>
-                                    <h2 id = "averageRating" class="bold padding-bottom-7">{{reviewData.averageRating}} <small>/ 5</small></h2>
+                                    <h2 id = "averageRating" class="bold padding-bottom-7">{{account.averageRating}} <small>/ 5</small></h2>
 
                                 </div>
 
@@ -409,12 +400,23 @@
                     <!-- GET Reviews  -->
                     <div ng-repeat= "review in reviews">
                         <div class="row">
+                            
+
+                         <div class="jumbotron">
+                            <div class="container-fluid">
+
+
                             <div class="col-sm-7">
                                 <hr/>
                                 <div class="review-block">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <img ng-src="{{reviewers[$index].pictureURL}}" class="img-rounded">
+
+
+
+                                        <div class=" col-lg-1 col-lg-md-2 col-sm-2 specialimage">
+                                            <img id="reviewImage" ng-src="{{reviewers[$index].pictureURL}}">
+                                        </div>
                                             <div class="review-block-name"><a href="user.html#!/?id={{reviewers[$index].fbid}}">{{reviewers[$index].fullName}}</a></div>
                                             <div class="review-block-date">Date Posted: {{review.datePosted}}</div>
                                         </div>
@@ -453,6 +455,14 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            </div>
+                            </div>
+
+
+
+
                         </div>
                     </div>
 
@@ -468,9 +478,9 @@
                 <!-- GET Account Information  -->
                 <div ng-model= "account">
                     <div class="jumbotron">
-                        <form class="form-horizontal" onsubmit = "updateSettings()">
+                        <form class="form-horizontal" ng-submit = "updateSettings()">
                             <fieldset>
-                                <h4>Current Email Address : {{account.email}}</h4>
+                                <h4>Current Email Address : {{email}}</h4>
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Change Your Email Address To</label>

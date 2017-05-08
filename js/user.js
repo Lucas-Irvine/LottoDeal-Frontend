@@ -154,10 +154,7 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
     $scope.itemTitle = ""
     $scope.price = 0
 
-    $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
-        serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "user");
-    }
-
+   
 
 
 }])

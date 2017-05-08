@@ -222,7 +222,7 @@
                         <div class="section-tabs">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="tablinks active" id="aboutTitleID"><a  aria-controls="about" role="tab" data-toggle="tab" onclick="changeTab('aboutTitleID', 'aboutID')">About</a></li>
-                                <li role="presentation" class="tablinks" id="reviewTitleID"><a  aria-controls="reviews" role="tab" data-toggle="tab" onclick="changeTab('reviewTitleID', 'reviewID')">Reviews</a></li>
+                                <li role="presentation" class="tablinks" id="reviewTitleID"><a  aria-controls="reviews" role="tab" data-toggle="tab" onclick="changeTab('reviewTitleID', 'reviewID')">Seller Reviews</a></li>
                             </ul>
                         </div>
                     </div>
@@ -240,13 +240,13 @@
                             </div>
                             <div role="tabpanel" class="tab-pane tabcontent" id="reviewID">
                                 <div class="update-information">
-                                <h1 class="section-title">REVIEWS</h1>
+                                <h1 class="section-title">SELLER REVIEWS</h1>
                                     <!--update items-->
                                     <div ng-repeat="itemReview in itemReviews">
                                     <div class="update-post">
                                         <h4 class="update-title">{{itemReview.userID}}</h4>
                                         <span class="update-date">Posted {{itemReview.datePosted}}</span>
-                                        <p> {{itemReview.reviewDes}}</p>
+                                        <p> {{itemReview.reviewDes}} - {{itemReview.stars}}/5 stars</p>
                                     </div>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@
                         </div>
                     </div>
                    <div class="section-block">
-                        <h1 class="section-title">Other Items</h1>
+                        <h1 class="section-title">Suggested Items</h1>
                         <!--reward blocks-->
                         <div ng-repeat="suggestion in suggestions">
                             <div class="reward-block">
