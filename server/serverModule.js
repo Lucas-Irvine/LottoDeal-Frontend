@@ -880,52 +880,95 @@ function serverGet(dateFunctions) {
 	        type: 'GET',
 	        success: function(data) {
 	            var allAccountsAndItems = JSON.parse(data)
-	            var items = allAccountsAndItems.items;
 
-	            for (i = 0; i < items.length; i++) {
+	            var oldBiddedItems = allAccountsAndItems.oldBiddedItems;
+	            var curBiddedItems = allAccountsAndItems.curBiddedItems;
+
+	            for (i = 0; i < oldBiddedItems.length; i++) {
 
 
-	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
-	                console.log("Raised" + items[i].percentageRaised);
-	                var expirationDate = new Date(items[i].expirationDate);
+	                oldBiddedItems[i].percentageRaised = (Number(oldBiddedItems[i].amountRaised) / Number(oldBiddedItems[i].price)) * 100;
+	                console.log("Raised" + oldBiddedItems[i].percentageRaised);
+	                var expirationDate = new Date(oldBiddedItems[i].expirationDate);
 	                var date = new Date();
-	                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+	                oldBiddedItems[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
 	            
 	                var hours = DateDiff.inHours(date, expirationDate)
 	                var days = DateDiff.inDays(date, expirationDate)
 
-	                if (items[i].expired) {
-	                    items[i].expirationDate = "Lottery has expired!";                     
+	                if (oldBiddedItems[i].expired) {
+	                    oldBiddedItems[i].expirationDate = "Lottery has expired!";                     
 	                }
-	                else if (items[i].sold) {
-	                    items[i].expirationDate =  items[i].winnerName;
+	                else if (oldBiddedItems[i].sold) {
+	                    oldBiddedItems[i].expirationDate =  oldBiddedItems[i].winnerName;
 	                }
 	                else if (hours < 0 || days < 0) {
-	                     items[i].expirationDate = "Negative days remaining (not expired yet)";   
+	                     oldBiddedItems[i].expirationDate = "Negative days remaining (not expired yet)";   
 	                }
 	                else {
-	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
+	                    oldBiddedItems[i].expirationDate =  hours + " Hours " + days + " Days left";
 	                }
-	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
+	               // oldBiddedItems[i]["src"] = 'data:image/jpeg;base64,' + btoa(oldBiddedItems[i].data.data)
 
-	                var image = items[i].img;
+	                var image = oldBiddedItems[i].img;
 	                if (image == null) {
-	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
+	                    oldBiddedItems[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
 	                } 
-	                else if (items[i].img.compressed != null) {
-	                    items[i]["src"] = items[i].img.compressed;
+	                else if (oldBiddedItems[i].img.compressed != null) {
+	                    oldBiddedItems[i]["src"] = oldBiddedItems[i].img.compressed;
 	                }
 	                else {
-	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
+	                    var b64 = base64ArrayBuffer(oldBiddedItems[i].img.data.data)
 	                    var dataURL = "data:image/jpeg;base64," + b64;
-	                    items[i]["src"] = dataURL;
+	                    oldBiddedItems[i]["src"] = dataURL;
 	                }
 	            }
 
+
+
+	           	for (i = 0; i < curBiddedItems.length; i++) {
+
+
+	                curBiddedItems[i].percentageRaised = (Number(curBiddedItems[i].amountRaised) / Number(curBiddedItems[i].price)) * 100;
+	                console.log("Raised" + curBiddedItems[i].percentageRaised);
+	                var expirationDate = new Date(curBiddedItems[i].expirationDate);
+	                var date = new Date();
+	                curBiddedItems[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
+	            
+	                var hours = DateDiff.inHours(date, expirationDate)
+	                var days = DateDiff.inDays(date, expirationDate)
+
+	                if (curBiddedItems[i].expired) {
+	                    curBiddedItems[i].expirationDate = "Lottery has expired!";                     
+	                }
+	                else if (curBiddedItems[i].sold) {
+	                    curBiddedItems[i].expirationDate =  curBiddedItems[i].winnerName;
+	                }
+	                else if (hours < 0 || days < 0) {
+	                     curBiddedItems[i].expirationDate = "Negative days remaining (not expired yet)";   
+	                }
+	                else {
+	                    curBiddedItems[i].expirationDate =  hours + " Hours " + days + " Days left";
+	                }
+	               // curBiddedItems[i]["src"] = 'data:image/jpeg;base64,' + btoa(curBiddedItems[i].data.data)
+
+	                var image = curBiddedItems[i].img;
+	                if (image == null) {
+	                    curBiddedItems[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
+	                } 
+	                else if (curBiddedItems[i].img.compressed != null) {
+	                    curBiddedItems[i]["src"] = curBiddedItems[i].img.compressed;
+	                }
+	                else {
+	                    var b64 = base64ArrayBuffer(curBiddedItems[i].img.data.data)
+	                    var dataURL = "data:image/jpeg;base64," + b64;
+	                    curBiddedItems[i]["src"] = dataURL;
+	                }
+	            }
+
+
 	            var curBidsAccounts = allAccountsAndItems.curBidsAccounts;
 	            var oldBidsAccounts = allAccountsAndItems.oldBidsAccounts;
-	            var oldBiddedItems = allAccountsAndItems.oldBiddedItems;
-	            var curBiddedItems = allAccountsAndItems.curBiddedItems;
 
 
 	            $scope.curBidsAccounts = curBidsAccounts;
