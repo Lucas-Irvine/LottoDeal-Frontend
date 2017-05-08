@@ -232,29 +232,29 @@
                     <h3 id = "BidCount"> Old Bids</h3>
                     <hr>
                     <div ng-repeat= "oldBiddedItem in oldBiddedItems">
-                        <div ng-show="oldBiddedItems.sold == true || oldBiddedItems.expired">
+                        <div ng-show="oldBiddedItem.sold == true || oldBiddedItem.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
-                                <div class="thumbnail" id="oldBiddedItems">
-                                    <div class="image-oldBiddedItems img-fluid">
-                                        <a href="oldBiddedItems.html#!/?id={{oldBiddedItems._id}}">
-                                            <img ng-src="{{oldBiddedItems.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                <div class="thumbnail" id="oldBiddedItem">
+                                    <div class="image-oldBiddedItem img-fluid">
+                                        <a href="oldBiddedItem.html#!/?id={{oldBiddedItem._id}}">
+                                            <img ng-src="{{oldBiddedItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                         </a>
                                     </div>
                                     <div class="caption">
-                                        <p><a id="Cardtitle" href="oldBiddedItems.html#!/?id={{oldBiddedItems._id}}"><strong>{{oldBiddedItems.title}} </strong></a>
+                                        <p><a id="Cardtitle" href="oldBiddedItem.html#!/?id={{oldBiddedItem._id}}"><strong>{{oldBiddedItem.title}} </strong></a>
                                         </p>
                                         <div class="description-container rows">
                                             <p class="description">
-                                                {{oldBiddedItems.shortDescription}}
+                                                {{oldBiddedItem.shortDescription}}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="cardbottom">
-                                        <p class="pull-right" id="amountRaised-{{oldBiddedItems._id}}"><strong>${{oldBiddedItems.amountRaised}}</strong> of <strong>${{oldBiddedItems.price}}</strong> raised</p>
-                                        <p align="left">Winner: <a href="user.html#!/?id={{oldBiddedItems.winnerID}}">{{oldBiddedItems.expirationDate}} </a> </p>
+                                        <p class="pull-right" id="amountRaised-{{oldBiddedItem._id}}"><strong>${{oldBiddedItem.amountRaised}}</strong> of <strong>${{oldBiddedItem.price}}</strong> raised</p>
+                                        <p align="left">Winner: <a href="user.html#!/?id={{oldBiddedItem.winnerID}}">{{oldBiddedItem.expirationDate}} </a> </p>
                                         <div class="progress" id="thumbnail-bar">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{oldBiddedItems._id}}" role="progressbar" aria-valuenow="40"
-                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{oldBiddedItems.percentageRaised}}%">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{oldBiddedItem._id}}" role="progressbar" aria-valuenow="40"
+                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{oldBiddedItem.percentageRaised}}%">
                                             </div>
                                         </div>
                                         <div class="ratings">
@@ -262,7 +262,7 @@
                                                 Rating: {{oldBidsAccounts[$index].averageRating}} / 5
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                                <a href="user.html#!/?id={{oldBiddedItems.sellerID}}">Seller: {{oldBiddedItems.sellerName}}</a>
+                                                <a href="user.html#!/?id={{oldBiddedItem.sellerID}}">Seller: {{oldBiddedItem.sellerName}}</a>
                                             </div>
                                         </div>
                                     </div>
