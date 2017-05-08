@@ -184,30 +184,30 @@
                 <div class="row">
                     <h3 id = "BidCount"> Current Bids</h3>
                     <hr>
-                    <div ng-repeat= "item in items">
-                        <div ng-show="item.sold == false && !item.expired">
+                    <div ng-repeat= "curBiddedItem in curBiddedItems">
+                        <div ng-show="curBiddedItem.sold == false && !curBiddedItem.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
-                                <div class="thumbnail" id="item">
-                                    <div class="image-item img-fluid">
-                                        <a href="item.html#!/?id={{item._id}}">
-                                            <img ng-src="{{item.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                <div class="thumbnail" id="curBiddedItem">
+                                    <div class="image-curBiddedItem img-fluid">
+                                        <a href="curBiddedItem.html#!/?id={{curBiddedItem._id}}">
+                                            <img ng-src="{{curBiddedItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                         </a>
                                     </div>
                                     <div class="caption">
-                                        <p><a id="Cardtitle" href="item.html#!/?id={{item._id}}"><strong>{{item.title}} </strong></a>
+                                        <p><a id="Cardtitle" href="curBiddedItem.html#!/?id={{curBiddedItem._id}}"><strong>{{curBiddedItem.title}} </strong></a>
                                         </p>
                                         <div class="description-container rows">
                                             <p class="description">
-                                                {{item.shortDescription}}
+                                                {{curBiddedItem.shortDescription}}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="cardbottom">
-                                        <p class="pull-right" id="amountRaised-{{item._id}}"><strong>${{item.amountRaised}}</strong> of <strong>${{item.price}}</strong> raised</p>
-                                        <p align="left"> {{item.expirationDate}} </p>
+                                        <p class="pull-right" id="amountRaised-{{curBiddedItem._id}}"><strong>${{curBiddedItem.amountRaised}}</strong> of <strong>${{curBiddedItem.price}}</strong> raised</p>
+                                        <p align="left"> {{curBiddedItem.expirationDate}} </p>
                                         <div class="progress" id="thumbnail-bar">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{item._id}}" role="progressbar" aria-valuenow="40"
-                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{curBiddedItem._id}}" role="progressbar" aria-valuenow="40"
+                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{curBiddedItem.percentageRaised}}%">
                                             </div>
                                         </div>
                                     
@@ -216,7 +216,7 @@
                                                 Rating: {{curBidsAccounts[$index].averageRating}} / 5
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                                <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
+                                                <a href="user.html#!/?id={{curBiddedItem.sellerID}}">Seller: {{curBiddedItem.sellerName}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -231,30 +231,30 @@
                 <div class="row">
                     <h3 id = "BidCount"> Old Bids</h3>
                     <hr>
-                    <div ng-repeat= "item in items">
-                        <div ng-show="item.sold == true || item.expired">
+                    <div ng-repeat= "oldBiddedItem in oldBiddedItems">
+                        <div ng-show="oldBiddedItems.sold == true || oldBiddedItems.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
-                                <div class="thumbnail" id="item">
-                                    <div class="image-item img-fluid">
-                                        <a href="item.html#!/?id={{item._id}}">
-                                            <img ng-src="{{item.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
+                                <div class="thumbnail" id="oldBiddedItems">
+                                    <div class="image-oldBiddedItems img-fluid">
+                                        <a href="oldBiddedItems.html#!/?id={{oldBiddedItems._id}}">
+                                            <img ng-src="{{oldBiddedItems.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                         </a>
                                     </div>
                                     <div class="caption">
-                                        <p><a id="Cardtitle" href="item.html#!/?id={{item._id}}"><strong>{{item.title}} </strong></a>
+                                        <p><a id="Cardtitle" href="oldBiddedItems.html#!/?id={{oldBiddedItems._id}}"><strong>{{oldBiddedItems.title}} </strong></a>
                                         </p>
                                         <div class="description-container rows">
                                             <p class="description">
-                                                {{item.shortDescription}}
+                                                {{oldBiddedItems.shortDescription}}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="cardbottom">
-                                        <p class="pull-right" id="amountRaised-{{item._id}}"><strong>${{item.amountRaised}}</strong> of <strong>${{item.price}}</strong> raised</p>
-                                        <p align="left">Winner: <a href="user.html#!/?id={{item.winnerID}}">{{item.expirationDate}} </a> </p>
+                                        <p class="pull-right" id="amountRaised-{{oldBiddedItems._id}}"><strong>${{oldBiddedItems.amountRaised}}</strong> of <strong>${{oldBiddedItems.price}}</strong> raised</p>
+                                        <p align="left">Winner: <a href="user.html#!/?id={{oldBiddedItems.winnerID}}">{{oldBiddedItems.expirationDate}} </a> </p>
                                         <div class="progress" id="thumbnail-bar">
-                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{item._id}}" role="progressbar" aria-valuenow="40"
-                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{item.percentageRaised}}%">
+                                            <div class="progress-bar progress-bar-success progress-bar-striped" id="progress-bar-{{oldBiddedItems._id}}" role="progressbar" aria-valuenow="40"
+                                                 aria-valuemin="0" aria-valuemax="100" style="width:{{oldBiddedItems.percentageRaised}}%">
                                             </div>
                                         </div>
                                         <div class="ratings">
@@ -262,7 +262,7 @@
                                                 Rating: {{oldBidsAccounts[$index].averageRating}} / 5
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                                <a href="user.html#!/?id={{item.sellerID}}">Seller: {{item.sellerName}}</a>
+                                                <a href="user.html#!/?id={{oldBiddedItems.sellerID}}">Seller: {{oldBiddedItems.sellerName}}</a>
                                             </div>
                                         </div>
                                     </div>

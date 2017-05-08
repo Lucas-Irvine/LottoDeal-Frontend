@@ -924,9 +924,15 @@ function serverGet(dateFunctions) {
 
 	            var curBidsAccounts = allAccountsAndItems.curBidsAccounts;
 	            var oldBidsAccounts = allAccountsAndItems.oldBidsAccounts;
-	            
+	            var oldBiddedItems = allAccountsAndItems.oldBiddedItems;
+	            var curBiddedItems = allAccountsAndItems.curBiddedItems;
+
+
 	            $scope.curBidsAccounts = curBidsAccounts;
 	            $scope.oldBidsAccounts = oldBidsAccounts;
+	            $scope.oldBiddedItems = oldBiddedItems;
+	            $scope.curBiddedItems = curBiddedItems;
+	            	            	            
 	            $scope.items = items;
 	            console.log($scope.items)
 	            $scope.$apply()
