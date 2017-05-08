@@ -17,7 +17,8 @@ function checkIfUser(accessToken, callback) {
             status = data;
 
             if (status == "false") {
-                document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user';
+                document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user. You must accept third' +
+                    'party cookies to login successfully.';
                 showLoginPopup();
                 console.log('accessToken is null')
             }
