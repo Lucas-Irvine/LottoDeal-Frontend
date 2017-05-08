@@ -8,6 +8,10 @@ body {
     height: 100%;
 }
 
+p {
+    word-wrap: break-word;
+}
+
 /* For the carousel */
 html {
     height: 100%;
@@ -24,6 +28,7 @@ html {
 .carousel-inner {
     height: 100%;
 }
+
 
 /* Background images are set within the HTML using inline CSS, not here */
 
