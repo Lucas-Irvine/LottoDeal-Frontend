@@ -187,14 +187,14 @@
                     <div ng-repeat= "curBiddedItem in curBiddedItems">
                         <div ng-show="curBiddedItem.sold == false && !curBiddedItem.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
-                                <div class="thumbnail" id="curBiddedItem">
-                                    <div class="image-curBiddedItem img-fluid">
-                                        <a href="curBiddedItem.html#!/?id={{curBiddedItem._id}}">
+                                <div class="thumbnail" id="item">
+                                    <div class="image-item img-fluid">
+                                        <a href="item.html#!/?id={{curBiddedItem._id}}">
                                             <img ng-src="{{curBiddedItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                         </a>
                                     </div>
                                     <div class="caption">
-                                        <p><a id="Cardtitle" href="curBiddedItem.html#!/?id={{curBiddedItem._id}}"><strong>{{curBiddedItem.title}} </strong></a>
+                                        <p><a id="Cardtitle" href="item.html#!/?id={{curBiddedItem._id}}"><strong>{{curBiddedItem.title}} </strong></a>
                                         </p>
                                         <div class="description-container rows">
                                             <p class="description">
@@ -234,14 +234,14 @@
                     <div ng-repeat= "oldBiddedItem in oldBiddedItems">
                         <div ng-show="oldBiddedItem.sold == true || oldBiddedItem.expired">
                             <div class="col-sm-6 col-md-4 col-lg-4">
-                                <div class="thumbnail" id="oldBiddedItem">
-                                    <div class="image-oldBiddedItem img-fluid">
-                                        <a href="oldBiddedItem.html#!/?id={{oldBiddedItem._id}}">
+                                <div class="thumbnail" id="item">
+                                    <div class="image-item img-fluid">
+                                        <a href="item.html#!/?id={{oldBiddedItem._id}}">
                                             <img ng-src="{{oldBiddedItem.src}}" class="img-hover img-fluid" id="centered-and-cropped" alt="">
                                         </a>
                                     </div>
                                     <div class="caption">
-                                        <p><a id="Cardtitle" href="oldBiddedItem.html#!/?id={{oldBiddedItem._id}}"><strong>{{oldBiddedItem.title}} </strong></a>
+                                        <p><a id="Cardtitle" href="item.html#!/?id={{oldBiddedItem._id}}"><strong>{{oldBiddedItem.title}} </strong></a>
                                         </p>
                                         <div class="description-container rows">
                                             <p class="description">
