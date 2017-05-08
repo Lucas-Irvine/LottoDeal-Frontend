@@ -213,7 +213,7 @@
                             <span class="count-down" ng-cloak><strong>{{post.hoursToGo}}</strong> Hours <strong>{{post.daysToGo}}</strong>Days left</span>
                         </div>
                         <div ng-show="post.sold">
-                            <span class="count-down" ng-cloak><strong>Item Sold</strong></span>
+                            <span class="count-down" ng-cloak><strong>Item Sold to <a href="user.html#!/?id={{post.winnerID}}">{{post.winnerName}}</a></strong></span>
                         </div>
                         <div ng-show="post.expired">
                             <span class="count-down" ng-cloak><strong>Item Expired</strong></span>
