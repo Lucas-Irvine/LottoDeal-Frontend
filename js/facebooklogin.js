@@ -267,6 +267,12 @@ function getFbUserData(){
             scope.getNotifications(accessToken);
             console.log(accessToken + "saving accessToken as a global variable")
 
+
+
+            window.location.reload(true); // reload a page when you log in
+ 
+
+
             // Save user data
             saveUserData(response);
         });
