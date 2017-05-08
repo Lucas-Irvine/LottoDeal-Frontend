@@ -208,12 +208,21 @@
                                     <span class="sr-only">45% Complete</span>
                                 </div>
                             </div>
-
                         </div>
-                        <span class="count-down" ng-cloak><strong>{{post.hoursToGo}}</strong> Hours <strong>{{post.daysToGo}}</strong>Days left</span>
-                         <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
+                        <div ng-show="!post.sold && !post.expired">
+                            <span class="count-down" ng-cloak><strong>{{post.hoursToGo}}</strong> Hours <strong>{{post.daysToGo}}</strong>Days left</span>
+                        </div>
+                        <div ng-show="post.sold">
+                            <span class="count-down" ng-cloak><strong>Item Sold</strong></span>
+                        </div>
+                        <div ng-show="post.expired">
+                            <span class="count-down" ng-cloak><strong>Item Expired</strong></span>
+                        </div>
+                        <div ng-show="!post.sold && !post.expired">
+                        <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 1, post.amountRaised, post.price, post.title);" id="{{post._id}}">$1.00</button>
                         <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 2, post.amountRaised, post.price, post.title);" id="{{post._id}}">$2.00</button>
                         <button class="btn btn-launch" buttonType="bidButton" ng-click="bid(post._id, 5, post.amountRaised, post.price, post.title);" id="{{post._id}}">$5.00</button>
+                        </div>
                     </div>
                    
 
