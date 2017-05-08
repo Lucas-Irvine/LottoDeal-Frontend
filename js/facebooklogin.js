@@ -131,7 +131,7 @@ window.fbAsyncInit = function() {
             console.log('Not logged in');
 
             if (window.location.href.indexOf("profile.html") > -1) {
-                document.getElementById('successScreen').innerHTML = 'Please login before you can access your profile';
+                document.getElementById('loginMessage').innerHTML = 'Please login before you can access your profile';
                 document.getElementById('login').innerHTML = 'Login';
                 $("#signInMessage").show();    
                 showLoginPopup();
