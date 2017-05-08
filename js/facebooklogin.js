@@ -1,4 +1,4 @@
-var prodUrl = "https://lottodeal.club:8000";
+var prodUrl = "https://lottodeal.club:8000/";
 var debug = "https://localhost:8000/"
 
 function checkIfUser(accessToken, callback) {

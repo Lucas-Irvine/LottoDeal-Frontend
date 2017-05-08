@@ -2,7 +2,7 @@ angular.module('serverModule', ['utilsModule'])
 .service('serverGet', ["dateFunctions", serverGet])
 .service('serverPost', serverPost);
 
-var prodUrl = "https://lottodeal.club:8000";
+var prodUrl = "https://lottodeal.club:8000/";
 var debug = "https://localhost:8000/"
 
 
