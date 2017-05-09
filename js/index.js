@@ -77,6 +77,11 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "index");
     }
+
+    $scope.displayWinner = function(winner) {
+        console.log("displaying winner")
+    }
+
 }])
 
 //For changing tabs Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
