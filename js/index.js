@@ -82,27 +82,30 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 
     $scope.displayWinner = function(winner) {
         console.log("displaying winner")
+        $('#winnerPopup').modal({
+            keyboard: false
+        })
         $scope.winner = winner;
         // $scope.$apply();
-        BootstrapDialog.show({
-            message: $("<div></div>").load("../winner.html"),
-            // title: "Oops, you can't bid on this item anymore!",
-            // message: 'Your credit card was not charged. This item is either expired or sold.',
-            buttons: [{
-                id: 'btn-ok',
-                icon: 'glyphicon glyphicon-check',
-                label: 'OK',
-                cssClass: 'btn-primary',
-                data: {
-                    js: 'btn-confirm',
-                    'user-id': '3'
-                },
-                autospin: false,
-                action: function(dialogRef) {
-                    dialogRef.close();
-                }
-            }]
-        });
+        // BootstrapDialog.show({
+        //     message: $("<div></div>").load("../winner.html"),
+        //     // title: "Oops, you can't bid on this item anymore!",
+        //     // message: 'Your credit card was not charged. This item is either expired or sold.',
+        //     buttons: [{
+        //         id: 'btn-ok',
+        //         icon: 'glyphicon glyphicon-check',
+        //         label: 'OK',
+        //         cssClass: 'btn-primary',
+        //         data: {
+        //             js: 'btn-confirm',
+        //             'user-id': '3'
+        //         },
+        //         autospin: false,
+        //         action: function(dialogRef) {
+        //             dialogRef.close();
+        //         }
+        //     }]
+        // });
     }
 
 }])
