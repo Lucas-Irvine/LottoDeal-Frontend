@@ -34,6 +34,13 @@ html {
     background-image: none;
 }
 
+.carousel-control.right:visited {
+    opacity: 0.5;
+}
+.carousel-control.left:visited {
+    opacity: 0.5;
+}
+
 .item,
 .active,
 .carousel-inner {
