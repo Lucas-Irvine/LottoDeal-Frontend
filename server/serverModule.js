@@ -2,7 +2,9 @@ angular.module('serverModule', ['utilsModule'])
 .service('serverGet', ["dateFunctions", serverGet])
 .service('serverPost', serverPost);
 
-var prodUrl = "https://162.243.121.223:8000/";
+// var prodUrl = "https://162.243.121.223:8000/";
+var prodUrl = "http://162.243.121.223:8000/";
+
 var debug = "https://localhost:8000/"
 
 
