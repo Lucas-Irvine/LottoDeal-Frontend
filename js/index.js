@@ -81,6 +81,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.winner = null;
 
     $scope.displayWinner = function(winner) {
+        console.log(winner);
         console.log("displaying winner")
         $('#winnerPopup').modal({
             keyboard: false
@@ -90,7 +91,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
             $("#winnerForModal").fadeIn();
             // $scope.winner = winner;
             // $scope.$apply();
-        }, 5000)
+        }, 3000)
         $scope.winner = winner;
     }
 
