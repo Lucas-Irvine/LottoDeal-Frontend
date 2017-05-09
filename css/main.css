@@ -927,7 +927,7 @@ textarea:-ms-input-placeholder {
 }
 .btn.btn-launch:hover, .btn.btn-launch:focus,.btn.btn-reward, .btn.btn-reward:hover, .btn.btn-reward :focus {
     /*background-color:#85AD90;*/
-    background-color: #57bc90;
+    background-color: #62d095;
     box-shadow:none;
 }
 .btn.btn-reward {
@@ -952,7 +952,7 @@ textarea:-ms-input-placeholder {
     font-weight:700;
 }
 .btn.btn-contact:hover, .btn.btn-contact:focus {
-    background-color: #779A81;
+    background-color: #62d095;
 }
 .btn.btn-contact i.fa {
     margin-right:10px;
@@ -1292,7 +1292,9 @@ input:focus, textarea:focus {
     position: absolute;
 }
 
-
+.progress-bar-success {
+    background-color: #3cc47c;
+}
 
 /* 
   Allow angular.js to be loaded in body, hiding cloaked elements until 
