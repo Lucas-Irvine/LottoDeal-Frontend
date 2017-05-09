@@ -947,8 +947,8 @@ textarea:-ms-input-placeholder {
     text-align: center;
 }
 .btn.btn-contact {
-    background-color: #85AD90;
-    color: #fff;
+    background-color: white;
+    color: #3cc47c;
     font-weight:700;
 }
 .btn.btn-contact:hover, .btn.btn-contact:focus {
