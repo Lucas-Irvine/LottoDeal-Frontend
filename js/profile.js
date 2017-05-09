@@ -95,9 +95,11 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
         serverGet.getReviews(userID, $scope);
     }
 
+    $scope.reviewers = [];
     scope.getReviewerImagesAndNames = function() {
         serverGet.getReviewerImagesAndNames(userID, $scope);
     }
+    
 
 
     $scope.reviewers = []
