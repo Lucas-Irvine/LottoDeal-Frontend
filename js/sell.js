@@ -62,7 +62,7 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
 
 	$scope.debugSubmit = function() {
 		var testUrl = "http://162.243.121.223:8000/debugPost"
-        var sellerID = accessToken;
+        var sellerID = "10208239805023661";
 //		var sellerID = localStorage.getItem("curUserID")
 
 		var data = {
