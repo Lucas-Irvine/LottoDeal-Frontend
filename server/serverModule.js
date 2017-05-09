@@ -839,7 +839,7 @@ function serverGet(dateFunctions) {
 	        success: function (data) {
 	            var items = JSON.parse(data)
 	            $scope.reviewers = items;
-	            console.log(items.fullName + "these are the names of the reviewers")
+	            console.log(items[0].fullName + "these are the names of the reviewers")
 	            console.log($scope.reviewers)
 	            $scope.$apply()
 	        },
