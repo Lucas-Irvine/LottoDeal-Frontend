@@ -820,7 +820,7 @@ function serverGet(dateFunctions) {
     }
 
 	this.getReviewerImagesAndNames = function(id, $scope) {
-		var url = prodUrl + "getReviewerImagesandNames";
+		var url = prodUrl + "getReviewerImagesAndNames";
 	    var dataGET = {
 	        userID: id
 	    }
