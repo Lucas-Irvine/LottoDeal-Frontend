@@ -27,6 +27,20 @@ html {
     /*height: 70%;*/
 }
 
+.carousel-control.right {
+    background-image: none;
+}
+.carousel-control.left {
+    background-image: none;
+}
+
+.carousel-control.right:visited {
+    opacity: 0.5;
+}
+.carousel-control.left:visited {
+    opacity: 0.5;
+}
+
 .item,
 .active,
 .carousel-inner {
