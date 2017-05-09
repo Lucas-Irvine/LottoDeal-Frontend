@@ -83,7 +83,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.displayWinner = function(winner) {
         console.log("displaying winner")
         $scope.winner = winner;
-        $scope.$apply();
+        // $scope.$apply();
         BootstrapDialog.show({
             message: $("<div></div>").load("../winner.html"),
             // title: "Oops, you can't bid on this item anymore!",
