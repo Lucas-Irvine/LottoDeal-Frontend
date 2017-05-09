@@ -80,6 +80,24 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 
     $scope.displayWinner = function(winner) {
         console.log("displaying winner")
+        BootstrapDialog.show({
+            title: "Oops, you can't bid on this item anymore!",
+            message: 'Your credit card was not charged. This item is either expired or sold.',
+            buttons: [{
+                id: 'btn-ok',
+                icon: 'glyphicon glyphicon-check',
+                label: 'OK',
+                cssClass: 'btn-primary',
+                data: {
+                    js: 'btn-confirm',
+                    'user-id': '3'
+                },
+                autospin: false,
+                action: function(dialogRef) {
+                    dialogRef.close();
+                }
+            }]
+        });
     }
 
 }])
