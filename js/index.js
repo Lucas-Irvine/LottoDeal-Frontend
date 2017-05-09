@@ -84,6 +84,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 
 }])
 
+app.filter('reverse', function() {
+    return function(items) {
+        return items.slice().reverse();
+    }
+})
+
 //For changing tabs Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
 function changeTab(titleID, id) {
     console.log('test');

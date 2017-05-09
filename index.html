@@ -214,7 +214,7 @@
                         <div role="tabpanel" class="tab-pane tabcontent active" id="listedID">
                             <div class="listedItems">
                                 <h1 class="section-title">Listed Items</h1>
-                                <div ng-repeat="post in posts | filter:searchText">
+                                <div ng-repeat="post in posts | filter:searchText | reverse">
                                     
                                     <div class="col-sm-6 col-md-4 col-lg-4">
                                         <div class="thumbnail" id="item">
