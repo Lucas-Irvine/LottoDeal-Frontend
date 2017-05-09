@@ -953,6 +953,7 @@ textarea:-ms-input-placeholder {
 }
 .btn.btn-contact:hover, .btn.btn-contact:focus {
     background-color: #62d095;
+    color:white;
 }
 .btn.btn-contact i.fa {
     margin-right:10px;
