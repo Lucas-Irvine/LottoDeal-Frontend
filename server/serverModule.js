@@ -180,6 +180,12 @@ function serverGet(dateFunctions) {
 	                if (!notifications[i].read) {
 	                    $scope.notificationLength++;
 	                }
+
+	                if (notifications[i].sold != undefined && notifications[i].sold != null && notifications[i].sold == true) {
+	                	notifications[i]["description"] = "A winner has been chosen, click to see who won!"
+	                	notifications[i]["title"] = "LottoDeal:"
+	                }
+
 	            }
 
 	                var getImageForNotificationsURL = prodUrl + "getImagesForNotifications";
