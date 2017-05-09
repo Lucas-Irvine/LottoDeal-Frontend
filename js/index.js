@@ -78,10 +78,14 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "index");
     }
 
+    $scope.winner = null;
+
     $scope.displayWinner = function(winner) {
         console.log("displaying winner")
+        $scope.winner = winner;
+        $scope.$apply();
         BootstrapDialog.show({
-            message: $("<div></div>").load("<div>Hello</div>"),
+            message: $("<div></div>").load("../winner.html"),
             // title: "Oops, you can't bid on this item anymore!",
             // message: 'Your credit card was not charged. This item is either expired or sold.',
             buttons: [{
