@@ -99,6 +99,7 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
     scope.getReviewerImagesAndNames = function() {
         serverGet.getReviewerImagesAndNames(userID, $scope);
     }
+    
 
 
     $scope.reviewers = []
