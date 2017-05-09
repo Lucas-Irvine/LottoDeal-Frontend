@@ -128,6 +128,7 @@ function serverGet(dateFunctions) {
 	        type: 'GET',
 	        success: function(data) {
 	            var notifications = JSON.parse(data)
+	            console.log(notifications)
 
 	            var monthNames = [
 	                "January", "February", "March",
