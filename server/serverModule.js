@@ -185,6 +185,10 @@ function serverGet(dateFunctions) {
 	                	notifications[i]["description"] = "A winner has been chosen, click to see who won!"
 	                	notifications[i]["title"] = "LottoDeal:"
 	                }
+	                else {
+	                	notifications[i].sold = false
+	                	notifications[i].winnerName = "null"
+	                }
 
 	            }
 
