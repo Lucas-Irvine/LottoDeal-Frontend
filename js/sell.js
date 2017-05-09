@@ -76,7 +76,7 @@ app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  
 			You should buy it!",
 			shortDescription: "This is a short description for a great product.",
 			expirDate: "1",
-			accessToken: sellerID,
+			userID: sellerID,
 		}
 
 		$.ajax({
