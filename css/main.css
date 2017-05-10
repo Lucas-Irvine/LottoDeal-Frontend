@@ -501,6 +501,14 @@ textarea:-ms-input-placeholder {
     top: 10px;
 }
 
+
+@media (max-width: 767px) {
+    #notification_count
+    {
+        top: 5px;
+    }
+}
+
 /* notifications end */
 
 .btn-submit, .btn-submit:active, .btn-submit:focus {
