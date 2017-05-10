@@ -195,7 +195,7 @@
                     <div class="section-block">
                         <div class="funding-meta" ng-cloak>
                             <!-- <span ng-click="editItem()"><i class="fa fa-pencil-square-o fa-2x" ng-show="canEdit" style="float:right; padding-left: 10px; cursor:pointer" aria-hidden="true"></i></span> -->
-                            <span ng-click="deleteItem()"><i class="fa fa-trash-o fa-2x" style="float:right; cursor:pointer" aria-hidden="true" ng-show="canEdit" ng-cloak></i></span> <!-- these can also be anchor tags -->
+                            <span ng-click="deleteItem()" ng-show="!item.sold && !item.expired"><i class="fa fa-trash-o fa-2x" style="float:right; cursor:pointer" aria-hidden="true" ng-show="canEdit" ng-cloak></i></span> <!-- these can also be anchor tags -->
                             <h1 id="postTitle" ng-show="!editing" ng-cloak>{{post.title}}</h1>
                             <h1 ng-show="editing" style="color: grey;" id="editTitle" ><input type="text"/></h1>
                             
