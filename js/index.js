@@ -227,7 +227,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 
             }       
 
-
+            setTimeout(function() {
+                $("#canvas").hide();
+            }, 5000)
             // $scope.winner = winner;
             // $scope.$apply();
         }, 3000)
