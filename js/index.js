@@ -171,47 +171,47 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
                 });
 
             }
-            r1={
-            x:width/2-150,
-            y:height/2-150,
-            width:300,
-            height:300,
-                velX :0,
-                velY :-10,
-             img : loadImage("http://image.noelshack.com/fichiers/2015/12/1427051642-smiley.png"),
-             alphatop:0
-            };
+            // r1={
+            // x:width/2-150,
+            // y:height/2-150,
+            // width:300,
+            // height:300,
+            //     velX :0,
+            //     velY :-10,
+            //  img : loadImage("http://image.noelshack.com/fichiers/2015/12/1427051642-smiley.png"),
+            //  alphatop:0
+            // };
 
 
             function drawScreen(){
-            size = 50;
-                        pFontName = "Lucida Sans Unicode";
-                        context.font = size + "pt " + pFontName;
-                        context.fillText("Confetti party !!!", width/2,150 );
-                    if(r1.alphatop < 1){
-                    r1.alphatop += 0.01;
-                    }else{
-                    r1.alphatop = 1;
-                    }
-                    context.globalAlpha = r1.alphatop; 
-                        context.drawImage(r1.img,r1.x,r1.y);
-                              context.textAlign = 'center';
+            // size = 50;
+            //             pFontName = "Lucida Sans Unicode";
+            //             context.font = size + "pt " + pFontName;
+            //             context.fillText("Confetti party !!!", width/2,150 );
+            //         if(r1.alphatop < 1){
+            //         r1.alphatop += 0.01;
+            //         }else{
+            //         r1.alphatop = 1;
+            //         }
+            //         context.globalAlpha = r1.alphatop; 
+            //             context.drawImage(r1.img,r1.x,r1.y);
+            //                   context.textAlign = 'center';
 
                         
                         
-                        if(r1.alphatop === 1){
-                r1.velY*= 0.999;
-                r1.velY += 0.3;
+            //             if(r1.alphatop === 1){
+            //     r1.velY*= 0.999;
+            //     r1.velY += 0.3;
               
-                r1.x += r1.velX;
-                r1.y += r1.velY;}
+            //     r1.x += r1.velX;
+            //     r1.y += r1.velY;}
 
-                    if(r1.y + r1.height > height){
-                r1.anglespin = 0;
-                r1.y = height - r1.height;
-                r1.velY *= -0.8;
-                    r1.velX *= 0.9;
-                };
+            //         if(r1.y + r1.height > height){
+            //     r1.anglespin = 0;
+            //     r1.y = height - r1.height;
+            //     r1.velY *= -0.8;
+            //         r1.velX *= 0.9;
+            //     };
                 
                 
                         context.globalAlpha = 1; 
