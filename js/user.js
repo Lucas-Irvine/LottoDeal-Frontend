@@ -39,7 +39,7 @@ function createReviewFunction() {
             data = {
              sellerID: sellerID,
              reviewDes: reviewDes,
-             stars: stars, //change later to actual value
+             stars: stars, 
              accessToken: accessToken,
             }
 

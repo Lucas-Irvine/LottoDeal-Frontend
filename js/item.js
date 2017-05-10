@@ -10,6 +10,33 @@ $('#myTabs a').click(function(e) {
     $(this).tab('show')
 });
 
+
+    // Facebook Login code -----------------------------------
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '228917890846081',
+        xfbml      : true,
+        cookie     : true,
+        version    : 'v2.8'
+    });   
+
+    // Check whether the user already logged in
+    FB.getLoginStatus(function(response) {
+        if (response.status != 'connected') {
+            document.getElementById('loginMessage').innerHTML = 'Please login before you can see items';
+            document.getElementById('login').innerHTML = 'Login';
+            $("#signInMessage").show();    
+            showLoginPopup();
+        }
+    });
+
+
+
+
+
+};
+
+
 //Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
 function changeTab(titleID, id) {
     // Declare all variables
