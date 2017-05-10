@@ -83,6 +83,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.displayWinner = function(winner) {
         console.log(winner);
         console.log("displaying winner")
+        console.log($("winnerPopup").attr("z-index"))
         $('#winnerPopup').modal({
             keyboard: false
         })
