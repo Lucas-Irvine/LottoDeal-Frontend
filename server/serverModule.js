@@ -205,7 +205,7 @@ function serverGet(dateFunctions) {
 	                    success: function(data) {
 	                        var images = JSON.parse(data)
 	                        if (images.length > 5) {
-	                            images = images.slice(-5);
+	                            images = images.slice(0, 5);
 	                        }
 	                        $scope.images = images;
 	                        console.log($scope.images)
