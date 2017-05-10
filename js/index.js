@@ -168,7 +168,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
                 for( var i = 0; i < particle.length; i++){
                     particle[i].draw();
                 }
-                $("#canvas").hide();
+                // $("#canvas").hide();
             }
 
             function loadImage(url){
