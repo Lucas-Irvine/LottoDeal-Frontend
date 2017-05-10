@@ -1008,7 +1008,7 @@ function serverGet(dateFunctions) {
 function serverPost() {
 	this.bid = function(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, page) {
 		var handler = StripeCheckout.configure({
-	        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
+	        key: 'pk_live_k28Ir2POpMyjo44ZSZXMMsTT',
 	        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
 	        locale: 'auto',
 	        token: function(token) {
