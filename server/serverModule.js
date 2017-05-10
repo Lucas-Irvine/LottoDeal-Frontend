@@ -291,6 +291,7 @@ function serverGet(dateFunctions) {
 	        },
 	        success: function(data) {
 	            var parsed = JSON.parse(data)
+	            console.log(parsed.sold)
 	            //console.log(parsed);
 	            //console.log(parsed._id)
 
