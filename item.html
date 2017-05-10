@@ -255,9 +255,10 @@
                                     <!--update items-->
                                     <div ng-repeat="itemReview in itemReviews">
                                     <div class="update-post">
+                                         <h4 class="update-title" href="user.html#!/?id={{itemReview.userID}}" >Reviewer</h4>
                                         <span class="update-date">Posted {{itemReview.datePosted}}</span>
 
-                               <div class="ratingStatic" style="color: gold;">
+                                <div class="ratingStatic" style="color: gold;">
                                     <!-- &#9734; is not filled in triangle-->
                                     <!-- &#9733; is filled in triangle-->
                                     <span name="rating" ng-show="{{itemReview.stars}} >= 1">&#9733;</span>
