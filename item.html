@@ -255,9 +255,32 @@
                                     <!--update items-->
                                     <div ng-repeat="itemReview in itemReviews">
                                     <div class="update-post">
-                                        <h4 class="update-title">{{itemReview.fullName}}</h4>
                                         <span class="update-date">Posted {{itemReview.datePosted}}</span>
-                                        <p> {{itemReview.reviewDes}} - {{itemReview.stars}}/5 stars</p>
+
+                               <div class="ratingStatic" style="color: gold;">
+                                    <!-- &#9734; is not filled in triangle-->
+                                    <!-- &#9733; is filled in triangle-->
+                                    <span name="rating" ng-show="{{itemReview.stars}} >= 1">&#9733;</span>
+                                    <span name="rating" ng-show="{{itemReview.stars}} < 1">&#9734;</span>
+
+
+                                    <span name="rating" ng-show="{{itemReview.stars}} >= 2">&#9733;</span> 
+                                    <span name="rating" ng-show="{{itemReview.stars}} < 2">&#9734;</span>
+
+                                    <span name="rating" ng-show="{{itemReview.stars}} >= 3">&#9733;</span> 
+                                    <span name="rating" ng-show="{{itemReview.stars}} < 3">&#9734;</span>
+
+                                    <span name="rating" ng-show="{{itemReview.stars}} >= 4">&#9733;</span> 
+                                    <span name="rating" ng-show="{{itemReview.stars}} < 4">&#9734;</span> 
+
+                                    <span name="rating" ng-show="{{itemReview.stars}} == 5">&#9733;</span>
+                                    <span name="rating" ng-show="{{itemReview.stars}} < 5">&#9734;</span>
+                                </div>
+
+
+
+
+                                        <p> {{itemReview.reviewDes}}</p>
                                     </div>
                                     </div>
                                 </div>
