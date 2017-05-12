@@ -879,7 +879,7 @@ function serverPost() {
 	            var amountRaised = $scope.amountRaised;
 	            var price = $scope.price;
 
-	            console.log(typeof(amountToCharge))
+	            console.log(typeof(Number(amountToCharge)))
 
 	            if (accessToken != undefined) {
 	                data = {
@@ -887,7 +887,7 @@ function serverPost() {
 	                    itemTitle: itemTitle,
 	                    accessToken: accessToken,
 	                    stripeToken: token.id,
-	                    amount: Number(amountToCharge)
+	                    amount: amountToCharge
 	                }
 
 	                $.ajax({
