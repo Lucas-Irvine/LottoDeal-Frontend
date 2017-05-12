@@ -22,12 +22,10 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	        url: url,
 	        type: 'GET',
 	        success: function(data) {
-	            console.log("completed AJAX call")
 	            var items = JSON.parse(data);
 	            var soldItems = [];
 	            var expiredItems = [];
 	            var listedItems = [];
-	            console.log(items);
 	            for (i = 0; i < items.length; i++) {
 	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
 	                var expirationDate = new Date(items[i].expirationDate);
@@ -49,16 +47,11 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	                }
 
 	                var image = items[i].img;
-	                if (image == null) {
-	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
-	                } 
-	                else if (items[i].img.compressed != null) {
+	                if (items[i].img.compressed != null) {
 	                    items[i]["src"] = items[i].img.compressed;
 	                }
 	                else {
-	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
-	                    var dataURL = "data:image/jpeg;base64," + b64;
-	                    items[i]["src"] = dataURL;
+	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
 	                }
 	                if (items[i].sold == true) {
 	                    soldItems.push(items[i]);
@@ -79,8 +72,9 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	            $scope.$apply()
 	        },
 	        error: function(response, error) {
-	            console.log(response)
-	            console.log(error)
+	        	console.log("Error in getPosts");
+	            console.log(response);
+	            console.log(error);
 	        }
 	    });
 	}
@@ -93,7 +87,6 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	    var dataGET = {
 	        accessToken: accessToken
 	    }
-	    console.log('Asking for notifications')
 	    $.ajax({
 	        url: notificationUrl,
 	        data: dataGET,
@@ -124,7 +117,6 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	                    }
 	                    else {
 	                        notifications[i].datePosted = hoursAgo + " hours ago";
-	                        console.log(notifications[i].datePosted);
 	                    }
 	                }
 	                else {
@@ -180,6 +172,7 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
                         $scope.$apply()
                     },
                     error: function(response, error) {
+                    	console.log("Error in getImagesforNotificationsURL")
                         console.log(response)
                         console.log(error)
                     }
@@ -189,6 +182,7 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	            $scope.$apply()
 	        },
 	        error: function(response, error) {
+	        	console.log("Error in getNotitifications")
 	            console.log(response)
 	            console.log(error)
 	        }
@@ -466,16 +460,11 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	                }
 
 	                var image = items[i].img;
-	                if (image == null) {
-	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
-	                } 
-	                else if (items[i].img.compressed != null) {
+	                if (items[i].img.compressed != null) {
 	                    items[i]["src"] = items[i].img.compressed;
 	                }
 	                else {
-	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
-	                    var dataURL = "data:image/jpeg;base64," + b64;
-	                    items[i]["src"] = dataURL;
+	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
 	                }
 
 	                var count = 0;
@@ -531,16 +520,11 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	                }
 
 	                var image = items[i].img;
-	                if (image == null) {
-	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
-	                } 
-	                else if (items[i].img.compressed != null) {
+	                if (items[i].img.compressed != null) {
 	                    items[i]["src"] = items[i].img.compressed;
 	                }
 	                else {
-	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
-	                    var dataURL = "data:image/jpeg;base64," + b64;
-	                    items[i]["src"] = dataURL;
+	                    items[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
 	                }
 
 	                var count = 0;
@@ -789,16 +773,11 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	                }
 
 	                var image = oldBiddedItems[i].img;
-	                if (image == null) {
-	                    oldBiddedItems[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
-	                } 
-	                else if (oldBiddedItems[i].img.compressed != null) {
+	                if (oldBiddedItems[i].img.compressed != null) {
 	                    oldBiddedItems[i]["src"] = oldBiddedItems[i].img.compressed;
 	                }
 	                else {
-	                    var b64 = base64ArrayBuffer(oldBiddedItems[i].img.data.data)
-	                    var dataURL = "data:image/jpeg;base64," + b64;
-	                    oldBiddedItems[i]["src"] = dataURL;
+	                    oldBiddedItems[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
 	                }
 	            }
 
@@ -826,16 +805,11 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	               // curBiddedItems[i]["src"] = 'data:image/jpeg;base64,' + btoa(curBiddedItems[i].data.data)
 
 	                var image = curBiddedItems[i].img;
-	                if (image == null) {
-	                    curBiddedItems[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
-	                } 
-	                else if (curBiddedItems[i].img.compressed != null) {
+	                if (curBiddedItems[i].img.compressed != null) {
 	                    curBiddedItems[i]["src"] = curBiddedItems[i].img.compressed;
 	                }
 	                else {
-	                    var b64 = base64ArrayBuffer(curBiddedItems[i].img.data.data)
-	                    var dataURL = "data:image/jpeg;base64," + b64;
-	                    curBiddedItems[i]["src"] = dataURL;
+	                    curBiddedItems[i]["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
 	                }
 	            }
 
@@ -879,15 +853,13 @@ function serverPost() {
 	            var amountRaised = $scope.amountRaised;
 	            var price = $scope.price;
 
-	            console.log(typeof(Number(amountToCharge)))
-
 	            if (accessToken != undefined) {
 	                data = {
 	                    itemID: itemID,
 	                    itemTitle: itemTitle,
 	                    accessToken: accessToken,
 	                    stripeToken: token.id,
-	                    amount: amountToCharge
+	                    amount: amountToCharge // sends as a string
 	                }
 
 	                $.ajax({
@@ -1079,15 +1051,17 @@ function serverPost() {
             type: 'POST',
             data: data,
             success: function(data) {
-                console.log(data)
+            	// successfully updated the settings
             },
             error: function(response, error) {
+            	console.log("Error in updating settings")
                 console.log(response)
                 console.log(error)
             }
         });
 	}
 
+	// debug function
 	this.testFunction = function() {
 		console.log("this function is working")
 	}
