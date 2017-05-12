@@ -208,10 +208,6 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
                 },
                 success: function(data) {
                     var parsed = JSON.parse(data)
-                    //console.log(parsed)
-                    console.log("retrieved suggestions")
-
-
                     $scope.suggestions = parsed;
                     $scope.$apply();
                 },
@@ -313,7 +309,6 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
                             notifications[i].datePosted = hoursAgo + " hour ago";
                         } else {
                             notifications[i].datePosted = hoursAgo + " hours ago";
-                            console.log(notifications[i].datePosted);
                         }
                     } else {
                         var month = date.getMonth();
@@ -436,7 +431,6 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	        },
 	        success: function (data) {
 	            var items = JSON.parse(data)
-	            console.log(items);
 	            for (i = 0; i < items.length; i++) {
 	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
 	                var expirationDate = new Date(items[i].expirationDate);

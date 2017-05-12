@@ -3,7 +3,6 @@ var app = angular.module("index_app", ["serverModule"])
 var scope;
 
 app.controller("indexController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
-
     scope = $scope;
     $scope.selectedTab = 0
     $scope.posts = []

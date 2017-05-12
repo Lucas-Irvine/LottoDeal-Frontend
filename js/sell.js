@@ -3,7 +3,6 @@ var app = angular.module("app", ['serverModule']);
 app.controller("sellController", ["$scope", "$http", "$location", "serverGet",  function($scope, $http, $location, serverGet) {
     scope = $scope;
 
-    serverGet.testFunction();
     $scope.id = null;
 
     var searchObject = $location.search();
