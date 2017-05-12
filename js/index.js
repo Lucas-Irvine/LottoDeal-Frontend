@@ -1,38 +1,6 @@
 var app = angular.module("index_app", ["serverModule"])
 
-
-
-// function to delete a given item 
-function deleteItem () {
-        // get all the accounts for all posts
-    var deleteUrl = "https://162.243.121.223:8000//deleteItem";
-    var data = {
-        id: "CORRECT ID HERE"
-    }
-
-    $.ajax({
-        url: deleteUrl,
-        type: 'DELETE',
-        data: data,
-
-        success: function(message) {
-            var success = JSON.parse(message)
-            if (success == "0") {
-                alert("You can't delete an item that has bids on it!")
-            }
-            console.log("item successfully deleted")
-        },
-        error: function(response, error) {
-            console.log(response)
-            console.log(error)
-        }
-    });
-}
-
-console.log('test');
-
 var scope;
-
 
 app.controller("indexController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
 
@@ -75,6 +43,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.price = 0
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
+        console.log(typeof(amount))
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "index");
     }
 
@@ -90,6 +59,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 
         setTimeout(function() {
             $("#winnerForModal").fadeIn();
+
+            /* CODE BELOW IS MODIFIED FROM https://codepen.io/Gthibaud/pen/bNOZjd */
 
             canvas = document.getElementById("canvas");
             context = canvas.getContext("2d");
@@ -169,7 +140,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
                 for( var i = 0; i < particle.length; i++){
                     particle[i].draw();
                 }
-                // $("#canvas").hide();
             }
 
             function loadImage(url){
@@ -225,14 +195,12 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
                 context.closePath();
                 context.fillStyle=color;
                 context.fill();
-
             }       
+            /* END OF MODIFIED CODE FROM https://codepen.io/Gthibaud/pen/bNOZjd */
 
             setTimeout(function() {
                 $("#canvas").hide();
             }, 5000)
-            // $scope.winner = winner;
-            // $scope.$apply();
         }, 3000)
         $scope.winner = winner;
     }
@@ -267,10 +235,6 @@ function changeTab(titleID, id) {
 
     document.getElementById(titleID).className += " active";
     document.getElementById(id).className += " active";
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    // document.getElementById(cityName).style.display = "block";
-    //evt.currentTarget.className += " active";
 }
 
 

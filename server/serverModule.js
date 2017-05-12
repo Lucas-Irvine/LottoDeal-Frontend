@@ -1,16 +1,17 @@
 angular.module('serverModule', ['utilsModule'])
-.service('serverGet', ["dateFunctions", serverGet])
+.service('serverGet', ["dateFunctions", "base64ArrayBuffer", serverGet])
 .service('serverPost', serverPost);
 
 // var prodUrl = "https://162.243.121.223:8000/";
 var prodUrl = "http://162.243.121.223:8000/";
-
 var debug = "https://localhost:8000/"
 
-
-function serverGet(dateFunctions) {
+// serverGet contains all ajax GET calls to the backend (all private GET requests
+// use an accessToken instead of FBID)
+function serverGet(dateFunctions, base64ArrayBuffer) {
 	var DateDiff = dateFunctions.DateDiff; // define dateDiff
 
+	// get all posts from the backend (all items for the frontend)
 	this.getPosts = function(loadingIcon, $scope) {
 		var url = prodUrl + "getPosts";
 	    loadingIcon.show()
@@ -26,7 +27,6 @@ function serverGet(dateFunctions) {
 	            console.log(items);
 	            for (i = 0; i < items.length; i++) {
 	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
-	                // console.log( "Raised" + items[i].percentageRaised);
 	                var expirationDate = new Date(items[i].expirationDate);
 	                var date = new Date();
 	                var hours = DateDiff.inHours(date, expirationDate)
@@ -44,7 +44,6 @@ function serverGet(dateFunctions) {
 	                else {
 	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
 	                }
-	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
 
 	                var image = items[i].img;
 	                if (image == null) {
@@ -52,39 +51,11 @@ function serverGet(dateFunctions) {
 	                } 
 	                else if (items[i].img.compressed != null) {
 	                    items[i]["src"] = items[i].img.compressed;
-
 	                }
 	                else {
-	                    // WORKING SNIPPET
-	                    // var binary = '';
-	                    // var bytes = new Uint8Array(items[i].img.data.data);
-	                    // var len = bytes.byteLength;
-	                    // for (var j = 0; j < len; j++) {
-	                    //     binary += String.fromCharCode(bytes[j]);
-	                    // }
-	                    // END WORKING SNIPPET
-
-
-	                    // NOTE: EITHER ONE OF THE BELOW LINES WORK, SHOULD BE TESTED FOR SPEED
-	                    // var b64 = btoa(binary);
 	                    var b64 = base64ArrayBuffer(items[i].img.data.data)
-
-	                    // var raw = String.fromCharCode.apply(null, items[i].img.data.data)
-
-	                    // var b64=btoa(raw)
 	                    var dataURL = "data:image/jpeg;base64," + b64;
-
-	                    // if (items[i].img.compressed != null) {
-	                    //     items[i]["src"] = items[i].img.compressed;
-	                    // }
-	                    // else {
-	                    //     items[i]["src"] = dataURL;
-	                    // }
 	                    items[i]["src"] = dataURL;
-
-
-	                    // items[i]["src"] = 'data:image/jpeg;base64,' + items[i].img.data.data;
-	                    // items[i]["src"] = items[i].img.data.data;
 	                }
 	                if (items[i].sold == true) {
 	                    soldItems.push(items[i]);
@@ -101,8 +72,6 @@ function serverGet(dateFunctions) {
 	            $scope.soldItems = soldItems;
 	            $scope.expiredItems = expiredItems;
 
-	            console.log($scope.posts)
-
 	            loadingIcon.hide();
 	            $scope.$apply()
 	        },
@@ -113,8 +82,8 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get notifications for a user
 	this.getNotifications = function(accessToken, $scope) {
-
 		var itemIDs = [];
 
 		var notificationUrl = prodUrl + "getNotifications";
@@ -127,8 +96,7 @@ function serverGet(dateFunctions) {
 	        data: dataGET,
 	        type: 'GET',
 	        success: function(data) {
-	            var notifications = JSON.parse(data)
-	            console.log(notifications)
+	            var notifications = JSON.parse(data);
 
 	            var monthNames = [
 	                "January", "February", "March",
@@ -175,15 +143,13 @@ function serverGet(dateFunctions) {
 
 	                    var newDate = monthNames[month] + " " + day + " at " + strTime;
 	                    notifications[i].datePosted = monthNames[month] + " " + day + " at " + strTime;
-	                    console.log(newDate);
 	                }
 	                if (!notifications[i].read) {
 	                    $scope.notificationLength++;
 	                }
 
 	                if (notifications[i].sold != undefined && notifications[i].sold != null && notifications[i].sold == true) {
-	                	// notifications[i]["description"] = "A winner has been chosen, click to see who won!"
-	                	// notifications[i]["title"] = "LottoDeal:"
+
 	                }
 	                else {
 	                	notifications[i].sold = false
@@ -192,36 +158,31 @@ function serverGet(dateFunctions) {
 
 	            }
 
-	                var getImageForNotificationsURL = prodUrl + "getImagesForNotifications";
 
-	                var data = {
-	                    itemIDs: itemIDs
-	                }
-
-	                    $.ajax({
-	                    url: getImageForNotificationsURL,
-	                    type: 'GET',
-	                    data: data,
-	                    success: function(data) {
-	                        var images = JSON.parse(data)
-	                        if (images.length > 5) {
-	                            images = images.slice(0, 5);
-	                        }
-	                        $scope.images = images;
-	                        console.log($scope.images)
-	                        $scope.$apply()
-	                    },
-	                    error: function(response, error) {
-	                        console.log(response)
-	                        console.log(error)
-	                    }
-	                });
-
-
-
+	            // get the images for the notifications
+                var getImageForNotificationsURL = prodUrl + "getImagesForNotifications";
+                var data = {
+                    itemIDs: itemIDs
+                }
+                $.ajax({
+                    url: getImageForNotificationsURL,
+                    type: 'GET',
+                    data: data,
+                    success: function(data) {
+                        var images = JSON.parse(data)
+                        if (images.length > 5) {
+                            images = images.slice(0, 5);
+                        }
+                        $scope.images = images;
+                        $scope.$apply()
+                    },
+                    error: function(response, error) {
+                        console.log(response)
+                        console.log(error)
+                    }
+                });
 
 	            $scope.notifications = notifications;
-	            console.log($scope.notifications)
 	            $scope.$apply()
 	        },
 	        error: function(response, error) {
@@ -231,8 +192,9 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get the suggested items for a particular user
 	this.getSuggestions = function(accessToken, $scope) {
-		var suggestionsURL = prodUrl + "getSuggestions"
+		var suggestionsURL = prodUrl + "getSuggestions";
         if (accessToken != null) {
             $.ajax({
                 url: suggestionsURL,
@@ -241,12 +203,8 @@ function serverGet(dateFunctions) {
                     accessToken: accessToken
                 },
                 statusCode: {
-                    200: function(response) {
-                        $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
-                    },
                     404: function(response) {
                         var newDoc = document.open("text/html", "replace");
-                        // console.log(response);
                         newDoc.write(response.responseText);
                         newDoc.close();
                     }
@@ -270,6 +228,7 @@ function serverGet(dateFunctions) {
         }
 	}
 
+	// get item based on itemID
 	this.getItem = function(id, $scope, accessToken, userID) {
 		var url = prodUrl + "getItem"
 
@@ -280,9 +239,6 @@ function serverGet(dateFunctions) {
 	            id: id
 	        },
 	        statusCode: {
-	            200: function(response) {
-	                $(document.body).show();
-	            },
 	            404: function(response) {
 	                var newDoc = document.open("text/html", "replace");
 	                newDoc.write(response.responseText);
@@ -291,13 +247,9 @@ function serverGet(dateFunctions) {
 	        },
 	        success: function(data) {
 	            var parsed = JSON.parse(data)
-	            console.log(parsed.sold)
-	            //console.log(parsed);
-	            //console.log(parsed._id)
 
 	            // amount raised
 	            parsed.percentageRaised = (Number(parsed.amountRaised) / Number(parsed.price)) * 100;
-	            console.log("Raised" + parsed.percentageRaised);
 	            var expirationDate = new Date(parsed.expirationDate);
 	            var date = new Date();
 	            parsed.hoursToGo = DateDiff.inHours(date, expirationDate)
@@ -308,42 +260,13 @@ function serverGet(dateFunctions) {
 	            var image = parsed.img;
 
 	            if (image == null) {
-	                parsed["src"] = "http://placehold.it/320x150"
+	                parsed["src"] = "https://placeholdit.imgix.net/~text?txtsize=30&txt=320%C3%97150&w=320&h=150"
 	            } else {
 	                parsed["src"] = parsed.img.compressed;
 	            }
 
-	            // check if user can edit
-	      //       var editUrl = "https://localhost:8000/verifyAccessToken";
-	      //       $.ajax({
-			    //     url: editUrl,
-			    //     type: 'GET',
-			    //     data: {
-			    //         accessToken: accessToken
-			    //     },
-			    //     success: function(response) {
-			    //     	if (parsed.sellerID == response) {
-			    //             console.log("matches")
-			    //             $scope.canEdit = true;
-
-			    //         } else {
-			    //             console.log(response + "cannot edit this post");
-			    //         }
-
-			    //         $scope.post = parsed;
-			    //         $scope.$apply();
-			    //     },
-			    //     error: function(response, error) {
-			    //     	console.log(response);
-			    //     	console.log(error);
-			    //     }
-			    // });
 	            if (parsed.sellerID == userID) {
-	                console.log("matches")
 	                $scope.canEdit = true;
-
-	            } else {
-	                console.log(userID + "cannot edit this post");
 	            }
 
 	            $scope.post = parsed;
@@ -356,17 +279,13 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// mark notifications read and return new notifications for user
     this.markRead = function(accessToken, $scope) {
     	var itemIDs = [];
-
     	var readurl = prodUrl + "markRead";
-        // var userID = localStorage.getItem("curUserID")
-
-        console.log(accessToken + "here's the userID in mark read");
         var data = {
             accessToken: accessToken
         }
-        console.log('Asking for notifications')
         $.ajax({
             url: readurl,
             data: data,
@@ -387,9 +306,7 @@ function serverGet(dateFunctions) {
                 for (i = 0; i < notifications.length; i++) {
 
                     itemIDs.push(notifications[i].itemID);
-
                     var date = new Date(notifications[i].datePosted);
-
                     var hoursAgo = Math.abs(DateDiff.inHours(curDate, date));
 
                     if (hoursAgo < 24) {
@@ -420,13 +337,10 @@ function serverGet(dateFunctions) {
 
                         var newDate = monthNames[month] + " " + day + " at " + strTime;
                         notifications[i].datePosted = monthNames[month] + " " + day + " at " + strTime;
-                        console.log(newDate);
                     }
                 }
 
                 $scope.notifications = notifications;
-                console.log($scope.notifications)
-                console.log("updated the notifications")
                 $scope.$apply()
             },
             error: function(response, error) {
@@ -436,11 +350,9 @@ function serverGet(dateFunctions) {
         });
     }
 	
+	// get the average user ratings for all posts
 	this.getAccountsForPosts = function($scope) {
 		var accountUrl = prodUrl + "getAccountsForPosts";
-
-
-
 		$scope.listedAccounts = [];
     	$scope.soldAccounts = [];
     	$scope.expiredAccounts = [];
@@ -450,13 +362,10 @@ function serverGet(dateFunctions) {
 	        type: 'GET',
 	        success: function(data) {
 	            var allAccounts = JSON.parse(data)
-	            console.log(allAccounts);
-
 
 	            $scope.listedAccounts = allAccounts.listedAccounts;
     			$scope.soldAccounts = allAccounts.soldAccounts;
     			$scope.expiredAccounts = allAccounts.expiredAccounts;
-
 
 	            $scope.$apply()
 	        },
@@ -467,22 +376,19 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
-
+	// get the public account of a user
 	this.getPublicAccount = function($scope, id) {
 		var url = prodUrl + "getPublicAccount";
 	    var dataGET = {
 	        userID: id
 	    }
-	    console.log('Asking for account info')
-	    
+
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
 	        type: 'GET',
 	        success: function (data) {
 	            var account = JSON.parse(data)
-	            console.log("Here's your account for another user" + account)
-
 	            document.getElementById('profileName').innerHTML = account.fullName;
 	            document.getElementById('profileImage').src = account.pictureURL;
 	            var reviews = account.reviews;
@@ -514,23 +420,19 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get the listed items for a user
 	this.getListedItemsForUsers = function(userID, $scope) {
 		var url = prodUrl + "getListedItemsForUsers";
 	    var dataGET = {
 	        userID: userID
 	    }
-	    console.log('Asking for ListedItems')
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
 	        type: 'GET',
 	        statusCode: {
-	            // 200: function(response) {
-	            //     $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
-	            // },
 	            404: function(response) {
 	                var newDoc = document.open("text/html", "replace");
-	                // console.log(response);
 	                newDoc.write(response.responseText);
 	                newDoc.close();
 	            }
@@ -540,7 +442,6 @@ function serverGet(dateFunctions) {
 	            console.log(items);
 	            for (i = 0; i < items.length; i++) {
 	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
-	                console.log( "Raised" + items[i].percentageRaised);
 	                var expirationDate = new Date(items[i].expirationDate);
 	                var date = new Date();
 	                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
@@ -560,7 +461,6 @@ function serverGet(dateFunctions) {
 	                else {
 	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
 	                }
-	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
 
 	                var image = items[i].img;
 	                if (image == null) {
@@ -584,7 +484,6 @@ function serverGet(dateFunctions) {
 	                items[i]["yourBids"] = count;
 	            }
 	            $scope.listedItems = items;
-	            console.log($scope.listedItems)
 	            $scope.$apply()
 	        },
 	        error: function (response, error) {
@@ -594,12 +493,12 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get the sold items for a user
 	this.getSoldItemsForUsers = function(userID, $scope) {
 		var url = prodUrl + "getSoldItemsForUsers";
 	    var dataGET = {
 	        userID: userID
 	    }
-	    console.log('Asking for SoldItems')
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
@@ -608,7 +507,6 @@ function serverGet(dateFunctions) {
 	            var items = JSON.parse(data)
 	            for (i = 0; i < items.length; i++) {
 	                items[i].percentageRaised = (Number(items[i].amountRaised) / Number(items[i].price)) * 100;
-	                console.log( "Raised" + items[i].percentageRaised);
 	                var expirationDate = new Date(items[i].expirationDate);
 	                var date = new Date();
 	                items[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
@@ -628,7 +526,6 @@ function serverGet(dateFunctions) {
 	                else {
 	                    items[i].expirationDate =  hours + " Hours " + days + " Days left";
 	                }
-	               // items[i]["src"] = 'data:image/jpeg;base64,' + btoa(items[i].data.data)
 
 	                var image = items[i].img;
 	                if (image == null) {
@@ -653,7 +550,6 @@ function serverGet(dateFunctions) {
 
 	            }
 	            $scope.soldItems = items;
-	            console.log($scope.soldItems)
 	            $scope.$apply()
 	        },
 	        error: function (response, error) {
@@ -663,30 +559,22 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get a user's personal account information
 	this.getAccount = function(accessToken, $scope) {
 		var url = prodUrl + "getAccount";
-
 	    var dataGET = {
 	        accessToken: accessToken
 	    }
-	    console.log('Asking for account info')
-
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
 	        type: 'GET',
 	        success: function(data) {
 	            var account = JSON.parse(data)
-	            console.log("Here's your account for another user" + account)
-
-
-
 	            document.getElementById('profileName').innerHTML = account.fullName;
 	            document.getElementById('profileImage').src = account.pictureURL;
-	            console.log(account.pictureURL);
 	            
 	            $scope.email = account.email;
-
 
 	            var reviews = account.reviews;
 	            var length = reviews.length;
@@ -720,30 +608,25 @@ function serverGet(dateFunctions) {
 
 	}
 
+	// get the reviews for a user
 	this.getReviews = function(id, $scope) {
 		var url = prodUrl + "getReviews";
 	    var dataGET = {
 	        sellerID: id
 	    }
-	    console.log('Asking for Reviews')
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
 	        type: 'GET',
 	        statusCode: {
-	            // 200: function(response) {
-	            //     $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
-	            // },
 	            404: function(response) {
 	                var newDoc = document.open("text/html", "replace");
-	                console.log(response);
 	                newDoc.write(response.responseText);
 	                newDoc.close();
 	            }
 	        },
 	        success: function (data) {
 	            var items = JSON.parse(data)
-
 
 	            var monthNames = [
 	                "January", "February", "March",
@@ -753,19 +636,15 @@ function serverGet(dateFunctions) {
 	            ];
 
 	            for (i = 0; i < items.length; i++) {
-
-
 	                var date = new Date(items[i].datePosted)
 	                var month = date.getMonth();
 	                var day = date.getDate();
 	                var year = date.getFullYear();
 	                var newDate = monthNames[month] + " " + day + ", " + year;
 	                items[i].datePosted = newDate;
-	                console.log(newDate);
 	            }
 
 	            $scope.reviews = items;
-	            console.log($scope.reviews)
 	            $scope.$apply()
 	        },
 	        error: function (response, error) {
@@ -775,31 +654,25 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get the reviews of a seller (of an item for the item page)
     this.getReviewsOfSeller = function(itemID, $scope) {
         var url = prodUrl + "getReviewsOfSeller";
         var dataGET = {
             itemID: itemID
         }
-        console.log('Asking for Reviews of Seller')
         $.ajax({
             url: url,
             data: dataGET,
             type: 'GET',
             statusCode: {
-                // 200: function(response) {
-                //     $(document.body).show(); // SHOULD EDIT THIS TO BE BETTER DESIGN - WHAT IF AJAX CALL FAILS
-                // },
                 404: function(response) {
                     var newDoc = document.open("text/html", "replace");
-                    console.log(response);
                     newDoc.write(response.responseText);
                     newDoc.close();
                 }
             },
             success: function (data) {
-            	console.log('Got reviews of sellers');
                 var items = JSON.parse(data)
-
 
                 var monthNames = [
                     "January", "February", "March",
@@ -809,19 +682,15 @@ function serverGet(dateFunctions) {
                 ];
 
                 for (i = 0; i < items.length; i++) {
-
-
                     var date = new Date(items[i].datePosted)
                     var month = date.getMonth();
                     var day = date.getDate();
                     var year = date.getFullYear();
                     var newDate = monthNames[month] + " " + day + ", " + year;
                     items[i].datePosted = newDate;
-                    console.log(newDate);
                 }
 
                 $scope.itemReviews = items;
-                console.log($scope.itemReviews)
                 $scope.$apply()
             },
             error: function (response, error) {
@@ -831,12 +700,12 @@ function serverGet(dateFunctions) {
         });
     }
 
+    // get the image and name of a reviewer
 	this.getReviewerImagesAndNames = function(id, $scope) {
 		var url = prodUrl + "getReviewerImagesAndNames";
 	    var dataGET = {
 	        userID: id
 	    }
-	    console.log('Asking for Reviewers')
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
@@ -844,8 +713,6 @@ function serverGet(dateFunctions) {
 	        success: function (data) {
 	            var items = JSON.parse(data)
 	            $scope.reviewers = items;
-	            //console.log(items[0].fullName + "these are the names of the reviewers")
-	            console.log($scope.reviewers)
 	            $scope.$apply()
 	        },
 	        error: function (response, error) {
@@ -855,13 +722,12 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get the items that a user has bid on
 	this.getBidsOfUsers = function(accessToken, $scope) {
 		var url = prodUrl + "getBidsofUsers";
-
 	    var dataGET = {
 	        accessToken: accessToken
 	    }
-	    console.log('Asking for Bids')
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
@@ -870,7 +736,6 @@ function serverGet(dateFunctions) {
 	            var bids = JSON.parse(data)
 	            if (bids.length != 0) {
 	                $scope.bids = bids;
-	                console.log($scope.bids)
 	                $scope.$apply()
 	            } else {
 	                document.getElementById('BidCount').innerHTML = "No Bids Yet";
@@ -883,27 +748,23 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// get the items that a user has bid on
 	this.getBiddedItemsOfUsers = function(accessToken, $scope) {
 		var url = prodUrl + "getBiddedItemsofUsers";
 	    var dataGET = {
 	        accessToken: accessToken
 	    }
-	    console.log('Asking for Items')
 	    $.ajax({
 	        url: url,
 	        data: dataGET,
 	        type: 'GET',
 	        success: function(data) {
 	            var allAccountsAndItems = JSON.parse(data)
-
 	            var oldBiddedItems = allAccountsAndItems.oldBiddedItems;
 	            var curBiddedItems = allAccountsAndItems.curBiddedItems;
 
 	            for (i = 0; i < oldBiddedItems.length; i++) {
-
-
 	                oldBiddedItems[i].percentageRaised = (Number(oldBiddedItems[i].amountRaised) / Number(oldBiddedItems[i].price)) * 100;
-	                console.log("Raised" + oldBiddedItems[i].percentageRaised);
 	                var expirationDate = new Date(oldBiddedItems[i].expirationDate);
 	                var date = new Date();
 	                oldBiddedItems[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
@@ -923,7 +784,6 @@ function serverGet(dateFunctions) {
 	                else {
 	                    oldBiddedItems[i].expirationDate =  hours + " Hours " + days + " Days left";
 	                }
-	               // oldBiddedItems[i]["src"] = 'data:image/jpeg;base64,' + btoa(oldBiddedItems[i].data.data)
 
 	                var image = oldBiddedItems[i].img;
 	                if (image == null) {
@@ -939,13 +799,8 @@ function serverGet(dateFunctions) {
 	                }
 	            }
 
-
-
 	           	for (i = 0; i < curBiddedItems.length; i++) {
-
-
 	                curBiddedItems[i].percentageRaised = (Number(curBiddedItems[i].amountRaised) / Number(curBiddedItems[i].price)) * 100;
-	                console.log("Raised" + curBiddedItems[i].percentageRaised);
 	                var expirationDate = new Date(curBiddedItems[i].expirationDate);
 	                var date = new Date();
 	                curBiddedItems[i].expirationDate = DateDiff.inHours(date, expirationDate) + " Hours " + DateDiff.inDays(date, expirationDate) + " Days left";
@@ -985,13 +840,11 @@ function serverGet(dateFunctions) {
 	            var curBidsAccounts = allAccountsAndItems.curBidsAccounts;
 	            var oldBidsAccounts = allAccountsAndItems.oldBidsAccounts;
 
-
 	            $scope.curBidsAccounts = curBidsAccounts;
 	            $scope.oldBidsAccounts = oldBidsAccounts;
 	            $scope.oldBiddedItems = oldBiddedItems;
 	            $scope.curBiddedItems = curBiddedItems;
 	            	            	            
-
 	            $scope.$apply()
 	        },
 	        error: function(response, error) {
@@ -1001,19 +854,22 @@ function serverGet(dateFunctions) {
 	    });
 	}
 
+	// debug function
 	this.testFunction = function() {
 		console.log("this function is working");
 	}
 }
 
+// serverPost contains all ajax POST calls to the backend (all private POST requests
+// use an accessToken instead of FBID)
 function serverPost() {
+	// bid functionality (differs for different pages) (triggered on bid button press)
 	this.bid = function(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, page) {
 		var handler = StripeCheckout.configure({
 	        key: 'pk_test_I1JByOdv34UVHxZhjKYlKGc4',
 	        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
 	        locale: 'auto',
 	        token: function(token) {
-	            console.log('attempting stripe payment')
 	            var amountToCharge = $scope.amountToCharge;
 	            var itemTitle = $scope.itemTitle;
 	            var itemID = $scope.itemID;
