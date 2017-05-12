@@ -103,7 +103,6 @@ window.fbAsyncInit = function() {
 
             if (window.location.href.indexOf("profile.html") > -1) {
                 scope.getAccount();
-                scope.getBidsOfUsers();
                 scope.getBiddedItemsOfUsers();
                 scope.getListedItemsForUsers();
                 scope.getSoldItemsForUsers();

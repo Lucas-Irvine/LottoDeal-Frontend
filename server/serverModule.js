@@ -704,32 +704,6 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	}
 
 	// get the items that a user has bid on
-	this.getBidsOfUsers = function(accessToken, $scope) {
-		var url = prodUrl + "getBidsofUsers";
-	    var dataGET = {
-	        accessToken: accessToken
-	    }
-	    $.ajax({
-	        url: url,
-	        data: dataGET,
-	        type: 'GET',
-	        success: function(data) {
-	            var bids = JSON.parse(data)
-	            if (bids.length != 0) {
-	                $scope.bids = bids;
-	                $scope.$apply()
-	            } else {
-	                document.getElementById('BidCount').innerHTML = "No Bids Yet";
-	            }
-	        },
-	        error: function(response, error) {
-	            console.log(response)
-	            console.log(error)
-	        }
-	    });
-	}
-
-	// get the items that a user has bid on
 	this.getBiddedItemsOfUsers = function(accessToken, $scope) {
 		var url = prodUrl + "getBiddedItemsofUsers";
 	    var dataGET = {

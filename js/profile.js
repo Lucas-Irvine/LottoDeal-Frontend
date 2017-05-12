@@ -58,12 +58,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
         serverGet.markRead(accessToken, $scope);
     }
 
-    scope.getBidsOfUsers = function() {
-        serverGet.getBidsOfUsers(accessToken, $scope);
-    }
-    
-
-
     var itemIDs = [];
 
     scope.getBiddedItemsOfUsers = function() {
