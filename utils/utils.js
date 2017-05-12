@@ -1,5 +1,6 @@
 angular.module('utilsModule', [])
 .service('dateFunctions', dateFunctions)
+.servier('base64ArrayBuffer', base64ArrayBuffer)
 
 function dateFunctions() {
 	//Code modified from http://ditio.net/2010/05/02/javascript-date-difference-calculation/
