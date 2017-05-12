@@ -8,13 +8,9 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.selectedTab = 0
     $scope.posts = []
 
-    console.log(serverGet);
-
     function hexToBase64(str) {
         return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
     }
-
-
 
     serverGet.getPosts($("#loading-icon"), $scope);
     
@@ -206,6 +202,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 
 }])
 
+// reverses elements in an array
 app.filter('reverse', function() {
     return function(items) {
         return items.slice().reverse();
@@ -214,7 +211,6 @@ app.filter('reverse', function() {
 
 //For changing tabs Code modified from https://www.w3schools.com/howto/howto_js_tabs.asp
 function changeTab(titleID, id) {
-    console.log('test');
     // Declare all variables
     var i, tabcontent, tablinks;
 

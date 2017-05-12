@@ -1,17 +1,14 @@
 // var prodUrl = "https://lottodeal.club:8000/";
 // var prodUrl = "https://162.243.121.223:8000/"
 var prodUrl = "http://162.243.121.223:8000/"
-
 var debug = "https://localhost:8000/"
 
 function checkIfUser(accessToken, callback) {
     // get all the accounts for all posts
     var checkURL = prodUrl + "checkIfUser";
-
     var data = {
         accessToken: accessToken
     }
-
     $.ajax({
         url: checkURL,
         type: 'GET',
@@ -23,11 +20,11 @@ function checkIfUser(accessToken, callback) {
                 document.getElementById('loginMessage').innerHTML = 'Please logout and login so that you will be a registered user. You must accept third' +
                     'party cookies to login successfully.';
                 showLoginPopup();
-                console.log('accessToken is null')
             }
             callback();
         },
         error: function(response, error) {
+            console.log("Error in checkIfUser")
             console.log(response)
             console.log(error)
         }
@@ -87,12 +84,7 @@ window.fbAsyncInit = function() {
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
 
-            accessToken = response.authResponse.accessToken;
-
-
-   
-            //localStorage.setItem("curaccessToken", response.id);
-            
+            accessToken = response.authResponse.accessToken;            
 
             // sell page
             if ($("#accessToken") != undefined) {
@@ -109,7 +101,6 @@ window.fbAsyncInit = function() {
                 scope.checkIfReviewingSelf(accessToken, userID);
             }
 
-
             if (window.location.href.indexOf("profile.html") > -1) {
                 scope.getAccount();
                 scope.getBidsOfUsers();
@@ -120,19 +111,12 @@ window.fbAsyncInit = function() {
                 scope.getReviewerImagesAndNames();
             }
 
-
             scope.getNotifications(accessToken);
-            
-            console.log(accessToken + "saving accessToken as a global variable when logging in ")
-    
 
-            //saveaccessToken();
-            console.log('logged in')
             // Get and display the user profile data
         }
         else {
             accessToken = undefined;
-            console.log('Not logged in');
 
             if (window.location.href.indexOf("profile.html") > -1) {
                 document.getElementById('loginMessage').innerHTML = 'Please login before you can access your profile';
@@ -174,7 +158,6 @@ var facebookLoginButton = document.getElementById("loginToFacebook");
 
 // When the user clicks the button, open the modal 
 facebookLoginButton.onclick = function() {
-    console.log('logging in/out')
     document.getElementById('loginMessage').innerHTML = ""
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
@@ -208,7 +191,6 @@ function fbLogin() {
         if (response.authResponse) {
             // Get and display the user profile data
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
-            console.log('Successfully logged in')
             userID = response.id;
         FB.getAuthResponse(function(response) {
             if (response.status === 'connected') {
@@ -224,28 +206,20 @@ function fbLogin() {
 
 // Logout from facebook
 function fbLogout() {
-    //delete local storage
-    // delete localStorage.curaccessToken;
-
     accessToken = undefined;
 
     FB.logout(function() {
-        console.log('Successfully logged out')
+        // successfully logged out
     });
 }
 
 function getFbUserData(){
     FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
         function (response) {
-            //localStorage.setItem("curaccessToken", response.id);
-
             // for sell page
             if ($("#accessToken") != undefined) {
                 $("#accessToken").val(accessToken);
             }
-
-
-
 
             if (window.location.href.indexOf("item.html") > -1) {
                 scope.getSuggestions();
@@ -269,13 +243,8 @@ function getFbUserData(){
 
 
             scope.getNotifications(accessToken);
-            console.log(accessToken + "saving accessToken as a global variable")
-
-
 
             window.location.reload(true); // reload a page when you log in
- 
-
 
             // Save user data
             saveUserData(response);
@@ -283,17 +252,12 @@ function getFbUserData(){
 }
 
 function saveUserData(response) {
-
       var url = prodUrl + "createUser";
-      
-      console.log('Gender:' + response.gender);
-      console.log('Age max: ' + response.age_range.max);
-      console.log('Age min: ' + response.age_range.min);
+
       var avgAge = 25 //default to 25 if unspecified
 
       if (response.age_range != null) {
         avgAge = (response.age_range.max + response.age_range.min) / 2
-        console.log('Avg age is' + avgAge);
       }
 
       data = {
@@ -305,17 +269,17 @@ function saveUserData(response) {
         email: response.email
       }
 
-      // AJAX POST TO SERVER
       $.ajax({
         url: url,
         type: 'post',
         data: data,
         success: function(data) {
-        console.log(data)
+            // successful post
         },
         error: function(response, error) {
-        console.log(response)
-        console.log(error)
+            console.log("Error in saving user from facebook")
+            console.log(response)
+            console.log(error)
         }
     });
 }
