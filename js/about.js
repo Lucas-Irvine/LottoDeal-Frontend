@@ -14,7 +14,7 @@ app.controller("aboutController", ["$scope", "$rootScope", "$location", "serverG
 
     $scope.images = []
 
-// mark all the notifications as read
+    // mark all the notifications as read
     scope.markRead = function () {
         serverGet.markRead(accessToken, $scope);
     }

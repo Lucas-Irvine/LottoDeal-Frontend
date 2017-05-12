@@ -13,10 +13,7 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-
-
 var scope;
-
 
 var app = angular.module("profile_app", ["serverModule"])
 
@@ -84,9 +81,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
         serverGet.getSoldItemsForUsers(userID, $scope);
     }
 
-   
-
-
     //Start reviews
     $scope.reviews = []
 
@@ -100,8 +94,6 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
         serverGet.getReviewerImagesAndNames(userID, $scope);
     }
     
-
-
     $scope.reviewers = []
 
     

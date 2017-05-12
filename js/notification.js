@@ -6,7 +6,6 @@ $(document).ready(function() {
     $("#notifications").click(function() {
         if (!check) {
             $("#notificationContainer").fadeIn(300);
-            // $("#notification_count").fadeOut("slow");
             check = true;
         }
         else {
@@ -26,10 +25,4 @@ $(document).ready(function() {
         }
         check = false;
     });
-
-    // //Popup on click
-    // $("#notificationContainer").click(function() {
-    //     return false;
-    // });
-
 });

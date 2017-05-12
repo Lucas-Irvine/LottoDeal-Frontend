@@ -17,53 +17,36 @@ function changeStars(stars) {
 
 
 function createReviewFunction() {
-
-    // var searchObject = $location.search();
-    // var id = searchObject['id'];
-    // console.log(id);
-
-
     var url = "http://162.243.121.223:8000/createReview";
+    var sellerID = reviewID;
+    var reviewDes = $("#reviewDes").val();
+    var stars = $("#numStars").val(); 
+    if (stars != 0) {
+        data = {
+         sellerID: sellerID,
+         reviewDes: reviewDes,
+         stars: stars, 
+         accessToken: accessToken,
+        }
 
-        console.log(numStars);
-
-        var sellerID = reviewID;
-        var reviewDes = $("#reviewDes").val();
-        var stars = $("#numStars").val(); 
-        // var userID = localStorage.getItem("curUserID");
-        console.log(stars)
-
-        if (stars != 0) {
-
-            console.log("posting a review NOW!")
-            data = {
-             sellerID: sellerID,
-             reviewDes: reviewDes,
-             stars: stars, 
-             accessToken: accessToken,
-            }
-
-            // AJAX POST TO SERVER
-            $.ajax({
-             url: url,
-             type: 'POST',
-             data: data,
-             success: function(data) {
-                console.log(data)
+        // AJAX POST TO SERVER
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: function(data) {
                 $("#reviewAddedModal").modal()
-             },
-             error: function(response, error) {
-                 console.log(response)
-                 console.log(error)
-             }
-         });
-        }
-        else {
-            alert("Please select the number of stars")
-        }
-        
-
-
+            },
+            error: function(response, error) {
+                console.log("Error in createReview")
+                console.log(response)
+                console.log(error)
+            }
+        });
+    }
+    else {
+        alert("Please select the number of stars")
+    }
 }
 
 var scope;
@@ -74,8 +57,6 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
     scope = $scope;
     var searchObject = $location.search();
     var id = searchObject['id'];
-    console.log(id);
-
     reviewID = id;
 
     scope.checkIfReviewingSelf = function(accessToken, userID) {
@@ -83,54 +64,31 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
             $("#reviewForm").show();
         }
     }
-
-    
-    // USER SHOULD NOT BE ABLE TO REVIEW THEMSELVES IF THEY ARE ON THEIR OWN PAGE - can check this on the backend as well actually (necessary actually)
-
-
-
     $scope.selectedTab = 0
 
     $scope.bids = []
     $scope.items = []
     $scope.listedItems = []
 
-
-
-    
     serverGet.getListedItemsForUsers(reviewID, $scope)
     
-
-
     $scope.soldItems = []
 
-
-
-    
     serverGet.getSoldItemsForUsers(reviewID, $scope)
-    
-
 
     $scope.reviews = []
 
 
     serverGet.getReviews(reviewID, $scope)
     
-
-    
     $scope.reviewers = []
     // loads reviewers images and names into the above
 
     serverGet.getReviewerImagesAndNames(reviewID, $scope)
-    
-
-
 
     scope.markRead = function() {
         serverGet.markRead(accessToken, $scope)
     }
-
-
 
     $scope.account = []
 
@@ -146,17 +104,11 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
 
     $scope.targetPost = null;
 
-
-
     $scope.amountRaised = 0
     $scope.amountToCharge = 0
     $scope.itemID = ""
     $scope.itemTitle = ""
     $scope.price = 0
-
-   
-
-
 }])
 
 

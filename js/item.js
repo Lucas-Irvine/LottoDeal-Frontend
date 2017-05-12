@@ -5,7 +5,6 @@ var scope;
 var app = angular.module("item_app", ["serverModule"])
 
 $('#myTabs a').click(function(e) {
-    console.log('tab clicked');
     e.preventDefault()
     $(this).tab('show')
 });
@@ -29,11 +28,6 @@ window.fbAsyncInit = function() {
             showLoginPopup();
         }
     });
-
-
-
-
-
 };
 
 
@@ -62,8 +56,6 @@ function changeTab(titleID, id) {
 app.controller("itemController", ["$scope", "$location", "serverGet", "serverPost", function($scope, $location, serverGet, serverPost) {
     var searchObject = $location.search();
     var id = searchObject['id'];
-    console.log(id);
-
     scope = $scope;
 
     scope.getSuggestions = function() {
@@ -78,7 +70,6 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     $scope.notificationLength = 0;
 
     scope.getNotifications = function(accessToken) {
-        console.log(accessToken + "in get notifications");
         serverGet.getNotifications(accessToken, $scope);
     }
 
@@ -86,7 +77,6 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "item");
     }
-
 
     serverGet.getReviewsOfSeller(id, $scope)
 
