@@ -43,7 +43,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.price = 0
 
     $scope.bid = function(itemID, amount, amountRaised, price, itemTitle) {
-        console.log(typeof(amount))
         serverPost.bid(itemID, amount, amountRaised, price, itemTitle, accessToken, $scope, document, "index");
     }
 

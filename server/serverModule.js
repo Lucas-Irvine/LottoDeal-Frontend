@@ -4,7 +4,9 @@ angular.module('serverModule', ['utilsModule'])
 
 // var prodUrl = "https://162.243.121.223:8000/";
 var prodUrl = "http://162.243.121.223:8000/";
-var debug = "https://localhost:8000/"
+var debug = "https://localhost:8000/";
+
+var frontendURL
 
 // serverGet contains all ajax GET calls to the backend (all private GET requests
 // use an accessToken instead of FBID)
@@ -877,6 +879,8 @@ function serverPost() {
 	            var amountRaised = $scope.amountRaised;
 	            var price = $scope.price;
 
+	            console.log(typeof(amountToCharge))
+
 	            if (accessToken != undefined) {
 	                data = {
 	                    itemID: itemID,
@@ -892,7 +896,6 @@ function serverPost() {
 	                    type: 'POST',
 	                    statusCode: {
 	                    	401: function(response) {
-	                    		console.log("Oops, you can't bid on this item anymore!")
 	                    		BootstrapDialog.show({
 			                        title: "Oops, you can't bid on this item anymore!",
 			                        message: 'Your credit card was not charged. This item is either expired or sold.',
@@ -914,14 +917,11 @@ function serverPost() {
 	                    	},
 		                    404: function(response) {
 		                        var newDoc = document.open("text/html", "replace");
-		                        // console.log(response);
 		                        newDoc.write(response.responseText);
 		                        newDoc.close();
 		                    }
 		                },
 	                    success: function(data) {
-	                        console.log('success payment and bid added')
-	                        console.log(data);
 	                        if (page == "item") {
 	                        	post = $scope.post
 		                        console.log(itemID)
@@ -969,7 +969,6 @@ function serverPost() {
 	                        }
 
 	                        $scope.$apply()
-
 	                    },
 	                    error: function(response, error) {
 	                        console.log(response)
@@ -980,7 +979,6 @@ function serverPost() {
 	            } else {
 	                document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
 	                showLoginPopup();
-	                console.log('UserID is undefined')
 	            }
 	        }
 	    });
@@ -993,87 +991,43 @@ function serverPost() {
         if (accessToken != undefined) {
             checkIfUser(accessToken, function() {
                 if (status == 'true') {
-                if (price >= amountRaised + amount) {
-                    handler.open({
-                        name: 'LottoDeal',
-                        description: 'Bid on ' + itemTitle,
-                        amount: amount * 100
-                    });
-                } else {
-                    console.log('Bid overpasses item price!');
-                    BootstrapDialog.show({
-                        title: 'Bid surpasses item price',
-                        message: 'Choose a lower bid or search for similar items',
-                        buttons: [{
-                            id: 'btn-ok',
-                            icon: 'glyphicon glyphicon-check',
-                            label: 'OK',
-                            cssClass: 'btn-primary',
-                            data: {
-                                js: 'btn-confirm',
-                                'user-id': '3'
-                            },
-                            autospin: false,
-                            action: function(dialogRef) {
-                                dialogRef.close();
-                            }
-                        }]
-                    });
-
-                }
-            }
+	                if (price >= amountRaised + amount) {
+	                    handler.open({
+	                        name: 'LottoDeal',
+	                        description: 'Bid on ' + itemTitle,
+	                        amount: amount * 100
+	                    });
+	                } 
+	                else {
+	                    BootstrapDialog.show({
+	                        title: 'Bid surpasses item price',
+	                        message: 'Choose a lower bid or search for similar items',
+	                        buttons: [{
+	                            id: 'btn-ok',
+	                            icon: 'glyphicon glyphicon-check',
+	                            label: 'OK',
+	                            cssClass: 'btn-primary',
+	                            data: {
+	                                js: 'btn-confirm',
+	                                'user-id': '3'
+	                            },
+	                            autospin: false,
+	                            action: function(dialogRef) {
+	                                dialogRef.close();
+	                            }
+	                        }]
+	                    });
+	                }
+	            }
             });
-
         }
         else {
             document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
             showLoginPopup();
-            console.log('UserID is undefined')
         }
-
-		// console.log('initiating bid');
-  //       $scope.price = price;
-  //       $scope.amountToCharge = amount;
-  //       $scope.itemID = itemID
-  //       $scope.itemTitle = itemTitle
-  //       $scope.amountRaised = amountRaised
-
-  //       if (accessToken != undefined) {
-
-  //           if (price >= amountRaised + amount) {
-  //               handler.open({
-  //                   name: 'LottoDeal',
-  //                   description: 'Bid on ' + itemTitle,
-  //                   amount: amount * 100
-  //               });
-  //           } else {
-  //               console.log('Bid overpasses item price!');
-  //               BootstrapDialog.show({
-  //                   title: 'Bid surpasses item price',
-  //                   message: 'Choose a lower bid or search for similar items',
-  //                   buttons: [{
-  //                       id: 'btn-ok',
-  //                       icon: 'glyphicon glyphicon-check',
-  //                       label: 'OK',
-  //                       cssClass: 'btn-primary',
-  //                       data: {
-  //                           js: 'btn-confirm',
-  //                           'user-id': '3'
-  //                       },
-  //                       autospin: false,
-  //                       action: function(dialogRef) {
-  //                           dialogRef.close();
-  //                       }
-  //                   }]
-  //               });
-  //           }
-  //       } else {
-  //           document.getElementById('loginMessage').innerHTML = 'You must login before you are able to bid on an item!';
-  //           showLoginPopup();
-  //           console.log('UserID is undefined')
-  //       }
 	}
 
+	// delete item based item id
 	this.deleteItem = function(id, accessToken, $scope) {
 		BootstrapDialog.show({
             title: 'Are you sure you would like to delete this item?',
@@ -1094,40 +1048,32 @@ function serverPost() {
                         },
                         type: 'DELETE',
                         success: function(data) {
-                            console.log('Success deleting item')
                             var $footerButton = dialog.getButton('btn-1');
                             $footerButton.enable();
                             $footerButton.stopSpin();
                             dialog.setClosable(true);
                             dialog.close();
-                            window.location.href = 'https://dominicwhyte.github.io/LottoDeal-Frontend/index.html';
+                            window.location.href = frontendURL + '/index.html';
                         },
                         error: function(response, error) {
-                            console.log('Error deleting item')
                             var $footerButton = dialog.getButton('btn-1');
                             $footerButton.enable();
                             $footerButton.stopSpin();
                             dialog.setClosable(true);
                         }
                     });
-
-
                 }
             }]
         });
 	}
 
+	// update the settings of a user account
 	this.updateSettings = function(accessToken, email) {
 		var url = prodUrl + "updateSettings";
-
-        console.log("updating your settings")
-
         data = {
             email: email,
             accessToken: accessToken,
         }
-
-        // AJAX POST TO SERVER
         $.ajax({
             url: url,
             type: 'POST',
