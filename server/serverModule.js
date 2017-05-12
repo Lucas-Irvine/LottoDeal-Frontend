@@ -1,5 +1,5 @@
 angular.module('serverModule', ['utilsModule'])
-.service('serverGet', ["dateFunctions", "base64ArrayBuffer", serverGet])
+.service('serverGet', ["dateFunctions", "arrayBufferFunctions", serverGet])
 .service('serverPost', serverPost);
 
 // var prodUrl = "https://162.243.121.223:8000/";
@@ -10,6 +10,7 @@ var debug = "https://localhost:8000/"
 // use an accessToken instead of FBID)
 function serverGet(dateFunctions, base64ArrayBuffer) {
 	var DateDiff = dateFunctions.DateDiff; // define dateDiff
+	var base64ArrayBuffer = arrayBufferFunctions.base64ArrayBuffer;
 
 	// get all posts from the backend (all items for the frontend)
 	this.getPosts = function(loadingIcon, $scope) {
