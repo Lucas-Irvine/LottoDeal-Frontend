@@ -99,6 +99,9 @@ function winnerFunction() {
         keyboard: false
     })
 
+    winnerForModal.hide();
+
+
     setTimeout(function() {
         winnerForModal.fadeIn();
 
