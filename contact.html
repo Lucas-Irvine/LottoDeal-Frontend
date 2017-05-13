@@ -95,7 +95,7 @@
                         <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
 
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText" value="">
+                                <input type="text" class="form-control" placeholder="Search for Lotteries!" id="query" name="query" ng-model="searchText.title" value="">
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-success search-btn"><span class="glyphicon glyphicon-search"></span></button>
                                 </div>
@@ -106,10 +106,15 @@
                 <li>
                     <a id = "home" class="sliding-middle-out" href="index.html">Home</a>
                 </li>
-                <li>
+                <li id="sell_li">
                     <a id = "sell" class="sliding-middle-out" href="sell.html">Sell</a>
                 </li>
-
+                <li id="login_li">
+                    <a href = "#" id = "login" class="sliding-middle-out" style="cursor: pointer;" onclick = "showLoginPopup()">Login</a>
+                </li>
+                <li id="profile_li">
+                    <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
+                </li>
                 <li id="notification_li">
                     <a id="notifications" class="sliding-middle-out"><i class="fa fa-fw fa-bell-o"></i><span
                             id="notification_count" ng-cloak>{{notificationLength}}</span>
@@ -142,13 +147,6 @@
                         <!--< div id="notificationFooter"><a href="#">See All</a> -->
                         <!--</div>-->
                     </div>
-                </li>
-
-                <li>
-                    <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
-                </li>
-                <li>
-                    <a href = "#" id = "login" class="sliding-middle-out" style="cursor: pointer;" onclick = "showLoginPopup()">Login</a>
                 </li>
             </ul>
         </div>
