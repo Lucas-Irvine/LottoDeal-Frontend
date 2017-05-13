@@ -94,7 +94,7 @@ function arrayBufferFunctions() {
 }
 
 function winnerFunction() {
-  this.displayWinner = function($scope, winnerPopup, winnerForModal, canvas, w, h, winner) {
+  this.displayWinner = function($scope, winnerPopup, winnerForModal, canvas, w, h, winner, canvasEl) {
     winnerPopup.modal({
         keyboard: false
     })
@@ -193,7 +193,7 @@ function winnerFunction() {
         }
 
         function update(){
-          canvas.show();
+          canvasEl.show();
           context.clearRect(0,0,width,height);
 
           drawScreen();
@@ -244,7 +244,7 @@ function winnerFunction() {
         /* END OF MODIFIED CODE FROM https://codepen.io/Gthibaud/pen/bNOZjd */
 
         setTimeout(function() {
-            canvas.hide();
+            canvasEl.hide();
         }, 5000)
     }, 3000)
     $scope.winner = winner;
