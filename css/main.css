@@ -132,10 +132,6 @@ html {
     font-size: 12px;
 }
 
-.btn-group:focus {
-    outline: none;
-}
-
 #item-button {
     padding-left: 10%;
     padding-right: 10%;
@@ -927,6 +923,11 @@ textarea:-ms-input-placeholder {
 .btn {
     border:0;
 }
+
+.btn:focus {
+        outline: none;
+}
+
 .btn.btn-launch {
     /*background-color: #99DEAB;*/
     background-color: #3cc47c;
