@@ -248,6 +248,5 @@ function winnerFunction() {
         }, 5000)
     }, 3000)
     $scope.winner = winner;
-    $scope.$apply();
   }
 }
