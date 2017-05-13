@@ -36,12 +36,11 @@ function checkIfUser(accessToken, callback) {
 // http://stackoverflow.com/questions/40711082/call-a-javascript-function-before-action-in-html-form
 function sellCheck() {
     if (accessToken != undefined) {
-        checkIfUser(accessToken, function(){
+        checkIfUser(accessToken, function() {
             if (status == 'true') {
                 //to submit the form
                 return true;
-            }
-            else {
+            } else {
                 document.getElementById('loginMessage').innerHTML = 'You must login and logout before you are able to sell an item!';
                 showLoginPopup();
                 // to not submit the form
@@ -50,30 +49,29 @@ function sellCheck() {
 
 
         });
-    }
-    else {
+    } else {
         document.getElementById('loginMessage').innerHTML = 'You must login before you are able to sell an item!';
         showLoginPopup();
         return false;
-    }  
+    }
 }
 
 
 
-$('#loginPopup').on('hidden.bs.modal', function () {
-  document.getElementById('successScreen').innerHTML = '';
-  document.getElementById('loginMessage').innerHTML = ""
+$('#loginPopup').on('hidden.bs.modal', function() {
+    document.getElementById('successScreen').innerHTML = '';
+    document.getElementById('loginMessage').innerHTML = ""
 })
 
 
-    // Facebook Login code -----------------------------------
+// Facebook Login code -----------------------------------
 window.fbAsyncInit = function() {
     FB.init({
-        appId      : '228917890846081',
-        xfbml      : true,
-        cookie     : true,
-        version    : 'v2.8'
-    });   
+        appId: '228917890846081',
+        xfbml: true,
+        cookie: true,
+        version: 'v2.8'
+    });
 
     // Check whether the user already logged in
     FB.getLoginStatus(function(response) {
@@ -84,7 +82,7 @@ window.fbAsyncInit = function() {
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
 
-            accessToken = response.authResponse.accessToken;            
+            accessToken = response.authResponse.accessToken;
 
             // sell page
             if ($("#accessToken") != undefined) {
@@ -109,18 +107,18 @@ window.fbAsyncInit = function() {
                 scope.getReviews();
                 scope.getReviewerImagesAndNames();
             }
-
-            scope.getNotifications(accessToken);
+            if (accessToken != null && accessToken != undefined) {
+                scope.getNotifications(accessToken);
+            }
 
             // Get and display the user profile data
-        }
-        else {
+        } else {
             accessToken = undefined;
 
             if (window.location.href.indexOf("profile.html") > -1) {
                 document.getElementById('loginMessage').innerHTML = 'Please login before you can access your profile';
                 document.getElementById('login').innerHTML = 'Login';
-                $("#signInMessage").show();    
+                $("#signInMessage").show();
                 showLoginPopup();
             }
 
@@ -133,15 +131,16 @@ window.fbAsyncInit = function() {
 
 
 
-
-
 };
 
-(function(d, s, id){
+(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src="https://connect.facebook.net/en_US/all.js";
+    if (d.getElementById(id)) {
+        return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/all.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -172,9 +171,9 @@ facebookLoginButton.onclick = function() {
             $("#signInMessage").show();
         } else {
             fbLogin()
-            // below is same as above
-            // $('#submitForm').attr('action', 'https://localhost:8000/createPost');
-            // $('#submitButton').attr('onclick', '');
+                // below is same as above
+                // $('#submitForm').attr('action', 'https://localhost:8000/createPost');
+                // $('#submitButton').attr('onclick', '');
             document.getElementById('login').innerHTML = 'Logout';
             facebookLoginButton.innerHTML = "Sign Out With Facebook";
             $("#signInMessage").hide();
@@ -184,23 +183,24 @@ facebookLoginButton.onclick = function() {
 
 
 
-
 function fbLogin() {
-    var window = FB.login(function (response) {
+    var window = FB.login(function(response) {
         if (response.authResponse) {
             // Get and display the user profile data
             document.getElementById('successScreen').innerHTML = 'Thanks for Logging In';
             userID = response.id;
-        FB.getAuthResponse(function(response) {
-            if (response.status === 'connected') {
-                accessToken = response.authResponse.accessToken;
-            }
-        });
+            FB.getAuthResponse(function(response) {
+                if (response.status === 'connected') {
+                    accessToken = response.authResponse.accessToken;
+                }
+            });
             getFbUserData();
         } else {
             document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
         }
-    }, {scope: 'email'});
+    }, {
+        scope: 'email'
+    });
 }
 
 // Logout from facebook
@@ -212,9 +212,12 @@ function fbLogout() {
     });
 }
 
-function getFbUserData(){
-    FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'},
-        function (response) {
+function getFbUserData() {
+    FB.api('/me', {
+            locale: 'en_US',
+            fields: 'id,first_name,last_name,email,link,gender,locale,picture, age_range'
+        },
+        function(response) {
             // for sell page
             if ($("#accessToken") != undefined) {
                 $("#accessToken").val(accessToken);
@@ -240,8 +243,9 @@ function getFbUserData(){
                 scope.getReviewerImagesAndNames();
             }
 
-
-            scope.getNotifications(accessToken);
+            if (accessToken != null && accessToken != undefined) {
+                scope.getNotifications(accessToken);
+            }
 
             window.location.reload(true); // reload a page when you log in
 
@@ -251,24 +255,24 @@ function getFbUserData(){
 }
 
 function saveUserData(response) {
-      var url = prodUrl + "createUser";
+    var url = prodUrl + "createUser";
 
-      var avgAge = 25 //default to 25 if unspecified
+    var avgAge = 25 //default to 25 if unspecified
 
-      if (response.age_range != null) {
+    if (response.age_range != null) {
         avgAge = (response.age_range.max + response.age_range.min) / 2
-      }
+    }
 
-      data = {
-        name: response.first_name+ ' ' + response.last_name,
+    data = {
+        name: response.first_name + ' ' + response.last_name,
         fbid: response.id,
         age: avgAge,
         gender: response.gender,
         url: 'http://graph.facebook.com/' + response.id + '/picture?type=large',
         email: response.email
-      }
+    }
 
-      $.ajax({
+    $.ajax({
         url: url,
         type: 'post',
         data: data,
