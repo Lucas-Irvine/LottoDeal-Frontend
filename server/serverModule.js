@@ -6,7 +6,7 @@ angular.module('serverModule', ['utilsModule'])
 var prodUrl = "http://162.243.121.223:8000/";
 var debug = "https://localhost:8000/";
 
-var frontendURL
+var frontendURL = "www.lottodeal.us"
 
 // serverGet contains all ajax GET calls to the backend (all private GET requests
 // use an accessToken instead of FBID)

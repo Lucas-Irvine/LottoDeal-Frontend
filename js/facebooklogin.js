@@ -123,7 +123,7 @@ window.fbAsyncInit = function() {
             }
 
             if (window.location.href.indexOf("item.html") > -1) {
-                scope.getItem();
+                scope.getItem(); // should be able to see item still
             }
 
             document.getElementById('successScreen').innerHTML = "";
