@@ -924,8 +924,8 @@ textarea:-ms-input-placeholder {
     border:0;
 }
 
-.btn:focus {
-        outline: none;
+.btn:focus { /* added to get rid of highlighting effect on buttons on click */
+    outline: none;
 }
 
 .btn.btn-launch {
