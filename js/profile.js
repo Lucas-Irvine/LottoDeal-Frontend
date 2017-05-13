@@ -15,9 +15,9 @@ function validateEmail(email) {
 
 var scope;
 
-var app = angular.module("profile_app", ["serverModule"])
+var app = angular.module("profile_app", ["serverModule", "utilsModule"])
 
-app.controller("profileController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
+app.controller("profileController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", "winnerFunction", function($scope, $rootScope, $location, serverGet, serverPost, winnerFunction) {
     $scope.selectedTab = 0
 
     $scope.bids = []
@@ -92,5 +92,17 @@ app.controller("profileController", ["$scope", "$rootScope", "$location", "serve
 
     
     $scope.targetPost = null;
+
+    $scope.displayWinner = function(winner) {
+        var winnerPopup = $('#winnerPopup');
+        var winnerForModal = $("#winnerForModal");
+        var canvasEl = $("#canvas");
+        var canvas = document.getElementById("canvas")
+        var width = window.innerWidth;
+        var height = window.innerHeight
+        var temp = winner;
+
+        winnerFunction.displayWinner($scope, winnerPopup, winnerForModal, canvas, width, height, temp, canvasEl)
+    }
 
 }])

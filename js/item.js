@@ -2,7 +2,7 @@ var userID;
 var app = angular.module("app", []);
 var scope;
 
-var app = angular.module("item_app", ["serverModule"])
+var app = angular.module("item_app", ["serverModule", "utilsModule"])
 
 $('#myTabs a').click(function(e) {
     e.preventDefault()
@@ -53,7 +53,7 @@ function changeTab(titleID, id) {
     document.getElementById(id).className += " active";
 }
 
-app.controller("itemController", ["$scope", "$location", "serverGet", "serverPost", function($scope, $location, serverGet, serverPost) {
+app.controller("itemController", ["$scope", "$location", "serverGet", "serverPost", "winnerFunction", function($scope, $location, serverGet, serverPost, winnerFunction) {
     var searchObject = $location.search();
     var id = searchObject['id'];
     scope = $scope;
@@ -87,6 +87,18 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
 
     scope.getItem = function() {
         serverGet.getItem(id, $scope, accessToken, userID)
+    }
+
+    $scope.displayWinner = function(winner) {
+        var winnerPopup = $('#winnerPopup');
+        var winnerForModal = $("#winnerForModal");
+        var canvasEl = $("#canvas");
+        var canvas = document.getElementById("canvas")
+        var width = window.innerWidth;
+        var height = window.innerHeight
+        var temp = winner;
+
+        winnerFunction.displayWinner($scope, winnerPopup, winnerForModal, canvas, width, height, temp, canvasEl)
     }
 
 }])

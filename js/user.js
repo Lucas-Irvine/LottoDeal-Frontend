@@ -51,9 +51,9 @@ function createReviewFunction() {
 
 var scope;
 
-var app = angular.module("user_app", ["serverModule"])
+var app = angular.module("user_app", ["serverModule", "utilsModule"])
 
-app.controller("userController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", function($scope, $rootScope, $location, serverGet, serverPost) {
+app.controller("userController", ["$scope", "$rootScope", "$location", "serverGet", "serverPost", "winnerFunction", function($scope, $rootScope, $location, serverGet, serverPost, winnerFunction) {
     scope = $scope;
     var searchObject = $location.search();
     var id = searchObject['id'];
@@ -109,6 +109,18 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
     $scope.itemID = ""
     $scope.itemTitle = ""
     $scope.price = 0
+
+    $scope.displayWinner = function(winner) {
+        var winnerPopup = $('#winnerPopup');
+        var winnerForModal = $("#winnerForModal");
+        var canvasEl = $("#canvas");
+        var canvas = document.getElementById("canvas")
+        var width = window.innerWidth;
+        var height = window.innerHeight
+        var temp = winner;
+
+        winnerFunction.displayWinner($scope, winnerPopup, winnerForModal, canvas, width, height, temp, canvasEl)
+    }
 }])
 
 

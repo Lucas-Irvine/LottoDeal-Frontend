@@ -157,71 +157,92 @@
 </nav>
 
 
-        <div class="container content">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h2 class="display-3">Wanna Get In Touch?</h2>
-                    <p class="lead">Are there any issues/bugs you want to let us know? Or just share some love? Let us know!</p>
+<div class="container content">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2 class="display-3">Wanna Get In Touch?</h2>
+            <p class="lead">Are there any issues/bugs you want to let us know? Or just share some love? Let us know!</p>
+        </div>
+    </div>
+
+    <form class="contactForm"  method="post">
+
+        <div class="contentform">
+
+            <div class="leftForm">
+
+                <div class="form-group">
+                    <p>First Name<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                    <input class = "contactInput" id="fname" name="fname" type="text" data-rule="required">
+                    <div class="validation"></div>
                 </div>
+
+                <div class="form-group">
+                    <p>Email Address<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                    <input class = "contactInput" id="email" name="email" type="text" data-rule="required">
+                    <div class="validation"></div>
+                </div>
+
             </div>
 
-            <form class="contactForm"  method="post">
+            <div class="rightForm">
 
-                <div class="contentform">
-
-                    <div class="leftForm">
-
-                        <div class="form-group">
-                            <p>First Name<span>*</span></p>
-                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                            <input class = "contactInput" id="fname" name="fname" type="text" data-rule="required">
-                            <div class="validation"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <p>Email Address<span>*</span></p>
-                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                            <input class = "contactInput" id="email" name="email" type="text" data-rule="required">
-                            <div class="validation"></div>
-                        </div>
-
-                    </div>
-
-                    <div class="rightForm">
-
-                        <div class="form-group">
-                            <p>Last Name<span>*</span></p>
-                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                            <input class = "contactInput" id="lname" name="lname" type="text" data-rule="required">
-                            <div class="validation"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <p>Subject<span>*</span></p>
-                            <span class="icon-case"><i class="fa fa-user"></i></span>
-                            <input class = "contactInput" id="subject" name="subject" type="text" data-rule="required">
-                            <div class="validation"></div>
-                        </div>
-
-                    </div>
-
-                    <div class="fullForm">
-
-                        <div class="form-group">
-                            <p>Message<span>*</span></p>
-                            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
-                            <textarea data-rule="required" id="message" type="text" name="message" rows="7"></textarea>
-                            <div class="validation"></div>
-                        </div>
-
-                    </div>
-
+                <div class="form-group">
+                    <p>Last Name<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                    <input class = "contactInput" id="lname" name="lname" type="text" data-rule="required">
+                    <div class="validation"></div>
                 </div>
 
-                <button type="submit" name="submit" class="contactButton" onclick="sendEmail()">Submit</button>
+                <div class="form-group">
+                    <p>Subject<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-user"></i></span>
+                    <input class = "contactInput" id="subject" name="subject" type="text" data-rule="required">
+                    <div class="validation"></div>
+                </div>
 
-            </form>
+            </div>
+
+            <div class="fullForm">
+
+                <div class="form-group">
+                    <p>Message<span>*</span></p>
+                    <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+                    <textarea data-rule="required" id="message" type="text" name="message" rows="7"></textarea>
+                    <div class="validation"></div>
+                </div>
+
+            </div>
+
         </div>
+
+        <button type="submit" name="submit" class="contactButton" onclick="sendEmail()">Submit</button>
+
+    </form>
+</div>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+     id="winnerPopup">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                    <img src="./img/ezgif.com-crop.gif"/>
+                    <h1 id="winnerForModal" style="display:none">The winner is: {{winner}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div ng-view></div> -->
+    <center><canvas id="canvas" style="position:absolute;
+    margin: 0 auto;
+    left:0;
+    top:0;
+    z-index:2000;
+    border:0px solid #000;"></canvas></center>
 
     <!-- Button trigger modal -->
 
