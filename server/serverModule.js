@@ -994,6 +994,13 @@ function serverPost() {
                             id: id
                         },
                         type: 'DELETE',
+                        statusCode: {
+		                    404: function(response) {
+		                        var newDoc = document.open("text/html", "replace");
+		                        newDoc.write(response.responseText);
+		                        newDoc.close();
+		                    }
+		                },
                         success: function(data) {
                             var $footerButton = dialog.getButton('btn-1');
                             $footerButton.enable();
