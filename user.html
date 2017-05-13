@@ -220,7 +220,7 @@
                         </div>
                         <div class="ratings">
                             <div class="col-lg-5 col-md-5 col-sm-5">
-                                Rating: {{account.averageRating}} / 5
+                                Rating: {{account.averageRating}}
                             </div>
                             <div class="col-lg-7 col-md-7 col-sm-7">
                                 <a href="user.html#!/?id={{post.sellerID}}">Seller: {{post.sellerName}}</a>
@@ -269,9 +269,6 @@
                         </div>
                     </div>
                     <div class="ratings">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
-                            Rating: {{accounts[$index].averageRating}} / 5
-                        </div>
                         <div class="col-lg-7 col-md-7 col-sm-7">
                             <a href="user.html#!/?id={{soldItem.sellerID}}">Seller: {{soldItem.sellerName}}</a>
                         </div>
@@ -339,7 +336,7 @@
                   <div class="form-group">
                       <label for="coinspershift">Review Description</label>  
                       <div >
-                          <input id="reviewDes" name="coinspershift" type="text" placeholder="Your Review Description Here" class="form-control input-md" required>
+                          <input id="reviewDes" name="coinspershift" type="text" placeholder="Your Review Description Here" class="form-control input-md" maxlength="500" required>
                       </div>
                   </div>
 
@@ -369,7 +366,7 @@
             <div class="rating-block">
              <div ng-model= "account">
                 <h4>Average user rating</h4>
-                <h2 class="bold padding-bottom-7">{{account.averageRating}} <small>/ 5</small></h2>
+                <h2 class="bold padding-bottom-7">{{account.averageRating}} <small ng-show="{{reviewAvailable}}">/ 5</small></h2>
                 </div>
             </div>
         </div>

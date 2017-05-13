@@ -388,6 +388,7 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	            var total = 0; 
 	            var average = 0;
 	            var averageRounded = 0;
+	            var rating = ""
 	            if (length != 0) {
 	                var total = 0; 
 	                for (var i = 0; i < length; i++) {
@@ -396,10 +397,16 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 
 	                var average = total/length;
 	                var averageRounded = Math.round(average*10)/10
+	                rating = "" + averageRounded + "/5"
+	                $scope.ratingAvailable = true;
+	            }
+	            else {
+	            	rating = "No ratings yet"
+	            	$scope.ratingAvailable = false;
 	            }
 
 	            var account = {
-	                averageRating : averageRounded,
+	                averageRating : rating
 	            }
 	            
 	            $scope.account = account;
