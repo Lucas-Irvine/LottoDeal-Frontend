@@ -94,7 +94,7 @@ function arrayBufferFunctions() {
 }
 
 function winnerFunction() {
-  this.displayWinner = function($scope, winnerPopup, winnerForModal, w, h, winner) {
+  this.displayWinner = function($scope, winnerPopup, winnerForModal, canvas, w, h, winner) {
     winnerPopup.modal({
         keyboard: false
     })
@@ -191,11 +191,12 @@ function winnerFunction() {
         }
 
         function update(){
-            context.clearRect(0,0,width,height);
+          canvas.show();
+          context.clearRect(0,0,width,height);
 
-            drawScreen();
+          drawScreen();
 
-            requestAnimationFrame(update);
+          requestAnimationFrame(update);
         }
 
         update();
