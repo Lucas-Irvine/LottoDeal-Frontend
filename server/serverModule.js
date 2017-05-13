@@ -451,7 +451,7 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	                    items[i].expirationDate = "Lottery has expired!";                     
 	                }
 	                else if (items[i].sold) {
-	                    items[i].expirationDate = "Item was sold to:" + items[i].winnerName;
+	                    items[i].expirationDate = items[i].winnerName;
 	                }
 	                else if (hours < 0 || days < 0) {
 	                     items[i].expirationDate = "Negative days remaining (not expired yet)";   
@@ -511,7 +511,7 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	                    items[i].expirationDate = "Lottery has expired!";                     
 	                }
 	                else if (items[i].sold) {
-	                    items[i].expirationDate = "Item was sold to:" + items[i].winnerName;
+	                    items[i].expirationDate = items[i].winnerName;
 	                }
 	                else if (hours < 0 || days < 0) {
 	                     items[i].expirationDate = "Negative days remaining (not expired yet)";   
