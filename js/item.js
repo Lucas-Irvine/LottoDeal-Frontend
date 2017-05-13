@@ -53,17 +53,17 @@ function changeTab(titleID, id) {
     document.getElementById(id).className += " active";
 }
 
-app.controller("itemController", ["$scope", "$location", "serverGet", "serverPost", "winnerFunction", function($scope, $location, serverGet, serverPost, winnerFunction) {
+app.controller("itemController", ["$scope", "$location", "serverGet", "serverPost", "winnerFunction", "$rootScope", function($scope, $location, serverGet, serverPost, winnerFunction, $rootScope) {
     var searchObject = $location.search();
     var id = searchObject['id'];
     scope = $scope;
 
-    $scope.$on('$routeChangeStart', function(next, current) {
-        console.log(next);
-        console.log(current);
-        console.log($location);
+    $rootScope.$watch(function() {
+        return $location.path();
+    },
+    function(a) {
+        console.log("url has changed: " + a);
     });
-
 
     scope.getSuggestions = function() {
         serverGet.getSuggestions(accessToken, $scope)
