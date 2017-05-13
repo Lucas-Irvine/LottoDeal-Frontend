@@ -875,7 +875,6 @@ function serverPost() {
 	                    success: function(data) {
 	                        if (page == "item") {
 	                        	post = $scope.post
-		                        console.log(itemID)
 		                        if (post["_id"] == itemID) {
 		                            var newPrice = post.amountRaised + amountToCharge;
 		                            post.amountRaised = newPrice;
@@ -885,7 +884,6 @@ function serverPost() {
 	                        else if (page == "index") {
 	                        	for (var i = 0; i < $scope.posts.length; i++) {
 		                            post = $scope.posts[i]
-		                            console.log(itemID)
 		                            if (post["_id"] == itemID) {
 		                                var newPrice = post.amountRaised + amountToCharge;
 		                                post.amountRaised = newPrice;
@@ -897,7 +895,6 @@ function serverPost() {
 	                        else if (page == "user") {
 		                        for (var i = 0; i < $scope.listedItems.length; i++) {
 		                            post = $scope.listedItems[i]
-		                            console.log(itemID)
 		                            if (post["_id"] == itemID) {
 		                                var newPrice = post.amountRaised + amountToCharge;
 		                                post.amountRaised = newPrice;
@@ -909,7 +906,6 @@ function serverPost() {
 	                        else if (page == "profile") {
 		                        for (var i = 0; i < $scope.items.length; i++) {
 		                            post = $scope.items[i]
-		                            console.log(itemID)
 		                            if (post["_id"] == itemID) {
 		                                var newPrice = post.amountRaised + amountToCharge;
 		                                post.amountRaised = newPrice;
