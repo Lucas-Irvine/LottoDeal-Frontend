@@ -296,10 +296,10 @@ $(document).ready(function() {
 
     $('a').on('click touchend', function(e) {
         var el = $(this);
-        var id = el.attr('id');
-        if (id != 'notifications') {
-            var link = el.attr('href');
-            window.location = link;
+            if (el.hasAttribute('href')) {
+                var link = el.attr('href');
+                window.location = link;
+            }
         }
     });
 
