@@ -105,6 +105,7 @@ function winnerFunction() {
         /* CODE BELOW IS MODIFIED FROM https://codepen.io/Gthibaud/pen/bNOZjd */
 
         // canvas = document.getElementById("canvas");
+        canvasEl.show();
         context = canvas.getContext("2d");
         width = canvas.width = w;
         height = canvas.height = h;
@@ -191,7 +192,7 @@ function winnerFunction() {
         }
 
         function update(){
-          canvasEl.show();
+          // canvasEl.show();
           context.clearRect(0,0,width,height);
 
           drawScreen();
