@@ -619,6 +619,11 @@ http://www.9lessons.info/2014/09/facebook-style-notification-popup-using.html */
     color: #d17581;
 }
 
+.review-block-description {
+    word-wrap: break-word;
+}
+
+
 .navbar-collapse.collapse {
   display: block!important;
 }
