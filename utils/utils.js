@@ -94,7 +94,7 @@ function arrayBufferFunctions() {
 }
 
 function winnerFunction() {
-  this.displayWinner = function($scope, winnerPopup, winnerForModal, w, h) {
+  this.displayWinner = function($scope, winnerPopup, winnerForModal, w, h, winner) {
     winnerPopup.modal({
         keyboard: false
     })

@@ -46,7 +46,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
         var width = window.innerWidth;
         var height = window.innerHeight
 
-        winnerFunction.displayWinner($scope, winnerPopup, winnerForModal, canvas, width, height)
+        winnerFunction.displayWinner($scope, winnerPopup, winnerForModal, canvas, width, height, winner)
     }
 
 }])
