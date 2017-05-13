@@ -288,6 +288,10 @@ function saveUserData(response) {
 }
 //End Facebook login code -----------------------------------
 
+
+/* code taken from http://cssmenumaker.com/blog/solving-the-double-tap-issue-on-ios-devices
+*  makes links work on 1 click on mobile */
+
 $(document).ready(function() {
 
     $('a').on('click touchend', function(e) {

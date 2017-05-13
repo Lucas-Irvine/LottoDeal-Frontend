@@ -337,7 +337,6 @@ textarea:-ms-input-placeholder {
 
 #navbar-unique .nav > li > a:focus:visited {
     color: black;
-    background-color: white;
 }
 
 .sliding-middle-out {
