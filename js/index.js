@@ -56,7 +56,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
 // reverses elements in an array
 app.filter('reverse', function() {
     return function(items) {
-        if (!input || !input.length) { return; }
+        if (!items || !items.length) { return; }
         return items.slice().reverse();
     }
 })
