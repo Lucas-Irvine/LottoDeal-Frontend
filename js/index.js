@@ -43,6 +43,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
         var winnerPopup = $('#winnerPopup');
         var winnerForModal = $("#winnerForModal");
         var canvas = document.getElementById("canvas");
+        console.log(canvas);
         var width = window.innerWidth;
         var height = window.innerHeight
         var temp = winner;
