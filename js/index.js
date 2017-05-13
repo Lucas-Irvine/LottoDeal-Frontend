@@ -42,7 +42,7 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.displayWinner = function(winner) {
         var winnerPopup = $('#winnerPopup');
         var winnerForModal = $("#winnerForModal");
-        var canvas = document.getElementById("canvas");
+        var canvas = $("#canvas");
         console.log(canvas);
         var width = window.innerWidth;
         var height = window.innerHeight
