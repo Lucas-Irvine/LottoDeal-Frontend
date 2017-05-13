@@ -355,9 +355,9 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	        success: function(data) {
 	            var allAccounts = JSON.parse(data)
 
-	            $scope.listedAccounts = allAccounts.listedAccounts;
-    			$scope.soldAccounts = allAccounts.soldAccounts;
-    			$scope.expiredAccounts = allAccounts.expiredAccounts;
+	            $scope.listedAccounts = allAccounts.listedAccounts.slice().reverse();
+    			$scope.soldAccounts = allAccounts.soldAccounts.slice().reverse();
+    			$scope.expiredAccounts = allAccounts.expiredAccounts.slice().reverse();
 
 	            $scope.$apply()
 	        },
