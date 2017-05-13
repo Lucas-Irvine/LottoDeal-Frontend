@@ -550,6 +550,10 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	// get a user's personal account information
 	this.getAccount = function(accessToken, $scope) {
 		var url = prodUrl + "getAccount";
+		if (accessToken == null || accessToken == undefined) {
+			return;
+		}
+
 	    var dataGET = {
 	        accessToken: accessToken
 	    }
