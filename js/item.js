@@ -58,6 +58,13 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     var id = searchObject['id'];
     scope = $scope;
 
+    $scope.$on('$routeChangeStart', function(next, current) {
+        console.log(next);
+        console.log(current);
+        console.log($location);
+    });
+
+
     scope.getSuggestions = function() {
         serverGet.getSuggestions(accessToken, $scope)
     }
