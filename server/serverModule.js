@@ -1007,7 +1007,7 @@ function serverPost() {
                             $footerButton.stopSpin();
                             dialog.setClosable(true);
                             dialog.close();
-                            window.location.href = frontendURL + '/index.html';
+                            window.location.href = '/index.html';
                         },
                         error: function(response, error) {
                             var $footerButton = dialog.getButton('btn-1');
