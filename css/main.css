@@ -8,6 +8,10 @@ body {
     height: 100%;
 }
 
+#contactBody {
+    padding-top: 70px;
+}
+
 p {
     word-wrap: break-word;
 }
@@ -1185,6 +1189,10 @@ input:focus, textarea:focus {
 
     #notification_li, #profile_li, #login_li {
         float: right;
+    }
+
+    #contactBody {
+        padding-top: 130px;
     }
 }
 
