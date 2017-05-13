@@ -84,7 +84,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="col-lg-9">
+                <div class="col-sm-9">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
@@ -102,10 +102,15 @@
                         <li>
                             <a id = "home" class="sliding-middle-out" href="index.html">Home</a>
                         </li>
-                        <li>
+                        <li id="sell_li">
                             <a id = "sell" class="sliding-middle-out" href="sell.html">Sell</a>
                         </li>
-
+                        <li id="login_li">
+                            <a href = "#" id = "login" class="sliding-middle-out" style="cursor: pointer;" onclick = "showLoginPopup()">Login</a>
+                        </li>
+                        <li id="profile_li">
+                            <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
+                        </li>
                         <li id="notification_li">
                             <a id="notifications" class="sliding-middle-out"><i class="fa fa-fw fa-bell-o"></i><span
                                     id="notification_count" ng-cloak>{{notificationLength}}</span>
@@ -139,13 +144,6 @@
                                 <!--</div>-->
                             </div>
                         </li>
-
-                <li>
-                    <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
-                </li>
-                <li>
-                    <a href = "#" id = "login" class="sliding-middle-out" style="cursor: pointer;" onclick = "showLoginPopup()">Login</a>
-                </li>
                 </ul>
             </div>
         </div>

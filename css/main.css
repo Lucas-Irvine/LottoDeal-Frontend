@@ -270,7 +270,6 @@ footer.signin {
 .navbar {
     background-color: whitesmoke;
     border-color: rgba(34, 34, 34, 0.05); /* black */
-    font-family: "Helvetica Neue", Helvetica;
     -webkit-transition: all 0.35s;
     -moz-transition: all 0.35s;
     transition: all 0.35s;
@@ -326,7 +325,8 @@ textarea:-ms-input-placeholder {
 }
 
 #navbar-unique .nav > li > a:hover,
-#navbar-unique .nav > li > a:focus:hover {
+#navbar-unique .nav > li > a:focus:hover,
+{
      color: black;
 }
 
@@ -340,7 +340,7 @@ textarea:-ms-input-placeholder {
     background-color: white;
 }
 
-.sliding-middle-out, #navbar-unique .navbar-header > a {
+.sliding-middle-out {
     display: inline-block;
     position: relative;
     padding-bottom: 3px;
@@ -349,7 +349,7 @@ textarea:-ms-input-placeholder {
     /*font-family: 'Alegreya Sans SC', sans-serif; */
 }
 
-.sliding-middle-out:after, #navbar-unique .navbar-header > a:after {
+.sliding-middle-out:after {
     content: '';
     display: block;
     margin: auto;
@@ -358,18 +358,10 @@ textarea:-ms-input-placeholder {
     background: transparent;
     transition: width .2s ease, background-color .2s ease;
 }
-.sliding-middle-out:hover:after, #navbar-unique .navbar-header > a:hover:after {
+.sliding-middle-out:hover:after {
     width: 100%;
     background: #3cc47c;
 }
-
-/*.sliding-middle-out {
-    font-size: 17px;
-}*/
-
-/*#navbar-unique .navbar-header > a {
-    font-size: 20px;
-}*/
 
 /* home button styling */
 
@@ -403,7 +395,8 @@ textarea:-ms-input-placeholder {
     padding-bottom: 7px;
 }
 
-/*notification bar styling code modified from http://www.9lessons.info/2014/09/facebook-style-notification-popup-using.html */
+/*notification bar styling code modified from
+http://www.9lessons.info/2014/09/facebook-style-notification-popup-using.html */
 
 #notificationContainer
 {
@@ -499,14 +492,6 @@ textarea:-ms-input-placeholder {
     font-size: 12px;
     right: 13px;
     top: 10px;
-}
-
-
-@media (max-width: 767px) {
-    #notification_count
-    {
-        top: 5px;
-    }
 }
 
 /* notifications end */
@@ -640,7 +625,7 @@ textarea:-ms-input-placeholder {
 }
 
 .navbar-nav>li, .navbar-nav {
-  float: left !important;
+  float: left;
 }
 
 .navbar-nav.navbar-right:last-child {
@@ -714,9 +699,6 @@ textarea:-ms-input-placeholder {
 
 
 /* Start item page CSS */
-
-
-
 
 /*-Header-*/
 .header {
@@ -1165,43 +1147,9 @@ input:focus, textarea:focus {
 /* For smaller sized screens and mobile responsiveness */
 
 @media (max-width: 1200px) {
-    /*.navbar-header {
-        float: none;
-    }
-    .navbar-left,.navbar-right {
-        float: none !important;
-    }*/
     .navbar .outer > form {
         display: none;
     }
-    /* .navbar-toggle {
-         display: block;
-     }
-     .navbar-collapse {
-         border-top: 1px solid transparent;
-         box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-     }
-     .navbar-fixed-top {
-         top: 0;
-         border-width: 0 0 1px;
-     }
-     .navbar-collapse.collapse {
-         display: none!important;
-     }
-     .navbar-nav {
-         float: none!important;
-         margin-top: 7.5px;
-     }
-     .navbar-nav>li {
-         float: none;
-     }
-     .navbar-nav>li>a {
-         padding-top: 10px;
-         padding-bottom: 10px;
-     }
-     .collapse.in{
-         display:block !important;
-     }*/
 }
 
 @media (max-width: 767px) {
@@ -1209,9 +1157,35 @@ input:focus, textarea:focus {
         display: none;
     }
     body {
-        padding-top: 102px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        padding-top: 102px;
+    }
+    #query {
+        margin-left: 13px;
+        width: 100%;
+    }
+    .search-btn {
+        margin-right: 13px;
+    }
+    #notification_count
+    {
+        top: 5px;
+    }
+    #notificationContainer
+    {
+        width: 302px;
+    }
+    #notificationTitle
+    {
+        width: 300px;
     }
 
+    #notification_li, #profile_li, #login_li {
+        float: right;
+    }
+}
+
+#notification_li, #profile_li, #login_li {
+    float: right;
 }
 
 @media (min-width: 768px) {
