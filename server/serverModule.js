@@ -241,8 +241,6 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	        success: function(data) {
 	            var parsed = JSON.parse(data)
 
-	   			console.log("recieving item");
-
 	            // amount raised
 	            parsed.percentageRaised = (Number(parsed.amountRaised) / Number(parsed.price)) * 100;
 	            var expirationDate = new Date(parsed.expirationDate);
