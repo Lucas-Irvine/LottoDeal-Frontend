@@ -40,9 +40,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.winner = null;
 
     $scope.displayWinner = function(winner) {
-        $('#winnerPopup').modal({
-            keyboard: false
-        })
         var winnerPopup = $('#winnerPopup');
         var winnerForModal = $("#winnerForModal");
         var canvas = document.getElementById("canvas");
