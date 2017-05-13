@@ -99,8 +99,6 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
         serverGet.getItem(id, $scope, userID)
     }
 
-    serverGet.getItem(id, $scope, userID);
-
     $scope.displayWinner = function(winner) {
         var winnerPopup = $('#winnerPopup');
         var winnerForModal = $("#winnerForModal");
