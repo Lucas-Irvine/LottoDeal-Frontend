@@ -7,6 +7,8 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
     $scope.selectedTab = 0
     $scope.posts = []
 
+    console.log(winnerFunction);
+
     serverGet.getPosts($("#loading-icon"), $scope);
     
     serverGet.getAccountsForPosts($scope);
