@@ -99,6 +99,8 @@ function winnerFunction() {
         keyboard: false
     })
 
+    console.log(canvas);
+
     setTimeout(function() {
         winnerForModal.fadeIn();
 
