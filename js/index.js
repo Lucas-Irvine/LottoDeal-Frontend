@@ -44,7 +44,6 @@ app.controller("indexController", ["$scope", "$rootScope", "$location", "serverG
         var winnerForModal = $("#winnerForModal");
         var canvasEl = $("#canvas");
         var canvas = document.getElementById("canvas")
-        console.log(canvas);
         var width = window.innerWidth;
         var height = window.innerHeight
         var temp = winner;
