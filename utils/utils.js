@@ -242,7 +242,7 @@ function winnerFunction() {
         /* END OF MODIFIED CODE FROM https://codepen.io/Gthibaud/pen/bNOZjd */
 
         setTimeout(function() {
-            $("#canvas").hide();
+            canvas.hide();
         }, 5000)
     }, 3000)
     $scope.winner = winner;
