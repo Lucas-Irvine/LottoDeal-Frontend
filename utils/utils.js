@@ -191,7 +191,7 @@ function winnerFunction() {
         }
 
         function update(){
-          // canvasEl.show();
+          canvasEl.show();
           context.clearRect(0,0,width,height);
 
           drawScreen();
