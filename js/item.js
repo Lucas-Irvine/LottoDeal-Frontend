@@ -59,10 +59,13 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     scope = $scope;
 
     $rootScope.$watch(function() {
-        return $location.path();
+        return $location.search()['id'];
     },
     function(a) {
-        console.log("url has changed: " + a);
+        if (a != null && a != undefined && a != id) {
+            id = a;
+            serverGet.getItem(id, $scope, accessToken, userID)
+        }
     });
 
     scope.getSuggestions = function() {
