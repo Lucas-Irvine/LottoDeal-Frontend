@@ -132,6 +132,10 @@ html {
     font-size: 12px;
 }
 
+.btn-group:focus {
+    outline: none;
+}
+
 #item-button {
     padding-left: 10%;
     padding-right: 10%;
