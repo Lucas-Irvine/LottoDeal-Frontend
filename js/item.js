@@ -64,7 +64,7 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     function(a) {
         if (a != null && a != undefined && a != id) {
             id = a;
-            serverGet.getItem(id, $scope, accessToken, userID)
+            serverGet.getItem(id, $scope, userID)
         }
     });
 
@@ -96,8 +96,10 @@ app.controller("itemController", ["$scope", "$location", "serverGet", "serverPos
     }
 
     scope.getItem = function() {
-        serverGet.getItem(id, $scope, accessToken, userID)
+        serverGet.getItem(id, $scope, userID)
     }
+
+    serverGet.getItem(id, $scope, userID);
 
     $scope.displayWinner = function(winner) {
         var winnerPopup = $('#winnerPopup');

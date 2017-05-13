@@ -222,7 +222,7 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	}
 
 	// get item based on itemID
-	this.getItem = function(id, $scope, accessToken, userID) {
+	this.getItem = function(id, $scope, userID) {
 		var url = prodUrl + "getItem"
 
 		$.ajax({
@@ -240,6 +240,8 @@ function serverGet(dateFunctions, base64ArrayBuffer) {
 	        },
 	        success: function(data) {
 	            var parsed = JSON.parse(data)
+
+	   			console.log("recieving item");
 
 	            // amount raised
 	            parsed.percentageRaised = (Number(parsed.amountRaised) / Number(parsed.price)) * 100;
