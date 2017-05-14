@@ -39,6 +39,7 @@ function sellCheck() {
         checkIfUser(accessToken, function() {
             if (status == 'true') {
                 //to submit the form
+                document.getElementById("submitForm").disabled = true;
                 return true;
             } else {
                 document.getElementById('loginMessage').innerHTML = 'You must login and logout before you are able to sell an item!';
