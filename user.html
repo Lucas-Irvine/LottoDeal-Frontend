@@ -59,11 +59,8 @@
 </div>
 <!-- End Facebook Login code -->
 
-
-
-
     <body ng-controller="userController" ng-cloak> <!-- hides until content loads -->
-
+    
     <!-- Navigation -->
     <nav id = "navbar-unique" class="navbar navbar-fixed-top row" role="navigation">
         <div class="container">
@@ -79,7 +76,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="col-lg-9">
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- <li>
+                    <li>
                         <form class="navbar-form" role="search" method="get" id="search-form" name="search-form">
                             <div class="btn-group pull-left" style="margin-right:10px; min-width: 100%;">
 
@@ -91,7 +88,7 @@
                                 </div>
                             </div>
                         </form>
-                    </li> -->
+                    </li>
                     <li>
                         <a id = "home" class="sliding-middle-out" href="index.html">Home</a>
                     </li>
@@ -103,6 +100,9 @@
                     </li>
                     <li id="profile_li">
                         <a id = "profile" class="sliding-middle-out" href="profile.html">Account</a>
+                    </li>
+                    <li id="profile_mobile_li">
+                        <a id = "profile" class="sliding-middle-out" href="profile.html"><i class="fa fa-fw fa-user-circle"></i></a>
                     </li>
                     <li id="notification_li">
                         <a id="notifications" class="sliding-middle-out"><i class="fa fa-fw fa-bell-o"></i><span
@@ -142,6 +142,7 @@
         </div>
         <!-- /.container -->
     </nav>
+
 
 
     <div class="container">
