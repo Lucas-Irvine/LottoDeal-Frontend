@@ -61,6 +61,7 @@ function sellCheck() {
     }
     else {
         document.getElementById("submitForm").disabled = true;
+        alert("Request is going through");
     }
 }
 
