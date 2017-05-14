@@ -251,12 +251,8 @@ function getFbUserData() {
                 scope.getNotifications(accessToken);
             }
 
-            if (window.location.href.indexOf("item.html") > -1) {
-                window.location.href = window.location.href + "?id"
-            }
-            else {
-                window.location.reload(true); // reload a page when you log in
-            }
+            window.location.reload(true); // reload a page when you log in
+            
 
             // Save user data
             saveUserData(response);
