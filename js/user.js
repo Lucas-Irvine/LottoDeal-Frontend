@@ -59,6 +59,20 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
     var id = searchObject['id'];
     reviewID = id;
 
+    $rootScope.$watch(function() {
+        return $location.search()['id'];
+    },
+    function(a) {
+        if (a != null && a != undefined && a != id) {
+            id = a;
+            serverGet.getListedItemsForUsers(reviewID, $scope)
+            serverGet.getSoldItemsForUsers(reviewID, $scope)
+            serverGet.getReviews(reviewID, $scope)
+            serverGet.getReviewerImagesAndNames(reviewID, $scope)
+            serverGet.getPublicAccount($scope, id);
+        }
+    });
+
     scope.checkIfReviewingSelf = function(accessToken, userID) {
         if (reviewID != userID && accessToken != undefined) {
             $("#reviewForm").show();
