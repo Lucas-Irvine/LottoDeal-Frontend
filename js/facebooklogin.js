@@ -34,13 +34,20 @@ function checkIfUser(accessToken, callback) {
 
 // Check if a form is okay to submit before acces
 // http://stackoverflow.com/questions/40711082/call-a-javascript-function-before-action-in-html-form
+
+var clicked = 0;
 function sellCheck() {
     if (accessToken != undefined) {
         checkIfUser(accessToken, function() {
             if (status == 'true') {
                 //to submit the form
-                document.getElementById("submitForm").disabled = true;
-                return true;
+                if (clicked == 0) {
+                    clicked++;
+                    return true;
+                }
+                else {
+                    return false;
+                }
             } else {
                 document.getElementById('loginMessage').innerHTML = 'You must login and logout before you are able to sell an item!';
                 showLoginPopup();
