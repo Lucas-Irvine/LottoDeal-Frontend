@@ -1151,9 +1151,11 @@ input:focus, textarea:focus {
     outline:none;
 }
 
+#profile_mobile_li {
+    display: none;
+}
 
 /* For smaller sized screens and mobile responsiveness */
-
 @media (max-width: 1200px) {
     .navbar .outer > form {
         display: none;
@@ -1162,6 +1164,12 @@ input:focus, textarea:focus {
 
 @media (max-width: 767px) {
     .navbar-header {
+        display: none;
+    }
+    #profile_mobile_li {
+        display: block;
+    }
+    #profile_li {
         display: none;
     }
     body {
@@ -1186,17 +1194,15 @@ input:focus, textarea:focus {
     {
         width: 280px;
     }
-
     #notification_li, #profile_li, #login_li {
         float: right;
     }
-
     #contactBody {
         padding-top: 130px;
     }
 }
 
-#notification_li, #profile_li, #login_li {
+#notification_li, #profile_li, #login_li, #profile_mobile_li {
     float: right;
 }
 
