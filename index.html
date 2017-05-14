@@ -119,7 +119,7 @@
                             <div id="notificationContainer">
                                 <div id="notificationTitle"> Notifications
                                 </div>
-                                <div id="notificationsBody" class="notifications">
+                                <div id="notificationsBody" class="notifications" style="max-height: 500px">
                                     <div ng-repeat="notification in notifications">
                                         <div ng-class="{'notificationRead': notification.read == true, 'notificationUnread': notification.read == false}">
                                             <div class="notificationText">
