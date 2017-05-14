@@ -65,10 +65,11 @@ app.controller("userController", ["$scope", "$rootScope", "$location", "serverGe
     function(a) {
         if (a != null && a != undefined && a != id) {
             id = a;
-            serverGet.getListedItemsForUsers(reviewID, $scope)
-            serverGet.getSoldItemsForUsers(reviewID, $scope)
-            serverGet.getReviews(reviewID, $scope)
-            serverGet.getReviewerImagesAndNames(reviewID, $scope)
+            reviewID = id;
+            serverGet.getListedItemsForUsers(id, $scope)
+            serverGet.getSoldItemsForUsers(id, $scope)
+            serverGet.getReviews(id, $scope)
+            serverGet.getReviewerImagesAndNames(id, $scope)
             serverGet.getPublicAccount($scope, id);
         }
     });
