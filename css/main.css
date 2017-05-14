@@ -1180,11 +1180,11 @@ input:focus, textarea:focus {
     }
     #notificationContainer
     {
-        width: 302px;
+        width: 282px;
     }
     #notificationTitle
     {
-        width: 300px;
+        width: 280px;
     }
 
     #notification_li, #profile_li, #login_li {
