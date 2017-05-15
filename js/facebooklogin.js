@@ -146,6 +146,7 @@ window.fbAsyncInit = function() {
 
 };
 
+/* code snippet from Facebook */
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {
@@ -195,7 +196,7 @@ facebookLoginButton.onclick = function() {
 }
 
 
-
+/* login to dacebook */
 function fbLogin() {
     var window = FB.login(function(response) {
         if (response.authResponse) {
@@ -225,6 +226,7 @@ function fbLogout() {
     });
 }
 
+/* get the facebook data from the logged in user* */
 function getFbUserData() {
     FB.api('/me', {
             locale: 'en_US',
@@ -268,6 +270,7 @@ function getFbUserData() {
         });
 }
 
+/* save the facebook data of the logged in user */
 function saveUserData(response) {
     var url = prodUrl + "createUser";
 
@@ -301,21 +304,4 @@ function saveUserData(response) {
     });
 }
 //End Facebook login code -----------------------------------
-
-
-// /* code taken from http://cssmenumaker.com/blog/solving-the-double-tap-issue-on-ios-devices
-// *  makes links work on 1 click on mobile */
-//
-// $(document).ready(function() {
-//
-//     $('a').on('click touchend', function(e) {
-//         var el = $(this);
-//             if (el.hasAttribute('href')) {
-//                 var link = el.attr('href');
-//                 window.location = link;
-//             }
-//         }
-//     });
-//
-// });
 
