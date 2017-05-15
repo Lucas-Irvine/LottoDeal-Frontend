@@ -632,18 +632,12 @@ http://www.9lessons.info/2014/09/facebook-style-notification-popup-using.html */
   display: block!important;
 }
 
-.navbar-nav>li, .navbar-nav {
-  float: left;
-}
-
 .navbar-nav.navbar-right:last-child {
   margin-right: -15px !important;
 }
 
 
 /* for the reviews stars */
-
-
 .rating {
     float:left;
 
@@ -1163,7 +1157,7 @@ input:focus, textarea:focus {
         display: none;
     }
     #profile_mobile_li {
-        display: block;
+        display: inline;
     }
     #profile_li {
         display: none;
@@ -1192,6 +1186,10 @@ input:focus, textarea:focus {
     }
     #notification_li, #profile_li, #login_li {
         float: right;
+    }
+    #sell_li, #home_li {
+        float: left;
+        display: inline;
     }
     #contactBody {
         padding-top: 130px;
